@@ -1,7 +1,7 @@
 export const APP = {
-  name: "Exium.id",
-  defaultTitle: "Exium.id",
-  titleTemplate: "%s | Exium.id",
+  name: "RIMBA",
+  defaultTitle: "RIMBA",
+  titleTemplate: "%s | RIMBA",
   description: "",
   version: "1.0.0",
   lastUpdated: "2025-09-13",

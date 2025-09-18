@@ -178,6 +178,30 @@ const translations = {
     "description": "Uploading file..."
   },
   "location": "Location",
+  "lp_hero_description": "Creating a green economy in the Riau, Jambi, and Sumatera Barat Ecosystem Corridor",
+  "lp_hero_subtitle": "Ecosystem Corridor Program",
+  "lp_navs": {
+    "home": "Home",
+    "document": "Legal Document",
+    "about_us": {
+      "index": "About Us",
+      "rimba_corridor_program": "RIMBA Corridor Program",
+      "activity": "Activity",
+      "news": "News",
+      "partners": "Partners"
+    },
+    "map": {
+      "index": "Map",
+      "printed_map": "Printed Map",
+      "metadata": "Metadata",
+      "study_method_map": "Study Method Map"
+    },
+    "related_apps": {
+      "index": "Related App",
+      "kmis": "KMIS",
+      "monev": "Monev"
+    }
+  },
   "main": "Main",
   "main_page": "Main page",
   "maintenance_route": {

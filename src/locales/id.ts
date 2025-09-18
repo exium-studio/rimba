@@ -178,6 +178,30 @@ const translations = {
     "description": "Sedang mengunggah file..."
   },
   "location": "Lokasi",
+  "lp_hero_description": "Mewujudkan ekonomi hijau di koridor ekosistem Riau, Jambi dan Sumatera Barat",
+  "lp_hero_subtitle": "Program Koridor Ekosistem",
+  "lp_navs": {
+    "home": "Beranda",
+    "document": "Dokumen Hukum",
+    "about_us": {
+      "index": "Tentang Kami",
+      "rimba_corridor_program": "Program Koridor RIMBA",
+      "activity": "Kegiatan",
+      "news": "Berita",
+      "partners": "Mitra"
+    },
+    "map": {
+      "index": "Peta",
+      "printed_map": "Peta Cetak",
+      "metadata": "Metadata",
+      "study_method_map": "Peta Metode Studi"
+    },
+    "related_apps": {
+      "index": "Aplikasi Terkait",
+      "kmis": "KMIS",
+      "monev": "Monev"
+    }
+  },
   "main": "Utama",
   "main_page": "Halaman utama",
   "maintenance_route": {

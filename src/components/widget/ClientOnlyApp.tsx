@@ -1,14 +1,14 @@
 "use client";
 
-import { APP } from "@/constants/_meta";
+import { useColorMode } from "@/components/ui/color-mode";
+import { SVGS_PATH } from "@/constants/paths";
+import useADM from "@/context/useADM";
 import { useFirefoxPaddingY } from "@/hooks/useFirefoxPaddingY";
 import useOfflineAlert from "@/hooks/useOfflineAlert";
 import { Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Img } from "../ui/img";
 import GlobalDisclosure from "./GlobalDisclosure";
-import { useColorMode } from "@/components/ui/color-mode";
-import useADM from "@/context/useADM";
 
 interface Props {
   children: React.ReactNode;
@@ -20,8 +20,8 @@ const DefaultFallback = () => {
     <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
       <Center position={"relative"}>
         <Img
-          alt={`${APP.name} Logo`}
-          src={"/logo.svg"}
+          alt={`RIMBA letter art`}
+          src={`${SVGS_PATH}`}
           width={40}
           height={40}
         />

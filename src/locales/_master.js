@@ -1,4 +1,68 @@
 // Navs
+export const lp_navs = {
+  home: {
+    id: "Beranda",
+    en: "Home",
+  },
+  document: {
+    id: "Dokumen Hukum",
+    en: "Legal Document",
+  },
+  about_us: {
+    index: {
+      id: "Tentang Kami",
+      en: "About Us",
+    },
+    rimba_corridor_program: {
+      id: "Program Koridor RIMBA",
+      en: "RIMBA Corridor Program",
+    },
+    activity: {
+      id: "Kegiatan",
+      en: "Activity",
+    },
+    news: {
+      id: "Berita",
+      en: "News",
+    },
+    partners: {
+      id: "Mitra",
+      en: "Partners",
+    },
+  },
+  map: {
+    index: {
+      id: "Peta",
+      en: "Map",
+    },
+    printed_map: {
+      id: "Peta Cetak",
+      en: "Printed Map",
+    },
+    metadata: {
+      id: "Metadata",
+      en: "Metadata",
+    },
+    study_method_map: {
+      id: "Peta Metode Studi",
+      en: "Study Method Map",
+    },
+  },
+  related_apps: {
+    index: {
+      id: "Aplikasi Terkait",
+      en: "Related App",
+    },
+    kmis: {
+      id: "KMIS",
+      en: "KMIS",
+    },
+    monev: {
+      id: "Monev",
+      en: "Monev",
+    },
+  },
+};
 export const navs = {
   dashboard: {
     id: "Dashboard",
@@ -947,3 +1011,13 @@ export const offline_route = {
 };
 
 // Interfaces
+
+// LP
+export const lp_hero_subtitle = {
+  id: "Program Koridor Ekosistem",
+  en: "Ecosystem Corridor Program",
+};
+export const lp_hero_description = {
+  id: "Mewujudkan ekonomi hijau di koridor ekosistem Riau, Jambi dan Sumatera Barat",
+  en: "Creating a green economy in the Riau, Jambi, and Sumatera Barat Ecosystem Corridor",
+};

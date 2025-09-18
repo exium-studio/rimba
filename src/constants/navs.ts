@@ -12,6 +12,88 @@ import {
 
 export const PRIVATE_ROUTE_INDEX = "/pvt";
 
+export const LP_NAVS: Interface__NavItem[] = [
+  {
+    groupLabelKey: "main",
+    list: [
+      {
+        labelKey: "lp_navs.home",
+        path: `/`,
+      },
+      {
+        labelKey: "lp_navs.document",
+        path: `/document`,
+      },
+      {
+        labelKey: "lp_navs.about_us.index",
+        path: `/about_us`,
+        subMenus: [
+          {
+            list: [
+              {
+                labelKey: "lp_navs.about_us.rimba_corridor_program",
+                path: `/about-us/user`,
+              },
+              {
+                labelKey: "lp_navs.about_us.activity",
+                path: `/about-us/activity`,
+              },
+              {
+                labelKey: "lp_navs.about_us.news",
+                path: `/about-us/news`,
+              },
+              {
+                labelKey: "lp_navs.about_us.partners",
+                path: `/about-us/partners`,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        labelKey: "lp_navs.map.index",
+        path: `/map`,
+        subMenus: [
+          {
+            list: [
+              {
+                labelKey: "lp_navs.map.printed_map",
+                path: ``, // TODO fill the path
+              },
+              {
+                labelKey: "lp_navs.map.metadata",
+                path: ``, // TODO fill the path
+              },
+              {
+                labelKey: "lp_navs.map.study_method_map",
+                path: ``, // TODO fill the path
+              },
+            ],
+          },
+        ],
+      },
+      {
+        labelKey: "lp_navs.related_apps.index",
+        path: `/related-apps`,
+        subMenus: [
+          {
+            list: [
+              {
+                labelKey: "lp_navs.related_apps.kmis",
+                path: `/related-apps/kmis`,
+              },
+              {
+                labelKey: "lp_navs.related_apps.monev",
+                path: `/related-apps/monev`,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
 export const NAVS: Interface__NavItem[] = [
   {
     groupLabelKey: "main",

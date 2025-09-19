@@ -232,7 +232,7 @@ const DesktopTopNav = () => {
       <HStack
         w={"full"}
         gap={8}
-        p={4}
+        p={2}
         // bg={scrolled ? DESKTOP_NAV_BG : "blackAlpha.500"}
         bg={"blackAlpha.500"}
         backdropFilter={"blur(5px)"}

@@ -22,6 +22,7 @@ import { LP_NAVS } from "@/constants/navs";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
+import { useDisableBodyScroll } from "@/hooks/useDisableBodyScroll";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { back } from "@/utils/client";
 import { pluckString } from "@/utils/string";
@@ -40,7 +41,8 @@ const MobileTopNav = () => {
   useBackOnClose("mobile-nav", open, onOpen, onClose);
   const debouncedShowContents = useDebouncedCallback(() => {
     setShowContents(true);
-  }, 200);
+  }, 150);
+  useDisableBodyScroll(open);
 
   // States
   const [showContents, setShowContents] = useState<boolean>(false);
@@ -78,6 +80,7 @@ const MobileTopNav = () => {
           rounded={"lg"}
           pos={"sticky"}
           top={0}
+          zIndex={10}
         >
           <PartnersLogo ml={2} />
 
@@ -134,7 +137,11 @@ const MobileTopNav = () => {
                       border={"none"}
                       cursor={"pointer"}
                       rounded={"lg"}
-                      _open={{ bg: "blackAlpha.300" }}
+                      _open={{
+                        bg: "blackAlpha.300",
+                        border: "1px solid",
+                        borderColor: "d1",
+                      }}
                     >
                       <Btn
                         as={AccordionItemTrigger}

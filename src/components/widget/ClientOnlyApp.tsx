@@ -21,9 +21,10 @@ const DefaultFallback = () => {
       <Center position={"relative"}>
         <Img
           alt={`RIMBA letter art`}
-          src={`${SVGS_PATH}`}
+          src={`${SVGS_PATH}/rimba_letter_art_color.svg`}
           width={40}
           height={40}
+          objectFit="contain"
         />
       </Center>
     </Center>

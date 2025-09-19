@@ -3,7 +3,8 @@
 import { CContainer } from "@/components/ui/c-container";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
-import { IMAGES_PATH, SVGS_PATH } from "@/constants/paths";
+import { LogoImg } from "@/components/widget/LogoImg";
+import { IMAGES_PATH } from "@/constants/paths";
 import useLang from "@/context/useLang";
 import { StackProps } from "@chakra-ui/react";
 
@@ -42,12 +43,7 @@ export const LPHomeHero = (props: StackProps) => {
         mt={"96px"}
         zIndex={2}
       >
-        <Img
-          src={`${SVGS_PATH}/rimba_letter_art_light.svg`}
-          alt="RIMBA letter art"
-          objectFit="contain"
-          h={"100px"}
-        />
+        <LogoImg />
 
         <P fontSize={"xl"} textAlign={"center"}>
           {l.lp_hero_subtitle}

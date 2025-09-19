@@ -1,26 +1,189 @@
 "use client";
 
+import {
+  AccordionItem,
+  AccordionItemContent,
+  AccordionItemTrigger,
+  AccordionRoot,
+} from "@/components/ui/accordion";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import { Img } from "@/components/ui/img";
-import { P } from "@/components/ui/p";
 import {
   DropdownContent,
   DropdownRoot,
   DropdownTrigger,
 } from "@/components/ui/dropdown";
+import { NavLink } from "@/components/ui/nav-link";
+import { P } from "@/components/ui/p";
+import { LogoImg } from "@/components/widget/LogoImg";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { LP_NAVS } from "@/constants/navs";
-import { SVGS_PATH } from "@/constants/paths";
 import useLang from "@/context/useLang";
+import useBackOnClose from "@/hooks/useBackOnClose";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import { back } from "@/utils/client";
 import { pluckString } from "@/utils/string";
-import { HStack, Icon } from "@chakra-ui/react";
-import { IconChevronDown } from "@tabler/icons-react";
+import { HStack, Icon, useDisclosure } from "@chakra-ui/react";
+import { IconChevronDown, IconMenu, IconX } from "@tabler/icons-react";
 import { Fragment, useEffect, useState } from "react";
 
 // const DESKTOP_NAV_BG = "light";
 
+const MobileTopNav = () => {
+  // Contexts
+  const { l } = useLang();
+
+  // Hooks
+  const { open, onOpen, onClose } = useDisclosure();
+  useBackOnClose("mobile-nav", open, onOpen, onClose);
+
+  return (
+    <CContainer
+      h={"100dvh"}
+      p={open ? 0 : 2}
+      pos={"fixed"}
+      top={0}
+      left={0}
+      transition={"200ms"}
+      overflowY={"auto"}
+    >
+      <CContainer
+        bg={open ? "blackAlpha.700" : "blackAlpha.500"}
+        backdropFilter={open ? "blur(10px)" : "blur(5px)"}
+        h={open ? "100dvh" : "64px"}
+        rounded={open ? "" : "lg"}
+        transition={"200ms"}
+      >
+        <HStack justify={"space-between"} p={2} rounded={"lg"}>
+          <LogoImg h={"20px"} ml={4} />
+
+          {!open && (
+            <Btn
+              iconButton
+              variant={"ghost"}
+              color={"light"}
+              onClick={onOpen}
+              _hover={{
+                bg: "d1",
+              }}
+            >
+              <Icon>
+                <IconMenu />
+              </Icon>
+            </Btn>
+          )}
+
+          {open && (
+            <Btn
+              iconButton
+              variant={"ghost"}
+              color={"light"}
+              onClick={back}
+              _hover={{
+                bg: "d1",
+              }}
+            >
+              <Icon>
+                <IconX />
+              </Icon>
+            </Btn>
+          )}
+        </HStack>
+
+        <CContainer
+          gap={1}
+          opacity={open ? 1 : 0}
+          visibility={open ? "visible" : "hidden"}
+          // h={open ? "full" : "0"}
+          p={open ? 2 : 0}
+          overflow={"clip"}
+        >
+          {LP_NAVS[0].list.map((nav) => {
+            return (
+              <Fragment key={nav.path}>
+                {nav.subMenus && (
+                  <AccordionRoot multiple>
+                    <AccordionItem
+                      value={nav.labelKey}
+                      color={"light"}
+                      border={"none"}
+                      cursor={"pointer"}
+                      rounded={"lg"}
+                      _open={{ bg: "blackAlpha.300" }}
+                    >
+                      <Btn
+                        as={AccordionItemTrigger}
+                        clicky={false}
+                        justifyContent={"start"}
+                        variant={"ghost"}
+                        color={"light"}
+                        _open={{
+                          bg: "transparent",
+                        }}
+                        _hover={{
+                          bg: "blackAlpha.500",
+                        }}
+                      >
+                        <P fontSize={"lg"} textAlign={"left"}>
+                          {pluckString(l, nav.labelKey)}
+                        </P>
+                      </Btn>
+
+                      <AccordionItemContent p={1}>
+                        {nav.subMenus[0].list.map((subNav) => {
+                          return (
+                            <NavLink key={subNav.path} to={nav.path}>
+                              <Btn
+                                clicky={false}
+                                justifyContent={"start"}
+                                variant={"ghost"}
+                                color={"light"}
+                                _hover={{
+                                  bg: "blackAlpha.500",
+                                }}
+                              >
+                                <Icon boxSize={5}>
+                                  <subNav.icon stroke={1.5} />
+                                </Icon>
+
+                                <P fontSize={"lg"}>
+                                  {pluckString(l, subNav.labelKey)}
+                                </P>
+                              </Btn>
+                            </NavLink>
+                          );
+                        })}
+                      </AccordionItemContent>
+                    </AccordionItem>
+                  </AccordionRoot>
+                )}
+
+                {!nav.subMenus && (
+                  <NavLink to={nav.path}>
+                    <Btn
+                      clicky={false}
+                      justifyContent={"start"}
+                      variant={"ghost"}
+                      px={4}
+                      color={"light"}
+                      _hover={{
+                        bg: "blackAlpha.500",
+                      }}
+                    >
+                      <P fontSize={"lg"} textAlign={"left"}>
+                        {pluckString(l, nav.labelKey)}
+                      </P>
+                    </Btn>
+                  </NavLink>
+                )}
+              </Fragment>
+            );
+          })}
+        </CContainer>
+      </CContainer>
+    </CContainer>
+  );
+};
 const DesktopTopNav = () => {
   // Contexts
   const { l } = useLang();
@@ -50,14 +213,7 @@ const DesktopTopNav = () => {
         rounded="md"
         transition="200ms"
       >
-        <Img
-          src={`${SVGS_PATH}/rimba_letter_art_color.svg`}
-          alt="logo"
-          h="20px"
-          w="fit"
-          aspectRatio={3.5 / 1}
-          objectFit="contain"
-        />
+        <LogoImg h={"20px"} />
 
         <HStack>
           {LP_NAVS[0].list.map((nav, idx) => {
@@ -159,6 +315,8 @@ export const TopNav = () => {
 
   return (
     <CContainer w="full" p={4} pos={"fixed"} left={0} top={0} zIndex={10}>
+      {iss && <MobileTopNav />}
+
       {!iss && <DesktopTopNav />}
     </CContainer>
   );

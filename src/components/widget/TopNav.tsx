@@ -20,6 +20,7 @@ import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { LP_NAVS } from "@/constants/navs";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
+import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { back } from "@/utils/client";
 import { pluckString } from "@/utils/string";
@@ -36,6 +37,20 @@ const MobileTopNav = () => {
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
   useBackOnClose("mobile-nav", open, onOpen, onClose);
+  const debouncedShowContents = useDebouncedCallback(() => {
+    setShowContents(true);
+  }, 200);
+
+  // States
+  const [showContents, setShowContents] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (open) {
+      debouncedShowContents();
+    } else {
+      setShowContents(false);
+    }
+  }, [open]);
 
   return (
     <CContainer
@@ -98,11 +113,12 @@ const MobileTopNav = () => {
 
         <CContainer
           gap={1}
-          opacity={open ? 1 : 0}
-          visibility={open ? "visible" : "hidden"}
-          p={open ? 2 : 0}
+          opacity={showContents ? 1 : 0}
+          visibility={showContents ? "visible" : "hidden"}
+          p={showContents ? 2 : 0}
           overflow={"clip"}
           flex={1}
+          transition={"200ms"}
         >
           {LP_NAVS[0].list.map((nav) => {
             return (

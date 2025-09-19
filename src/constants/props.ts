@@ -27,6 +27,15 @@ import {
 } from "./types";
 import { ImageProps } from "next/image";
 
+export interface Props__Dropdown extends StackProps {
+  children?: React.ReactNode;
+  selectOptions: {
+    icon: any;
+    label: string;
+    onClick: () => void;
+  };
+}
+
 export interface Props__DisclosureHeaderContent {
   title?: string;
   withCloseButton?: boolean;

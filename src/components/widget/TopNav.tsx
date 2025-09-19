@@ -3,31 +3,30 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Img } from "@/components/ui/img";
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
+import {
+  DropdownContent,
+  DropdownRoot,
+  DropdownTrigger,
+} from "@/components/ui/dropdown";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { LP_NAVS } from "@/constants/navs";
 import { SVGS_PATH } from "@/constants/paths";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { pluckString } from "@/utils/string";
-import { HStack, Icon, SimpleGrid } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
 import { IconChevronDown } from "@tabler/icons-react";
 import { Fragment, useEffect, useState } from "react";
 
-const DESKTOP_NAV_BG = "light";
+// const DESKTOP_NAV_BG = "light";
 
 const DesktopTopNav = () => {
   // Contexts
   const { l } = useLang();
 
   // States
-  const [scrolled, setScrolled] = useState(false);
+  const [, setScrolled] = useState(false);
 
   // handle scroll
   useEffect(() => {
@@ -45,7 +44,8 @@ const DesktopTopNav = () => {
         w={"full"}
         gap={8}
         p={4}
-        bg={scrolled ? DESKTOP_NAV_BG : "blackAlpha.500"}
+        // bg={scrolled ? DESKTOP_NAV_BG : "blackAlpha.500"}
+        bg={"blackAlpha.500"}
         backdropFilter={"blur(5px)"}
         rounded="md"
         transition="200ms"
@@ -65,15 +65,13 @@ const DesktopTopNav = () => {
               idx !== 0 && (
                 <Fragment key={nav.path}>
                   {nav.subMenus && (
-                    <MenuRoot>
-                      <MenuTrigger asChild>
+                    <DropdownRoot>
+                      <DropdownTrigger>
                         <Btn
                           clicky={false}
                           variant={"ghost"}
-                          color={scrolled ? "dark" : "light"}
-                          _open={{
-                            bg: "d1",
-                          }}
+                          // color={scrolled ? "dark" : "light"}
+                          color={"light"}
                           _hover={{
                             bg: "d1",
                           }}
@@ -84,50 +82,56 @@ const DesktopTopNav = () => {
                             <IconChevronDown stroke={1.5} />
                           </Icon>
                         </Btn>
-                      </MenuTrigger>
+                      </DropdownTrigger>
 
-                      <MenuContent w={"max"} mt={5}>
-                        <CContainer px={3} py={2}>
-                          <P color={"fg.subtle"} fontWeight={"medium"}>
-                            {pluckString(l, nav.labelKey)}
-                          </P>
+                      <DropdownContent>
+                        <CContainer>
+                          <CContainer px={3} py={1}>
+                            <P color={"fg.subtle"}>
+                              {pluckString(l, nav.labelKey)}
+                            </P>
+                          </CContainer>
+
+                          <CContainer>
+                            {nav.subMenus[0].list.map((subNav) => {
+                              return (
+                                <Btn
+                                  key={subNav.path}
+                                  clicky={false}
+                                  variant={"ghost"}
+                                  px={2}
+                                  pr={3}
+                                >
+                                  <Icon boxSize={5}>
+                                    <subNav.icon stroke={1.5} />
+                                  </Icon>
+
+                                  <CContainer>
+                                    <P fontWeight={"medium"} textAlign={"left"}>
+                                      {pluckString(l, subNav.labelKey)}
+                                    </P>
+
+                                    <P>
+                                      {pluckString(
+                                        l,
+                                        subNav.descriptionKey || ""
+                                      )}
+                                    </P>
+                                  </CContainer>
+                                </Btn>
+                              );
+                            })}
+                          </CContainer>
                         </CContainer>
-
-                        <SimpleGrid columns={1}>
-                          {nav.subMenus[0].list.map((subNav) => {
-                            return (
-                              <MenuItem key={subNav.path} value={subNav.path}>
-                                <CContainer>
-                                  <HStack align={"start"}>
-                                    <Icon boxSize={5}>
-                                      <subNav.icon stroke={1.5} />
-                                    </Icon>
-
-                                    <CContainer>
-                                      <P fontWeight={"medium"}>
-                                        {pluckString(l, subNav.labelKey)}
-                                      </P>
-                                      <P>
-                                        {pluckString(
-                                          l,
-                                          subNav.descriptionKey || ""
-                                        )}
-                                      </P>
-                                    </CContainer>
-                                  </HStack>
-                                </CContainer>
-                              </MenuItem>
-                            );
-                          })}
-                        </SimpleGrid>
-                      </MenuContent>
-                    </MenuRoot>
+                      </DropdownContent>
+                    </DropdownRoot>
                   )}
                   {!nav.subMenus && (
                     <Btn
                       clicky={false}
                       variant={"ghost"}
-                      color={scrolled ? "dark" : "light"}
+                      // color={scrolled ? "dark" : "light"}
+                      color={"light"}
                       _hover={{
                         bg: "d1",
                       }}

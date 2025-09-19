@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 
 export function useContainerDimension(
-  ref: React.RefObject<HTMLDivElement | null> | null,
+  ref: React.RefObject<HTMLDivElement> | null,
   debounceDelay = 0
 ) {
   const [size, setSize] = useState({ width: 0, height: 0 });

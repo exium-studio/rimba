@@ -41,7 +41,7 @@ const MobileTopNav = () => {
   useBackOnClose("mobile-nav", open, onOpen, onClose);
   const debouncedShowContents = useDebouncedCallback(() => {
     setShowContents(true);
-  }, 150);
+  }, 200);
   useDisableBodyScroll(open);
 
   // States

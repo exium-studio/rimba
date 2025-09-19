@@ -76,7 +76,7 @@ const MobileTopNav = () => {
           pos={"sticky"}
           top={0}
         >
-          <PartnersLogo h={"40px"} ml={2} />
+          <PartnersLogo ml={2} />
 
           {!open && (
             <Btn

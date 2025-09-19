@@ -288,7 +288,7 @@ const DesktopTopNav = () => {
                               <MenuItem
                                 key={subNav.path}
                                 value={subNav.path}
-                                pr={2}
+                                pr={4}
                               >
                                 <Icon boxSize={5}>
                                   <subNav.icon stroke={1.5} />

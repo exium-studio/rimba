@@ -17,7 +17,12 @@ export const LPHomeHero = (props: StackProps) => {
   const { l } = useLang();
 
   return (
-    <CContainer minH={HeroMinH} pos={"relative"} {...restProps}>
+    <CContainer
+      minH={HeroMinH}
+      pos={"relative"}
+      overflow={"clip"}
+      {...restProps}
+    >
       <Img
         src={`${IMAGES_PATH}/hero_bg.jpg`}
         alt="forest"
@@ -50,10 +55,11 @@ export const LPHomeHero = (props: StackProps) => {
       </CContainer>
 
       <Img
-        src={`${IMAGES_PATH}/hero_bush.png`}
+        src={`${IMAGES_PATH}/hero_bush_2.png`}
         alt="bush"
         minH={HeroMinH}
         pos={"absolute"}
+        transform={"scale(1)"}
         zIndex={3}
       />
 
@@ -63,7 +69,7 @@ export const LPHomeHero = (props: StackProps) => {
           textAlign={"center"}
           zIndex={4}
           maxW={"320px"}
-          opacity={0.6}
+          opacity={0.8}
         >
           {l.lp_hero_description}
         </P>

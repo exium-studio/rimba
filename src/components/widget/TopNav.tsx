@@ -271,9 +271,13 @@ const DesktopTopNav = () => {
                         </Btn>
                       </MenuTrigger>
 
-                      <MenuContent w={"max"}>
+                      <MenuContent w={"max"} mt={4}>
                         <CContainer px={3} py={1}>
-                          <P color={"fg.subtle"} fontWeight={"medium"}>
+                          <P
+                            color={"fg.subtle"}
+                            fontWeight={"medium"}
+                            opacity={0.8}
+                          >
                             {pluckString(l, nav.labelKey)}
                           </P>
                         </CContainer>
@@ -281,26 +285,18 @@ const DesktopTopNav = () => {
                         <CContainer>
                           {nav.subMenus[0].list.map((subNav) => {
                             return (
-                              <MenuItem key={subNav.path} value={subNav.path}>
-                                <CContainer pr={2}>
-                                  <HStack align={"start"}>
-                                    <Icon boxSize={5}>
-                                      <subNav.icon stroke={1.5} />
-                                    </Icon>
+                              <MenuItem
+                                key={subNav.path}
+                                value={subNav.path}
+                                pr={2}
+                              >
+                                <Icon boxSize={5}>
+                                  <subNav.icon stroke={1.5} />
+                                </Icon>
 
-                                    <CContainer>
-                                      <P fontWeight={"medium"}>
-                                        {pluckString(l, subNav.labelKey)}
-                                      </P>
-                                      <P>
-                                        {pluckString(
-                                          l,
-                                          subNav.descriptionKey || ""
-                                        )}
-                                      </P>
-                                    </CContainer>
-                                  </HStack>
-                                </CContainer>
+                                <P fontWeight={"medium"}>
+                                  {pluckString(l, subNav.labelKey)}
+                                </P>
                               </MenuItem>
                             );
                           })}

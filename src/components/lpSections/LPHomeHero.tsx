@@ -33,17 +33,18 @@ export const LPHomeHero = (props: StackProps) => {
       />
 
       <CContainer
-        id="hero_lettering_container"
+        id="hero_content_container"
         flex={1}
         gap={4}
-        p={4}
+        px={12}
+        py={4}
         color={"light"}
         justify={"center"}
         align={"center"}
         mt={"96px"}
         zIndex={2}
       >
-        <LogoImg />
+        <LogoImg h={"auto"} w={"full"} maxW={"320px"} />
 
         <P fontSize={"xl"} textAlign={"center"}>
           {l.lp_hero_subtitle}

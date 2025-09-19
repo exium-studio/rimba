@@ -13,20 +13,20 @@ export const PartnersLogo = (props: StackProps) => {
       <Img
         src={`${IMAGES_PATH}/atrbpn_logo.png`}
         alt="ATR BPN Logo"
-        h={"20px"}
-        w={"20px"}
+        h={"30px"}
+        w={"30px"}
       />
       <Img
         src={`${IMAGES_PATH}/unep_logo.png`}
         alt="UNEP Logo"
-        h={"20px"}
-        w={"20px"}
+        h={"30px"}
+        w={"30px"}
       />
       <Img
         src={`${IMAGES_PATH}/gef_logo.png`}
         alt="gef Logo"
-        h={"20px"}
-        w={"20px"}
+        h={"30px"}
+        w={"30px"}
       />
     </HStack>
   );

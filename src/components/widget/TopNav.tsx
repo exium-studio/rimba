@@ -15,8 +15,8 @@ import {
 } from "@/components/ui/dropdown";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
-import { LogoImg } from "@/components/widget/LogoImg";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
+import { PartnersLogo } from "@/components/widget/PartnersLogo";
 import { LP_NAVS } from "@/constants/navs";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
@@ -63,7 +63,7 @@ const MobileTopNav = () => {
       overflowY={"auto"}
     >
       <CContainer
-        bg={open ? "blackAlpha.700" : "blackAlpha.500"}
+        bg={open ? "blackAlpha.800" : "blackAlpha.600"}
         backdropFilter={open ? "blur(10px)" : "blur(5px)"}
         h={open ? "100dvh" : "64px"}
         rounded={open ? "" : "lg"}
@@ -76,7 +76,7 @@ const MobileTopNav = () => {
           pos={"sticky"}
           top={0}
         >
-          <LogoImg h={"20px"} ml={4} />
+          <PartnersLogo h={"40px"} ml={2} />
 
           {!open && (
             <Btn
@@ -234,12 +234,12 @@ const DesktopTopNav = () => {
         gap={8}
         p={2}
         // bg={scrolled ? DESKTOP_NAV_BG : "blackAlpha.500"}
-        bg={"blackAlpha.500"}
+        bg={"blackAlpha.600"}
         backdropFilter={"blur(5px)"}
         rounded="md"
         transition="200ms"
       >
-        <LogoImg h={"20px"} />
+        <PartnersLogo h={"20px"} ml={2} />
 
         <HStack>
           {LP_NAVS[0].list.map((nav, idx) => {

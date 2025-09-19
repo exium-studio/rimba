@@ -9,7 +9,7 @@ export const LPHomeBrief = (props: StackProps) => {
   const { ...restProps } = props;
 
   return (
-    <CContainer {...restProps}>
+    <CContainer minH={"100dvh"} {...restProps}>
       <P></P>
     </CContainer>
   );

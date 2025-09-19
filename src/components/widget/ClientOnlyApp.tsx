@@ -59,9 +59,15 @@ export default function ClientOnlyApp(props: Props) {
     setMounted(true);
   }, []);
 
+  // force dark mode = off
+  useEffect(() => {
+    setColorMode("light");
+  }, []);
+
   // Handle offline alert
   useOfflineAlert({ mounted });
 
+  // handle ADM
   useEffect(() => {
     if (ADM) {
       const interval = setInterval(() => {

@@ -1,13 +1,22 @@
 import { Interface__NavItem } from "@/constants/interfaces";
 import {
+  IconBook,
+  IconBriefcase,
   IconDatabase,
   IconDeviceAnalytics,
   IconDeviceDesktop,
+  IconDeviceDesktopAnalytics,
+  IconHeartHandshake,
   IconLanguage,
+  IconMap,
+  IconMap2,
+  IconMapQuestion,
+  IconNews,
   IconReceipt,
   IconSettings,
   IconShieldHalf,
   IconUser,
+  IconWorld,
 } from "@tabler/icons-react";
 
 export const PRIVATE_ROUTE_INDEX = "/pvt";
@@ -31,18 +40,22 @@ export const LP_NAVS: Interface__NavItem[] = [
           {
             list: [
               {
+                icon: IconWorld,
                 labelKey: "lp_navs.about_us.rimba_corridor_program",
-                path: `/about-us/user`,
+                path: `/about-us/rimba-corridor-program`,
               },
               {
+                icon: IconBriefcase,
                 labelKey: "lp_navs.about_us.activity",
                 path: `/about-us/activity`,
               },
               {
+                icon: IconNews,
                 labelKey: "lp_navs.about_us.news",
                 path: `/about-us/news`,
               },
               {
+                icon: IconHeartHandshake,
                 labelKey: "lp_navs.about_us.partners",
                 path: `/about-us/partners`,
               },
@@ -57,16 +70,19 @@ export const LP_NAVS: Interface__NavItem[] = [
           {
             list: [
               {
+                icon: IconMap,
                 labelKey: "lp_navs.map.printed_map",
-                path: ``, // TODO fill the path
+                path: `1`, // TODO fill the path
               },
               {
+                icon: IconMap2,
                 labelKey: "lp_navs.map.metadata",
-                path: ``, // TODO fill the path
+                path: `2`, // TODO fill the path
               },
               {
+                icon: IconMapQuestion,
                 labelKey: "lp_navs.map.study_method_map",
-                path: ``, // TODO fill the path
+                path: `3`, // TODO fill the path
               },
             ],
           },
@@ -79,10 +95,12 @@ export const LP_NAVS: Interface__NavItem[] = [
           {
             list: [
               {
+                icon: IconBook,
                 labelKey: "lp_navs.related_apps.kmis",
                 path: `/related-apps/kmis`,
               },
               {
+                icon: IconDeviceDesktopAnalytics,
                 labelKey: "lp_navs.related_apps.monev",
                 path: `/related-apps/monev`,
               },

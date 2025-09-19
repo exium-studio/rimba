@@ -22,6 +22,7 @@ export interface Interface__NavItem {
   list: {
     icon?: any;
     labelKey: string;
+    descriptionKey?: string;
     path: string;
     backPath?: string;
     subMenus?: Interface__NavItem[];

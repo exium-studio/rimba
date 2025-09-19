@@ -54,7 +54,13 @@ const MobileTopNav = () => {
         rounded={open ? "" : "lg"}
         transition={"200ms"}
       >
-        <HStack justify={"space-between"} p={2} rounded={"lg"}>
+        <HStack
+          justify={"space-between"}
+          p={2}
+          rounded={"lg"}
+          pos={"sticky"}
+          top={0}
+        >
           <LogoImg h={"20px"} ml={4} />
 
           {!open && (
@@ -94,9 +100,9 @@ const MobileTopNav = () => {
           gap={1}
           opacity={open ? 1 : 0}
           visibility={open ? "visible" : "hidden"}
-          // h={open ? "full" : "0"}
           p={open ? 2 : 0}
           overflow={"clip"}
+          flex={1}
         >
           {LP_NAVS[0].list.map((nav) => {
             return (
@@ -179,6 +185,10 @@ const MobileTopNav = () => {
               </Fragment>
             );
           })}
+
+          <CContainer mt={"auto"} p={4}>
+            <Btn colorPalette={"p"}>Sign up/Sign in</Btn>
+          </CContainer>
         </CContainer>
       </CContainer>
     </CContainer>

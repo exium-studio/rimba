@@ -9,10 +9,11 @@ import {
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import {
-  DropdownContent,
-  DropdownRoot,
-  DropdownTrigger,
-} from "@/components/ui/dropdown";
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuTrigger,
+} from "@/components/ui/menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
@@ -61,12 +62,14 @@ const MobileTopNav = () => {
       left={0}
       transition={"200ms"}
       overflowY={"auto"}
+      zIndex={10}
     >
       <CContainer
         bg={open ? "blackAlpha.800" : "blackAlpha.600"}
         backdropFilter={open ? "blur(10px)" : "blur(5px)"}
         h={open ? "100dvh" : "64px"}
         rounded={open ? "" : "lg"}
+        overflowY={"auto"}
         transition={"200ms"}
       >
         <HStack
@@ -247,13 +250,15 @@ const DesktopTopNav = () => {
               idx !== 0 && (
                 <Fragment key={nav.path}>
                   {nav.subMenus && (
-                    <DropdownRoot>
-                      <DropdownTrigger>
+                    <MenuRoot positioning={{ placement: "bottom" }}>
+                      <MenuTrigger asChild>
                         <Btn
                           clicky={false}
                           variant={"ghost"}
-                          // color={scrolled ? "dark" : "light"}
                           color={"light"}
+                          _open={{
+                            bg: "d1",
+                          }}
                           _hover={{
                             bg: "d1",
                           }}
@@ -264,49 +269,44 @@ const DesktopTopNav = () => {
                             <IconChevronDown stroke={1.5} />
                           </Icon>
                         </Btn>
-                      </DropdownTrigger>
+                      </MenuTrigger>
 
-                      <DropdownContent>
-                        <CContainer>
-                          <CContainer px={3} py={1}>
-                            <P color={"fg.subtle"}>
-                              {pluckString(l, nav.labelKey)}
-                            </P>
-                          </CContainer>
-
-                          <CContainer>
-                            {nav.subMenus[0].list.map((subNav) => {
-                              return (
-                                <Btn
-                                  key={subNav.path}
-                                  clicky={false}
-                                  variant={"ghost"}
-                                  px={2}
-                                  pr={3}
-                                >
-                                  <Icon boxSize={5}>
-                                    <subNav.icon stroke={1.5} />
-                                  </Icon>
-
-                                  <CContainer>
-                                    <P fontWeight={"medium"} textAlign={"left"}>
-                                      {pluckString(l, subNav.labelKey)}
-                                    </P>
-
-                                    <P>
-                                      {pluckString(
-                                        l,
-                                        subNav.descriptionKey || ""
-                                      )}
-                                    </P>
-                                  </CContainer>
-                                </Btn>
-                              );
-                            })}
-                          </CContainer>
+                      <MenuContent w={"max"}>
+                        <CContainer px={3} py={1}>
+                          <P color={"fg.subtle"} fontWeight={"medium"}>
+                            {pluckString(l, nav.labelKey)}
+                          </P>
                         </CContainer>
-                      </DropdownContent>
-                    </DropdownRoot>
+
+                        <CContainer>
+                          {nav.subMenus[0].list.map((subNav) => {
+                            return (
+                              <MenuItem key={subNav.path} value={subNav.path}>
+                                <CContainer pr={2}>
+                                  <HStack align={"start"}>
+                                    <Icon boxSize={5}>
+                                      <subNav.icon stroke={1.5} />
+                                    </Icon>
+
+                                    <CContainer>
+                                      <P fontWeight={"medium"}>
+                                        {pluckString(l, subNav.labelKey)}
+                                      </P>
+                                      <P>
+                                        {pluckString(
+                                          l,
+                                          subNav.descriptionKey || ""
+                                        )}
+                                      </P>
+                                    </CContainer>
+                                  </HStack>
+                                </CContainer>
+                              </MenuItem>
+                            );
+                          })}
+                        </CContainer>
+                      </MenuContent>
+                    </MenuRoot>
                   )}
                   {!nav.subMenus && (
                     <Btn

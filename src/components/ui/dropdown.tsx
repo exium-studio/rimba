@@ -4,7 +4,21 @@ import { CContainer } from "@/components/ui/c-container";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useClickOutside from "@/hooks/useClickOutside";
 import { Portal, Presence, StackProps, useDisclosure } from "@chakra-ui/react";
-import { createContext, ReactNode, useContext, useRef } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useRef,
+  useLayoutEffect,
+} from "react";
+
+import {
+  computePosition,
+  autoUpdate,
+  offset,
+  flip,
+  shift,
+} from "@floating-ui/dom";
 
 type DropdownCtx = {
   open: boolean;
@@ -55,7 +69,7 @@ export function DropdownTrigger(props: StackProps) {
   );
 }
 
-export function DropdownContent(props: any) {
+export function DropdownContent(props: StackProps) {
   // Props
   const { children, ...restProps } = props;
 
@@ -64,13 +78,47 @@ export function DropdownContent(props: any) {
   const { open, onClose, triggerRef } = useDropdownCtx();
 
   // Refs
-  const contentContainerRef = useRef<HTMLDivElement>(null);
+  const contentContainerRef = useRef<HTMLDivElement | null>(null);
 
   // Hooks
   useClickOutside([contentContainerRef], onClose);
 
+  useLayoutEffect(() => {
+    const reference = triggerRef?.current ?? null;
+    const floating = contentContainerRef?.current ?? null;
+
+    if (!open || !reference || !floating) return;
+
+    const update = async () => {
+      const res = await computePosition(reference, floating, {
+        placement: "bottom-start",
+        strategy: "absolute",
+        middleware: [offset(8), flip(), shift({ padding: 8 })],
+      });
+
+      Object.assign(floating.style, {
+        position: res.strategy,
+        transform: `translate3d(${Math.round(res.x)}px, ${Math.round(
+          res.y
+        )}px, 0)`,
+      });
+    };
+
+    const cleanup = autoUpdate(reference, floating, update, {
+      ancestorScroll: true,
+      ancestorResize: true,
+      elementResize: true,
+      layoutShift: true,
+    });
+
+    // do initial positioning immediately
+    update();
+
+    return () => cleanup();
+  }, [open, triggerRef, contentContainerRef]);
+
   return (
-    <Portal container={triggerRef}>
+    <Portal>
       <Presence
         present={open}
         animationName={{
@@ -79,14 +127,17 @@ export function DropdownContent(props: any) {
         }}
         animationDuration="moderate"
         pos={"absolute"}
+        zIndex={10}
       >
         <CContainer
           ref={contentContainerRef}
           minW={"150px"}
+          w={"fit"}
           bg={"body"}
           p={1}
+          border={"1px solid"}
+          borderColor={"border.muted"}
           rounded={themeConfig.radii.container}
-          mt={12}
           {...restProps}
         >
           {children}

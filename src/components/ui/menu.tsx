@@ -10,8 +10,8 @@ import {
   MenuSeparatorProps,
   Portal,
 } from "@chakra-ui/react";
+import { IconCheck, IconChevronRight } from "@tabler/icons-react";
 import { forwardRef } from "react";
-import { LuCheck, LuChevronRight } from "react-icons/lu";
 
 interface MenuContentProps extends ChakraMenu.ContentProps {
   portalled?: boolean;
@@ -27,12 +27,12 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     const { themeConfig } = useThemeConfig();
 
     return (
-      <Portal disabled={!portalled} container={portalRef}>
+      <Portal disabled={portalled} container={portalRef}>
         <ChakraMenu.Positioner>
           <ChakraMenu.Content
             ref={ref}
             className={"ss"}
-            w={"150px"}
+            minW={"150px"}
             gap={1}
             px={0}
             py={1}
@@ -92,7 +92,7 @@ export const MenuCheckboxItem = forwardRef<
   return (
     <ChakraMenu.CheckboxItem ref={ref} {...props}>
       <ChakraMenu.ItemIndicator hidden={false}>
-        <LuCheck />
+        <IconCheck />
       </ChakraMenu.ItemIndicator>
       {props.children}
     </ChakraMenu.CheckboxItem>
@@ -108,7 +108,7 @@ export const MenuRadioItem = forwardRef<
     <ChakraMenu.RadioItem ps="8" ref={ref} {...restProps}>
       <AbsoluteCenter axis="horizontal" left="4" asChild>
         <ChakraMenu.ItemIndicator>
-          <LuCheck />
+          <IconCheck />
         </ChakraMenu.ItemIndicator>
       </AbsoluteCenter>
       <ChakraMenu.ItemText>{children}</ChakraMenu.ItemText>
@@ -157,7 +157,7 @@ export const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
       >
         {startIcon}
         {children}
-        <LuChevronRight />
+        <IconChevronRight />
       </ChakraMenu.TriggerItem>
     );
   }

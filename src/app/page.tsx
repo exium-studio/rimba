@@ -1,6 +1,6 @@
 "use client";
 
-import { LPHomeBrief } from "@/components/lpSections/LPHomeBrief";
+import { LPHomeOverviewGallery } from "@/components/lpSections/LPHomeOverviewGallery";
 import { LPHomeHero } from "@/components/lpSections/LPHomeHero";
 import { CContainer } from "@/components/ui/c-container";
 import { TopNav } from "@/components/widget/TopNav";
@@ -12,7 +12,7 @@ const IndexRoute = () => {
 
       <LPHomeHero />
 
-      <LPHomeBrief />
+      <LPHomeOverviewGallery />
     </CContainer>
   );
 };

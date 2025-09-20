@@ -73,7 +73,7 @@ export const LPHomeHero = (props: StackProps) => {
         .to(
           ".hero_brief_line",
           {
-            height: "150px",
+            height: "100px",
             ease: "none",
             duration: 2.5,
           },
@@ -93,7 +93,7 @@ export const LPHomeHero = (props: StackProps) => {
     >
       <Img
         className="hero_bg"
-        src={`${IMAGES_PATH}/hero_bg.jpg`}
+        src={`${IMAGES_PATH}/hero_bg2.png`}
         alt="forest"
         minH={HeroMinH}
         pos={"absolute"}
@@ -116,7 +116,7 @@ export const LPHomeHero = (props: StackProps) => {
           fontSize={"xl"}
           textAlign={"center"}
           letterSpacing={"1px"}
-          mt={"88px"}
+          mt={"60px"}
         >
           {l.lp_hero_subtitle}
         </P>
@@ -158,7 +158,7 @@ export const LPHomeHero = (props: StackProps) => {
               className="hero_brief_line"
               bg={"light"}
               opacity={0.5}
-              w={"1px"}
+              w={"2px"}
               h={"0"}
               pos={"absolute"}
               bottom={"50px"}

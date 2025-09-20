@@ -174,6 +174,7 @@ export const LPHomeHero = (props: StackProps) => {
         alt="bush"
         minH={HeroMinH}
         pos={"absolute"}
+        pointerEvents={"none"}
         zIndex={5}
       />
 

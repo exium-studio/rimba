@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { LangMenu } from "@/components/ui/lang-menu";
 import {
   MenuContent,
   MenuItem,
@@ -19,6 +20,7 @@ import { P } from "@/components/ui/p";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { PartnersLogo } from "@/components/widget/PartnersLogo";
 import { LP_NAVS } from "@/constants/navs";
+import { MAIN_BUTTON_SIZE } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
@@ -330,9 +332,25 @@ const DesktopTopNav = () => {
           })}
         </HStack>
 
-        <Btn colorPalette={"p"} px={6} color={"p.50"}>
-          Sign in/Sign up
-        </Btn>
+        <HStack>
+          <LangMenu
+            color={"light"}
+            size={MAIN_BUTTON_SIZE as any}
+            _open={{
+              bg: "d1",
+            }}
+            _hover={{
+              bg: "d1",
+            }}
+            menuContentProps={{
+              mt: 4,
+            }}
+          />
+
+          <Btn colorPalette={"p"} px={6} color={"p.50"}>
+            Sign in/Sign up
+          </Btn>
+        </HStack>
       </HStack>
     </LPSectionContainer>
   );

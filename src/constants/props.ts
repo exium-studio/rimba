@@ -14,6 +14,7 @@ import {
   IconProps,
   InputGroupProps,
   InputProps,
+  MenuContentProps,
   StackProps,
   TableRowProps,
   TextProps,
@@ -26,6 +27,10 @@ import {
   Type__Period,
 } from "./types";
 import { ImageProps } from "next/image";
+
+export interface Props__LangMenu extends BtnProps {
+  menuContentProps?: MenuContentProps;
+}
 
 export interface Props__Dropdown extends StackProps {
   children?: React.ReactNode;

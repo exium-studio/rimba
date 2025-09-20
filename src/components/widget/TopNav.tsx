@@ -294,37 +294,38 @@ const DesktopTopNav = () => {
                         <CContainer>
                           {nav.subMenus[0].list.map((subNav) => {
                             return (
-                              <MenuItem
-                                key={subNav.path}
-                                value={subNav.path}
-                                pr={4}
-                              >
-                                <Icon boxSize={5}>
-                                  <subNav.icon stroke={1.5} />
-                                </Icon>
+                              <NavLink key={subNav.path} to={subNav.path}>
+                                <MenuItem value={subNav.path} pr={4}>
+                                  <Icon boxSize={5}>
+                                    <subNav.icon stroke={1.5} />
+                                  </Icon>
 
-                                <P fontWeight={"medium"}>
-                                  {pluckString(l, subNav.labelKey)}
-                                </P>
-                              </MenuItem>
+                                  <P fontWeight={"medium"}>
+                                    {pluckString(l, subNav.labelKey)}
+                                  </P>
+                                </MenuItem>
+                              </NavLink>
                             );
                           })}
                         </CContainer>
                       </MenuContent>
                     </MenuRoot>
                   )}
+
                   {!nav.subMenus && (
-                    <Btn
-                      clicky={false}
-                      variant={"ghost"}
-                      // color={scrolled ? "dark" : "light"}
-                      color={"light"}
-                      _hover={{
-                        bg: "d1",
-                      }}
-                    >
-                      {pluckString(l, nav.labelKey)}
-                    </Btn>
+                    <NavLink to={nav.path}>
+                      <Btn
+                        clicky={false}
+                        variant={"ghost"}
+                        // color={scrolled ? "dark" : "light"}
+                        color={"light"}
+                        _hover={{
+                          bg: "d1",
+                        }}
+                      >
+                        {pluckString(l, nav.labelKey)}
+                      </Btn>
+                    </NavLink>
                   )}
                 </Fragment>
               )

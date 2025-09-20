@@ -11,7 +11,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-const HeroMinH = "100dvh";
+const HeroMinH = "100lvh";
 
 export const LPHomeHero = (props: StackProps) => {
   // Props
@@ -75,8 +75,8 @@ export const LPHomeHero = (props: StackProps) => {
           ".hero_brief_line",
           {
             height: "150px",
-            bottom: "100px",
             ease: "none",
+            duration: 2.5,
           },
           ">"
         );
@@ -103,7 +103,7 @@ export const LPHomeHero = (props: StackProps) => {
 
       <CContainer
         flex={1}
-        h={"100dvh"}
+        h={HeroMinH}
         gap={4}
         px={12}
         py={4}
@@ -117,7 +117,7 @@ export const LPHomeHero = (props: StackProps) => {
           h={"auto"}
           w={"full"}
           maxW={"320px"}
-          mt={16}
+          mt={"88px"}
         />
 
         <P className="hero_content" fontSize={"xl"} textAlign={"center"}>
@@ -131,11 +131,12 @@ export const LPHomeHero = (props: StackProps) => {
         >
           <CContainer
             className="hero_brief"
-            opacity={0}
-            pos={"relative"}
+            h={HeroMinH}
             align={"center"}
             bg={"blackAlpha.600"}
-            h={"100dvh"}
+            p={4}
+            opacity={0}
+            pos={"relative"}
             justify={"center"}
           >
             <P
@@ -156,7 +157,7 @@ export const LPHomeHero = (props: StackProps) => {
               w={"1px"}
               h={"0"}
               pos={"absolute"}
-              bottom={"100px"}
+              bottom={"50px"}
               zIndex={5}
             />
           </CContainer>
@@ -169,7 +170,6 @@ export const LPHomeHero = (props: StackProps) => {
         alt="bush"
         minH={HeroMinH}
         pos={"absolute"}
-        transform={"scale(1)"}
         zIndex={5}
       />
 

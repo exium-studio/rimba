@@ -9,6 +9,10 @@ import { Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Img } from "../ui/img";
 import GlobalDisclosure from "./GlobalDisclosure";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   children: React.ReactNode;

@@ -1,7 +1,6 @@
 import { Interface__NavItem } from "@/constants/interfaces";
 import {
   IconBook2,
-  IconBriefcase,
   IconDatabase,
   IconDeviceAnalytics,
   IconDeviceDesktop,
@@ -13,6 +12,7 @@ import {
   IconMapQuestion,
   IconNews,
   IconReceipt,
+  IconSeedling,
   IconSettings,
   IconShieldHalf,
   IconUser,
@@ -45,7 +45,7 @@ export const LP_NAVS: Interface__NavItem[] = [
                 path: `/about-us/rimba-corridor-program`,
               },
               {
-                icon: IconBriefcase,
+                icon: IconSeedling,
                 labelKey: "lp_navs.about_us.activity",
                 path: `/about-us/activity`,
               },

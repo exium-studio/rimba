@@ -38,14 +38,14 @@ export const LPHomeHero = (props: StackProps) => {
       });
 
       tl.to(".hero_bush", {
-        scale: 1.5,
+        scale: 2,
         ease: "none",
         duration: 2.5,
       })
         .to(
           ".hero_bg",
           {
-            scale: 1.1,
+            scale: 1.3,
             ease: "none",
             duration: 2.5,
           },

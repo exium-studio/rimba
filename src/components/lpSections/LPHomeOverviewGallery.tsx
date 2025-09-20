@@ -7,6 +7,8 @@ export const LPHomeOverviewGallery = (props: StackProps) => {
   // Props
   const { ...restProps } = props;
 
+  // States
+
   return (
     <CContainer minH={"100lvh"} overflow={"clip"} {...restProps}>
       <CContainer>

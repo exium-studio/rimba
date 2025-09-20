@@ -246,7 +246,7 @@ const DesktopTopNav = () => {
         // bg={scrolled ? DESKTOP_NAV_BG : "blackAlpha.500"}
         bg={"blackAlpha.600"}
         backdropFilter={"blur(5px)"}
-        rounded="md"
+        rounded="lg"
         transition="200ms"
       >
         <PartnersLogo h={"20px"} ml={2} />

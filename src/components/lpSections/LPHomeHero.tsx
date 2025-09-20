@@ -38,7 +38,7 @@ export const LPHomeHero = (props: StackProps) => {
       });
 
       tl.to(".hero_bush", {
-        scale: 2,
+        scale: 1.8,
         ease: "none",
         duration: 2.5,
       })
@@ -55,7 +55,6 @@ export const LPHomeHero = (props: StackProps) => {
           ".hero_content",
           {
             opacity: 0,
-            scale: 1.1,
             ease: "none",
             duration: 2.5,
           },
@@ -112,17 +111,22 @@ export const LPHomeHero = (props: StackProps) => {
         align={"center"}
         zIndex={2}
       >
+        <P
+          className="hero_content"
+          fontSize={"xl"}
+          textAlign={"center"}
+          letterSpacing={"1px"}
+          mt={"88px"}
+        >
+          {l.lp_hero_subtitle}
+        </P>
+
         <LogoImg
           className="hero_content"
           h={"auto"}
           w={"full"}
           maxW={"320px"}
-          mt={"88px"}
         />
-
-        <P className="hero_content" fontSize={"xl"} textAlign={"center"}>
-          {l.lp_hero_subtitle}
-        </P>
 
         <CContainer
           position={"absolute"}
@@ -174,7 +178,7 @@ export const LPHomeHero = (props: StackProps) => {
       />
 
       <CContainer className="hero_content" p={4} align={"center"} zIndex={5}>
-        <P color={"light"} textAlign={"center"} maxW={"320px"}>
+        <P maxW={"320px"} color={"light"} textAlign={"center"} opacity={0.6}>
           {l.lp_hero_description}
         </P>
       </CContainer>

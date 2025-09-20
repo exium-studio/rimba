@@ -15,6 +15,7 @@
     "@chakra-ui/react": "^3.25.0",
     "@ducanh2912/next-pwa": "^10.2.9",
     "@emotion/react": "^11.14.0",
+    "@gsap/react": "^2.1.2",
     "@tabler/icons-react": "^3.34.1",
     "@tinymce/tinymce-react": "^6.3.0",
     "@types/react-virtualized": "^9.22.2",

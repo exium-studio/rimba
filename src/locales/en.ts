@@ -178,6 +178,7 @@ const translations = {
     "description": "Uploading file..."
   },
   "location": "Location",
+  "lp_hero_brief": "This protected area spans the Riau, Jambi, and West Sumatra (RIMBA) landscape. This 3.8 million-hectare area is managed by maintaining, preserving, and enhancing the ecosystem corridors connecting nine protected areas. These areas serve as habitats for elephants, tigers, and various bird species.",
   "lp_hero_description": "Creating a green economy in the Riau, Jambi, and Sumatera Barat Ecosystem Corridor",
   "lp_hero_subtitle": "Ecosystem Corridor Program",
   "lp_navs": {

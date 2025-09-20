@@ -6,7 +6,7 @@ import { P } from "@/components/ui/p";
 import { LogoImg } from "@/components/widget/LogoImg";
 import { IMAGES_PATH } from "@/constants/paths";
 import useLang from "@/context/useLang";
-import { StackProps } from "@chakra-ui/react";
+import { Box, StackProps } from "@chakra-ui/react";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -33,19 +33,21 @@ export const LPHomeHero = (props: StackProps) => {
           scrub: true,
           pin: true,
           pinSpacing: true,
-          markers: true,
+          // markers: true, // debug
         },
       });
 
       tl.to(".hero_bush", {
         scale: 1.5,
         ease: "none",
+        duration: 2.5,
       })
         .to(
           ".hero_bg",
           {
             scale: 1.1,
             ease: "none",
+            duration: 2.5,
           },
           "<"
         )
@@ -55,8 +57,28 @@ export const LPHomeHero = (props: StackProps) => {
             opacity: 0,
             scale: 1.1,
             ease: "none",
+            duration: 2.5,
           },
           "<"
+        )
+        .to(
+          ".hero_brief",
+          {
+            opacity: 1,
+            ease: "none",
+            delay: 0.2,
+            duration: 2.5,
+          },
+          ">"
+        )
+        .to(
+          ".hero_brief_line",
+          {
+            height: "150px",
+            bottom: "100px",
+            ease: "none",
+          },
+          ">"
         );
     },
     { scope: containerRef }
@@ -80,7 +102,6 @@ export const LPHomeHero = (props: StackProps) => {
       />
 
       <CContainer
-        className="hero_content"
         flex={1}
         h={"100dvh"}
         gap={4}
@@ -91,11 +112,55 @@ export const LPHomeHero = (props: StackProps) => {
         align={"center"}
         zIndex={2}
       >
-        <LogoImg h={"auto"} w={"full"} maxW={"320px"} mt={20} />
+        <LogoImg
+          className="hero_content"
+          h={"auto"}
+          w={"full"}
+          maxW={"320px"}
+          mt={16}
+        />
 
-        <P fontSize={"xl"} textAlign={"center"}>
+        <P className="hero_content" fontSize={"xl"} textAlign={"center"}>
           {l.lp_hero_subtitle}
         </P>
+
+        <CContainer
+          position={"absolute"}
+          top={"50%"}
+          transform={"translateY(-50%)"}
+        >
+          <CContainer
+            className="hero_brief"
+            opacity={0}
+            pos={"relative"}
+            align={"center"}
+            bg={"blackAlpha.600"}
+            h={"100dvh"}
+            justify={"center"}
+          >
+            <P
+              fontSize={"xl"}
+              fontWeight={"medium"}
+              color={"light"}
+              textAlign={"center"}
+              maxW={"600px"}
+              zIndex={5}
+            >
+              {l.lp_hero_brief}
+            </P>
+
+            <Box
+              className="hero_brief_line"
+              bg={"light"}
+              opacity={0.5}
+              w={"1px"}
+              h={"0"}
+              pos={"absolute"}
+              bottom={"100px"}
+              zIndex={5}
+            />
+          </CContainer>
+        </CContainer>
       </CContainer>
 
       <Img

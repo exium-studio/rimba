@@ -267,6 +267,7 @@ const translations = {
   "password_confirmation": "Password Confirmation",
   "previous": "Previous",
   "profile": "Profile",
+  "published_at": "Published at",
   "recieve": "Recieve",
   "reset": "Reset",
   "retry": "Retry",

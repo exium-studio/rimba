@@ -248,7 +248,7 @@ const DesktopTopNav = () => {
         mx={"auto"}
         bg={"blackAlpha.600"}
         backdropFilter={"blur(5px)"}
-        rounded="lg"
+        rounded="xl"
         transition="200ms"
       >
         <PartnersLogo ml={2} />

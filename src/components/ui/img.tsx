@@ -27,6 +27,7 @@ export const Img = (props: Props__Img) => {
       justify={"center"}
       align={"center"}
       pos={"relative"}
+      overflow={restProps.rounded ? "clip" : ""}
       {...restProps}
     >
       <Image

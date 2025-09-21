@@ -35,7 +35,7 @@ const ValueItem = (props: any) => {
       border={"1px solid"}
       borderColor={"d1"}
       p={5}
-      rounded={"2xl"}
+      rounded={"xl"}
       {...restProps}
     >
       <HStack align={"start"} gap={6}>
@@ -63,7 +63,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
 
   // Contexts
   const { l, lang } = useLang();
-  const contents = useContents((s) => s.contents);
+  const staticContents = useContents((s) => s.staticContents);
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -72,18 +72,18 @@ export const LPHomeStrategyValue = (props: StackProps) => {
   // States
   const values = [
     {
-      title: contents[18].content[lang],
-      description: contents[19].content[lang],
+      title: staticContents[18].content[lang],
+      description: staticContents[19].content[lang],
       icon: IconCoin,
     },
     {
-      title: contents[20].content[lang],
-      description: contents[21].content[lang],
+      title: staticContents[20].content[lang],
+      description: staticContents[21].content[lang],
       icon: IconHeartHandshake,
     },
     {
-      title: contents[22].content[lang],
-      description: contents[23].content[lang],
+      title: staticContents[22].content[lang],
+      description: staticContents[23].content[lang],
       icon: IconCalendar,
     },
   ];
@@ -153,7 +153,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         color={"p.200"}
         textAlign={"center"}
       >
-        {contents[15].content[lang]}
+        {staticContents[15].content[lang]}
       </H2>
 
       <CContainer mt={"80px"} pos={"relative"}>
@@ -199,14 +199,14 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                 <CContainer
                   bg={"light"}
                   color={"dark"}
-                  rounded={"2xl"}
+                  rounded={"xl"}
                   overflowY={"auto"}
                   mb={"80px"}
                   pos={"relative"}
                 >
                   <HStack w={"full"} justify={"space-between"} p={4}>
                     <P fontSize={"lg"} fontWeight={"medium"}>
-                      {contents[16].content[lang]}
+                      {staticContents[16].content[lang]}
                     </P>
 
                     <Icon boxSize={5} color={"dt"}>
@@ -215,7 +215,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                   </HStack>
 
                   <CContainer className="scrollY" p={4} h={"280px"}>
-                    <P>{contents[17].content[lang]}</P>
+                    <P>{staticContents[17].content[lang]}</P>
                   </CContainer>
 
                   <HStack justify={"end"} p={3}>

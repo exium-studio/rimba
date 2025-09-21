@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
   },
+  images: {
+    domains: ["images.unsplash.com"],
+  },
   webpack(config, { dev }) {
     if (dev) {
       config.cache = {

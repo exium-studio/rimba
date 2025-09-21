@@ -267,6 +267,7 @@ const translations = {
   "password_confirmation": "Konfirmasi Password",
   "previous": "Sebelumnya",
   "profile": "Profil",
+  "published_at": "Diterbitkan pada",
   "recieve": "Terima",
   "reset": "Reset",
   "retry": "Coba lagi",

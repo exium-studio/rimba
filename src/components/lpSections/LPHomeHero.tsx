@@ -44,22 +44,22 @@ const GalleryImg = (props: Props__Img) => {
 };
 const OverviewGallery = (props: StackProps) => {
   // Contexts
-  const contents = useContents((s) => s.contents);
+  const staticContents = useContents((s) => s.staticContents);
 
   // States
   const galleryTop = [
-    contents[5],
-    contents[6],
-    contents[7],
-    contents[8],
-    contents[9],
+    staticContents[5],
+    staticContents[6],
+    staticContents[7],
+    staticContents[8],
+    staticContents[9],
   ];
   const galleryBottom = [
-    contents[10],
-    contents[11],
-    contents[12],
-    contents[13],
-    contents[14],
+    staticContents[10],
+    staticContents[11],
+    staticContents[12],
+    staticContents[13],
+    staticContents[14],
   ];
 
   return (

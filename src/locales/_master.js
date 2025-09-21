@@ -499,6 +499,10 @@ export const learn_more = {
   id: "Pelajari lebih lanjut",
   en: "Learn more",
 };
+export const published_at = {
+  id: "Diterbitkan pada",
+  en: "Published at",
+};
 
 // Message
 export const msg_location_test_helper = {

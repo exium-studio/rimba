@@ -1,6 +1,6 @@
 import { IMAGES_PATH, SVGS_PATH } from "@/constants/paths";
 
-export const lp_contents = {
+export const staticContents = {
   1: {
     contentType: "text",
     content: {
@@ -120,3 +120,45 @@ export const lp_contents = {
     },
   },
 };
+
+export const activities = [
+  {
+    id: 1,
+    thumbnail: `https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80`,
+    title: {
+      id: "Koridor Ekosistem: Menjaga Alam, Menggerakkan Ekonomi",
+      en: "Ecosystem Corridor: Preserving Nature, Driving Economy",
+    },
+    description: {
+      id: "Dengan teknologi pemetaan dan data spasial, pelestarian alam kini lebih terukur dan transparan. Penggunaan data lingkungan membantu pengambil kebijakan, peneliti, dan masyarakat.",
+      en: "With spatial mapping and spatial data, nature preservation is now more accurate and transparent. Using environmental data helps policymakers, researchers, and the public.",
+    },
+    createdAt: "2025-01-15T08:30:00.000Z",
+  },
+  {
+    id: 2,
+    thumbnail: `https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80`,
+    title: {
+      id: "Data Bukan Sekadar Angka: Alam yang Terlihat Lewat Peta",
+      en: "Data Is Not Just Numbers: Nature Revealed Through Maps",
+    },
+    description: {
+      id: "Dengan teknologi pemetaan dan data spasial, pelestarian alam kini lebih terukur dan transparan. Penggunaan data lingkungan membantu pengambil kebijakan, peneliti, dan masyarakat.",
+      en: "With spatial mapping and spatial data, nature preservation is now more accurate and transparent. Using environmental data helps policymakers, researchers, and the public.",
+    },
+    createdAt: "2025-01-15T08:30:00.000Z",
+  },
+  {
+    id: 3,
+    thumbnail: `https://images.unsplash.com/photo-1521207418485-99c705420785?auto=format&fit=crop&w=1200&q=80`,
+    title: {
+      id: "Air Bersih untuk Semua: Kolaborasi Data dan Infrastruktur",
+      en: "Clean Water for Everyone: Collaboration of Data and Infrastructure",
+    },
+    description: {
+      id: "Akses air bersih kini tak hanya soal infrastruktur, tapi juga soal informasi. Penggunaan sensor kualitas air dan dashboard pelaporan membuat distribusi air lebih adil dan tanggap terhadap krisis lokal.",
+      en: "Clean water access is not just infrastructure, but also information. Using water quality sensors and reporting dashboards makes water distribution more equitable and responsive to local crises.",
+    },
+    createdAt: "2025-01-15T08:30:00.000Z",
+  },
+];

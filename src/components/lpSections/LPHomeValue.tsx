@@ -43,7 +43,7 @@ const ValueItem = (props: any) => {
           <P>{value.description}</P>
         </CContainer>
 
-        <Circle bg={"p.900"} p={2}>
+        <Circle bg={"p.700"} p={2}>
           <Icon boxSize={6} color={"light"}>
             <value.icon stroke={1.5} />
           </Icon>

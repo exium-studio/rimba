@@ -11,7 +11,7 @@ export const PartnersLogo = (props: StackProps) => {
   return (
     <HStack {...restProps}>
       <Img
-        src={`${IMAGES_PATH}/atrbpn_logo.png`}
+        src={`${IMAGES_PATH}/atrbpn-logo.png`}
         alt="ATR BPN Logo"
         w={"auto"}
         h={restProps?.h || "30px"}
@@ -19,7 +19,7 @@ export const PartnersLogo = (props: StackProps) => {
         objectFit="contain"
       />
       <Img
-        src={`${IMAGES_PATH}/unep_logo.png`}
+        src={`${IMAGES_PATH}/unep-logo.png`}
         alt="UNEP Logo"
         w={"auto"}
         h={restProps?.h || "30px"}
@@ -28,7 +28,7 @@ export const PartnersLogo = (props: StackProps) => {
         ml={2}
       />
       <Img
-        src={`${IMAGES_PATH}/gef_logo.png`}
+        src={`${IMAGES_PATH}/gef-logo.png`}
         alt="gef Logo"
         w={"auto"}
         h={restProps?.h || "30px"}

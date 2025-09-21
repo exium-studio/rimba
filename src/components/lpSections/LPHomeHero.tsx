@@ -238,7 +238,7 @@ export const LPHomeHero = (props: StackProps) => {
     >
       <Img
         className="hero_bg"
-        src={`${IMAGES_PATH}/lp/home/hero_bg.jpg`}
+        src={`${IMAGES_PATH}/lp/home/hero-bg.jpg`}
         alt="forest"
         h={HeroMinH}
         pos={"absolute"}
@@ -315,7 +315,7 @@ export const LPHomeHero = (props: StackProps) => {
 
       <Img
         className="hero_bush"
-        src={`${IMAGES_PATH}/lp/home/hero_bush.png`}
+        src={`${IMAGES_PATH}/lp/home/hero-bush.png`}
         alt="bush"
         h={HeroMinH}
         pos={"absolute"}

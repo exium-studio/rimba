@@ -178,7 +178,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
           >
             {/* iphone frame */}
             <Img
-              src={`${IMAGES_PATH}/iphone_frame.png`}
+              src={`${IMAGES_PATH}/iphone-frame.png`}
               aspectRatio={1 / 2}
               pointerEvents={"none"}
               pos={"absolute"}
@@ -191,7 +191,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
               flex={1}
               p={3}
               bg={"p.500"}
-              bgImage={`url(${IMAGES_PATH}/lp/home/strategy_value_phone_header.png)`}
+              bgImage={`url(${IMAGES_PATH}/lp/home/strategy-value-phone-header.png)`}
               bgSize={"cover"}
               rounded={"60px"}
               aspectRatio={1 / 2}

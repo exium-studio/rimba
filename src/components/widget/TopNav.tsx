@@ -246,7 +246,6 @@ const DesktopTopNav = () => {
         gap={8}
         p={2}
         mx={"auto"}
-        // bg={scrolled ? DESKTOP_NAV_BG : "blackAlpha.500"}
         bg={"blackAlpha.600"}
         backdropFilter={"blur(5px)"}
         rounded="lg"
@@ -281,10 +280,10 @@ const DesktopTopNav = () => {
                         </Btn>
                       </MenuTrigger>
 
-                      <MenuContent w={"max"} mt={4}>
+                      <MenuContent w={"max"} mt={4} zIndex={99}>
                         <CContainer px={3} py={1}>
                           <P
-                            color={"fg.subtle"}
+                            color={"fg.muted"}
                             fontWeight={"medium"}
                             opacity={0.8}
                           >

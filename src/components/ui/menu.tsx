@@ -27,7 +27,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     const { themeConfig } = useThemeConfig();
 
     return (
-      <Portal disabled={portalled} container={portalRef}>
+      <Portal disabled={!portalled} container={portalRef}>
         <ChakraMenu.Positioner>
           <ChakraMenu.Content
             ref={ref}

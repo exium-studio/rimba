@@ -98,4 +98,11 @@ export const lp_contents = {
       en: "Project Implementation Period",
     },
   },
+  23: {
+    contentType: "text",
+    content: {
+      id: "Kegiatan Kami",
+      en: "Our Activities",
+    },
+  },
 };

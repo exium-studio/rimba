@@ -9,7 +9,7 @@ import { RimbaLetterArt } from "@/components/widget/RimbaLetterArt";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
-import { Circle, HStack, Icon, StackProps } from "@chakra-ui/react";
+import { Box, Circle, HStack, Icon, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import {
   IconCalendar,
@@ -184,7 +184,7 @@ export const LPHomeValue = (props: StackProps) => {
               <CContainer flex={1} overflow={"clip"}>
                 <RimbaLetterArt
                   w={"60%"}
-                  opacity={0.1}
+                  opacity={0}
                   zIndex={2}
                   mt={"auto"}
                   mb={"120px"}
@@ -192,6 +192,7 @@ export const LPHomeValue = (props: StackProps) => {
                 />
 
                 <CContainer
+                  gap={4}
                   bg={"light"}
                   color={"dark"}
                   roundedTopLeft={"2xl"}
@@ -201,6 +202,16 @@ export const LPHomeValue = (props: StackProps) => {
                   mb={"80px"}
                   pos={"relative"}
                 >
+                  <Box
+                    w={"50px"}
+                    h={"4px"}
+                    bg={"bg.emphasized"}
+                    rounded={"full"}
+                    mx={"auto"}
+                    mt={"-16px"}
+                    mb={2}
+                  />
+
                   <P>{contents[16].content[lang]}</P>
                 </CContainer>
               </CContainer>

@@ -1,5 +1,6 @@
 "use client";
 
+import { LPHomeActivity } from "@/components/lpSections/LPHomeActivity";
 import { LPHomeHero } from "@/components/lpSections/LPHomeHero";
 import { LPHomeValue } from "@/components/lpSections/LPHomeValue";
 import { CContainer } from "@/components/ui/c-container";
@@ -13,6 +14,8 @@ const IndexRoute = () => {
       <LPHomeHero />
 
       <LPHomeValue />
+
+      <LPHomeActivity />
     </CContainer>
   );
 };

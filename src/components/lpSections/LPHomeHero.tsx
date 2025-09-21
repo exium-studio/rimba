@@ -193,7 +193,7 @@ export const LPHomeHero = (props: StackProps) => {
             ease: "none",
             duration: 2.5,
           },
-          ">"
+          "<"
         )
         .from(
           ".overview_gallery",
@@ -249,7 +249,7 @@ export const LPHomeHero = (props: StackProps) => {
         flex={1}
         h={HeroMinH}
         gap={4}
-        px={12}
+        px={"60px"}
         py={4}
         color={"light"}
         justify={"center"}
@@ -260,8 +260,8 @@ export const LPHomeHero = (props: StackProps) => {
           className="hero_content"
           fontSize={"xl"}
           textAlign={"center"}
-          letterSpacing={"1px"}
           mt={"60px"}
+          lineHeight={1.2}
         >
           {l.lp_hero_subtitle}
         </P>

@@ -29,8 +29,9 @@ const ValueItem = (props: any) => {
   return (
     <CContainer
       className="value_item ss"
-      bg={"light"}
-      color={"dark"}
+      bg={"blackAlpha.500"}
+      color={"light"}
+      backdropFilter={"blur(5px)"}
       border={"1px solid"}
       borderColor={"d1"}
       p={5}
@@ -43,7 +44,7 @@ const ValueItem = (props: any) => {
             {value.title}
           </P>
 
-          <P>{value.description}</P>
+          <P opacity={0.8}>{value.description}</P>
         </CContainer>
 
         <Circle bg={"p.700"} p={2}>
@@ -161,16 +162,18 @@ export const LPHomeStrategyValue = (props: StackProps) => {
           wrap={"wrap"}
           justify={"center"}
           gapX={"80px"}
+          gapY={0}
           zIndex={2}
           // align={"stretch"}
         >
           <CContainer
             className={"strategy_value_content_1"}
-            flex={"0 1 350px"}
+            flex={"0 1 330px"}
+            h={"540px"}
+            overflow={"clip"}
             aspectRatio={1 / 2}
             pos={"relative"}
             px={2}
-            mb={"-180px"}
           >
             {/* iphone frame */}
             <Img
@@ -194,9 +197,8 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             >
               <CContainer flex={1} overflow={"clip"} p={3} mt={"64px"}>
                 <CContainer
-                  bg={"blackAlpha.500"}
-                  color={"light"}
-                  backdropFilter={"blur(5px)"}
+                  bg={"light"}
+                  color={"dark"}
                   rounded={"2xl"}
                   overflowY={"auto"}
                   mb={"80px"}
@@ -249,7 +251,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             minH={"full"}
             zIndex={2}
           >
-            <CContainer gap={8} zIndex={2}>
+            <CContainer gap={6} zIndex={2}>
               {values.map((value) => {
                 return <ValueItem key={value.title} value={value} />;
               })}

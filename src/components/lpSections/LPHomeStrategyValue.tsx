@@ -170,7 +170,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             aspectRatio={1 / 2}
             pos={"relative"}
             px={2}
-            mb={"-100px"}
+            mb={"-180px"}
           >
             {/* iphone frame */}
             <Img
@@ -207,12 +207,12 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                       {contents[16].content[lang]}
                     </P>
 
-                    <Icon boxSize={5}>
+                    <Icon boxSize={5} color={"dt"}>
                       <IconX />
                     </Icon>
                   </HStack>
 
-                  <CContainer className="scrollY" p={4}>
+                  <CContainer className="scrollY" p={4} h={"280px"}>
                     <P>{contents[17].content[lang]}</P>
                   </CContainer>
 

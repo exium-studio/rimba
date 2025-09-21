@@ -90,6 +90,14 @@ export const LPHomeStrategyValue = (props: StackProps) => {
   // Anmation
   useGSAP(
     () => {
+      gsap.to(".compass", {
+        rotation: 360,
+        duration: 60,
+        repeat: -1,
+        ease: "linear",
+        transformOrigin: "50% 50%",
+      });
+
       gsap.from(".section_title", {
         y: "100%",
         opacity: 0,
@@ -245,6 +253,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         </HStack>
 
         <Img
+          className="compass"
           src={`${IMAGES_PATH}/compass.png`}
           aspectRatio={1}
           h={"500px"}

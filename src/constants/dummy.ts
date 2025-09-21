@@ -115,8 +115,8 @@ export const staticContents = {
   25: {
     contentType: "text",
     content: {
-      id: "Kegiatan Kami",
-      en: "Our Activities",
+      id: "Meningkatkan Kualitas Hidup dan Pemberdayaan Masyarakat Melalui Inisiatif-Inisiatif Unggul dan Berkelanjutan",
+      en: "Increasing Quality of Life and Community Empowerment Through Innovative and Sustainable Initiatives",
     },
   },
 };

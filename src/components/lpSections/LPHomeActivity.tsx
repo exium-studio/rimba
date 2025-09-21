@@ -31,7 +31,7 @@ const ActivityItem = (props: any) => {
       {...restProps}
     >
       <CContainer>
-        <Img src={activity.thumbnail} aspectRatio={1} rounded={"lg"} />
+        <Img src={activity.thumbnail} aspectRatio={2.5} rounded={"lg"} />
       </CContainer>
 
       <CContainer
@@ -89,7 +89,7 @@ export const LPHomeActivity = (props: StackProps) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { lang } = useLang();
+  const { l, lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
   const activities = useContents((s) => s.activities);
 
@@ -114,6 +114,14 @@ export const LPHomeActivity = (props: StackProps) => {
           })}
         </SimpleGrid>
       </CContainer>
+
+      <P textAlign={"center"} mt={"80px"} maxW={"500px"} mx={"auto"}>
+        {staticContents[25].content[lang]}
+      </P>
+
+      <Btn colorPalette={"p"} variant={"outline"} w={"fit"} mx={"auto"} mt={4}>
+        {l.learn_more}
+      </Btn>
     </LPSectionContainer>
   );
 };

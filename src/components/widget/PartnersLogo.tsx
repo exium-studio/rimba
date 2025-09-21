@@ -13,22 +13,25 @@ export const PartnersLogo = (props: StackProps) => {
       <Img
         src={`${IMAGES_PATH}/atrbpn_logo.png`}
         alt="ATR BPN Logo"
-        w={"30px"}
-        h={"30px"}
+        w={"auto"}
+        h={restProps?.h || "30px"}
+        aspectRatio={1}
         objectFit="contain"
       />
       <Img
         src={`${IMAGES_PATH}/unep_logo.png`}
         alt="UNEP Logo"
-        w={"30px"}
-        h={"30px"}
+        w={"auto"}
+        h={restProps?.h || "30px"}
+        aspectRatio={1}
         objectFit="contain"
       />
       <Img
         src={`${IMAGES_PATH}/gef_logo.png`}
         alt="gef Logo"
-        w={"30px"}
-        h={"30px"}
+        w={"auto"}
+        h={restProps?.h || "30px"}
+        aspectRatio={1}
         objectFit="contain"
       />
     </HStack>

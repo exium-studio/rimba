@@ -251,7 +251,7 @@ const DesktopTopNav = () => {
         rounded="lg"
         transition="200ms"
       >
-        <PartnersLogo h={"20px"} ml={2} />
+        <PartnersLogo ml={2} />
 
         <HStack>
           {LP_NAVS[0].list.map((nav, idx) => {

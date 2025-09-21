@@ -1,16 +1,15 @@
 "use client";
 
 import { useColorMode } from "@/components/ui/color-mode";
-import { SVGS_PATH } from "@/constants/paths";
+import { PartnersLogo } from "@/components/widget/PartnersLogo";
 import useADM from "@/context/useADM";
 import { useFirefoxPaddingY } from "@/hooks/useFirefoxPaddingY";
 import useOfflineAlert from "@/hooks/useOfflineAlert";
 import { Center } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { Img } from "../ui/img";
-import GlobalDisclosure from "./GlobalDisclosure";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useState } from "react";
+import GlobalDisclosure from "./GlobalDisclosure";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,13 +22,14 @@ const DefaultFallback = () => {
   return (
     <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
       <Center position={"relative"}>
-        <Img
+        {/* <Img
           alt={`RIMBA letter art`}
           src={`${SVGS_PATH}/rimba_letter_art_color.svg`}
           width={40}
           height={40}
           objectFit="contain"
-        />
+        /> */}
+        <PartnersLogo h={"100px"} />
       </Center>
     </Center>
   );

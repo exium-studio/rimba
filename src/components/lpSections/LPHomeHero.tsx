@@ -4,14 +4,79 @@ import { CContainer } from "@/components/ui/c-container";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { LogoImg } from "@/components/widget/LogoImg";
+import { Interface__Content } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
+import { Props__Img } from "@/constants/props";
+import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
-import { Box, StackProps } from "@chakra-ui/react";
-import { useRef } from "react";
+import { Box, HStack, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useRef } from "react";
 
 const HeroMinH = "100lvh";
+
+const GalleryImg = (props: Props__Img) => {
+  // Props
+  const { ...restProps } = props;
+
+  return (
+    <Img h={"100%"} aspectRatio={Math.random() < 0.5 ? 1 : 2} {...restProps} />
+  );
+};
+const OverviewGallery = () => {
+  // Contexts
+  const contents = useContents((s) => s.contents);
+
+  // States
+  const galleryTop = contents.slice(4, 9);
+  const galleryBottom = contents.slice(9, 14);
+
+  return (
+    <CContainer
+      className="overview_gallery"
+      h={"100lvh"}
+      bg={"p.900"}
+      pos={"absolute"}
+      justify={"center"}
+      zIndex={6}
+    >
+      <CContainer h={"50%"}>
+        <HStack
+          className="overview_gallery_top"
+          minW={"full"}
+          w={"max"}
+          h={"full"}
+          gap={0}
+        >
+          {galleryTop.map((item: Interface__Content) => {
+            return <GalleryImg key={item.id} src={item.content} />;
+          })}
+          {galleryTop.map((item: Interface__Content) => {
+            return <GalleryImg key={item.id} src={item.content} />;
+          })}
+        </HStack>
+      </CContainer>
+
+      <CContainer h={"50%"} align={"end"}>
+        <HStack
+          className="overview_gallery_bottom"
+          minW={"full"}
+          w={"max"}
+          h={"full"}
+          gap={0}
+        >
+          {galleryBottom.map((item: Interface__Content) => {
+            return <GalleryImg key={item.id} src={item.content} />;
+          })}
+          {galleryBottom.map((item: Interface__Content) => {
+            return <GalleryImg key={item.id} src={item.content} />;
+          })}
+        </HStack>
+      </CContainer>
+    </CContainer>
+  );
+};
 
 export const LPHomeHero = (props: StackProps) => {
   // Props
@@ -23,13 +88,14 @@ export const LPHomeHero = (props: StackProps) => {
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Animation
   useGSAP(
     () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "bottom",
+          end: "bottom+=2000",
           scrub: true,
           pin: true,
           pinSpacing: true,
@@ -65,10 +131,9 @@ export const LPHomeHero = (props: StackProps) => {
           {
             opacity: 1,
             ease: "none",
-            delay: 0.2,
             duration: 2.5,
           },
-          ">"
+          ">+0.2"
         )
         .to(
           ".hero_brief_line",
@@ -78,6 +143,33 @@ export const LPHomeHero = (props: StackProps) => {
             duration: 2.5,
           },
           ">"
+        )
+        .from(
+          ".overview_gallery",
+          {
+            bottom: "-100%",
+            ease: "none",
+            duration: 2.5,
+          },
+          ">"
+        )
+        .to(
+          ".overview_gallery_top",
+          {
+            x: "-40%",
+            ease: "none",
+            duration: 10,
+          },
+          ">"
+        )
+        .to(
+          ".overview_gallery_bottom",
+          {
+            x: "40%",
+            ease: "none",
+            duration: 10,
+          },
+          "<"
         );
     },
     { scope: containerRef }
@@ -93,7 +185,7 @@ export const LPHomeHero = (props: StackProps) => {
     >
       <Img
         className="hero_bg"
-        src={`${IMAGES_PATH}/hero_bg2.png`}
+        src={`${IMAGES_PATH}/hero_bg2.jpg`}
         alt="forest"
         minH={HeroMinH}
         pos={"absolute"}
@@ -137,7 +229,7 @@ export const LPHomeHero = (props: StackProps) => {
             className="hero_brief"
             h={HeroMinH}
             align={"center"}
-            bg={"blackAlpha.600"}
+            bg={"blackAlpha.700"}
             p={4}
             opacity={0}
             pos={"relative"}
@@ -183,6 +275,8 @@ export const LPHomeHero = (props: StackProps) => {
           {l.lp_hero_description}
         </P>
       </CContainer>
+
+      <OverviewGallery />
     </CContainer>
   );
 };

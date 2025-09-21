@@ -1,4 +1,4 @@
-import { SVGS_PATH } from "@/constants/paths";
+import { IMAGES_PATH, SVGS_PATH } from "@/constants/paths";
 
 export const lp_contents = [
   {
@@ -21,7 +21,7 @@ export const lp_contents = [
     id: 3,
     contentType: "text",
     content: {
-      id: "Mewujudkan ekonomi hijau di koridor ekosistem Riau, Jambi dan Sumatera Barat",
+      id: "Mewujudkan ekonomi hijau di koridor ekosisstem Riau, Jambi dan Sumatera Barat",
       en: "Creating a green economy in the Riau, Jambi, and Sumatera Barat Ecosystem Corridor",
     },
   },
@@ -34,11 +34,53 @@ export const lp_contents = [
     },
   },
   {
-    id: 3,
+    id: 5,
     contentType: "image",
-    content: {
-      id: "Mewujudkan ekonomi hijau di koridor ekosistem Riau, Jambi dan Sumatera Barat",
-      en: "Creating a green economy in the Riau, Jambi, and Sumatera Barat Ecosystem Corridor",
-    },
+    content: `${IMAGES_PATH}/default_gallery/1.jpg`,
+  },
+  {
+    id: 6,
+    contentType: "image",
+    content: `${IMAGES_PATH}/default_gallery/2.jpg`,
+  },
+  {
+    id: 7,
+    contentType: "image",
+    content: `${IMAGES_PATH}/default_gallery/3.jpg`,
+  },
+  {
+    id: 8,
+    contentType: "image",
+    content: `${IMAGES_PATH}/default_gallery/4.jpg`,
+  },
+  {
+    id: 9,
+    contentType: "image",
+    content: `${IMAGES_PATH}/default_gallery/5.jpg`,
+  },
+  {
+    id: 10,
+    contentType: "image",
+    content: `${IMAGES_PATH}/default_gallery/6.jpg`,
+  },
+  {
+    id: 11,
+    contentType: "image",
+    content: `${IMAGES_PATH}/default_gallery/7.jpg`,
+  },
+  {
+    id: 12,
+    contentType: "image",
+    content: `${IMAGES_PATH}/default_gallery/8.jpg`,
+  },
+  {
+    id: 13,
+    contentType: "image",
+    content: `${IMAGES_PATH}/default_gallery/9.jpg`,
+  },
+  {
+    id: 14,
+    contentType: "image",
+    content: `${IMAGES_PATH}/default_gallery/10.jpg`,
   },
 ];

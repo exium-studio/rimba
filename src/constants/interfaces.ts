@@ -16,6 +16,12 @@ import {
 } from "./types";
 import { ReactNode } from "react";
 
+export interface Interface__Content {
+  id: number;
+  contentType?: string;
+  content: any;
+}
+
 // Navs
 export interface Interface__NavItem {
   groupLabelKey?: string;

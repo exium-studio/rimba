@@ -129,7 +129,7 @@ export const LPHomeValue = (props: StackProps) => {
   return (
     <LPSectionContainer
       ref={containerRef}
-      pt={"80px"}
+      pt={"100px"}
       pb={0}
       bg={"p.900"}
       color={"light"}

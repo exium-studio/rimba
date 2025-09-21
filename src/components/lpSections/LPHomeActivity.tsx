@@ -23,7 +23,7 @@ const ActivityItem = (props: any) => {
 
   return (
     <CContainer
-      rounded={"2xl"}
+      rounded={"4xl"}
       bg={"p.900"}
       border={"1px solid"}
       borderColor={"p.100"}
@@ -31,16 +31,17 @@ const ActivityItem = (props: any) => {
       {...restProps}
     >
       <CContainer>
-        <Img src={activity.thumbnail} aspectRatio={2.5} rounded={"xl"} />
+        <Img src={activity.thumbnail} aspectRatio={2.5} rounded={"3xl"} />
       </CContainer>
 
       <CContainer
         flex={1}
         bg={"light"}
         p={6}
-        roundedTopRight={"xl"}
-        roundedBottomLeft={"xl"}
-        roundedBottomRight={"xl"}
+        // roundedTopLeft={"2xl"}
+        roundedTopRight={"2xl"}
+        roundedBottomLeft={"2xl"}
+        roundedBottomRight={"2xl"}
         mt={"-20px"}
         pos={"relative"}
         zIndex={2}
@@ -65,13 +66,11 @@ const ActivityItem = (props: any) => {
       <HStack justify={"end"} mt={"auto"} pt={2}>
         <Btn
           colorPalette={"p"}
-          variant={"ghost"}
+          variant={"plain"}
           size={"md"}
+          rounded={"3xl"}
           pr={3}
           color={"p.300"}
-          _hover={{
-            bg: "whiteAlpha.200",
-          }}
         >
           {l.learn_more}
 

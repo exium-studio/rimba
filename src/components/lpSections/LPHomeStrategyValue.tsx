@@ -35,7 +35,7 @@ const ValueItem = (props: any) => {
       border={"1px solid"}
       borderColor={"d1"}
       p={5}
-      rounded={"xl"}
+      rounded={"3xl"}
       {...restProps}
     >
       <HStack align={"start"} gap={6}>
@@ -200,7 +200,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                 <CContainer
                   bg={"light"}
                   color={"dark"}
-                  rounded={"xl"}
+                  rounded={"3xl"}
                   overflowY={"auto"}
                   mb={"80px"}
                   pos={"relative"}

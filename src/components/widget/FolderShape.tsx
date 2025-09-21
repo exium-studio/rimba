@@ -21,14 +21,14 @@ export default function FolderShape({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 78.16 20.97"
+      viewBox="0 0 78.16 13.13"
       width={finalWidth}
       height={finalHeight}
       preserveAspectRatio="xMidYMid meet"
       style={{ display: "block" }}
     >
       <path
-        d="M-0 20.97l57.09 0 21.07 0c-13.5,0 -15.22,-20.97 -26.47,-20.97l-46.29 0c-2.97,0 -5.4,2.43 -5.4,5.4l0 15.57z"
+        d="M-0 13.13l57.09 0 21.07 0c-13.5,0 -15.22,-13.13 -26.47,-13.13l-46.29 0c-2.97,0 -5.4,2.55 -5.4,4.95l0 8.18z"
         fill={color}
       />
     </svg>

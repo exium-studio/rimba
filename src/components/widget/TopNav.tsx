@@ -240,11 +240,12 @@ const DesktopTopNav = () => {
   }, []);
 
   return (
-    <LPSectionContainer w={"fit"}>
+    <LPSectionContainer>
       <HStack
-        w={"full"}
+        w={"fit"}
         gap={8}
         p={2}
+        mx={"auto"}
         // bg={scrolled ? DESKTOP_NAV_BG : "blackAlpha.500"}
         bg={"blackAlpha.600"}
         backdropFilter={"blur(5px)"}

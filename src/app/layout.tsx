@@ -1,10 +1,10 @@
 import { Provider } from "@/components/ui/provider";
 import { Toaster } from "@/components/ui/toaster";
-import "./globals.css";
 import ClientOnlyApp from "@/components/widget/ClientOnlyApp";
-import { Metadata, Viewport } from "next";
-import { Figtree } from "next/font/google";
 import { APP } from "@/constants/_meta";
+import { Metadata, Viewport } from "next";
+import { Poppins } from "next/font/google";
+import "./globals.css";
 
 interface Props {
   children: React.ReactNode;
@@ -50,8 +50,9 @@ export const viewport: Viewport = {
   themeColor: "#000000",
 };
 
-const figtree = Figtree({
+const poppins = Poppins({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -60,7 +61,7 @@ const RootLayout = (props: Props) => {
   const { children } = props;
 
   return (
-    <html suppressHydrationWarning className={figtree.className}>
+    <html suppressHydrationWarning className={poppins.className}>
       <head>
         <link rel="manifest" href="/manifest.json" />
       </head>

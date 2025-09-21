@@ -25,6 +25,7 @@ export const PartnersLogo = (props: StackProps) => {
         h={restProps?.h || "30px"}
         aspectRatio={1}
         objectFit="contain"
+        ml={1}
       />
       <Img
         src={`${IMAGES_PATH}/gef_logo.png`}

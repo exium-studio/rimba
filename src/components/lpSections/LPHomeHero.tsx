@@ -29,8 +29,20 @@ const OverviewGallery = () => {
   const contents = useContents((s) => s.contents);
 
   // States
-  const galleryTop = contents.slice(4, 9);
-  const galleryBottom = contents.slice(9, 14);
+  const galleryTop = [
+    contents[5],
+    contents[6],
+    contents[7],
+    contents[8],
+    contents[9],
+  ];
+  const galleryBottom = [
+    contents[10],
+    contents[11],
+    contents[12],
+    contents[13],
+    contents[14],
+  ];
 
   return (
     <CContainer
@@ -50,10 +62,10 @@ const OverviewGallery = () => {
           gap={0}
         >
           {galleryTop.map((item: Interface__Content) => {
-            return <GalleryImg key={item.id} src={item.content} />;
+            return <GalleryImg key={item.content} src={item.content} />;
           })}
           {galleryTop.map((item: Interface__Content) => {
-            return <GalleryImg key={item.id} src={item.content} />;
+            return <GalleryImg key={item.content} src={item.content} />;
           })}
         </HStack>
       </CContainer>
@@ -67,10 +79,10 @@ const OverviewGallery = () => {
           gap={0}
         >
           {galleryBottom.map((item: Interface__Content) => {
-            return <GalleryImg key={item.id} src={item.content} />;
+            return <GalleryImg key={item.content} src={item.content} />;
           })}
           {galleryBottom.map((item: Interface__Content) => {
-            return <GalleryImg key={item.id} src={item.content} />;
+            return <GalleryImg key={item.content} src={item.content} />;
           })}
         </HStack>
       </CContainer>
@@ -181,11 +193,12 @@ export const LPHomeHero = (props: StackProps) => {
       minH={HeroMinH}
       pos={"relative"}
       overflow={"clip"}
+      bg={"p.900"}
       {...restProps}
     >
       <Img
         className="hero_bg"
-        src={`${IMAGES_PATH}/hero_bg2.jpg`}
+        src={`${IMAGES_PATH}/lp/home/hero_bg.jpg`}
         alt="forest"
         minH={HeroMinH}
         pos={"absolute"}
@@ -237,8 +250,8 @@ export const LPHomeHero = (props: StackProps) => {
             justify={"center"}
           >
             <P
-              fontSize={"xl"}
-              fontWeight={"medium"}
+              fontSize={"lg"}
+              // fontWeight={"medium"}
               textAlign={"center"}
               maxW={"600px"}
               zIndex={5}
@@ -262,7 +275,7 @@ export const LPHomeHero = (props: StackProps) => {
 
       <Img
         className="hero_bush"
-        src={`${IMAGES_PATH}/hero_bush_2.png`}
+        src={`${IMAGES_PATH}/lp/home/hero_bush.png`}
         alt="bush"
         minH={HeroMinH}
         pos={"absolute"}

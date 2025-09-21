@@ -282,7 +282,7 @@ export const LPHomeHero = (props: StackProps) => {
             className="hero_brief_contents"
             h={HeroMinH}
             align={"center"}
-            bg={"blackAlpha.700"}
+            bg={"blackAlpha.800"}
             color={"light"}
             p={4}
             opacity={0}
@@ -291,8 +291,7 @@ export const LPHomeHero = (props: StackProps) => {
           >
             <P
               className="hero_brief"
-              fontSize={"lg"}
-              // fontWeight={"medium"}
+              fontSize={"xl"}
               textAlign={"center"}
               maxW={"600px"}
               zIndex={5}

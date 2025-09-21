@@ -45,7 +45,7 @@ const ActivityItem = (props: any) => {
         pos={"relative"}
         zIndex={2}
       >
-        <Box pos={"absolute"} top={"-30px"} left={0}>
+        <Box pos={"absolute"} top={"-29.5px"} left={0}>
           <FolderShape h={"30px"} />
         </Box>
 

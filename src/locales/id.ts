@@ -141,6 +141,7 @@ const translations = {
   "july": "Juli",
   "june": "Juni",
   "language": "Bahasa",
+  "learn_more": "Pelajari lebih lanjut",
   "loading_default": {
     "title": "Memuat",
     "description": "Permintaan sedang diproses..."

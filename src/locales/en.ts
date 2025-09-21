@@ -141,6 +141,7 @@ const translations = {
   "july": "July",
   "june": "June",
   "language": "Language",
+  "learn_more": "Learn more",
   "loading_default": {
     "title": "Loading",
     "description": "The request is being processed..."

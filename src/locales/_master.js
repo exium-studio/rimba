@@ -495,6 +495,10 @@ export const rounded = {
   id: "Rounded",
   en: "Rounded",
 };
+export const learn_more = {
+  id: "Pelajari lebih lanjut",
+  en: "Learn more",
+};
 
 // Message
 export const msg_location_test_helper = {

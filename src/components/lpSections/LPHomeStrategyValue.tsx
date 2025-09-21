@@ -194,8 +194,9 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             >
               <CContainer flex={1} overflow={"clip"} p={3} mt={"64px"}>
                 <CContainer
-                  bg={"light"}
-                  color={"dark"}
+                  bg={"blackAlpha.500"}
+                  color={"light"}
+                  backdropFilter={"blur(5px)"}
                   rounded={"2xl"}
                   overflowY={"auto"}
                   mb={"80px"}
@@ -219,6 +220,10 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                     <NavLink to="/about-us/rimba-corridor-program" w={"fit"}>
                       <Btn
                         colorPalette={"p"}
+                        color={"p.300"}
+                        _hover={{
+                          bg: "blackAlpha.400",
+                        }}
                         variant={"ghost"}
                         size={"md"}
                         pr={3}

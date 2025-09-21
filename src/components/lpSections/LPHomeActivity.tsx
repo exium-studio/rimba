@@ -11,7 +11,9 @@ import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { formatDate } from "@/utils/formatter";
 import { Box, HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
+import { useGSAP } from "@gsap/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
+import gsap from "gsap";
 import { useRef } from "react";
 
 const ActivityItem = (props: any) => {
@@ -94,6 +96,74 @@ export const LPHomeActivity = (props: StackProps) => {
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
+  const mainContentsRef = useRef<HTMLDivElement>(null);
+  const bottomContentsRef = useRef<HTMLDivElement>(null);
+
+  // Animation
+  useGSAP(
+    () => {
+      gsap.from(".section_title", {
+        y: "100%",
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 50%",
+          // markers: true, // debug
+        },
+      });
+
+      gsap.from(mainContentsRef.current, {
+        y: "-40%",
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 50%",
+          // markers: true, // debug
+        },
+      });
+
+      gsap.from("#activity_item_1", {
+        x: "70%",
+        delay: 0.5,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mainContentsRef.current,
+          start: "top 50%",
+          // markers: true, // debug
+        },
+      });
+
+      gsap.from("#activity_item_3", {
+        x: "-70%",
+        delay: 0.5,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mainContentsRef.current,
+          start: "top 50%",
+          // markers: true, // debug
+        },
+      });
+
+      gsap.from(".bottom_content", {
+        y: "100%",
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: bottomContentsRef.current,
+          start: "top 50%",
+          // markers: true, // debug
+        },
+      });
+    },
+    { scope: containerRef }
+  );
 
   return (
     <LPSectionContainer ref={containerRef} py={"80px"} {...restProps}>
@@ -107,31 +177,47 @@ export const LPHomeActivity = (props: StackProps) => {
       </H2>
 
       <CContainer mt={"80px"}>
-        <SimpleGrid columns={[1, null, 3]} gap={4}>
-          {activities.map((activity: any) => {
-            return <ActivityItem key={activity.id} activity={activity} />;
+        <SimpleGrid ref={mainContentsRef} columns={[1, null, 3]} gap={4}>
+          {activities.map((activity: any, idx: number) => {
+            return (
+              <ActivityItem
+                key={activity.id}
+                id={`activity_item_${idx + 1}`}
+                activity={activity}
+                zIndex={idx === 1 ? 2 : 1}
+              />
+            );
           })}
         </SimpleGrid>
       </CContainer>
 
-      <P textAlign={"center"} mt={"80px"} maxW={"500px"} mx={"auto"}>
-        {staticContents[25].content[lang]}
-      </P>
+      <CContainer ref={bottomContentsRef}>
+        <P
+          className="bottom_content"
+          textAlign={"center"}
+          mt={"80px"}
+          maxW={"500px"}
+          mx={"auto"}
+        >
+          {staticContents[25].content[lang]}
+        </P>
 
-      <Btn
-        w={"fit"}
-        pr={3}
-        colorPalette={"p"}
-        variant={"ghost"}
-        mx={"auto"}
-        mt={4}
-      >
-        {l.all_activities}
+        <Btn
+          className="bottom_content"
+          w={"fit"}
+          pr={3}
+          colorPalette={"p"}
+          variant={"ghost"}
+          mx={"auto"}
+          mt={4}
+        >
+          {l.all_activities}
 
-        <Icon boxSize={5}>
-          <IconArrowUpRight stroke={1.5} />
-        </Icon>
-      </Btn>
+          <Icon boxSize={5}>
+            <IconArrowUpRight stroke={1.5} />
+          </Icon>
+        </Btn>
+      </CContainer>
     </LPSectionContainer>
   );
 };

@@ -128,7 +128,7 @@ export const LPHomeHero = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: () => "+=" + containerRef.current!.offsetHeight * 2,
+          end: () => "+=" + containerRef.current!.offsetHeight * 3,
           scrub: true,
           pin: true,
           pinSpacing: true,
@@ -200,7 +200,7 @@ export const LPHomeHero = (props: StackProps) => {
           {
             bottom: "-120%",
             ease: "none",
-            duration: 2.5,
+            duration: 10,
             delay: 0.2,
           },
           "<"

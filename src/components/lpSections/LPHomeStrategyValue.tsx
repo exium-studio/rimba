@@ -91,18 +91,10 @@ export const LPHomeStrategyValue = (props: StackProps) => {
   // Anmation
   useGSAP(
     () => {
-      gsap.to(".compass", {
-        rotation: 360,
-        duration: 60,
-        repeat: -1,
-        ease: "linear",
-        transformOrigin: "50% 50%",
-      });
-
       gsap.from(".section_title", {
         y: "100%",
         opacity: 0,
-        duration: 0.5,
+        duration: 1,
         ease: "power2.out",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -112,9 +104,9 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       });
 
       gsap.from(".strategy_value_content_1", {
-        x: "-100%",
+        x: "-20%",
         opacity: 0,
-        duration: 0.5,
+        duration: 1,
         ease: "power2.out",
         scrollTrigger: {
           trigger: contentsRef.current,
@@ -124,15 +116,23 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       });
 
       gsap.from(".strategy_value_content_2", {
-        x: "100%",
+        x: "20%",
         opacity: 0,
-        duration: 0.5,
+        duration: 1,
         ease: "power2.out",
         scrollTrigger: {
           trigger: contentsRef.current,
           start: "top 50%",
           // markers: true, // debug
         },
+      });
+
+      gsap.to(".compass", {
+        rotation: 360,
+        duration: 60,
+        repeat: -1,
+        ease: "linear",
+        transformOrigin: "50% 50%",
       });
     },
     { scope: containerRef }

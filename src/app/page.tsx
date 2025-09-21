@@ -16,6 +16,8 @@ const IndexRoute = () => {
       <LPHomeStrategyValue />
 
       <LPHomeActivity />
+
+      <LPHomeActivity />
     </CContainer>
   );
 };

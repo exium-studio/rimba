@@ -223,9 +223,6 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                       <Btn
                         colorPalette={"p"}
                         color={"p.300"}
-                        _hover={{
-                          bg: "blackAlpha.400",
-                        }}
                         variant={"ghost"}
                         size={"md"}
                         pr={3}

@@ -23,7 +23,7 @@ const ActivityItem = (props: any) => {
 
   return (
     <CContainer
-      rounded={"xl"}
+      rounded={"2xl"}
       bg={"p.900"}
       border={"1px solid"}
       borderColor={"p.100"}
@@ -31,7 +31,7 @@ const ActivityItem = (props: any) => {
       {...restProps}
     >
       <CContainer>
-        <Img src={activity.thumbnail} aspectRatio={2.5} rounded={"lg"} />
+        <Img src={activity.thumbnail} aspectRatio={2.5} rounded={"xl"} />
       </CContainer>
 
       <CContainer
@@ -119,8 +119,19 @@ export const LPHomeActivity = (props: StackProps) => {
         {staticContents[25].content[lang]}
       </P>
 
-      <Btn colorPalette={"p"} variant={"outline"} w={"fit"} mx={"auto"} mt={4}>
+      <Btn
+        w={"fit"}
+        pr={3}
+        colorPalette={"p"}
+        variant={"ghost"}
+        mx={"auto"}
+        mt={4}
+      >
         {l.learn_more}
+
+        <Icon boxSize={5}>
+          <IconArrowUpRight stroke={1.5} />
+        </Icon>
       </Btn>
     </LPSectionContainer>
   );

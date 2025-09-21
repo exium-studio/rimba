@@ -59,7 +59,7 @@ const MobileTopNav = () => {
 
   return (
     <CContainer
-      h={"100dvh"}
+      h={"fit"}
       p={open ? 0 : 2}
       pos={"fixed"}
       top={0}
@@ -73,7 +73,7 @@ const MobileTopNav = () => {
         backdropFilter={open ? "blur(10px)" : "blur(5px)"}
         h={open ? "100dvh" : "64px"}
         rounded={open ? "" : "lg"}
-        overflowY={"auto"}
+        overflowY={open ? "auto" : "clip"}
         transition={"200ms"}
       >
         <HStack
@@ -123,6 +123,7 @@ const MobileTopNav = () => {
           gap={1}
           opacity={showContents ? 1 : 0}
           visibility={showContents ? "visible" : "hidden"}
+          pointerEvents={showContents ? "auto" : "none"}
           p={showContents ? 2 : 0}
           overflow={"clip"}
           flex={1}

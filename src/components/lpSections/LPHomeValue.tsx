@@ -94,7 +94,7 @@ export const LPHomeValue = (props: StackProps) => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 80%",
+          start: "top 50%",
           // markers: true, // debug
         },
       });
@@ -106,7 +106,7 @@ export const LPHomeValue = (props: StackProps) => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: contentsRef.current,
-          start: "top 80%",
+          start: "top 50%",
           // markers: true, // debug
         },
       });
@@ -118,7 +118,7 @@ export const LPHomeValue = (props: StackProps) => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: contentsRef.current,
-          start: "top 80%",
+          start: "top 50%",
           // markers: true, // debug
         },
       });
@@ -179,7 +179,6 @@ export const LPHomeValue = (props: StackProps) => {
               bgSize={"cover"}
               rounded={"60px"}
               aspectRatio={1 / 2}
-              overflow={"auto"}
             >
               <CContainer flex={1} overflow={"clip"}>
                 <RimbaLetterArt
@@ -192,13 +191,15 @@ export const LPHomeValue = (props: StackProps) => {
                 />
 
                 <CContainer
+                  className="scrollY"
                   gap={4}
                   bg={"light"}
                   color={"dark"}
                   roundedTopLeft={"2xl"}
                   roundedTopRight={"2xl"}
                   p={6}
-                  overflow={"auto"}
+                  pb={"50px"}
+                  overflowY={"scroll"}
                   mb={"80px"}
                   pos={"relative"}
                 >

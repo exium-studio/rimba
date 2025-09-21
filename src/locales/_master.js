@@ -503,6 +503,10 @@ export const published_at = {
   id: "Diterbitkan pada",
   en: "Published at",
 };
+export const all_activities = {
+  id: "Semua aktivitas",
+  en: "All activities",
+};
 
 // Message
 export const msg_location_test_helper = {

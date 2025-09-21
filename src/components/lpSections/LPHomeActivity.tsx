@@ -127,7 +127,7 @@ export const LPHomeActivity = (props: StackProps) => {
         mx={"auto"}
         mt={4}
       >
-        {l.learn_more}
+        {l.all_activities}
 
         <Icon boxSize={5}>
           <IconArrowUpRight stroke={1.5} />

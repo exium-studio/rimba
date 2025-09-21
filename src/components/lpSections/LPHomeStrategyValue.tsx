@@ -145,6 +145,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       pb={0}
       bg={"p.900"}
       color={"light"}
+      mt={"-1px"}
       {...restProps}
     >
       <H2
@@ -222,7 +223,6 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                     <NavLink to="/about-us/rimba-corridor-program" w={"fit"}>
                       <Btn
                         colorPalette={"p"}
-                        color={"p.300"}
                         variant={"ghost"}
                         size={"md"}
                         pr={3}

@@ -26,6 +26,7 @@ const translations = {
     "description": "Please try again."
   },
   "all": "All",
+  "all_activities": "All activities",
   "april": "April",
   "august": "August",
   "back": "Back",

@@ -222,6 +222,7 @@ export const LPHomeValue = (props: StackProps) => {
             className="strategy_value_content_2"
             flex={"0 1 450px"}
             gap={8}
+            pb={["80px", null, 0]}
             minH={"full"}
             zIndex={2}
           >

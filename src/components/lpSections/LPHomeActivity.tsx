@@ -9,6 +9,7 @@ import FolderShape from "@/components/widget/FolderShape";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { formatDate } from "@/utils/formatter";
 import { Box, HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
@@ -94,6 +95,10 @@ export const LPHomeActivity = (props: StackProps) => {
   const staticContents = useContents((s) => s.staticContents);
   const activities = useContents((s) => s.activities);
 
+  // Hooks
+  // const iss = useIsSmScreenWidth();
+  const iss = useIsSmScreenWidth();
+
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
   const mainContentsRef = useRef<HTMLDivElement>(null);
@@ -115,7 +120,7 @@ export const LPHomeActivity = (props: StackProps) => {
       });
 
       gsap.from(mainContentsRef.current, {
-        y: "-40%",
+        y: !iss ? "-40%" : "20%",
         opacity: 0,
         duration: 1,
         ease: "power2.out",
@@ -126,29 +131,31 @@ export const LPHomeActivity = (props: StackProps) => {
         },
       });
 
-      gsap.from("#activity_item_1", {
-        x: "70%",
-        delay: 0.5,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: mainContentsRef.current,
-          start: "top 50%",
-          // markers: true, // debug
-        },
-      });
+      if (!iss) {
+        gsap.from("#activity_item_1", {
+          x: "70%",
+          delay: 0.5,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: mainContentsRef.current,
+            start: "top 50%",
+            // markers: true, // debug
+          },
+        });
 
-      gsap.from("#activity_item_3", {
-        x: "-70%",
-        delay: 0.5,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: mainContentsRef.current,
-          start: "top 50%",
-          // markers: true, // debug
-        },
-      });
+        gsap.from("#activity_item_3", {
+          x: "-70%",
+          delay: 0.5,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: mainContentsRef.current,
+            start: "top 50%",
+            // markers: true, // debug
+          },
+        });
+      }
 
       gsap.from(".bottom_content", {
         y: "100%",
@@ -157,12 +164,12 @@ export const LPHomeActivity = (props: StackProps) => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: bottomContentsRef.current,
-          start: "top 50%",
+          start: "top 80%",
           // markers: true, // debug
         },
       });
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [iss] }
   );
 
   return (

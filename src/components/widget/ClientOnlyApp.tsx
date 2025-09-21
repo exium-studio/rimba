@@ -10,6 +10,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
+import { useScrollRestoration } from "@/hooks/useScrollRestoration";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,6 +49,7 @@ export default function ClientOnlyApp(props: Props) {
 
   // Hooks
   useFirefoxPaddingY();
+  useScrollRestoration();
 
   // States
   const [mounted, setMounted] = useState(mountedGlobal);

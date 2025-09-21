@@ -36,6 +36,7 @@ const GalleryImg = (props: Props__Img) => {
       <Img
         h={"100%"}
         aspectRatio={Math.random() < 0.5 ? 1 : 2}
+        alt="nature"
         // transform={`rotate(${rotation}deg)`}
         {...restProps}
       />
@@ -243,6 +244,9 @@ export const LPHomeHero = (props: StackProps) => {
         h={HeroMinH}
         pos={"absolute"}
         zIndex={1}
+        imageProps={{
+          unoptimized: true,
+        }}
       />
 
       <CContainer

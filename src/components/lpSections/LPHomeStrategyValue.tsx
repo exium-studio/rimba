@@ -10,6 +10,7 @@ import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { Circle, HStack, Icon, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import {
@@ -65,6 +66,9 @@ export const LPHomeStrategyValue = (props: StackProps) => {
   const { l, lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
 
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
   const contentsRef = useRef<HTMLDivElement>(null);
@@ -104,7 +108,8 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       });
 
       gsap.from(".strategy_value_content_1", {
-        x: "-20%",
+        x: !iss ? "-20%" : "",
+        y: iss ? "20%" : "",
         opacity: 0,
         duration: 1,
         ease: "power2.out",
@@ -116,7 +121,8 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       });
 
       gsap.from(".strategy_value_content_2", {
-        x: "20%",
+        x: !iss ? "20%" : "",
+        y: iss ? "20%" : "",
         opacity: 0,
         duration: 1,
         ease: "power2.out",
@@ -135,7 +141,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         transformOrigin: "50% 50%",
       });
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [iss] }
   );
 
   return (
@@ -176,9 +182,10 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             pos={"relative"}
             px={2}
           >
-            {/* iphone frame */}
+            {/* iphone mockup */}
             <Img
               src={`${IMAGES_PATH}/iphone-frame.png`}
+              alt="iphone mockup"
               aspectRatio={1 / 2}
               pointerEvents={"none"}
               pos={"absolute"}
@@ -259,6 +266,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         <Img
           className="compass"
           src={`${IMAGES_PATH}/compass.png`}
+          alt="compass"
           aspectRatio={1}
           h={"500px"}
           objectFit="contain"

@@ -39,6 +39,7 @@ export const Img = (props: Props__Img) => {
           objectPosition: objectPos ?? "center",
         }}
         fill={true}
+        quality={80}
         {...imageProps}
       />
     </CContainer>

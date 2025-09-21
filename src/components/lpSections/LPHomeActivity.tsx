@@ -27,7 +27,7 @@ export const LPHomeActivity = (props: StackProps) => {
         color={"p.700"}
         textAlign={"center"}
       >
-        {contents[23].content[lang]}
+        {contents[24].content[lang]}
       </H2>
 
       <CContainer mt={"80px"}>

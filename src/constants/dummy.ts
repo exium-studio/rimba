@@ -52,53 +52,67 @@ export const lp_contents = {
   16: {
     contentType: "text",
     content: {
+      id: "Apa ini?",
+      en: "What is this?",
+    },
+  },
+  17: {
+    contentType: "text",
+    content: {
       id: "Proyek RIMBA adalah kerjasama antara Pemerintah Indonesia dengan Global Environment Facility (GEF) melalui United Nations Environment Programme (UNEP) dengan Executing Agency Direktorat Jenderal Tata Ruang Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional (ATR/BPN).",
       en: "The RIMBA project is a collaboration between the Indonesian Government and the Global Environment Facility (GEF) through the United Nations Environment Programme (UNEP) with the Executing Agency of the Directorate General of Spatial Planning, Ministry of Agrarian Affairs and Spatial Planning/National Land Agency (ATR/BPN).",
     },
   },
-  17: {
+  18: {
     contentType: "text",
     content: {
       id: "USD 9.053.638 atau setara dengan Rp 135.804.570.000",
       en: "USD 9.053.638 or equivalent to Rp 135.804.570.000",
     },
   },
-  18: {
+  19: {
     contentType: "text",
     content: {
       id: "Besaran Nilai Hibah",
       en: "Grant Value",
     },
   },
-  19: {
+  20: {
     contentType: "text",
     content: {
       id: "PCA/2021/4031 antara UNEP dan Kementerian ATR/BPN",
       en: "PCA/2021/4031 between UNEP and Ministry of ATR/BPN",
     },
   },
-  20: {
+  21: {
     contentType: "text",
     content: {
       id: "Project Cooperation Agreement (PCA)",
       en: "Project Cooperation Agreement (PCA)",
     },
   },
-  21: {
+  22: {
     contentType: "text",
     content: {
       id: "Tahun 2024 sampai 2028",
       en: "Year 2024 to 2028",
     },
   },
-  22: {
+  23: {
     contentType: "text",
     content: {
       id: "Periode Implementasi Proyek",
       en: "Project Implementation Period",
     },
   },
-  23: {
+  24: {
+    contentType: "text",
+    content: {
+      id: "Kegiatan Kami",
+      en: "Our Activities",
+    },
+  },
+  25: {
     contentType: "text",
     content: {
       id: "Kegiatan Kami",

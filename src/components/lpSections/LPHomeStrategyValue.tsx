@@ -1,20 +1,22 @@
 "use client";
 
+import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
+import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
-import { RimbaLetterArt } from "@/components/widget/RimbaLetterArt";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
-import { Box, Circle, HStack, Icon, StackProps } from "@chakra-ui/react";
+import { Circle, HStack, Icon, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import {
   IconCalendar,
   IconCoin,
   IconHeartHandshake,
+  IconX,
 } from "@tabler/icons-react";
 import gsap from "gsap";
 import { useRef } from "react";
@@ -53,12 +55,12 @@ const ValueItem = (props: any) => {
   );
 };
 
-export const LPHomeValue = (props: StackProps) => {
+export const LPHomeStrategyValue = (props: StackProps) => {
   // Props
   const { ...restProps } = props;
 
   // Contexts
-  const { lang } = useLang();
+  const { l, lang } = useLang();
   const contents = useContents((s) => s.contents);
 
   // Refs
@@ -68,18 +70,18 @@ export const LPHomeValue = (props: StackProps) => {
   // States
   const values = [
     {
-      title: contents[17].content[lang],
-      description: contents[18].content[lang],
+      title: contents[18].content[lang],
+      description: contents[19].content[lang],
       icon: IconCoin,
     },
     {
-      title: contents[19].content[lang],
-      description: contents[20].content[lang],
+      title: contents[20].content[lang],
+      description: contents[21].content[lang],
       icon: IconHeartHandshake,
     },
     {
-      title: contents[21].content[lang],
-      description: contents[22].content[lang],
+      title: contents[22].content[lang],
+      description: contents[23].content[lang],
       icon: IconCalendar,
     },
   ];
@@ -169,6 +171,7 @@ export const LPHomeValue = (props: StackProps) => {
               pos={"absolute"}
               top={0}
               left={0}
+              zIndex={2}
             />
 
             <CContainer
@@ -180,40 +183,37 @@ export const LPHomeValue = (props: StackProps) => {
               rounded={"60px"}
               aspectRatio={1 / 2}
             >
-              <CContainer flex={1} overflow={"clip"}>
-                <RimbaLetterArt
-                  w={"60%"}
-                  opacity={0}
-                  zIndex={2}
-                  mt={"auto"}
-                  mb={"120px"}
-                  mx={"auto"}
-                />
-
+              <CContainer flex={1} overflow={"clip"} p={5} mt={"70px"}>
                 <CContainer
-                  className="scrollY"
-                  gap={4}
                   bg={"light"}
                   color={"dark"}
-                  roundedTopLeft={"2xl"}
-                  roundedTopRight={"2xl"}
-                  p={6}
-                  pb={"50px"}
-                  overflowY={"scroll"}
+                  rounded={"2xl"}
+                  overflowY={"auto"}
                   mb={"80px"}
                   pos={"relative"}
                 >
-                  <Box
-                    w={"50px"}
-                    h={"4px"}
-                    bg={"bg.emphasized"}
-                    rounded={"full"}
-                    mx={"auto"}
-                    mt={"-16px"}
-                    mb={2}
-                  />
+                  <HStack w={"full"} justify={"space-between"} p={4}>
+                    <P fontSize={"lg"} fontWeight={"medium"}>
+                      {contents[16].content[lang]}
+                    </P>
 
-                  <P>{contents[16].content[lang]}</P>
+                    <Icon boxSize={5}>
+                      <IconX />
+                    </Icon>
+                  </HStack>
+
+                  <CContainer className="scrollY" p={4}>
+                    <P>{contents[17].content[lang]}</P>
+                  </CContainer>
+
+                  <HStack justify={"end"} p={4}>
+                    <Btn variant={"outline"} disabled>
+                      Close
+                    </Btn>
+                    <NavLink to="/about-us/rimba-corridor-program">
+                      <Btn colorPalette={"p"}>{l.learn_more}</Btn>
+                    </NavLink>
+                  </HStack>
                 </CContainer>
               </CContainer>
             </CContainer>

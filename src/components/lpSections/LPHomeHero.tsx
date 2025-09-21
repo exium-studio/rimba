@@ -14,7 +14,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 
-const HeroMinH = "100lvh";
+const HeroMinH = "100dvh";
 
 const GalleryImg = (props: Props__Img) => {
   // Props
@@ -65,9 +65,13 @@ const OverviewGallery = (props: StackProps) => {
   return (
     <CContainer
       className="overview_gallery"
-      h={"100lvh"}
+      h={"100dvh"}
+      pb={"20px"}
       pos={"absolute"}
       justify={"center"}
+      bgGradient={"to-b"}
+      gradientFrom={"transparent"}
+      gradientTo={"p.900"}
       {...props}
     >
       <CContainer h={"50%"}>
@@ -124,7 +128,7 @@ export const LPHomeHero = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "bottom+=2000",
+          end: () => "+=" + containerRef.current!.offsetHeight * 2,
           scrub: true,
           pin: true,
           pinSpacing: true,
@@ -182,6 +186,15 @@ export const LPHomeHero = (props: StackProps) => {
           },
           ">"
         )
+        .to(
+          ".hero_brief_line",
+          {
+            opacity: 0,
+            ease: "none",
+            duration: 2.5,
+          },
+          ">"
+        )
         .from(
           ".overview_gallery",
           {
@@ -220,111 +233,104 @@ export const LPHomeHero = (props: StackProps) => {
       h={HeroMinH}
       pos={"relative"}
       bg={"p.900"}
+      overflow={"clip"}
       {...restProps}
     >
-      <CContainer
+      <Img
+        className="hero_bg"
+        src={`${IMAGES_PATH}/lp/home/hero_bg.jpg`}
+        alt="forest"
         h={HeroMinH}
-        w={"100vw"}
-        overflow={"clip"}
+        pos={"absolute"}
         zIndex={1}
-        pos={"relative"}
+      />
+
+      <CContainer
+        flex={1}
+        h={HeroMinH}
+        gap={4}
+        px={12}
+        py={4}
+        color={"light"}
+        justify={"center"}
+        align={"center"}
+        zIndex={2}
       >
-        <Img
-          className="hero_bg"
-          src={`${IMAGES_PATH}/lp/home/hero_bg.jpg`}
-          alt="forest"
-          h={HeroMinH}
-          pos={"absolute"}
-          zIndex={1}
+        <P
+          className="hero_content"
+          fontSize={"xl"}
+          textAlign={"center"}
+          letterSpacing={"1px"}
+          mt={"60px"}
+        >
+          {l.lp_hero_subtitle}
+        </P>
+
+        <RimbaLetterArt
+          className="hero_content"
+          h={"auto"}
+          w={"full"}
+          maxW={"320px"}
         />
 
         <CContainer
-          flex={1}
-          h={HeroMinH}
-          gap={4}
-          px={12}
-          py={4}
-          color={"light"}
-          justify={"center"}
-          align={"center"}
-          zIndex={2}
+          position={"absolute"}
+          top={"50%"}
+          transform={"translateY(-50%)"}
         >
-          <P
-            className="hero_content"
-            fontSize={"xl"}
-            textAlign={"center"}
-            letterSpacing={"1px"}
-            mt={"60px"}
-          >
-            {l.lp_hero_subtitle}
-          </P>
-
-          <RimbaLetterArt
-            className="hero_content"
-            h={"auto"}
-            w={"full"}
-            maxW={"320px"}
-          />
-
           <CContainer
-            position={"absolute"}
-            top={"50%"}
-            transform={"translateY(-50%)"}
+            className="hero_brief_contents"
+            h={HeroMinH}
+            align={"center"}
+            bg={"blackAlpha.700"}
+            color={"light"}
+            p={4}
+            opacity={0}
+            pos={"relative"}
+            justify={"center"}
           >
-            <CContainer
-              className="hero_brief_contents"
-              h={HeroMinH}
-              align={"center"}
-              bg={"blackAlpha.700"}
-              color={"light"}
-              p={4}
-              opacity={0}
-              pos={"relative"}
-              justify={"center"}
+            <P
+              className="hero_brief"
+              fontSize={"lg"}
+              // fontWeight={"medium"}
+              textAlign={"center"}
+              maxW={"600px"}
+              zIndex={5}
             >
-              <P
-                className="hero_brief"
-                fontSize={"lg"}
-                // fontWeight={"medium"}
-                textAlign={"center"}
-                maxW={"600px"}
-                zIndex={5}
-              >
-                {l.lp_hero_brief}
-              </P>
+              {l.lp_hero_brief}
+            </P>
 
-              <Box
-                className="hero_brief_line"
-                bg={"light"}
-                opacity={0.5}
-                w={"2px"}
-                h={"0"}
-                pos={"absolute"}
-                bottom={"50px"}
-                zIndex={5}
-              />
-            </CContainer>
+            <Box
+              className="hero_brief_line"
+              bg={"light"}
+              opacity={0.5}
+              w={"2px"}
+              h={"0"}
+              pos={"absolute"}
+              bottom={"50px"}
+              zIndex={5}
+            />
           </CContainer>
-        </CContainer>
-
-        <Img
-          className="hero_bush"
-          src={`${IMAGES_PATH}/lp/home/hero_bush.png`}
-          alt="bush"
-          h={HeroMinH}
-          pos={"absolute"}
-          pointerEvents={"none"}
-          zIndex={5}
-        />
-
-        <CContainer className="hero_content" p={4} align={"center"} zIndex={5}>
-          <P maxW={"320px"} color={"light"} textAlign={"center"} opacity={0.6}>
-            {l.lp_hero_description}
-          </P>
         </CContainer>
       </CContainer>
 
-      <OverviewGallery zIndex={2} />
+      <Img
+        className="hero_bush"
+        src={`${IMAGES_PATH}/lp/home/hero_bush.png`}
+        alt="bush"
+        h={HeroMinH}
+        pos={"absolute"}
+        pointerEvents={"none"}
+        zIndex={5}
+      />
+
+      <CContainer className="hero_content" p={4} align={"center"} zIndex={5}>
+        <P maxW={"320px"} color={"light"} textAlign={"center"} opacity={0.6}>
+          {l.lp_hero_description}
+        </P>
+      </CContainer>
+
+      <OverviewGallery zIndex={6} />
     </CContainer>
   );
 };

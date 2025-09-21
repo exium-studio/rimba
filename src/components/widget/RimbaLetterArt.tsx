@@ -4,7 +4,7 @@ import { Img } from "@/components/ui/img";
 import { SVGS_PATH } from "@/constants/paths";
 import { Props__Img } from "@/constants/props";
 
-export const LogoImg = (props: Props__Img) => {
+export const RimbaLetterArt = (props: Props__Img) => {
   // Props
   const { ...restProps } = props;
 

@@ -5,6 +5,7 @@ import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
+import { RimbaLetterArt } from "@/components/widget/RimbaLetterArt";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
@@ -180,17 +181,28 @@ export const LPHomeValue = (props: StackProps) => {
               aspectRatio={1 / 2}
               overflow={"auto"}
             >
-              <CContainer
-                bg={"light"}
-                color={"dark"}
-                roundedTopLeft={"2xl"}
-                roundedTopRight={"2xl"}
-                p={6}
-                mt={"auto"}
-                mb={"80px"}
-                pos={"relative"}
-              >
-                <P>{contents[16].content[lang]}</P>
+              <CContainer flex={1} overflow={"clip"}>
+                <RimbaLetterArt
+                  w={"60%"}
+                  opacity={0.1}
+                  zIndex={2}
+                  mt={"auto"}
+                  mb={"120px"}
+                  mx={"auto"}
+                />
+
+                <CContainer
+                  bg={"light"}
+                  color={"dark"}
+                  roundedTopLeft={"2xl"}
+                  roundedTopRight={"2xl"}
+                  p={6}
+                  overflow={"auto"}
+                  mb={"80px"}
+                  pos={"relative"}
+                >
+                  <P>{contents[16].content[lang]}</P>
+                </CContainer>
               </CContainer>
             </CContainer>
           </CContainer>

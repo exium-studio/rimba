@@ -3,7 +3,7 @@
 import { CContainer } from "@/components/ui/c-container";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
-import { LogoImg } from "@/components/widget/LogoImg";
+import { RimbaLetterArt } from "@/components/widget/RimbaLetterArt";
 import { Interface__Content } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import { Props__Img } from "@/constants/props";
@@ -226,7 +226,7 @@ export const LPHomeHero = (props: StackProps) => {
           {l.lp_hero_subtitle}
         </P>
 
-        <LogoImg
+        <RimbaLetterArt
           className="hero_content"
           h={"auto"}
           w={"full"}

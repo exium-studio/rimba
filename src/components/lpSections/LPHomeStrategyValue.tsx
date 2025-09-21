@@ -13,6 +13,7 @@ import useLang from "@/context/useLang";
 import { Circle, HStack, Icon, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import {
+  IconArrowUpRight,
   IconCalendar,
   IconCoin,
   IconHeartHandshake,
@@ -183,7 +184,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
               rounded={"60px"}
               aspectRatio={1 / 2}
             >
-              <CContainer flex={1} overflow={"clip"} p={5} mt={"70px"}>
+              <CContainer flex={1} overflow={"clip"} p={3} mt={"64px"}>
                 <CContainer
                   bg={"light"}
                   color={"dark"}
@@ -206,12 +207,20 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                     <P>{contents[17].content[lang]}</P>
                   </CContainer>
 
-                  <HStack justify={"end"} p={4}>
-                    <Btn variant={"outline"} disabled>
-                      Close
-                    </Btn>
-                    <NavLink to="/about-us/rimba-corridor-program">
-                      <Btn colorPalette={"p"}>{l.learn_more}</Btn>
+                  <HStack justify={"end"} p={3}>
+                    <NavLink to="/about-us/rimba-corridor-program" w={"fit"}>
+                      <Btn
+                        colorPalette={"p"}
+                        variant={"ghost"}
+                        size={"md"}
+                        pr={3}
+                      >
+                        {l.learn_more}
+
+                        <Icon boxSize={5}>
+                          <IconArrowUpRight stroke={1.5} />
+                        </Icon>
+                      </Btn>
                     </NavLink>
                   </HStack>
                 </CContainer>

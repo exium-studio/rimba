@@ -504,7 +504,7 @@ export const published_at = {
   en: "Published at",
 };
 export const all_activities = {
-  id: "Semua aktivitas",
+  id: "Semua kegiatan",
   en: "All activities",
 };
 

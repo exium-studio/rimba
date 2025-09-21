@@ -210,7 +210,7 @@ export const LPHomeHero = (props: StackProps) => {
           {
             x: "-40%",
             ease: "none",
-            duration: 10,
+            duration: 20,
           },
           ">"
         )
@@ -219,7 +219,7 @@ export const LPHomeHero = (props: StackProps) => {
           {
             x: "40%",
             ease: "none",
-            duration: 10,
+            duration: 20,
           },
           "<"
         );

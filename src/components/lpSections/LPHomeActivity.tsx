@@ -190,7 +190,7 @@ export const LPHomeActivity = (props: StackProps) => {
       </H2>
 
       <CContainer mt={"80px"}>
-        <SimpleGrid ref={mainContentsRef} columns={[1, null, 2, 3]} gap={4}>
+        <SimpleGrid ref={mainContentsRef} columns={[1, null, 2, 3]} gap={8}>
           {activities.map((activity: any, idx: number) => {
             return (
               <ActivityItem

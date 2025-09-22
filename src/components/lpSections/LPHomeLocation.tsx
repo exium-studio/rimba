@@ -10,7 +10,10 @@ import { SVGS_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { Box, HStack, Icon, StackProps } from "@chakra-ui/react";
+import { useGSAP } from "@gsap/react";
 import { IconMapPin2, IconWorld } from "@tabler/icons-react";
+import gsap from "gsap";
+import { useRef } from "react";
 
 const LOCATION_LIST = [
   {
@@ -67,6 +70,7 @@ const LocationListItem = (props: any) => {
 
   return (
     <CContainer
+      id={`location_${number}`}
       className="ss"
       p={3}
       pl={2}
@@ -122,8 +126,62 @@ export const LPHomeLocation = (props: StackProps) => {
   const { lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
 
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Animation
+  useGSAP(
+    () => {
+      gsap.to(".sumatra-map", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 20%",
+          end: () => "bottom 80%",
+          scrub: true,
+        },
+        y: "100px",
+        ease: "none",
+      });
+
+      gsap.from("#location_1", {
+        scrollTrigger: {
+          trigger: "#location_1",
+          start: "top 80%",
+          end: () => "bottom 80%",
+        },
+        y: "50%",
+        opacity: 0,
+        duration: 1,
+      });
+
+      gsap.from("#location_2", {
+        scrollTrigger: {
+          trigger: "#location_2",
+          start: "top 80%",
+          end: () => "bottom 80%",
+        },
+        y: "50%",
+        opacity: 0,
+        duration: 1,
+      });
+
+      gsap.from("#location_3", {
+        scrollTrigger: {
+          trigger: "#location_3",
+          start: "top 80%",
+          end: () => "bottom 80%",
+        },
+        y: "50%",
+        opacity: 0,
+        duration: 1,
+      });
+    },
+    { scope: containerRef }
+  );
+
   return (
     <CContainer
+      ref={containerRef}
       minH={"100vh"}
       bg={"light"}
       py={"80px"}
@@ -209,12 +267,13 @@ export const LPHomeLocation = (props: StackProps) => {
       </LPSectionContainer>
 
       <Img
-        src={`${SVGS_PATH}/location.svg`}
+        className="sumatra-map"
+        src={`${SVGS_PATH}/sumatra-map.svg`}
         h={"80vh"}
         aspectRatio={1}
         pos={"absolute"}
         top={"50%"}
-        transform={"translateY(calc(-50% + 50px))"}
+        transform={"translateY(-50%)"}
         objectFit="contain"
       />
     </CContainer>

@@ -25,7 +25,7 @@ import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import { useDisableBodyScroll } from "@/hooks/useDisableBodyScroll";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import useScreen from "@/hooks/useScreen";
 import { back } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { HStack, Icon, useDisclosure } from "@chakra-ui/react";
@@ -360,13 +360,14 @@ const DesktopTopNav = () => {
 
 export const TopNav = () => {
   // Hooks
-  const iss = useIsSmScreenWidth();
+  const { sw } = useScreen();
+  const ciss = sw < 1200;
 
   return (
     <CContainer w="full" p={4} pos={"fixed"} left={0} top={0} zIndex={10}>
-      {iss && <MobileTopNav />}
+      {ciss && <MobileTopNav />}
 
-      {!iss && <DesktopTopNav />}
+      {!ciss && <DesktopTopNav />}
     </CContainer>
   );
 };

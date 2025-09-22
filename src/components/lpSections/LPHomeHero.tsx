@@ -14,7 +14,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 
-const HeroMinH = "100dvh";
+const HeroH = "100vh";
 
 const GalleryImg = (props: Props__Img) => {
   // Props
@@ -66,7 +66,7 @@ const OverviewGallery = (props: StackProps) => {
   return (
     <CContainer
       className="overview_gallery"
-      h={"100dvh"}
+      h={HeroH}
       pb={"20px"}
       pos={"absolute"}
       justify={"center"}
@@ -231,7 +231,7 @@ export const LPHomeHero = (props: StackProps) => {
   return (
     <CContainer
       ref={containerRef}
-      h={HeroMinH}
+      h={HeroH}
       pos={"relative"}
       bg={"p.900"}
       overflow={"clip"}
@@ -241,7 +241,7 @@ export const LPHomeHero = (props: StackProps) => {
         className="hero_bg"
         src={`${IMAGES_PATH}/lp/home/hero-bg.jpg`}
         alt="forest"
-        h={HeroMinH}
+        h={HeroH}
         pos={"absolute"}
         zIndex={1}
         imageProps={{
@@ -251,7 +251,7 @@ export const LPHomeHero = (props: StackProps) => {
 
       <CContainer
         flex={1}
-        h={HeroMinH}
+        h={HeroH}
         gap={4}
         px={"60px"}
         py={4}
@@ -284,7 +284,7 @@ export const LPHomeHero = (props: StackProps) => {
         >
           <CContainer
             className="hero_brief_contents"
-            h={HeroMinH}
+            h={HeroH}
             align={"center"}
             bg={"blackAlpha.800"}
             color={"light"}
@@ -321,7 +321,7 @@ export const LPHomeHero = (props: StackProps) => {
         className="hero_bush"
         src={`${IMAGES_PATH}/lp/home/hero-bush.png`}
         alt="bush"
-        h={HeroMinH}
+        h={HeroH}
         pos={"absolute"}
         pointerEvents={"none"}
         zIndex={5}

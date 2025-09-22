@@ -140,7 +140,6 @@ export const LPHomeActivity = (props: StackProps) => {
             // markers: true, // debug
           },
           x: "70%",
-          delay: 0.5,
           duration: 1,
           ease: "power2.out",
         });
@@ -152,7 +151,6 @@ export const LPHomeActivity = (props: StackProps) => {
             // markers: true, // debug
           },
           x: "-70%",
-          delay: 0.5,
           duration: 1,
           ease: "power2.out",
         });

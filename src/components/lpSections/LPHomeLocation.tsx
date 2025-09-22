@@ -139,8 +139,8 @@ export const LPHomeLocation = (props: StackProps) => {
       gsap.to("#sumatra-map, #riau-map, #sumatra-barat-map, #jambi-map", {
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 20%",
-          end: "bottom 80%",
+          start: "top 50%",
+          end: "bottom 50%",
           scrub: true,
         },
         y: "100px",
@@ -150,7 +150,7 @@ export const LPHomeLocation = (props: StackProps) => {
       gsap.from(".location-map", {
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 20%",
+          start: "top 50%",
           end: "bottom bottom",
           scrub: true,
         },
@@ -181,7 +181,8 @@ export const LPHomeLocation = (props: StackProps) => {
     <>
       <CContainer
         ref={containerRef}
-        minH={iss ? "50vh" : "100vh"}
+        h={iss ? "50vh" : "70vh"}
+        maxH={iss ? "" : "800px"}
         bg={"light"}
         pt={"80px"}
         pb={iss ? 0 : "80px"}
@@ -200,6 +201,7 @@ export const LPHomeLocation = (props: StackProps) => {
 
           <CContainer
             h={"70vh"}
+            maxH={"500px"}
             w={"80%"}
             aspectRatio={1}
             bg={"p.100"}
@@ -226,7 +228,8 @@ export const LPHomeLocation = (props: StackProps) => {
         {/* Location list */}
         {!iss && (
           <LPSectionContainer
-            minH={"70vh"}
+            h={"70vh"}
+            maxH={"600px"}
             pos={"absolute"}
             top={"calc(50% + 64px)"}
             left={"50%"}
@@ -278,6 +281,7 @@ export const LPHomeLocation = (props: StackProps) => {
           id="sumatra-map"
           src={`${SVGS_PATH}/sumatra-map.svg`}
           h={"80vh"}
+          maxH={"600px"}
           aspectRatio={1}
           pos={"absolute"}
           top={"50%"}
@@ -291,6 +295,7 @@ export const LPHomeLocation = (props: StackProps) => {
           className="location-map"
           src={`${SVGS_PATH}/riau-map.svg`}
           h={"80vh"}
+          maxH={"600px"}
           aspectRatio={1}
           pos={"absolute"}
           top={"50%"}
@@ -304,6 +309,7 @@ export const LPHomeLocation = (props: StackProps) => {
           className="location-map"
           src={`${SVGS_PATH}/sumatra-barat-map.svg`}
           h={"80vh"}
+          maxH={"600px"}
           aspectRatio={1}
           pos={"absolute"}
           top={"50%"}
@@ -317,6 +323,7 @@ export const LPHomeLocation = (props: StackProps) => {
           className="location-map"
           src={`${SVGS_PATH}/jambi-map.svg`}
           h={"80vh"}
+          maxH={"600px"}
           aspectRatio={1}
           pos={"absolute"}
           top={"50%"}

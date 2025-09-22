@@ -149,7 +149,7 @@ export const LPHomeLocation = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
-          end: "bottom 30%",
+          end: "bottom 80%",
           scrub: true,
         },
         opacity: 0,

@@ -47,7 +47,7 @@ const ValueItem = (props: any) => {
           <P opacity={0.8}>{value.description}</P>
         </CContainer>
 
-        <Circle bg={"p.700"} p={2}>
+        <Circle bg={"p.500"} p={2}>
           <Icon boxSize={6} color={"light"}>
             <value.icon stroke={1.5} />
           </Icon>

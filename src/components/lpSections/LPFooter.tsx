@@ -13,6 +13,7 @@ export const LPFooter = (props: StackProps) => {
       minH={"500px"}
       bg={"p.900"}
       bgImage={`url(${IMAGES_PATH}/lp/footer-bg.png)`}
+      zIndex={1}
       {...restProps}
     ></CContainer>
   );

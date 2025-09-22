@@ -119,6 +119,20 @@ export const staticContents = {
       en: "Increasing Quality of Life and Community Empowerment Through Innovative and Sustainable Initiatives",
     },
   },
+  26: {
+    contentType: "text",
+    content: {
+      id: "Lokasi Kami",
+      en: "Our Location",
+    },
+  },
+  27: {
+    contentType: "text",
+    content: {
+      id: "Lokasi Kami",
+      en: "Our Location",
+    },
+  },
 };
 
 export const activities = [

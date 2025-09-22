@@ -3,6 +3,7 @@
 import { LPFooter } from "@/components/lpSections/LPFooter";
 import { LPHomeActivity } from "@/components/lpSections/LPHomeActivity";
 import { LPHomeHero } from "@/components/lpSections/LPHomeHero";
+import { LPHomeLocation } from "@/components/lpSections/LPHomeLocation";
 import { LPHomeStrategyValue } from "@/components/lpSections/LPHomeStrategyValue";
 import { CContainer } from "@/components/ui/c-container";
 import { TopNav } from "@/components/widget/TopNav";
@@ -12,11 +13,15 @@ const IndexRoute = () => {
     <CContainer>
       <TopNav />
 
-      <LPHomeHero />
+      <CContainer zIndex={2}>
+        <LPHomeHero />
 
-      <LPHomeStrategyValue />
+        <LPHomeStrategyValue />
 
-      <LPHomeActivity />
+        <LPHomeActivity />
+
+        <LPHomeLocation />
+      </CContainer>
 
       <LPFooter />
     </CContainer>

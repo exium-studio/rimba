@@ -174,7 +174,12 @@ export const LPHomeActivity = (props: StackProps) => {
   );
 
   return (
-    <LPSectionContainer ref={containerRef} py={"80px"} {...restProps}>
+    <LPSectionContainer
+      ref={containerRef}
+      py={"80px"}
+      bg={"light"}
+      {...restProps}
+    >
       <H2
         className="section_title"
         fontWeight={"bold"}
@@ -190,8 +195,8 @@ export const LPHomeActivity = (props: StackProps) => {
             return (
               <ActivityItem
                 key={activity.id}
-                id={`activity_item_${idx + 1}`}
                 activity={activity}
+                id={`activity_item_${idx + 1}`}
                 zIndex={idx === 1 ? 2 : 1}
               />
             );

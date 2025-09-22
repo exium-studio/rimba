@@ -10,4 +10,4 @@ export const FIT_BOUNDS_PADDING = 64; // px
 export const MIN_H_FEEDBACK_CONTAINER = "200px";
 export const C_ACTIVE_INDICATOR_SIZE = "9px";
 export const FIREFOX_SCROLL_Y_CLASS_PR_PREFIX = "6px";
-export const MAX_W_LP_SECTION_CONTAINER = "1440px";
+export const MAX_W_LP_SECTION_CONTAINER = "1280px";

@@ -202,6 +202,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
               bgSize={"cover"}
               rounded={"60px"}
               aspectRatio={1 / 2}
+              bg={"light"}
             >
               <CContainer flex={1} overflow={"clip"} p={3} mt={"64px"}>
                 <CContainer
@@ -210,7 +211,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                   color={"dark"}
                   rounded={"3xl"}
                   overflowY={"auto"}
-                  mb={"58px"}
+                  mb={"42px"}
                   pos={"relative"}
                 >
                   <HStack w={"full"} justify={"space-between"} p={4}>
@@ -227,7 +228,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                     <NavLink to="/about-us/rimba-corridor-program" w={"fit"}>
                       <Btn
                         colorPalette={"p"}
-                        variant={"ghost"}
+                        variant={"plain"}
                         size={"md"}
                         pr={3}
                       >

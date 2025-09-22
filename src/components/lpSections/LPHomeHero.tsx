@@ -155,6 +155,7 @@ export const LPHomeHero = (props: StackProps) => {
           ".hero_content",
           {
             opacity: 0,
+            scale: 1.3,
             ease: "none",
             duration: 2.5,
           },
@@ -260,60 +261,52 @@ export const LPHomeHero = (props: StackProps) => {
         align={"center"}
         zIndex={2}
       >
-        <P
-          className="hero_content"
-          fontSize={"xl"}
-          textAlign={"center"}
-          mt={"60px"}
-          lineHeight={1.2}
-        >
-          {l.lp_hero_subtitle}
-        </P>
+        <CContainer className="hero_content" gap={4} align={"center"}>
+          <P fontSize={"xl"} textAlign={"center"} mt={"60px"} lineHeight={1.2}>
+            {l.lp_hero_subtitle}
+          </P>
 
-        <RimbaLetterArt
-          className="hero_content"
-          h={"auto"}
-          w={"full"}
-          maxW={"320px"}
-        />
+          <RimbaLetterArt h={"auto"} w={"full"} maxW={"320px"} />
+        </CContainer>
+      </CContainer>
 
+      <CContainer
+        position={"absolute"}
+        top={"50%"}
+        transform={"translateY(-50%)"}
+        zIndex={6}
+      >
         <CContainer
-          position={"absolute"}
-          top={"50%"}
-          transform={"translateY(-50%)"}
+          className="hero_brief_contents"
+          h={HeroH}
+          align={"center"}
+          bg={"blackAlpha.800"}
+          color={"light"}
+          p={4}
+          opacity={0}
+          pos={"relative"}
+          justify={"center"}
         >
-          <CContainer
-            className="hero_brief_contents"
-            h={HeroH}
-            align={"center"}
-            bg={"blackAlpha.800"}
-            color={"light"}
-            p={4}
-            opacity={0}
-            pos={"relative"}
-            justify={"center"}
+          <P
+            className="hero_brief"
+            fontSize={"xl"}
+            textAlign={"center"}
+            maxW={"600px"}
+            zIndex={5}
           >
-            <P
-              className="hero_brief"
-              fontSize={"xl"}
-              textAlign={"center"}
-              maxW={"600px"}
-              zIndex={5}
-            >
-              {l.lp_hero_brief}
-            </P>
+            {l.lp_hero_brief}
+          </P>
 
-            <Box
-              className="hero_brief_line"
-              bg={"light"}
-              opacity={0.5}
-              w={"2px"}
-              h={"0"}
-              pos={"absolute"}
-              bottom={"50px"}
-              zIndex={5}
-            />
-          </CContainer>
+          <Box
+            className="hero_brief_line"
+            bg={"light"}
+            opacity={0.5}
+            w={"2px"}
+            h={"0"}
+            pos={"absolute"}
+            bottom={"50px"}
+            zIndex={5}
+          />
         </CContainer>
       </CContainer>
 

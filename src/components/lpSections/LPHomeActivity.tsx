@@ -32,21 +32,15 @@ const ActivityItem = (props: any) => {
   const { l, lang } = useLang();
 
   return (
-    <CContainer
-      rounded={"4xl"}
-      bg={"p.900"}
-      border={"1px solid"}
-      borderColor={"p.100"}
-      p={2}
-      {...restProps}
-    >
+    <CContainer rounded={"4xl"} bg={"p.900"} p={2} {...restProps}>
       <CContainer>
         <Img src={activity.thumbnail} aspectRatio={1} rounded={"3xl"} />
       </CContainer>
 
       <CContainer
         flex={1}
-        bg={"light"}
+        bg={"p.900"}
+        color={"light"}
         roundedTopRight={"3xl"}
         roundedBottomLeft={"3xl"}
         roundedBottomRight={"3xl"}
@@ -56,7 +50,7 @@ const ActivityItem = (props: any) => {
       >
         <CContainer p={6}>
           <Box pos={"absolute"} top={"-29.5px"} left={0}>
-            <FolderShape h={"30px"} />
+            <FolderShape h={"30px"} color={"p.900"} />
           </Box>
 
           <P fontSize={"sm"} opacity={0.4}>
@@ -78,6 +72,7 @@ const ActivityItem = (props: any) => {
             variant={"plain"}
             size={"md"}
             rounded={"3xl"}
+            color={"p.300"}
             pr={3}
           >
             {l.learn_more}

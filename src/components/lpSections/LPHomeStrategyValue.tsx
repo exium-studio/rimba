@@ -11,7 +11,7 @@ import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import { Circle, HStack, Icon, StackProps } from "@chakra-ui/react";
+import { Circle, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import {
   IconArrowUpRight,
@@ -166,9 +166,9 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       </H2>
 
       <CContainer mt={"80px"} pos={"relative"}>
-        <HStack
+        <Stack
           ref={contentsRef}
-          wrap={"wrap"}
+          flexDir={iss ? "column" : "row"}
           justify={"center"}
           gapX={"80px"}
           gapY={0}
@@ -251,6 +251,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             gap={8}
             pb={["80px", null, 0]}
             minH={"full"}
+            justify={"center"}
             zIndex={2}
           >
             <CContainer gap={6} zIndex={2}>
@@ -259,7 +260,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
               })}
             </CContainer>
           </CContainer>
-        </HStack>
+        </Stack>
 
         <Img
           className="compass"

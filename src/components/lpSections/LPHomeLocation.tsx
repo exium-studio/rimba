@@ -9,7 +9,7 @@ import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { SVGS_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import useScreen from "@/hooks/useScreen";
 import { Box, HStack, Icon, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import { IconMapPin2, IconWorld } from "@tabler/icons-react";
@@ -67,21 +67,18 @@ const MapInfo = (props: StackProps) => {
 };
 const LocationListItem = (props: any) => {
   // Props
-  const { location, number, legendColor, ...restProps } = props;
-
-  // Hooks
-  const iss = useIsSmScreenWidth();
+  const { ciss, location, number, legendColor, ...restProps } = props;
 
   return (
     <CContainer
-      className={`location-list ${iss ? "" : "ss"}`}
+      className={`location-list ${ciss ? "" : "ss"}`}
       p={3}
       pl={2}
       bg={"light"}
       rounded={"xl"}
       minW={"240px"}
       border={"1px solid"}
-      borderColor={iss ? "border.muted" : "d1"}
+      borderColor={ciss ? "border.muted" : "d1"}
       pos={"relative"}
       {...restProps}
     >
@@ -128,7 +125,8 @@ export const LPHomeLocation = (props: StackProps) => {
   const staticContents = useContents((s) => s.staticContents);
 
   // Hooks
-  const iss = useIsSmScreenWidth();
+  const { sw } = useScreen();
+  const ciss = sw < 1200;
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -143,7 +141,7 @@ export const LPHomeLocation = (props: StackProps) => {
           end: "bottom 50%",
           scrub: true,
         },
-        y: "100px",
+        y: "200px",
         ease: "none",
       });
 
@@ -181,15 +179,14 @@ export const LPHomeLocation = (props: StackProps) => {
     <>
       <CContainer
         ref={containerRef}
-        h={iss ? "50vh" : "70vh"}
-        maxH={iss ? "" : "800px"}
+        maxH={ciss ? "" : "800px"}
         bg={"light"}
         pt={"80px"}
-        pb={iss ? 0 : "80px"}
+        pb={ciss ? 0 : "80px"}
         pos={"relative"}
         {...restProps}
       >
-        <LPSectionContainer flex={1} justify={"center"}>
+        <LPSectionContainer flex={1}>
           <H2
             className="section_title"
             fontWeight={"bold"}
@@ -200,8 +197,8 @@ export const LPHomeLocation = (props: StackProps) => {
           </H2>
 
           <CContainer
-            h={"70vh"}
-            maxH={"500px"}
+            h={ciss ? "700px" : "800px"}
+            maxH={ciss ? "" : "500px"}
             w={"80%"}
             aspectRatio={1}
             bg={"p.100"}
@@ -209,7 +206,7 @@ export const LPHomeLocation = (props: StackProps) => {
             mx={"auto"}
           >
             <CContainer flex={1} gap={4} p={8} color={"p.700"}>
-              <MapInfo ml={iss ? "" : "auto"} />
+              <MapInfo ml={sw < 560 ? "" : "auto"} />
 
               <Img
                 src={`${SVGS_PATH}/sumatra-scale.svg`}
@@ -226,7 +223,7 @@ export const LPHomeLocation = (props: StackProps) => {
         </LPSectionContainer>
 
         {/* Location list */}
-        {!iss && (
+        {!ciss && (
           <LPSectionContainer
             h={"70vh"}
             maxH={"600px"}
@@ -253,12 +250,14 @@ export const LPHomeLocation = (props: StackProps) => {
                 py={"50px"}
               >
                 <LocationListItem
+                  ciss={ciss}
                   location={LOCATION_list_LIST[0]}
                   number={1}
                   legendColor={"p.500"}
                 />
 
                 <LocationListItem
+                  ciss={ciss}
                   location={LOCATION_list_LIST[1]}
                   number={2}
                   legendColor={"p.400"}
@@ -267,6 +266,7 @@ export const LPHomeLocation = (props: StackProps) => {
 
               <CContainer w={"fit"} justify={"center"}>
                 <LocationListItem
+                  ciss={ciss}
                   location={LOCATION_list_LIST[2]}
                   number={3}
                   legendColor={"p.300"}
@@ -332,7 +332,7 @@ export const LPHomeLocation = (props: StackProps) => {
         />
       </CContainer>
 
-      {iss && (
+      {ciss && (
         <LPSectionContainer zIndex={2} pb={"80px"}>
           <CContainer gap={8}>
             <LocationListItem

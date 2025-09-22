@@ -282,7 +282,7 @@ export const LPHomeHero = (props: StackProps) => {
           align={"center"}
           bg={"blackAlpha.800"}
           color={"light"}
-          p={4}
+          p={8}
           opacity={0}
           pos={"relative"}
           justify={"center"}

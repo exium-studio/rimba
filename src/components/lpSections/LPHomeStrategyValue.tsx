@@ -107,29 +107,29 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       });
 
       gsap.from(".strategy_value_content_1", {
+        scrollTrigger: {
+          trigger: contentsRef.current,
+          start: "top 50%",
+          // markers: true, // debug
+        },
         x: !iss ? "-20%" : "",
         y: iss ? "20%" : "",
         opacity: 0,
         duration: 1,
         ease: "power2.out",
+      });
+
+      gsap.from(".strategy_value_content_2", {
         scrollTrigger: {
           trigger: contentsRef.current,
           start: "top 50%",
           // markers: true, // debug
         },
-      });
-
-      gsap.from(".strategy_value_content_2", {
         x: !iss ? "20%" : "",
         y: iss ? "20%" : "",
         opacity: 0,
         duration: 1,
         ease: "power2.out",
-        scrollTrigger: {
-          trigger: contentsRef.current,
-          start: "top 50%",
-          // markers: true, // debug
-        },
       });
 
       gsap.to(".compass", {

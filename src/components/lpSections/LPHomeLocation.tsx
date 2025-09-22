@@ -9,13 +9,14 @@ import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { SVGS_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { Box, HStack, Icon, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import { IconMapPin2, IconWorld } from "@tabler/icons-react";
 import gsap from "gsap";
 import { useRef } from "react";
 
-const LOCATION_LIST = [
+const LOCATION_list_LIST = [
   {
     province: "Riau",
     list: ["Kampar", "Kuantan Singing", "Indagri Hulu", "Indagri Hilir"],
@@ -35,7 +36,7 @@ const MapInfo = (props: StackProps) => {
   const { ...restProps } = props;
 
   return (
-    <CContainer w={"fit"} {...restProps}>
+    <CContainer w={"fit"} gap={4} {...restProps}>
       <HStack gap={4}>
         <Icon boxSize={8}>
           <IconWorld stroke={1.5} />
@@ -68,29 +69,29 @@ const LocationListItem = (props: any) => {
   // Props
   const { location, number, legendColor, ...restProps } = props;
 
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
   return (
     <CContainer
-      id={`location_${number}`}
-      className="ss"
+      className={`location-list ${iss ? "" : "ss"}`}
       p={3}
       pl={2}
       bg={"light"}
       rounded={"xl"}
       minW={"240px"}
       border={"1px solid"}
-      borderColor={"d1"}
+      borderColor={iss ? "border.muted" : "d1"}
       pos={"relative"}
       {...restProps}
     >
-      <HStack align={"start"} gap={4}>
-        <Box bg={legendColor} w={"6px"} h={"full"} rounded={"full"} />
+      <HStack align={"stretch"} gap={4}>
+        <Box flexShrink={0} w={"4px"} bg={legendColor} rounded={"full"} />
 
         <CContainer>
-          <HStack justify={"space-between"}>
-            <P fontSize={"lg"} fontWeight={"medium"}>
-              {location.province}
-            </P>
-          </HStack>
+          <P fontSize={"lg"} fontWeight={"medium"}>
+            {location.province}
+          </P>
 
           <CContainer mt={2} gap={1}>
             {location.list.map((item: string, idx: number) => {
@@ -126,156 +127,227 @@ export const LPHomeLocation = (props: StackProps) => {
   const { lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
 
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Animation
   useGSAP(
     () => {
-      gsap.to(".sumatra-map", {
+      gsap.to("#sumatra-map, #riau-map, #sumatra-barat-map, #jambi-map", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 20%",
-          end: () => "bottom 80%",
+          end: "bottom 80%",
           scrub: true,
         },
         y: "100px",
         ease: "none",
       });
 
-      gsap.from("#location_1", {
+      gsap.from(".location-map", {
         scrollTrigger: {
-          trigger: "#location_1",
-          start: "top 80%",
-          end: () => "bottom 80%",
+          trigger: containerRef.current,
+          start: "top 20%",
+          end: "bottom bottom",
+          scrub: true,
         },
-        y: "50%",
         opacity: 0,
-        duration: 1,
+        stagger: 0.5,
+        ease: "none",
       });
 
-      gsap.from("#location_2", {
-        scrollTrigger: {
-          trigger: "#location_2",
-          start: "top 80%",
-          end: () => "bottom 80%",
-        },
-        y: "50%",
-        opacity: 0,
-        duration: 1,
-      });
-
-      gsap.from("#location_3", {
-        scrollTrigger: {
-          trigger: "#location_3",
-          start: "top 80%",
-          end: () => "bottom 80%",
-        },
-        y: "50%",
-        opacity: 0,
-        duration: 1,
+      gsap.utils.toArray(".location-list").forEach((el) => {
+        gsap.from(el as Element, {
+          scrollTrigger: {
+            trigger: el as Element,
+            start: "top 80%",
+            end: "bottom bottom",
+            toggleActions: "play none none reverse",
+          },
+          y: "50%",
+          opacity: 0,
+          duration: 1,
+          ease: "none",
+        });
       });
     },
     { scope: containerRef }
   );
 
   return (
-    <CContainer
-      ref={containerRef}
-      minH={"100vh"}
-      bg={"light"}
-      py={"80px"}
-      pos={"relative"}
-      {...restProps}
-    >
-      <LPSectionContainer flex={1} justify={"center"}>
-        <H2
-          className="section_title"
-          fontWeight={"bold"}
-          color={"p.700"}
-          textAlign={"center"}
-        >
-          {staticContents[27].content[lang]}
-        </H2>
-
-        <CContainer
-          h={"70vh"}
-          w={"80%"}
-          aspectRatio={1}
-          bg={"p.100"}
-          mt={"80px"}
-          mx={"auto"}
-        >
-          <CContainer flex={1} gap={4} p={8} color={"p.700"}>
-            <MapInfo ml={"auto"} />
-
-            <Img
-              src={`${SVGS_PATH}/sumatra-scale.svg`}
-              aspectRatio={1}
-              w={"150px"}
-              objectFit="contain"
-              opacity={0.3}
-              mt={"auto"}
-              ml={"auto"}
-              mb={-3}
-            />
-          </CContainer>
-        </CContainer>
-      </LPSectionContainer>
-
-      {/* Location list */}
-      <LPSectionContainer
-        minH={"70vh"}
-        pos={"absolute"}
-        top={"calc(50% + 64px)"}
-        left={"50%"}
-        transform={"translate(-50%, -50%)"}
-        wrapperProps={{
-          flex: 1,
-        }}
-        zIndex={2}
+    <>
+      <CContainer
+        ref={containerRef}
+        minH={iss ? "50vh" : "100vh"}
+        bg={"light"}
+        pt={"80px"}
+        pb={iss ? 0 : "80px"}
+        pos={"relative"}
+        {...restProps}
       >
-        <HStack
-          flex={1}
-          w={"full"}
-          align={"stretch"}
-          p={8}
-          justify={"space-between"}
-        >
-          <CContainer w={"fit"} justify={"space-between"} gap={8}>
+        <LPSectionContainer flex={1} justify={"center"}>
+          <H2
+            className="section_title"
+            fontWeight={"bold"}
+            color={"p.700"}
+            textAlign={"center"}
+          >
+            {staticContents[27].content[lang]}
+          </H2>
+
+          <CContainer
+            h={"70vh"}
+            w={"80%"}
+            aspectRatio={1}
+            bg={"p.100"}
+            mt={"80px"}
+            mx={"auto"}
+          >
+            <CContainer flex={1} gap={4} p={8} color={"p.700"}>
+              <MapInfo ml={iss ? "" : "auto"} />
+
+              <Img
+                src={`${SVGS_PATH}/sumatra-scale.svg`}
+                aspectRatio={1}
+                w={"150px"}
+                objectFit="contain"
+                opacity={0.3}
+                mt={"auto"}
+                ml={"auto"}
+                mb={-3}
+              />
+            </CContainer>
+          </CContainer>
+        </LPSectionContainer>
+
+        {/* Location list */}
+        {!iss && (
+          <LPSectionContainer
+            minH={"70vh"}
+            pos={"absolute"}
+            top={"calc(50% + 64px)"}
+            left={"50%"}
+            transform={"translate(-50%, -50%)"}
+            wrapperProps={{
+              flex: 1,
+            }}
+            zIndex={2}
+          >
+            <HStack
+              flex={1}
+              w={"full"}
+              align={"stretch"}
+              p={8}
+              justify={"space-between"}
+            >
+              <CContainer
+                w={"fit"}
+                justify={"space-between"}
+                gap={8}
+                py={"50px"}
+              >
+                <LocationListItem
+                  location={LOCATION_list_LIST[0]}
+                  number={1}
+                  legendColor={"p.500"}
+                />
+
+                <LocationListItem
+                  location={LOCATION_list_LIST[1]}
+                  number={2}
+                  legendColor={"p.400"}
+                />
+              </CContainer>
+
+              <CContainer w={"fit"} justify={"center"}>
+                <LocationListItem
+                  location={LOCATION_list_LIST[2]}
+                  number={3}
+                  legendColor={"p.300"}
+                />
+              </CContainer>
+            </HStack>
+          </LPSectionContainer>
+        )}
+
+        {/* Sumatra */}
+        <Img
+          id="sumatra-map"
+          src={`${SVGS_PATH}/sumatra-map.svg`}
+          h={"80vh"}
+          aspectRatio={1}
+          pos={"absolute"}
+          top={"50%"}
+          transform={"translateY(-50%)"}
+          objectFit="contain"
+        />
+
+        {/* Riau */}
+        <Img
+          id="riau-map"
+          className="location-map"
+          src={`${SVGS_PATH}/riau-map.svg`}
+          h={"80vh"}
+          aspectRatio={1}
+          pos={"absolute"}
+          top={"50%"}
+          transform={"translateY(-50%)"}
+          objectFit="contain"
+        />
+
+        {/* Sumatra Barat */}
+        <Img
+          id="sumatra-barat-map"
+          className="location-map"
+          src={`${SVGS_PATH}/sumatra-barat-map.svg`}
+          h={"80vh"}
+          aspectRatio={1}
+          pos={"absolute"}
+          top={"50%"}
+          transform={"translateY(-50%)"}
+          objectFit="contain"
+        />
+
+        {/* Jambi */}
+        <Img
+          id="jambi-map"
+          className="location-map"
+          src={`${SVGS_PATH}/jambi-map.svg`}
+          h={"80vh"}
+          aspectRatio={1}
+          pos={"absolute"}
+          top={"50%"}
+          transform={"translateY(-50%)"}
+          objectFit="contain"
+        />
+      </CContainer>
+
+      {iss && (
+        <LPSectionContainer zIndex={2} pb={"80px"}>
+          <CContainer gap={8}>
             <LocationListItem
-              location={LOCATION_LIST[0]}
+              location={LOCATION_list_LIST[0]}
               number={1}
               legendColor={"p.500"}
             />
 
             <LocationListItem
-              location={LOCATION_LIST[1]}
+              location={LOCATION_list_LIST[1]}
               number={2}
               legendColor={"p.400"}
             />
-          </CContainer>
 
-          <CContainer w={"fit"} justify={"center"}>
             <LocationListItem
-              location={LOCATION_LIST[2]}
+              location={LOCATION_list_LIST[2]}
               number={3}
               legendColor={"p.300"}
             />
           </CContainer>
-        </HStack>
-      </LPSectionContainer>
-
-      <Img
-        className="sumatra-map"
-        src={`${SVGS_PATH}/sumatra-map.svg`}
-        h={"80vh"}
-        aspectRatio={1}
-        pos={"absolute"}
-        top={"50%"}
-        transform={"translateY(-50%)"}
-        objectFit="contain"
-      />
-    </CContainer>
+        </LPSectionContainer>
+      )}
+    </>
   );
 };

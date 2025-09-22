@@ -109,65 +109,65 @@ export const LPHomeActivity = (props: StackProps) => {
   useGSAP(
     () => {
       gsap.from(".section_title", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 50%",
+          // markers: true, // debug
+        },
         y: "100%",
         opacity: 0,
         duration: 1,
         ease: "power2.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 50%",
-          // markers: true, // debug
-        },
       });
 
       gsap.from(mainContentsRef.current, {
-        y: !iss ? "-40%" : "20%",
+        scrollTrigger: {
+          trigger: mainContentsRef.current,
+          start: "top 80%",
+          // markers: true, // debug
+        },
+        y: "20%",
         opacity: 0,
         duration: 1,
         ease: "power2.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 50%",
-          // markers: true, // debug
-        },
       });
 
       if (!iss) {
         gsap.from("#activity_item_1", {
+          scrollTrigger: {
+            trigger: mainContentsRef.current,
+            start: "top 50%",
+            // markers: true, // debug
+          },
           x: "70%",
           delay: 0.5,
           duration: 1,
           ease: "power2.out",
+        });
+
+        gsap.from("#activity_item_3", {
           scrollTrigger: {
             trigger: mainContentsRef.current,
             start: "top 50%",
             // markers: true, // debug
           },
-        });
-
-        gsap.from("#activity_item_3", {
           x: "-70%",
           delay: 0.5,
           duration: 1,
           ease: "power2.out",
-          scrollTrigger: {
-            trigger: mainContentsRef.current,
-            start: "top 50%",
-            // markers: true, // debug
-          },
         });
       }
 
       gsap.from(".bottom_content", {
-        y: "100%",
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out",
         scrollTrigger: {
           trigger: bottomContentsRef.current,
           start: "top 80%",
           // markers: true, // debug
         },
+        y: "100%",
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
       });
     },
     { scope: containerRef, dependencies: [iss] }

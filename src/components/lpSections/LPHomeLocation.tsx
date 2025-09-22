@@ -151,7 +151,6 @@ export const LPHomeLocation = (props: StackProps) => {
           start: "top 50%",
           end: "bottom 30%",
           scrub: true,
-          markers: true,
         },
         opacity: 0,
         stagger: 0.5,

@@ -41,7 +41,7 @@ const ActivityItem = (props: any) => {
       {...restProps}
     >
       <CContainer>
-        <Img src={activity.thumbnail} aspectRatio={2} rounded={"3xl"} />
+        <Img src={activity.thumbnail} aspectRatio={1} rounded={"3xl"} />
       </CContainer>
 
       <CContainer

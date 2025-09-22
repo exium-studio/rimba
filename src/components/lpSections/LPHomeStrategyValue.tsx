@@ -17,7 +17,7 @@ import {
   IconArrowUpRight,
   IconCalendar,
   IconCoin,
-  IconHeartHandshake
+  IconHeartHandshake,
 } from "@tabler/icons-react";
 import gsap from "gsap";
 import { useRef } from "react";
@@ -199,8 +199,6 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             <CContainer
               flex={1}
               p={3}
-              // bg={"p.500"}
-              // bgImage={`url(${IMAGES_PATH}/lp/home/strategy-value-phone-header.png)`}
               bgSize={"cover"}
               rounded={"60px"}
               aspectRatio={1 / 2}
@@ -212,7 +210,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                   color={"dark"}
                   rounded={"3xl"}
                   overflowY={"auto"}
-                  mb={"80px"}
+                  mb={"58px"}
                   pos={"relative"}
                 >
                   <HStack w={"full"} justify={"space-between"} p={4}>
@@ -221,7 +219,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                     </P>
                   </HStack>
 
-                  <CContainer className="scrollY" p={4} h={"280px"}>
+                  <CContainer className="scrollY" flex={1} p={4}>
                     <P>{staticContents[17].content[lang]}</P>
                   </CContainer>
 

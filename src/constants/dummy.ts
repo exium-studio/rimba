@@ -52,8 +52,8 @@ export const staticContents = {
   16: {
     contentType: "text",
     content: {
-      id: "Apa ini?",
-      en: "What is this?",
+      id: "Proyek apa ini?",
+      en: "What is this project?",
     },
   },
   17: {

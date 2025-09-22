@@ -17,8 +17,7 @@ import {
   IconArrowUpRight,
   IconCalendar,
   IconCoin,
-  IconHeartHandshake,
-  IconX,
+  IconHeartHandshake
 } from "@tabler/icons-react";
 import gsap from "gsap";
 import { useRef } from "react";
@@ -150,6 +149,9 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       pt={"100px"}
       pb={0}
       bg={"p.900"}
+      bgImage={`url(${IMAGES_PATH}/lp/home/strategy-value-bg.png)`}
+      bgPos={"top"}
+      bgSize={"cover"}
       color={"light"}
       mt={"-1px"}
       {...restProps}
@@ -176,7 +178,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
           <CContainer
             className={"strategy_value_content_1"}
             flex={"0 1 330px"}
-            h={"540px"}
+            h={"580px"}
             overflow={"clip"}
             aspectRatio={1 / 2}
             pos={"relative"}
@@ -197,14 +199,15 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             <CContainer
               flex={1}
               p={3}
-              bg={"p.500"}
-              bgImage={`url(${IMAGES_PATH}/lp/home/strategy-value-phone-header.png)`}
+              // bg={"p.500"}
+              // bgImage={`url(${IMAGES_PATH}/lp/home/strategy-value-phone-header.png)`}
               bgSize={"cover"}
               rounded={"60px"}
               aspectRatio={1 / 2}
             >
               <CContainer flex={1} overflow={"clip"} p={3} mt={"64px"}>
                 <CContainer
+                  flex={1}
                   bg={"light"}
                   color={"dark"}
                   rounded={"3xl"}
@@ -216,17 +219,13 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                     <P fontSize={"lg"} fontWeight={"medium"}>
                       {staticContents[16].content[lang]}
                     </P>
-
-                    <Icon boxSize={5} color={"dt"}>
-                      <IconX />
-                    </Icon>
                   </HStack>
 
                   <CContainer className="scrollY" p={4} h={"280px"}>
                     <P>{staticContents[17].content[lang]}</P>
                   </CContainer>
 
-                  <HStack justify={"end"} p={3}>
+                  <HStack justify={"end"} p={3} mt={"auto"}>
                     <NavLink to="/about-us/rimba-corridor-program" w={"fit"}>
                       <Btn
                         colorPalette={"p"}

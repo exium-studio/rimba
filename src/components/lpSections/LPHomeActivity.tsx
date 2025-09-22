@@ -11,7 +11,14 @@ import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { formatDate } from "@/utils/formatter";
-import { Box, HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  HStack,
+  Icon,
+  SimpleGrid,
+  StackProps,
+} from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import gsap from "gsap";
@@ -34,54 +41,53 @@ const ActivityItem = (props: any) => {
       {...restProps}
     >
       <CContainer>
-        <Img src={activity.thumbnail} aspectRatio={2.5} rounded={"3xl"} />
+        <Img src={activity.thumbnail} aspectRatio={2} rounded={"3xl"} />
       </CContainer>
 
       <CContainer
         flex={1}
         bg={"light"}
-        p={6}
-        // roundedTopLeft={"2xl"}
-        roundedTopRight={"2xl"}
-        roundedBottomLeft={"2xl"}
-        roundedBottomRight={"2xl"}
-        mt={"-20px"}
+        roundedTopRight={"3xl"}
+        roundedBottomLeft={"3xl"}
+        roundedBottomRight={"3xl"}
+        mt={"-40px"}
         pos={"relative"}
         zIndex={2}
       >
-        <Box pos={"absolute"} top={"-29.5px"} left={0}>
-          <FolderShape h={"30px"} />
-        </Box>
+        <CContainer p={6}>
+          <Box pos={"absolute"} top={"-29.5px"} left={0}>
+            <FolderShape h={"30px"} />
+          </Box>
 
-        <P fontSize={"sm"} opacity={0.4}>
-          {formatDate(activity.createdAt)}
-        </P>
+          <P fontSize={"sm"} opacity={0.4}>
+            {formatDate(activity.createdAt)}
+          </P>
 
-        <P fontSize={"lg"} fontWeight={"medium"} mt={2}>
-          {activity.title[lang]}
-        </P>
+          <P fontSize={"lg"} fontWeight={"medium"} lineClamp={2} mt={2}>
+            {activity.title[lang]}
+          </P>
 
-        <P opacity={0.6} mt={4}>
-          {activity.description[lang]}
-        </P>
+          <P opacity={0.6} mt={4} lineClamp={3}>
+            {activity.description[lang]}
+          </P>
+        </CContainer>
+
+        <HStack justify={"end"} p={4} mt={"auto"}>
+          <Btn
+            colorPalette={"p"}
+            variant={"plain"}
+            size={"md"}
+            rounded={"3xl"}
+            pr={3}
+          >
+            {l.learn_more}
+
+            <Icon boxSize={5}>
+              <IconArrowUpRight stroke={1.5} />
+            </Icon>
+          </Btn>
+        </HStack>
       </CContainer>
-
-      <HStack justify={"end"} mt={"auto"} pt={2}>
-        <Btn
-          colorPalette={"p"}
-          variant={"plain"}
-          size={"md"}
-          rounded={"3xl"}
-          pr={3}
-          color={"p.300"}
-        >
-          {l.learn_more}
-
-          <Icon boxSize={5}>
-            <IconArrowUpRight stroke={1.5} />
-          </Icon>
-        </Btn>
-      </HStack>
     </CContainer>
   );
 };
@@ -209,21 +215,22 @@ export const LPHomeActivity = (props: StackProps) => {
           {staticContents[25].content[lang]}
         </P>
 
-        <Btn
-          className="bottom_content"
-          w={"fit"}
-          pr={3}
-          colorPalette={"p"}
-          variant={"ghost"}
-          mx={"auto"}
-          mt={4}
-        >
-          {l.all_activities}
+        <Center className="bottom_content">
+          <Btn
+            w={"fit"}
+            pr={3}
+            colorPalette={"p"}
+            variant={"ghost"}
+            mx={"auto"}
+            mt={4}
+          >
+            {l.all_activities}
 
-          <Icon boxSize={5}>
-            <IconArrowUpRight stroke={1.5} />
-          </Icon>
-        </Btn>
+            <Icon boxSize={5}>
+              <IconArrowUpRight stroke={1.5} />
+            </Icon>
+          </Btn>
+        </Center>
       </CContainer>
     </LPSectionContainer>
   );

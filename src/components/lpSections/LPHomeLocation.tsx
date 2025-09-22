@@ -167,7 +167,6 @@ export const LPHomeLocation = (props: StackProps) => {
           },
           y: "50%",
           opacity: 0,
-          duration: 1,
           ease: "none",
         });
       });

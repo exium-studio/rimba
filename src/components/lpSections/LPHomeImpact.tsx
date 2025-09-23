@@ -241,7 +241,7 @@ export const LPHomeImpact = (props: StackProps) => {
         <SimpleGrid ref={contentsRef} columns={[1, null, 2]} gap={8}>
           <CContainer>
             <EditableContentContainer content={staticContents[36]}>
-              <H2 className="section_title" mt={"-12px"}>
+              <H2 className="section_title" color={"p.700"} mt={"-12px"}>
                 {staticContents[36].content[lang]}
               </H2>
             </EditableContentContainer>

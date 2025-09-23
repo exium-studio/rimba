@@ -102,7 +102,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
         },
         y: "100%",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
       });
 
       gsap.from(mainContentsRef.current, {
@@ -113,7 +113,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
         },
         y: "20%",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
       });
 
       if (!iss) {
@@ -126,7 +126,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
           x: !iss ? "-20%" : "",
           y: iss ? "20%" : "",
           opacity: 0,
-          duration: 1,
+          duration: 0.75,
         });
 
         gsap.from(".doc_item_2", {
@@ -138,7 +138,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
           x: !iss ? "20%" : "",
           y: iss ? "20%" : "",
           opacity: 0,
-          duration: 1,
+          duration: 0.75,
         });
       }
 
@@ -150,7 +150,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
         },
         y: "100%",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
       });
     },
     { scope: containerRef, dependencies: [iss] }

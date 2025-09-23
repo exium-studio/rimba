@@ -193,7 +193,7 @@ export const LPHomeImpact = (props: StackProps) => {
         x: !iss ? "-20%" : "",
         y: iss ? "20%" : "",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
       });
 
       gsap.from(".impact_content", {
@@ -205,7 +205,7 @@ export const LPHomeImpact = (props: StackProps) => {
         x: !iss ? "20%" : "",
         y: iss ? "20%" : "",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
       });
 
       gsap.from(".completion_chart", {
@@ -217,7 +217,7 @@ export const LPHomeImpact = (props: StackProps) => {
         x: !iss ? "-20%" : "",
         y: iss ? "20%" : "",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
       });
 
       gsap.from(".animals_chart", {
@@ -229,7 +229,7 @@ export const LPHomeImpact = (props: StackProps) => {
         x: !iss ? "20%" : "",
         y: iss ? "20%" : "",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
       });
     },
     { scope: containerRef, dependencies: [iss] }

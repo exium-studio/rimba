@@ -105,7 +105,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       gsap.from(".section_title", {
         y: "100%",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
         ease: "power2.out",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -123,7 +123,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         x: !iss ? "-20%" : "",
         y: iss ? "20%" : "",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
         ease: "power2.out",
       });
 
@@ -136,7 +136,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         x: !iss ? "20%" : "",
         y: iss ? "20%" : "",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
         ease: "power2.out",
       });
 

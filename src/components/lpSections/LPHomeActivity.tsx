@@ -111,7 +111,7 @@ export const LPHomeActivity = (props: StackProps) => {
         },
         y: "100%",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
       });
 
       gsap.from(mainContentsRef.current, {
@@ -122,7 +122,7 @@ export const LPHomeActivity = (props: StackProps) => {
         },
         y: "20%",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
       });
 
       if (!iss) {
@@ -133,7 +133,7 @@ export const LPHomeActivity = (props: StackProps) => {
             // markers: true, // debug
           },
           x: "70%",
-          duration: 1,
+          duration: 0.75,
         });
 
         gsap.from(".activity_item_3", {
@@ -143,7 +143,7 @@ export const LPHomeActivity = (props: StackProps) => {
             // markers: true, // debug
           },
           x: "-70%",
-          duration: 1,
+          duration: 0.75,
         });
       }
 
@@ -155,7 +155,7 @@ export const LPHomeActivity = (props: StackProps) => {
         },
         y: "100%",
         opacity: 0,
-        duration: 1,
+        duration: 0.75,
       });
     },
     { scope: containerRef, dependencies: [iss] }

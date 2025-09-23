@@ -4,6 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
+import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import FolderShape from "@/components/widget/FolderShape";
@@ -222,20 +223,22 @@ export const LPHomeActivity = (props: StackProps) => {
         </EditableContentContainer>
 
         <Center className="bottom_content">
-          <Btn
-            w={"fit"}
-            pr={3}
-            colorPalette={"p"}
-            variant={"ghost"}
-            mx={"auto"}
-            mt={4}
-          >
-            {l.all_activities}
+          <NavLink to={"/about0us/activities"}>
+            <Btn
+              w={"fit"}
+              pr={3}
+              colorPalette={"p"}
+              variant={"ghost"}
+              mx={"auto"}
+              mt={4}
+            >
+              {l.all_activities}
 
-            <Icon boxSize={5}>
-              <IconArrowUpRight stroke={1.5} />
-            </Icon>
-          </Btn>
+              <Icon boxSize={5}>
+                <IconArrowUpRight stroke={1.5} />
+              </Icon>
+            </Btn>
+          </NavLink>
         </Center>
       </CContainer>
     </LPSectionContainer>

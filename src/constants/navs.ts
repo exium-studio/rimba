@@ -47,7 +47,7 @@ export const LP_NAVS: Interface__NavItem[] = [
               {
                 icon: IconSeedling,
                 labelKey: "lp_navs.about_us.activity",
-                path: `/about-us/activity`,
+                path: `/about-us/activities`,
               },
               {
                 icon: IconNews,

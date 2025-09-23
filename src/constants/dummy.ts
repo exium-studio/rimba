@@ -3,7 +3,7 @@ import { IMAGES_PATH, SVGS_PATH } from "@/constants/paths";
 export const staticContents = {
   1: {
     id: 1,
-    type: "text",
+    type: "Text",
     content: {
       id: "Program Koridor Ekosistem",
       en: "Ecosystem Corridor Program",
@@ -11,7 +11,7 @@ export const staticContents = {
   },
   2: {
     id: 2,
-    type: "text",
+    type: "Image",
     content: {
       id: `${SVGS_PATH}/rimba_letter_art_light.svg`,
       en: `${SVGS_PATH}/rimba_letter_art_light.svg`,
@@ -19,7 +19,7 @@ export const staticContents = {
   },
   3: {
     id: 3,
-    type: "text",
+    type: "Text",
     content: {
       id: "Mewujudkan ekonomi hijau di koridor ekosisstem Riau, Jambi dan Sumatera Barat",
       en: "Creating a green economy in the Riau, Jambi, and Sumatera Barat Ecosystem Corridor",
@@ -27,45 +27,45 @@ export const staticContents = {
   },
   4: {
     id: 4,
-    type: "text",
+    type: "Text",
     content: {
       id: "Merupakan kawasan yang berfungsi lindung di bentang alam Riau, Jambi, dan Sumatera Barat (RIMBA). Kawasan seluas 3,8 juta hektar ini dikelola melalui mempertahankan, melestarikan, dan meningkatkan fungsi koridor ekosistem yang menghubungkan sembilan kawasan lindung. Kawasan ini berfungsi sebagai koridor satwa Gajah, Harimau, dan beragam jenis burung.",
       en: "This protected area spans the Riau, Jambi, and West Sumatra (RIMBA) landscape. This 3.8 million-hectare area is managed by maintaining, preserving, and enhancing the ecosystem corridors connecting nine protected areas. These areas serve as habitats for elephants, tigers, and various bird species.",
     },
   },
-  5: { id: 5, type: "image", content: `${IMAGES_PATH}/default-gallery/1.jpg` },
-  6: { id: 6, type: "image", content: `${IMAGES_PATH}/default-gallery/2.jpg` },
-  7: { id: 7, type: "image", content: `${IMAGES_PATH}/default-gallery/3.jpg` },
-  8: { id: 8, type: "image", content: `${IMAGES_PATH}/default-gallery/4.jpg` },
-  9: { id: 9, type: "image", content: `${IMAGES_PATH}/default-gallery/5.jpg` },
+  5: { id: 5, type: "Image", content: `${IMAGES_PATH}/default-gallery/1.jpg` },
+  6: { id: 6, type: "Image", content: `${IMAGES_PATH}/default-gallery/2.jpg` },
+  7: { id: 7, type: "Image", content: `${IMAGES_PATH}/default-gallery/3.jpg` },
+  8: { id: 8, type: "Image", content: `${IMAGES_PATH}/default-gallery/4.jpg` },
+  9: { id: 9, type: "Image", content: `${IMAGES_PATH}/default-gallery/5.jpg` },
   10: {
     id: 10,
-    type: "image",
+    type: "Image",
     content: `${IMAGES_PATH}/default-gallery/6.jpg`,
   },
   11: {
     id: 11,
-    type: "image",
+    type: "Image",
     content: `${IMAGES_PATH}/default-gallery/7.jpg`,
   },
   12: {
     id: 12,
-    type: "image",
+    type: "Image",
     content: `${IMAGES_PATH}/default-gallery/8.jpg`,
   },
   13: {
     id: 13,
-    type: "image",
+    type: "Image",
     content: `${IMAGES_PATH}/default-gallery/9.jpg`,
   },
   14: {
     id: 14,
-    type: "image",
+    type: "Image",
     content: `${IMAGES_PATH}/default-gallery/10.jpg`,
   },
   15: {
     id: 15,
-    type: "text",
+    type: "Text",
     content: {
       id: "Nilai Strategi Proyek RIMBA",
       en: "RIMBA Project Strategy Value",
@@ -73,12 +73,12 @@ export const staticContents = {
   },
   16: {
     id: 16,
-    type: "text",
+    type: "Text",
     content: { id: "Proyek apa ini?", en: "What is this project?" },
   },
   17: {
     id: 17,
-    type: "text",
+    type: "Text",
     content: {
       id: "Proyek RIMBA adalah kerjasama antara Pemerintah Indonesia dengan Global Environment Facility (GEF) melalui United Nations Environment Programme (UNEP) dengan Executing Agency Direktorat Jenderal Tata Ruang Kementerian ATR/BPN.",
       en: "The RIMBA project is a collaboration between the Indonesian Government and the Global Environment Facility (GEF) through the United Nations Environment Programme (UNEP) with the Executing Agency of the Directorate General of Spatial Planning, Ministry of Agrarian Affairs and Spatial Planning/National Land Agency (ATR/BPN).",
@@ -86,7 +86,7 @@ export const staticContents = {
   },
   18: {
     id: 18,
-    type: "text",
+    type: "Text",
     content: {
       id: "USD 9.053.638 atau setara dengan Rp 135.804.570.000",
       en: "USD 9.053.638 or equivalent to Rp 135.804.570.000",
@@ -94,12 +94,12 @@ export const staticContents = {
   },
   19: {
     id: 19,
-    type: "text",
+    type: "Text",
     content: { id: "Besaran Nilai Hibah", en: "Grant Value" },
   },
   20: {
     id: 20,
-    type: "text",
+    type: "Text",
     content: {
       id: "PCA/2021/4031 antara UNEP dan Kementerian ATR/BPN",
       en: "PCA/2021/4031 between UNEP and Ministry of ATR/BPN",
@@ -107,7 +107,7 @@ export const staticContents = {
   },
   21: {
     id: 21,
-    type: "text",
+    type: "Text",
     content: {
       id: "Project Cooperation Agreement (PCA)",
       en: "Project Cooperation Agreement (PCA)",
@@ -115,12 +115,12 @@ export const staticContents = {
   },
   22: {
     id: 22,
-    type: "text",
+    type: "Text",
     content: { id: "Tahun 2024 sampai 2028", en: "Year 2024 to 2028" },
   },
   23: {
     id: 23,
-    type: "text",
+    type: "Text",
     content: {
       id: "Periode Implementasi Proyek",
       en: "Project Implementation Period",
@@ -128,12 +128,12 @@ export const staticContents = {
   },
   24: {
     id: 24,
-    type: "text",
+    type: "Text",
     content: { id: "Kegiatan Kami", en: "Our Activities" },
   },
   25: {
     id: 25,
-    type: "text",
+    type: "Text",
     content: {
       id: "Meningkatkan Kualitas Hidup dan Pemberdayaan Masyarakat Melalui Inisiatif-Inisiatif Unggul dan Berkelanjutan",
       en: "Increasing Quality of Life and Community Empowerment Through Innovative and Sustainable Initiatives",
@@ -141,28 +141,28 @@ export const staticContents = {
   },
   26: {
     id: 26,
-    type: "text",
+    type: "Text",
     content: { id: "Lokasi Kami", en: "Our Location" },
   },
   27: {
     id: 27,
-    type: "text",
+    type: "Text",
     content: { id: "Lokasi Kami", en: "Our Location" },
   },
   28: {
     id: 28,
-    type: "text",
+    type: "Text",
     content: { id: "3.8 Juta Ha", en: "3.8 Million Ha" },
   },
   29: {
     id: 29,
-    type: "text",
+    type: "Text",
     content: { id: "9 Area Unit Pengelolaan", en: "9 Management Unit Areas" },
   },
-  30: { id: 30, type: "text", content: { id: "Riau", en: "Riau" } },
+  30: { id: 30, type: "Text", content: { id: "Riau", en: "Riau" } },
   31: {
     id: 31,
-    type: "text",
+    type: "Text",
     content: [
       { id: "Kampar", en: "Kampar" },
       { id: "Kuantan Singing", en: "Kuantan Singing" },
@@ -172,12 +172,12 @@ export const staticContents = {
   },
   32: {
     id: 32,
-    type: "text",
+    type: "Text",
     content: { id: "Sumatra Barat", en: "Sumatra Barat" },
   },
   33: {
     id: 33,
-    type: "text",
+    type: "Text",
     content: [
       { id: "Kampar", en: "Kampar" },
       { id: "Kuantan Singing", en: "Kuantan Singing" },
@@ -185,10 +185,10 @@ export const staticContents = {
       { id: "Indagri Hilir", en: "Indagri Hilir" },
     ],
   },
-  34: { id: 34, type: "text", content: { id: "Jambi", en: "Jambi" } },
+  34: { id: 34, type: "Text", content: { id: "Jambi", en: "Jambi" } },
   35: {
     id: 35,
-    type: "text",
+    type: "Text",
     content: [
       { id: "Kampar", en: "Kampar" },
       { id: "Kuantan Singing", en: "Kuantan Singing" },

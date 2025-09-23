@@ -262,7 +262,7 @@ export const LPHomeHero = (props: StackProps) => {
         zIndex={2}
       >
         <CContainer className="hero_content" gap={4} align={"center"}>
-          <P fontSize={"xl"} textAlign={"center"} mt={"60px"} lineHeight={1.2}>
+          <P fontSize={"xl"} textAlign={"center"} lineHeight={1.2}>
             {l.lp_hero_subtitle}
           </P>
 

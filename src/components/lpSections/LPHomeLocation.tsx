@@ -181,7 +181,7 @@ export const LPHomeLocation = (props: StackProps) => {
         maxH={ciss ? "" : "800px"}
         bg={"light"}
         pt={"80px"}
-        pb={ciss ? 0 : "80px"}
+        mb={ciss ? 0 : "160px"}
         pos={"relative"}
         {...restProps}
       >

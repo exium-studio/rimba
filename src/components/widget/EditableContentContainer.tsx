@@ -1,6 +1,8 @@
 import { CContainer } from "@/components/ui/c-container";
+import { P } from "@/components/ui/p";
 import { Props__EditableContentContainer } from "@/constants/props";
 import useCMS from "@/context/useCMS";
+import { Center } from "@chakra-ui/react";
 
 export const EditableContentContainer = (
   props: Props__EditableContentContainer
@@ -17,19 +19,29 @@ export const EditableContentContainer = (
       id={`content_${content.id}`}
       w={"fit"}
       pos={"relative"}
-      border={"2px solid red"} //! debug
       {...restProps}
     >
       {children}
 
-      <CContainer
+      <Center
         w={"full"}
         h={"full"}
         // bg={isHighlighted ? "orange.400" : ""}
-        bg={"orange.400"} //! debug
-        opacity={0.5}
+        bg={isHighlighted ? "orange.400" : "orange.400"} //! debug
+        opacity={0.8}
         pos={"absolute"}
       />
+
+      <P
+        fontSize={"xl"}
+        fontWeight={"bold"}
+        whiteSpace={"nowrap"}
+        color={"light"}
+        pos={"absolute"}
+        top={"50%"}
+        left={"50%"}
+        transform={"translate(-50%, -50%)"}
+      >{`${content.id}`}</P>
     </CContainer>
   );
 };

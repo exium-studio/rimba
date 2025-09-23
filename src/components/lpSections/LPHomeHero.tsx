@@ -305,7 +305,7 @@ export const LPHomeHero = (props: StackProps) => {
               fontSize={"xl"}
               textAlign={"center"}
               maxW={"600px"}
-              zIndex={5}
+              // zIndex={2}
             >
               {staticContents[4].content[lang]}
             </P>

@@ -9,8 +9,12 @@ import { COLORS } from "@/constants/colors";
 import { MONTHS } from "@/constants/months";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { BarList, BarListData, Chart, useChart } from "@chakra-ui/charts";
 import { SimpleGrid, StackProps } from "@chakra-ui/react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
 import {
   CartesianGrid,
   Legend,
@@ -68,7 +72,7 @@ const AnimalsChart = (props: StackProps) => {
     </CContainer>
   );
 };
-const CompletionProgressChart = () => {
+const CompletionProgressChart = (props: StackProps) => {
   // Contexts
   const { lang } = useLang();
   const completionProgress = useContents((s) => s.completionProgress);
@@ -88,7 +92,7 @@ const CompletionProgressChart = () => {
   });
 
   return (
-    <CContainer gap={4}>
+    <CContainer gap={4} {...props}>
       <EditableContentContainer content={staticContents[47]}>
         <P fontSize={"lg"} fontWeight={"medium"}>
           {staticContents[47].content[lang]}
@@ -146,6 +150,14 @@ export const LPHomeImpact = (props: StackProps) => {
   const { lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
 
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentsRef = useRef<HTMLDivElement>(null);
+  const chartContentsRef = useRef<HTMLDivElement>(null);
+
   // States
   const statsList = [
     {
@@ -166,17 +178,73 @@ export const LPHomeImpact = (props: StackProps) => {
     },
   ];
 
+  // Animation
+  useGSAP(
+    () => {
+      gsap.from(".section_title", {
+        scrollTrigger: {
+          trigger: contentsRef.current,
+          start: "top 50%",
+          // markers: true, // debug
+        },
+        x: !iss ? "-20%" : "",
+        y: iss ? "20%" : "",
+        opacity: 0,
+        duration: 1,
+      });
+
+      gsap.from(".impact_content", {
+        scrollTrigger: {
+          trigger: contentsRef.current,
+          start: "top 50%",
+          // markers: true, // debug
+        },
+        x: !iss ? "20%" : "",
+        y: iss ? "20%" : "",
+        opacity: 0,
+        duration: 1,
+      });
+
+      gsap.from(".animals_chart", {
+        scrollTrigger: {
+          trigger: chartContentsRef.current,
+          start: "top 50%",
+          // markers: true, // debug
+        },
+        x: !iss ? "-20%" : "",
+        y: iss ? "20%" : "",
+        opacity: 0,
+        duration: 1,
+      });
+
+      gsap.from(".completion_chart", {
+        scrollTrigger: {
+          trigger: chartContentsRef.current,
+          start: "top 50%",
+          // markers: true, // debug
+        },
+        x: !iss ? "20%" : "",
+        y: iss ? "20%" : "",
+        opacity: 0,
+        duration: 1,
+      });
+    },
+    { scope: containerRef, dependencies: [iss] }
+  );
+
   return (
-    <CContainer py={"80px"} {...restProps}>
+    <CContainer ref={containerRef} py={"80px"} {...restProps}>
       <LPSectionContainer gap={"80px"}>
-        <SimpleGrid columns={[1, null, 2]} gap={8}>
+        <SimpleGrid ref={contentsRef} columns={[1, null, 2]} gap={8}>
           <CContainer>
             <EditableContentContainer content={staticContents[36]}>
-              <H2 mt={"-12px"}>{staticContents[36].content[lang]}</H2>
+              <H2 className="section_title" mt={"-12px"}>
+                {staticContents[36].content[lang]}
+              </H2>
             </EditableContentContainer>
           </CContainer>
 
-          <CContainer gap={"80px"}>
+          <CContainer className="impact_content" gap={"80px"}>
             <EditableContentContainer content={staticContents[37]}>
               <P fontSize={"lg"}>{staticContents[37].content[lang]}</P>
             </EditableContentContainer>
@@ -189,10 +257,10 @@ export const LPHomeImpact = (props: StackProps) => {
           </CContainer>
         </SimpleGrid>
 
-        <SimpleGrid columns={[1, null, 2]} gap={8}>
-          <AnimalsChart />
+        <SimpleGrid ref={chartContentsRef} columns={[1, null, 2]} gap={8}>
+          <AnimalsChart className="animals_chart" />
 
-          <CompletionProgressChart />
+          <CompletionProgressChart className="completion_chart" />
         </SimpleGrid>
       </LPSectionContainer>
     </CContainer>

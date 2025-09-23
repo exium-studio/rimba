@@ -1,3 +1,6 @@
+"use client";
+
+import { isClient } from "@/utils/client";
 import { useEffect, useState } from "react";
 
 interface Screen {
@@ -7,8 +10,8 @@ interface Screen {
 
 const useScreen = (timeout: number = 200) => {
   const [screen, setScreen] = useState<Screen>({
-    sw: window.innerWidth,
-    sh: window.innerHeight,
+    sw: isClient() ? window.innerWidth : 0,
+    sh: isClient() ? window.innerHeight : 0,
   });
 
   useEffect(() => {

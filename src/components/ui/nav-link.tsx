@@ -16,7 +16,6 @@ export const NavLink = forwardRef<HTMLDivElement, Props__NavLink>(
     function handleOnClick() {
       if (to) {
         router.push(to);
-        window.scrollTo(0, 0);
       }
     }
 

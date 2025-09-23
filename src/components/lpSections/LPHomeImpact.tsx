@@ -42,36 +42,6 @@ const StatItem = (props: any) => {
     </CContainer>
   );
 };
-const AnimalsChart = (props: StackProps) => {
-  // Contexts
-  const { lang } = useLang();
-  const animals = useContents((s) => s.animals);
-  const staticContents = useContents((s) => s.staticContents);
-
-  // States
-  const chart = useChart<BarListData>({
-    sort: { by: "value", direction: "desc" },
-    data: animals,
-    series: [{ name: "name", color: "p.subtle" }],
-  });
-
-  return (
-    <CContainer gap={4} {...props}>
-      <EditableContentContainer content={staticContents[46]}>
-        <P fontSize={"lg"} fontWeight={"medium"}>
-          {staticContents[46]?.content[lang]}
-        </P>
-      </EditableContentContainer>
-
-      <BarList.Root chart={chart}>
-        <BarList.Content>
-          <BarList.Bar />
-          <BarList.Value />
-        </BarList.Content>
-      </BarList.Root>
-    </CContainer>
-  );
-};
 const CompletionProgressChart = (props: StackProps) => {
   // Contexts
   const { lang } = useLang();
@@ -141,6 +111,36 @@ const CompletionProgressChart = (props: StackProps) => {
           ))}
         </LineChart>
       </Chart.Root>
+    </CContainer>
+  );
+};
+const AnimalsChart = (props: StackProps) => {
+  // Contexts
+  const { lang } = useLang();
+  const animals = useContents((s) => s.animals);
+  const staticContents = useContents((s) => s.staticContents);
+
+  // States
+  const chart = useChart<BarListData>({
+    sort: { by: "value", direction: "desc" },
+    data: animals,
+    series: [{ name: "name", color: "p.subtle" }],
+  });
+
+  return (
+    <CContainer gap={4} {...props}>
+      <EditableContentContainer content={staticContents[46]}>
+        <P fontSize={"lg"} fontWeight={"medium"}>
+          {staticContents[46]?.content[lang]}
+        </P>
+      </EditableContentContainer>
+
+      <BarList.Root chart={chart}>
+        <BarList.Content>
+          <BarList.Bar />
+          <BarList.Value />
+        </BarList.Content>
+      </BarList.Root>
     </CContainer>
   );
 };

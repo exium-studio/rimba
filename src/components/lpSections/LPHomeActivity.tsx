@@ -61,14 +61,16 @@ const ActivityItem = (props: any) => {
           </P>
         </CContainer>
 
-        <HStack justify={"end"} p={4} mt={"auto"}>
+        <HStack justify={"end"} p={3} mt={"auto"}>
           <Btn
             colorPalette={"p"}
-            variant={"plain"}
-            size={"md"}
-            rounded={"3xl"}
             color={"p.300"}
+            variant={"ghost"}
+            size={"md"}
             pr={3}
+            _hover={{
+              bg: "blackAlpha.300",
+            }}
           >
             {l.learn_more}
 

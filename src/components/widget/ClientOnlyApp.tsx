@@ -17,21 +17,26 @@ interface Props {
 }
 
 export default function ClientOnlyApp({ children }: Props) {
+  // Contexts
   const { setColorMode } = useColorMode();
   const ADM = useADM((s) => s.ADM);
 
+  // Hooks
   useFirefoxPaddingY();
   useOfflineAlert({ mounted: true });
 
+  // Utils
   function updateDarkMode() {
     const hour = new Date().getHours();
     setColorMode(hour >= 18 || hour < 6 ? "dark" : "light");
   }
 
+  // force light theme
   useEffect(() => {
-    setColorMode("light"); // force light on first load
+    setColorMode("light");
   }, []);
 
+  // handle ADM
   useEffect(() => {
     if (ADM) {
       updateDarkMode();

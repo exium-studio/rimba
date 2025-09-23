@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["@chakra-ui/react"],
   },
   images: {
+    qualities: [75, 80, 90, 100],
     remotePatterns: [
       {
         protocol: "https",

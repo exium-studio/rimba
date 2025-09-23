@@ -1,5 +1,12 @@
 import { Interface__NavItem } from "@/constants/interfaces";
 import { NAVS, OTHER_NAVS } from "@/constants/navs";
+import { isClient } from "@/utils/client";
+
+export function openWindow(url: string) {
+  if (isClient()) {
+    window.open(url, "_blank");
+  }
+}
 
 export function generateWAUrl(phone: string, message: string = ""): void {
   const sanitizedPhone = phone.trim().replace(/[^0-9]/g, "");
@@ -7,8 +14,7 @@ export function generateWAUrl(phone: string, message: string = ""): void {
   const url = `https://wa.me/${sanitizedPhone}${
     message ? `?text=${encodeURIComponent(message)}` : ""
   }`;
-  window.open(url, "_blank");
-  window.open(url, "_blank");
+  openWindow(url);
 }
 
 export function getActiveNavs(

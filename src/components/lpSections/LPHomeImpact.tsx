@@ -78,10 +78,13 @@ const CompletionProgressChart = (props: StackProps) => {
   const completionProgress = useContents((s) => s.completionProgress);
   const staticContents = useContents((s) => s.staticContents);
 
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
   // States
   const chart = useChart({
     data: completionProgress.map((progress: any, idx: number) => {
-      return { ...progress, month: MONTHS[lang][idx] };
+      return { ...progress, month: MONTHS[lang][idx].slice(0, iss ? 2 : 3) };
     }),
     series: Object.keys(completionProgress[0]).map((key, idx) => {
       return {
@@ -99,7 +102,7 @@ const CompletionProgressChart = (props: StackProps) => {
         </P>
       </EditableContentContainer>
 
-      <Chart.Root maxH="sm" chart={chart}>
+      <Chart.Root maxH="sm" chart={chart} ml={"-24px"}>
         <LineChart data={chart.data}>
           <CartesianGrid stroke={chart.color("border")} vertical={false} />
           <XAxis

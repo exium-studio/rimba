@@ -108,7 +108,7 @@ export const LPHomeActivity = (props: StackProps) => {
       gsap.from(".section_title", {
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 50%",
+          start: "top 80%",
           // markers: true, // debug
         },
         y: "100%",

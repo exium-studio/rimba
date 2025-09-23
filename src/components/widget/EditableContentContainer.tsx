@@ -26,22 +26,24 @@ export const EditableContentContainer = (
       <Center
         w={"full"}
         h={"full"}
-        // bg={isHighlighted ? "orange.400" : ""}
-        bg={isHighlighted ? "orange.400" : "orange.400"} //! debug
+        bg={isHighlighted ? "orange.400" : ""}
+        // bg={isHighlighted ? "orange.400" : "orange.400"} //! debug
         opacity={0.8}
         pos={"absolute"}
       />
 
-      <P
-        fontSize={"xl"}
-        fontWeight={"bold"}
-        whiteSpace={"nowrap"}
-        color={"light"}
-        pos={"absolute"}
-        top={"50%"}
-        left={"50%"}
-        transform={"translate(-50%, -50%)"}
-      >{`${content.id}`}</P>
+      {isHighlighted && (
+        <P
+          fontSize={"xl"}
+          fontWeight={"bold"}
+          whiteSpace={"nowrap"}
+          color={"light"}
+          pos={"absolute"}
+          top={"50%"}
+          left={"50%"}
+          transform={"translate(-50%, -50%)"}
+        >{`${content.id}`}</P>
+      )}
     </CContainer>
   );
 };

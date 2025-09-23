@@ -1,7 +1,4 @@
 export const COLORS: string[] = [
-  "#63B3ED",
-  "#3182CE",
-  "#5A67D8",
   "#7DDFA3",
   "#22c55e",
   "#F6E05E",
@@ -10,6 +7,9 @@ export const COLORS: string[] = [
   "#F687B3",
   "#D6BCFA",
   "#9F7AEA",
+  "#63B3ED",
+  "#3182CE",
+  "#5A67D8",
   "#D53F8C",
   "#E53E3E",
 ];

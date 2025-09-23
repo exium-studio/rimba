@@ -156,12 +156,14 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       ref={containerRef}
       pt={"100px"}
       pb={0}
-      bg={"p.900"}
-      bgImage={`url(${IMAGES_PATH}/lp/home/strategy-value-bg.png)`}
       bgPos={"top"}
       bgSize={"cover"}
       color={"light"}
       mt={"-1px"}
+      wrapperProps={{
+        bg: "p.900",
+        bgImage: `url(${IMAGES_PATH}/lp/home/strategy-value-bg.png)`,
+      }}
       {...restProps}
     >
       <EditableContentContainer content={staticContents[15]} mx={"auto"}>
@@ -188,6 +190,8 @@ export const LPHomeStrategyValue = (props: StackProps) => {
           <CContainer
             className={"strategy_value_content_1"}
             flex={"0 1 330px"}
+            maxW={"330px"}
+            mx={["auto", null, 0]}
             h={"580px"}
             overflow={"clip"}
             aspectRatio={1 / 2}
@@ -209,10 +213,10 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             <CContainer
               flex={1}
               p={3}
+              bg={"light"}
               bgSize={"cover"}
               rounded={"60px"}
               aspectRatio={1 / 2}
-              bg={"light"}
             >
               <CContainer flex={1} overflow={"clip"} p={3} mt={"64px"}>
                 <CContainer
@@ -263,9 +267,8 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             className="strategy_value_content_2"
             flex={"0 1 450px"}
             gap={8}
-            pb={["80px", null, 0]}
             minH={"full"}
-            justify={"center"}
+            justify={["", null, "center"]}
             zIndex={2}
           >
             <CContainer gap={6} zIndex={2}>

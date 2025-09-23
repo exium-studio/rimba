@@ -149,7 +149,7 @@ export const staticContents = {
   28: {
     id: 28,
     type: "Text",
-    content: { id: "3.8 Juta Ha", en: "3.8 Million Ha" },
+    content: { id: "3.8 Juta ha", en: "3.8 Million ha" },
   },
   29: {
     id: 29,
@@ -193,6 +193,102 @@ export const staticContents = {
       { id: "Indagri Hilir", en: "Indagri Hilir" },
     ],
   },
+  36: {
+    id: 34,
+    type: "Text",
+    content: {
+      id: "Dampak Program Koridor RIMBA",
+      en: "RIMBA Corridor Program Impact",
+    },
+  },
+  37: {
+    id: 34,
+    type: "Text",
+    content: {
+      id: "Melindungi 3,8 juta hektar bentang alam di Riau, Jambi, dan Sumatera Barat, menjadi koridor Gajah, Harimau, dan berbagai jenis burung, sekaligus menjaga fungsi ekosistem penting.",
+      en: "Protecting 3.8 million hectares of nature in Riau, Jambi, and Sumatra Barat, becoming a corridor for elephants, tigers, and various bird species, while preserving important ecosystem functions.",
+    },
+  },
+  38: {
+    id: 34,
+    type: "Text",
+    content: {
+      id: "50+",
+      en: "50+",
+    },
+  },
+  39: {
+    id: 34,
+    type: "Text",
+    content: {
+      id: "Desa & komunitas lokal terlibat dalam proyek konservasi",
+      en: "Villages and local communities involved in conservation projects",
+    },
+  },
+  40: {
+    id: 34,
+    type: "Text",
+    content: {
+      id: "15,000+ ha",
+      en: "15,000+ ha",
+    },
+  },
+  41: {
+    id: 34,
+    type: "Text",
+    content: {
+      id: "Hutan primer & sekunder direhabilitasi, meningkatkan kualitas ekosistem",
+      en: "Primary and secondary forests are rehabilitated, enhancing ecosystem quality",
+    },
+  },
+  42: {
+    id: 34,
+    type: "Text",
+    content: {
+      id: "500+",
+      en: "500+",
+    },
+  },
+  43: {
+    id: 34,
+    type: "Text",
+    content: {
+      id: "Satwa liar dipantau & dilindungi (Gajah, Harimau, Burung, dll.)",
+      en: "Wildlife is monitored and protected (elephants, tigers, birds, etc.)",
+    },
+  },
+  44: {
+    id: 34,
+    type: "Text",
+    content: {
+      id: "1200+",
+      en: "1200+",
+    },
+  },
+  45: {
+    id: 34,
+    type: "Text",
+    content: {
+      id: "Individu mendapatkan manfaat langsung dari program pemberdayaan masyarakat",
+      en: "Individuals receive direct benefits from the community empowerment program",
+    },
+  },
+  46: {
+    id: 34,
+    type: "Text",
+    content: {
+      id: "Komposisi Satwa",
+      en: "Species Composition",
+    },
+  },
+  47: {
+    id: 34,
+    type: "Text",
+    content: {
+      id: "Persentase Penyelesaian Program RIMBA",
+      en: "RIMBA Program Completion Percentage",
+    },
+  },
 };
 
 export const activities = [
@@ -235,4 +331,26 @@ export const activities = [
     },
     createdAt: "2025-01-15T08:30:00.000Z",
   },
+];
+
+export const animals = [
+  { name: "Gajah", value: 150, percentage: 30 },
+  { name: "Harimau", value: 100, percentage: 20 },
+  { name: "Burung", value: 200, percentage: 40 },
+  { name: "Lainnya", value: 50, percentage: 10 },
+];
+
+export const completionProgress = [
+  { "2023": 5, "2024": 3, "2025": 2 }, // Jan
+  { "2023": 12, "2024": 8, "2025": 7 },
+  { "2023": 20, "2024": 15, "2025": 14 },
+  { "2023": 28, "2024": 23, "2025": 22 },
+  { "2023": 36, "2024": 31, "2025": 30 },
+  { "2023": 45, "2024": 40, "2025": 38 },
+  { "2023": 53, "2024": 48, "2025": 46 },
+  { "2023": 61, "2024": 56, "2025": 54 },
+  { "2023": 70, "2024": 63, "2025": 62 },
+  { "2023": 78, "2024": 71, "2025": null },
+  { "2023": 85, "2024": 79, "2025": null },
+  { "2023": 92, "2024": 87, "2025": null }, // Des
 ];

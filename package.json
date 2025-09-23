@@ -12,6 +12,7 @@
     "s": "node src/scripts/generate-sitemap.js"
   },
   "dependencies": {
+    "@chakra-ui/charts": "^3.27.0",
     "@chakra-ui/react": "^3.25.0",
     "@ducanh2912/next-pwa": "^10.2.9",
     "@emotion/react": "^11.14.0",
@@ -33,6 +34,7 @@
     "react-dom": "19.1.0",
     "react-icons": "^5.5.0",
     "react-virtualized": "^9.22.6",
+    "recharts": "^3.2.1",
     "yup": "^1.7.0",
     "zustand": "^5.0.8"
   },

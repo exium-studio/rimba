@@ -256,15 +256,13 @@ export const LPHomeLocation = (props: StackProps) => {
         {/* Location list */}
         {!ciss && (
           <LPSectionContainer
+            flex={1}
             h={"70vh"}
             maxH={"600px"}
             pos={"absolute"}
             top={"calc(50% + 64px)"}
             left={"50%"}
             transform={"translate(-50%, -50%)"}
-            wrapperProps={{
-              flex: 1,
-            }}
             zIndex={2}
           >
             <HStack
@@ -368,12 +366,13 @@ export const LPHomeLocation = (props: StackProps) => {
 
       {ciss && (
         <LPSectionContainer zIndex={2} pb={"80px"}>
-          <CContainer gap={8}>
+          <CContainer>
             <LocationListItem
               provinceContent={staticContents[30]}
               locationListContent={staticContents[31]}
               number={1}
               legendColor={"p.500"}
+              w={"full"}
             />
 
             <LocationListItem
@@ -381,6 +380,7 @@ export const LPHomeLocation = (props: StackProps) => {
               locationListContent={staticContents[33]}
               number={2}
               legendColor={"p.400"}
+              w={"full"}
             />
 
             <LocationListItem
@@ -388,6 +388,7 @@ export const LPHomeLocation = (props: StackProps) => {
               locationListContent={staticContents[35]}
               number={3}
               legendColor={"p.300"}
+              w={"full"}
             />
           </CContainer>
         </LPSectionContainer>

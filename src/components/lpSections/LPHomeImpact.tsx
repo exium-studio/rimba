@@ -261,9 +261,9 @@ export const LPHomeImpact = (props: StackProps) => {
         </SimpleGrid>
 
         <SimpleGrid ref={chartContentsRef} columns={[1, null, 2]} gap={8}>
-          <AnimalsChart className="animals_chart" />
-
           <CompletionProgressChart className="completion_chart" />
+
+          <AnimalsChart className="animals_chart" />
         </SimpleGrid>
       </LPSectionContainer>
     </CContainer>

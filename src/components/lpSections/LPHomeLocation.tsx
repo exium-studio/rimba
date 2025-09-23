@@ -138,10 +138,10 @@ export const LPHomeLocation = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
-          end: "bottom 90%",
+          end: "bottom 65%",
           scrub: true,
         },
-        y: "150px",
+        y: "15%",
         ease: "none",
       });
 
@@ -182,7 +182,7 @@ export const LPHomeLocation = (props: StackProps) => {
         bg={"light"}
         pt={"80px"}
         pb={ciss ? "" : "80px"}
-        mb={ciss ? 0 : "160px"}
+        mb={ciss ? 0 : "80px"}
         pos={"relative"}
         {...restProps}
       >

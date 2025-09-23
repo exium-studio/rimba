@@ -4,6 +4,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
+import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { SVGS_PATH } from "@/constants/paths";
@@ -16,24 +17,13 @@ import { IconMapPin2, IconWorld } from "@tabler/icons-react";
 import gsap from "gsap";
 import { useRef } from "react";
 
-const LOCATION_list_LIST = [
-  {
-    province: "Riau",
-    list: ["Kampar", "Kuantan Singing", "Indagri Hulu", "Indagri Hilir"],
-  },
-  {
-    province: "Sumatra Barat",
-    list: ["Kampar", "Kuantan Singing", "Indagri Hulu", "Indagri Hilir"],
-  },
-  {
-    province: "Jambi",
-    list: ["Kampar", "Kuantan Singing", "Indagri Hulu", "Indagri Hilir"],
-  },
-];
-
 const MapInfo = (props: StackProps) => {
   // Props
   const { ...restProps } = props;
+
+  // Contexts
+  const { lang } = useLang();
+  const staticContents = useContents((s) => s.staticContents);
 
   return (
     <CContainer w={"fit"} gap={4} {...restProps}>
@@ -44,9 +34,11 @@ const MapInfo = (props: StackProps) => {
 
         <CContainer>
           <P>Luas Kawasan</P>
-          <P fontSize={"lg"} fontWeight={"semibold"}>
-            3.8 Juta Ha
-          </P>
+          <EditableContentContainer content={staticContents[28]}>
+            <P fontSize={"lg"} fontWeight={"semibold"}>
+              {staticContents[28].content[lang]}
+            </P>
+          </EditableContentContainer>
         </CContainer>
       </HStack>
 
@@ -57,9 +49,11 @@ const MapInfo = (props: StackProps) => {
 
         <CContainer>
           <P>Kawasan Lindung</P>
-          <P fontSize={"lg"} fontWeight={"semibold"}>
-            9 Area Unit Pengelolaan
-          </P>
+          <EditableContentContainer content={staticContents[29]}>
+            <P fontSize={"lg"} fontWeight={"semibold"}>
+              {staticContents[29].content[lang]}
+            </P>
+          </EditableContentContainer>
         </CContainer>
       </HStack>
     </CContainer>
@@ -67,40 +61,71 @@ const MapInfo = (props: StackProps) => {
 };
 const LocationListItem = (props: any) => {
   // Props
-  const { ciss, location, number, legendColor, ...restProps } = props;
+  const {
+    ciss,
+    number,
+    legendColor,
+    provinceContent,
+    locationListContent,
+    ...restProps
+  } = props;
+
+  // Contexts
+  const { lang } = useLang();
+
+  // States
+  const province = provinceContent.content[lang];
+  const locationList = locationListContent.content.map(
+    (location: any) => location[lang]
+  );
 
   return (
     <CContainer
-      className={`location-list ${ciss ? "" : "ss"}`}
-      p={3}
-      pl={2}
+      className={`location-list ${ciss ? "" : "ss"} `}
+      w={"240px"}
+      maxH={"240px"}
       bg={"light"}
+      py={3}
       rounded={"xl"}
-      minW={"240px"}
       border={"1px solid"}
       borderColor={ciss ? "border.muted" : "d1"}
+      overflowY={"auto"}
       pos={"relative"}
       {...restProps}
     >
-      <HStack align={"stretch"} gap={4}>
-        <Box flexShrink={0} w={"4px"} bg={legendColor} rounded={"full"} />
+      <HStack flex={1} align={"stretch"} gap={4} overflowY={"auto"}>
+        <Box
+          flexShrink={0}
+          w={"4px"}
+          bg={legendColor}
+          rounded={"full"}
+          ml={2}
+        />
 
-        <CContainer>
-          <P fontSize={"lg"} fontWeight={"medium"}>
-            {location.province}
-          </P>
+        <CContainer overflowY={"auto"}>
+          <EditableContentContainer content={provinceContent}>
+            <P fontSize={"lg"} fontWeight={"semibold"} color={"p.700"}>
+              {province}
+            </P>
+          </EditableContentContainer>
 
-          <CContainer mt={2} gap={1}>
-            {location.list.map((item: string, idx: number) => {
-              return (
-                <HStack key={`${idx}-${item}`}>
-                  <DotIndicator ml={0} color={"dark"} />
+          <EditableContentContainer
+            className="scrollY"
+            content={locationListContent}
+            mt={2}
+          >
+            <CContainer gap={1} pr={2}>
+              {locationList?.map((location: string, idx: number) => {
+                return (
+                  <HStack key={`${idx}-${location}`} align={"start"}>
+                    <DotIndicator color={"fg.subtle"} ml={0} mt={"7px"} />
 
-                  <P>{item}</P>
-                </HStack>
-              );
-            })}
-          </CContainer>
+                    <P>{location}</P>
+                  </HStack>
+                );
+              })}
+            </CContainer>
+          </EditableContentContainer>
         </CContainer>
       </HStack>
 
@@ -187,14 +212,20 @@ export const LPHomeLocation = (props: StackProps) => {
         {...restProps}
       >
         <LPSectionContainer flex={1}>
-          <H2
-            className="section_title"
-            fontWeight={"bold"}
-            color={"p.700"}
-            textAlign={"center"}
+          <EditableContentContainer
+            content={staticContents[27]}
+            w={"fit"}
+            mx={"auto"}
           >
-            {staticContents[27].content[lang]}
-          </H2>
+            <H2
+              className="section_title"
+              fontWeight={"bold"}
+              color={"p.700"}
+              textAlign={"center"}
+            >
+              {staticContents[27].content[lang]}
+            </H2>
+          </EditableContentContainer>
 
           <CContainer
             h={ciss ? "700px" : "800px"}
@@ -251,14 +282,16 @@ export const LPHomeLocation = (props: StackProps) => {
               >
                 <LocationListItem
                   ciss={ciss}
-                  location={LOCATION_list_LIST[0]}
+                  provinceContent={staticContents[30]}
+                  locationListContent={staticContents[31]}
                   number={1}
                   legendColor={"p.500"}
                 />
 
                 <LocationListItem
                   ciss={ciss}
-                  location={LOCATION_list_LIST[1]}
+                  provinceContent={staticContents[32]}
+                  locationListContent={staticContents[33]}
                   number={2}
                   legendColor={"p.400"}
                 />
@@ -267,7 +300,8 @@ export const LPHomeLocation = (props: StackProps) => {
               <CContainer w={"fit"} justify={"center"}>
                 <LocationListItem
                   ciss={ciss}
-                  location={LOCATION_list_LIST[2]}
+                  provinceContent={staticContents[34]}
+                  locationListContent={staticContents[35]}
                   number={3}
                   legendColor={"p.300"}
                 />
@@ -336,19 +370,22 @@ export const LPHomeLocation = (props: StackProps) => {
         <LPSectionContainer zIndex={2} pb={"80px"}>
           <CContainer gap={8}>
             <LocationListItem
-              location={LOCATION_list_LIST[0]}
+              provinceContent={staticContents[30]}
+              locationListContent={staticContents[31]}
               number={1}
               legendColor={"p.500"}
             />
 
             <LocationListItem
-              location={LOCATION_list_LIST[1]}
+              provinceContent={staticContents[32]}
+              locationListContent={staticContents[33]}
               number={2}
               legendColor={"p.400"}
             />
 
             <LocationListItem
-              location={LOCATION_list_LIST[2]}
+              provinceContent={staticContents[34]}
+              locationListContent={staticContents[35]}
               number={3}
               legendColor={"p.300"}
             />

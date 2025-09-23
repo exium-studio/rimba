@@ -1,5 +1,6 @@
 import { BtnProps } from "@/components/ui/btn";
 import {
+  Interface__Content,
   Interface__FormattedTableData,
   Interface__FormattedTableHeader,
   Interface__SelectOption,
@@ -27,6 +28,11 @@ import {
   Type__Period,
 } from "./types";
 import { ImageProps } from "next/image";
+
+export interface Props__EditableContentContainer
+  extends Omit<StackProps, "content"> {
+  content: Interface__Content;
+}
 
 export interface Props__LangMenu extends BtnProps {
   menuContentProps?: MenuContentProps;

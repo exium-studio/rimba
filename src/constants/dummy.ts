@@ -2,136 +2,199 @@ import { IMAGES_PATH, SVGS_PATH } from "@/constants/paths";
 
 export const staticContents = {
   1: {
-    contentType: "text",
+    id: 1,
+    type: "text",
     content: {
       id: "Program Koridor Ekosistem",
       en: "Ecosystem Corridor Program",
     },
   },
   2: {
-    contentType: "text",
+    id: 2,
+    type: "text",
     content: {
       id: `${SVGS_PATH}/rimba_letter_art_light.svg`,
       en: `${SVGS_PATH}/rimba_letter_art_light.svg`,
     },
   },
   3: {
-    contentType: "text",
+    id: 3,
+    type: "text",
     content: {
       id: "Mewujudkan ekonomi hijau di koridor ekosisstem Riau, Jambi dan Sumatera Barat",
       en: "Creating a green economy in the Riau, Jambi, and Sumatera Barat Ecosystem Corridor",
     },
   },
   4: {
-    contentType: "text",
+    id: 4,
+    type: "text",
     content: {
       id: "Merupakan kawasan yang berfungsi lindung di bentang alam Riau, Jambi, dan Sumatera Barat (RIMBA). Kawasan seluas 3,8 juta hektar ini dikelola melalui mempertahankan, melestarikan, dan meningkatkan fungsi koridor ekosistem yang menghubungkan sembilan kawasan lindung. Kawasan ini berfungsi sebagai koridor satwa Gajah, Harimau, dan beragam jenis burung.",
       en: "This protected area spans the Riau, Jambi, and West Sumatra (RIMBA) landscape. This 3.8 million-hectare area is managed by maintaining, preserving, and enhancing the ecosystem corridors connecting nine protected areas. These areas serve as habitats for elephants, tigers, and various bird species.",
     },
   },
-  5: { contentType: "image", content: `${IMAGES_PATH}/default-gallery/1.jpg` },
-  6: { contentType: "image", content: `${IMAGES_PATH}/default-gallery/2.jpg` },
-  7: { contentType: "image", content: `${IMAGES_PATH}/default-gallery/3.jpg` },
-  8: { contentType: "image", content: `${IMAGES_PATH}/default-gallery/4.jpg` },
-  9: { contentType: "image", content: `${IMAGES_PATH}/default-gallery/5.jpg` },
-  10: { contentType: "image", content: `${IMAGES_PATH}/default-gallery/6.jpg` },
-  11: { contentType: "image", content: `${IMAGES_PATH}/default-gallery/7.jpg` },
-  12: { contentType: "image", content: `${IMAGES_PATH}/default-gallery/8.jpg` },
-  13: { contentType: "image", content: `${IMAGES_PATH}/default-gallery/9.jpg` },
+  5: { id: 5, type: "image", content: `${IMAGES_PATH}/default-gallery/1.jpg` },
+  6: { id: 6, type: "image", content: `${IMAGES_PATH}/default-gallery/2.jpg` },
+  7: { id: 7, type: "image", content: `${IMAGES_PATH}/default-gallery/3.jpg` },
+  8: { id: 8, type: "image", content: `${IMAGES_PATH}/default-gallery/4.jpg` },
+  9: { id: 9, type: "image", content: `${IMAGES_PATH}/default-gallery/5.jpg` },
+  10: {
+    id: 10,
+    type: "image",
+    content: `${IMAGES_PATH}/default-gallery/6.jpg`,
+  },
+  11: {
+    id: 11,
+    type: "image",
+    content: `${IMAGES_PATH}/default-gallery/7.jpg`,
+  },
+  12: {
+    id: 12,
+    type: "image",
+    content: `${IMAGES_PATH}/default-gallery/8.jpg`,
+  },
+  13: {
+    id: 13,
+    type: "image",
+    content: `${IMAGES_PATH}/default-gallery/9.jpg`,
+  },
   14: {
-    contentType: "image",
+    id: 14,
+    type: "image",
     content: `${IMAGES_PATH}/default-gallery/10.jpg`,
   },
   15: {
-    contentType: "text",
+    id: 15,
+    type: "text",
     content: {
       id: "Nilai Strategi Proyek RIMBA",
       en: "RIMBA Project Strategy Value",
     },
   },
   16: {
-    contentType: "text",
-    content: {
-      id: "Proyek apa ini?",
-      en: "What is this project?",
-    },
+    id: 16,
+    type: "text",
+    content: { id: "Proyek apa ini?", en: "What is this project?" },
   },
   17: {
-    contentType: "text",
+    id: 17,
+    type: "text",
     content: {
-      id: "Proyek RIMBA adalah kerjasama antara Pemerintah Indonesia dengan Global Environment Facility (GEF) melalui United Nations Environment Programme (UNEP) dengan Executing Agency Direktorat Jenderal Tata Ruang Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional (ATR/BPN).",
+      id: "Proyek RIMBA adalah kerjasama antara Pemerintah Indonesia dengan Global Environment Facility (GEF) melalui United Nations Environment Programme (UNEP) dengan Executing Agency Direktorat Jenderal Tata Ruang Kementerian ATR/BPN.",
       en: "The RIMBA project is a collaboration between the Indonesian Government and the Global Environment Facility (GEF) through the United Nations Environment Programme (UNEP) with the Executing Agency of the Directorate General of Spatial Planning, Ministry of Agrarian Affairs and Spatial Planning/National Land Agency (ATR/BPN).",
     },
   },
   18: {
-    contentType: "text",
+    id: 18,
+    type: "text",
     content: {
       id: "USD 9.053.638 atau setara dengan Rp 135.804.570.000",
       en: "USD 9.053.638 or equivalent to Rp 135.804.570.000",
     },
   },
   19: {
-    contentType: "text",
-    content: {
-      id: "Besaran Nilai Hibah",
-      en: "Grant Value",
-    },
+    id: 19,
+    type: "text",
+    content: { id: "Besaran Nilai Hibah", en: "Grant Value" },
   },
   20: {
-    contentType: "text",
+    id: 20,
+    type: "text",
     content: {
       id: "PCA/2021/4031 antara UNEP dan Kementerian ATR/BPN",
       en: "PCA/2021/4031 between UNEP and Ministry of ATR/BPN",
     },
   },
   21: {
-    contentType: "text",
+    id: 21,
+    type: "text",
     content: {
       id: "Project Cooperation Agreement (PCA)",
       en: "Project Cooperation Agreement (PCA)",
     },
   },
   22: {
-    contentType: "text",
-    content: {
-      id: "Tahun 2024 sampai 2028",
-      en: "Year 2024 to 2028",
-    },
+    id: 22,
+    type: "text",
+    content: { id: "Tahun 2024 sampai 2028", en: "Year 2024 to 2028" },
   },
   23: {
-    contentType: "text",
+    id: 23,
+    type: "text",
     content: {
       id: "Periode Implementasi Proyek",
       en: "Project Implementation Period",
     },
   },
   24: {
-    contentType: "text",
-    content: {
-      id: "Kegiatan Kami",
-      en: "Our Activities",
-    },
+    id: 24,
+    type: "text",
+    content: { id: "Kegiatan Kami", en: "Our Activities" },
   },
   25: {
-    contentType: "text",
+    id: 25,
+    type: "text",
     content: {
       id: "Meningkatkan Kualitas Hidup dan Pemberdayaan Masyarakat Melalui Inisiatif-Inisiatif Unggul dan Berkelanjutan",
       en: "Increasing Quality of Life and Community Empowerment Through Innovative and Sustainable Initiatives",
     },
   },
   26: {
-    contentType: "text",
-    content: {
-      id: "Lokasi Kami",
-      en: "Our Location",
-    },
+    id: 26,
+    type: "text",
+    content: { id: "Lokasi Kami", en: "Our Location" },
   },
   27: {
-    contentType: "text",
-    content: {
-      id: "Lokasi Kami",
-      en: "Our Location",
-    },
+    id: 27,
+    type: "text",
+    content: { id: "Lokasi Kami", en: "Our Location" },
+  },
+  28: {
+    id: 28,
+    type: "text",
+    content: { id: "3.8 Juta Ha", en: "3.8 Million Ha" },
+  },
+  29: {
+    id: 29,
+    type: "text",
+    content: { id: "9 Area Unit Pengelolaan", en: "9 Management Unit Areas" },
+  },
+  30: { id: 30, type: "text", content: { id: "Riau", en: "Riau" } },
+  31: {
+    id: 31,
+    type: "text",
+    content: [
+      { id: "Kampar", en: "Kampar" },
+      { id: "Kuantan Singing", en: "Kuantan Singing" },
+      { id: "Indagri Hulu", en: "Indagri Hulu" },
+      { id: "Indagri Hilir", en: "Indagri Hilir" },
+    ],
+  },
+  32: {
+    id: 32,
+    type: "text",
+    content: { id: "Sumatra Barat", en: "Sumatra Barat" },
+  },
+  33: {
+    id: 33,
+    type: "text",
+    content: [
+      { id: "Kampar", en: "Kampar" },
+      { id: "Kuantan Singing", en: "Kuantan Singing" },
+      { id: "Indagri Hulu", en: "Indagri Hulu" },
+      { id: "Indagri Hilir", en: "Indagri Hilir" },
+    ],
+  },
+  34: { id: 34, type: "text", content: { id: "Jambi", en: "Jambi" } },
+  35: {
+    id: 35,
+    type: "text",
+    content: [
+      { id: "Kampar", en: "Kampar" },
+      { id: "Kuantan Singing", en: "Kuantan Singing" },
+      { id: "Indagri Hulu", en: "Indagri Hulu" },
+      { id: "Indagri Hilir", en: "Indagri Hilir" },
+    ],
   },
 };
 

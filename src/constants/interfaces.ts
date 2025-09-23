@@ -16,6 +16,12 @@ import {
 } from "./types";
 import { ReactNode } from "react";
 
+export interface Interface__Content extends Interface__CUD {
+  id: number;
+  type: string;
+  content: any;
+}
+
 export interface Interface__Content {
   id: number;
   contentType?: string;

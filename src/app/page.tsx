@@ -3,6 +3,7 @@
 import { LPFooter } from "@/components/lpSections/LPFooter";
 import { LPHomeActivity } from "@/components/lpSections/LPHomeActivity";
 import { LPHomeHero } from "@/components/lpSections/LPHomeHero";
+import { LPHomeImpact } from "@/components/lpSections/LPHomeImpact";
 import { LPHomeLocation } from "@/components/lpSections/LPHomeLocation";
 import { LPHomeStrategyValue } from "@/components/lpSections/LPHomeStrategyValue";
 import { CContainer } from "@/components/ui/c-container";
@@ -21,6 +22,8 @@ const IndexRoute = () => {
         <LPHomeActivity />
 
         <LPHomeLocation />
+
+        <LPHomeImpact />
       </CContainer>
 
       <LPFooter />

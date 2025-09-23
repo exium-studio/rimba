@@ -31,10 +31,9 @@ const DocItem = (props: any) => {
 
   return (
     <CContainer
-      bg={"whiteAlpha.100"}
+      bg={"light"}
       color={"dark"}
       rounded={"3xl"}
-      backdropFilter={"blur(5px)"}
       border={"1px solid"}
       borderColor={"border.muted"}
       {...restProps}
@@ -120,24 +119,20 @@ export const LPHomeLegalDocs = (props: StackProps) => {
         gsap.from(".doc_item_1", {
           scrollTrigger: {
             trigger: mainContentsRef.current,
-            start: "top 50%",
+            start: "top 65%",
             // markers: true, // debug
           },
-          x: !iss ? "-20%" : "",
-          y: iss ? "20%" : "",
-          opacity: 0,
+          x: "70%",
           duration: 0.75,
         });
 
-        gsap.from(".doc_item_2", {
+        gsap.from(".doc_item_3", {
           scrollTrigger: {
             trigger: mainContentsRef.current,
-            start: "top 50%",
+            start: "top 65%",
             // markers: true, // debug
           },
-          x: !iss ? "20%" : "",
-          y: iss ? "20%" : "",
-          opacity: 0,
+          x: "-70%",
           duration: 0.75,
         });
       }
@@ -190,13 +185,18 @@ export const LPHomeLegalDocs = (props: StackProps) => {
 
         <SimpleGrid
           ref={mainContentsRef}
-          columns={[1, null, 2]}
+          columns={[1, null, 3]}
           gap={8}
           mt={"80px"}
         >
           {legalDocuments?.map((doc: any, idx: number) => {
             return (
-              <DocItem key={idx} doc={doc} className={`doc_item_${idx + 1}`} />
+              <DocItem
+                key={idx}
+                doc={doc}
+                className={`doc_item_${idx + 1}`}
+                zIndex={idx === 1 ? 2 : 1}
+              />
             );
           })}
         </SimpleGrid>

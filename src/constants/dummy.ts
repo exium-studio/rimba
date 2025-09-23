@@ -373,6 +373,7 @@ export const completionProgress = [
 
 export const legalDocs = [
   {
+    id: 1,
     title: {
       id: "Peraturan Presiden Republik Indonesia Nomor 13 Tahun 2012 tentang Rencana Tata Ruang Pulau Sumatera",
       en: "Presidential Decree No. 13 of 2012 on Sumatra's Spatial Plan",
@@ -396,6 +397,31 @@ export const legalDocs = [
     ],
   },
   {
+    id: 2,
+    title: {
+      id: "Permen ATR BPN Nomor 11 tahun 2023",
+      en: "Presidential Decree No. 13 of 2012 on Sumatra's Spatial Plan",
+    },
+    description: {
+      id: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
+      en: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
+    },
+    file: [
+      {
+        id: 2,
+        fileName: "peta_koridor_rimba.png",
+        filePath: "/images/rimba/peta_koridor_rimba.png",
+        fileUrl: "",
+        fileMimeType: "application/pdf",
+        fileSize: "1.1mB",
+        created_at: "2023-09-10T09:30:00Z",
+        updated_at: null,
+        deleted_at: null,
+      },
+    ],
+  },
+  {
+    id: 3,
     title: {
       id: "Permen ATR BPN Nomor 11 tahun 2023",
       en: "Presidential Decree No. 13 of 2012 on Sumatra's Spatial Plan",

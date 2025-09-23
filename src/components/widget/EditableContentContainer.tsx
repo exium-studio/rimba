@@ -17,6 +17,7 @@ export const EditableContentContainer = (
       id={`content_${content.id}`}
       w={"fit"}
       pos={"relative"}
+      border={"2px solid red"} //! debug
       {...restProps}
     >
       {children}
@@ -24,7 +25,8 @@ export const EditableContentContainer = (
       <CContainer
         w={"full"}
         h={"full"}
-        bg={isHighlighted ? "orange.400" : ""}
+        // bg={isHighlighted ? "orange.400" : ""}
+        bg={"orange.400"} //! debug
         opacity={0.5}
         pos={"absolute"}
       />

@@ -22,7 +22,7 @@ const MapInfo = (props: StackProps) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { lang } = useLang();
+  const { l, lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
 
   return (
@@ -33,7 +33,7 @@ const MapInfo = (props: StackProps) => {
         </Icon>
 
         <CContainer>
-          <P>Luas Kawasan</P>
+          <P>{l.lp_home_location_area_size}</P>
           <EditableContentContainer content={staticContents[28]}>
             <P fontSize={"lg"} fontWeight={"semibold"}>
               {staticContents[28].content[lang]}
@@ -48,7 +48,7 @@ const MapInfo = (props: StackProps) => {
         </Icon>
 
         <CContainer>
-          <P>Kawasan Lindung</P>
+          <P>{l.lp_home_location_protected_areas}</P>
           <EditableContentContainer content={staticContents[29]}>
             <P fontSize={"lg"} fontWeight={"semibold"}>
               {staticContents[29].content[lang]}

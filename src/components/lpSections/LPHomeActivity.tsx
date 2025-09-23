@@ -5,6 +5,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
+import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import FolderShape from "@/components/widget/FolderShape";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import useContents from "@/context/useContents";
@@ -178,14 +179,16 @@ export const LPHomeActivity = (props: StackProps) => {
       bg={"light"}
       {...restProps}
     >
-      <H2
-        className="section_title"
-        fontWeight={"bold"}
-        color={"p.700"}
-        textAlign={"center"}
-      >
-        {staticContents[24].content[lang]}
-      </H2>
+      <EditableContentContainer content={staticContents[24]} mx={"auto"}>
+        <H2
+          className="section_title"
+          fontWeight={"bold"}
+          color={"p.700"}
+          textAlign={"center"}
+        >
+          {staticContents[24].content[lang]}
+        </H2>
+      </EditableContentContainer>
 
       <CContainer mt={"80px"}>
         <SimpleGrid ref={mainContentsRef} columns={[1, null, 3]} gap={8}>
@@ -203,15 +206,20 @@ export const LPHomeActivity = (props: StackProps) => {
       </CContainer>
 
       <CContainer ref={bottomContentsRef}>
-        <P
-          className="bottom_content"
-          textAlign={"center"}
-          mt={"80px"}
-          maxW={"500px"}
+        <EditableContentContainer
+          content={staticContents[25]}
           mx={"auto"}
+          mt={"80px"}
         >
-          {staticContents[25].content[lang]}
-        </P>
+          <P
+            className="bottom_content"
+            textAlign={"center"}
+            maxW={"500px"}
+            mx={"auto"}
+          >
+            {staticContents[25].content[lang]}
+          </P>
+        </EditableContentContainer>
 
         <Center className="bottom_content">
           <Btn

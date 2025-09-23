@@ -180,9 +180,8 @@ const translations = {
     "description": "Sedang mengunggah file..."
   },
   "location": "Lokasi",
-  "lp_hero_brief": "Merupakan kawasan yang berfungsi lindung di bentang alam Riau, Jambi, dan Sumatera Barat (RIMBA). Kawasan seluas 3,8 juta hektar ini dikelola melalui mempertahankan, melestarikan, dan meningkatkan fungsi koridor ekosistem yang menghubungkan sembilan kawasan lindung. Kawasan ini berfungsi sebagai koridor satwa Gajah, Harimau, dan beragam jenis burung.",
-  "lp_hero_description": "Mewujudkan ekonomi hijau di koridor ekosistem Riau, Jambi dan Sumatera Barat",
-  "lp_hero_subtitle": "Program Koridor Ekosistem",
+  "lp_home_location_area_size": "Luas Kawasan",
+  "lp_home_location_protected_areas": "Kawasan Lindung",
   "lp_navs": {
     "home": "Beranda",
     "document": "Dokumen Hukum",

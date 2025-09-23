@@ -1023,15 +1023,11 @@ export const offline_route = {
 };
 
 // LP
-export const lp_hero_subtitle = {
-  id: "Program Koridor Ekosistem",
-  en: "Ecosystem Corridor Program",
+export const lp_home_location_area_size = {
+  id: "Luas Kawasan",
+  en: "Area Size",
 };
-export const lp_hero_description = {
-  id: "Mewujudkan ekonomi hijau di koridor ekosistem Riau, Jambi dan Sumatera Barat",
-  en: "Creating a green economy in the Riau, Jambi, and Sumatera Barat Ecosystem Corridor",
-};
-export const lp_hero_brief = {
-  id: "Merupakan kawasan yang berfungsi lindung di bentang alam Riau, Jambi, dan Sumatera Barat (RIMBA). Kawasan seluas 3,8 juta hektar ini dikelola melalui mempertahankan, melestarikan, dan meningkatkan fungsi koridor ekosistem yang menghubungkan sembilan kawasan lindung. Kawasan ini berfungsi sebagai koridor satwa Gajah, Harimau, dan beragam jenis burung.",
-  en: "This protected area spans the Riau, Jambi, and West Sumatra (RIMBA) landscape. This 3.8 million-hectare area is managed by maintaining, preserving, and enhancing the ecosystem corridors connecting nine protected areas. These areas serve as habitats for elephants, tigers, and various bird species.",
+export const lp_home_location_protected_areas = {
+  id: "Kawasan Lindung",
+  en: "Protected Area",
 };

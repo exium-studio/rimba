@@ -29,7 +29,7 @@ const DefaultFallback = () => {
           height={40}
           objectFit="contain"
         /> */}
-        <PartnersLogo h={"100px"} />
+        <PartnersLogo />
       </Center>
     </Center>
   );

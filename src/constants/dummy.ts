@@ -12,10 +12,7 @@ export const staticContents = {
   2: {
     id: 2,
     type: "Image",
-    content: {
-      id: `${SVGS_PATH}/rimba_letter_art_light.svg`,
-      en: `${SVGS_PATH}/rimba_letter_art_light.svg`,
-    },
+    content: `${SVGS_PATH}/rimba_letter_art_light.svg`,
   },
   3: {
     id: 3,

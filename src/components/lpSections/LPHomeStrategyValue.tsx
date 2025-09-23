@@ -6,6 +6,7 @@ import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
@@ -26,6 +27,9 @@ const ValueItem = (props: any) => {
   // Props
   const { value, ...restProps } = props;
 
+  // Contexts
+  const { lang } = useLang();
+
   return (
     <CContainer
       className="value_item ss"
@@ -40,11 +44,15 @@ const ValueItem = (props: any) => {
     >
       <HStack align={"start"} gap={6}>
         <CContainer gap={4}>
-          <P fontSize={"lg"} fontWeight={"semibold"}>
-            {value.title}
-          </P>
+          <EditableContentContainer content={value.titleContent}>
+            <P fontSize={"lg"} fontWeight={"semibold"}>
+              {value.titleContent.content[lang]}
+            </P>
+          </EditableContentContainer>
 
-          <P opacity={0.8}>{value.description}</P>
+          <EditableContentContainer content={value.descriptionContent}>
+            <P opacity={0.8}>{value.descriptionContent.content[lang]}</P>
+          </EditableContentContainer>
         </CContainer>
 
         <Circle bg={"p.500"} p={2}>
@@ -75,18 +83,18 @@ export const LPHomeStrategyValue = (props: StackProps) => {
   // States
   const values = [
     {
-      title: staticContents[18].content[lang],
-      description: staticContents[19].content[lang],
+      titleContent: staticContents[18],
+      descriptionContent: staticContents[19],
       icon: IconCoin,
     },
     {
-      title: staticContents[20].content[lang],
-      description: staticContents[21].content[lang],
+      titleContent: staticContents[20],
+      descriptionContent: staticContents[21],
       icon: IconHeartHandshake,
     },
     {
-      title: staticContents[22].content[lang],
-      description: staticContents[23].content[lang],
+      titleContent: staticContents[22],
+      descriptionContent: staticContents[23],
       icon: IconCalendar,
     },
   ];
@@ -156,14 +164,16 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       mt={"-1px"}
       {...restProps}
     >
-      <H2
-        className="section_title"
-        fontWeight={"bold"}
-        color={"p.200"}
-        textAlign={"center"}
-      >
-        {staticContents[15].content[lang]}
-      </H2>
+      <EditableContentContainer content={staticContents[15]} mx={"auto"}>
+        <H2
+          className="section_title"
+          fontWeight={"bold"}
+          color={"p.200"}
+          textAlign={"center"}
+        >
+          {staticContents[15].content[lang]}
+        </H2>
+      </EditableContentContainer>
 
       <CContainer mt={"80px"} pos={"relative"}>
         <Stack
@@ -215,13 +225,17 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                   pos={"relative"}
                 >
                   <HStack w={"full"} justify={"space-between"} p={4}>
-                    <P fontSize={"lg"} fontWeight={"medium"}>
-                      {staticContents[16].content[lang]}
-                    </P>
+                    <EditableContentContainer content={staticContents[16]}>
+                      <P fontSize={"lg"} fontWeight={"medium"}>
+                        {staticContents[16].content[lang]}
+                      </P>
+                    </EditableContentContainer>
                   </HStack>
 
                   <CContainer className="scrollY" flex={1} p={4}>
-                    <P>{staticContents[17].content[lang]}</P>
+                    <EditableContentContainer content={staticContents[17]}>
+                      <P>{staticContents[17].content[lang]}</P>
+                    </EditableContentContainer>
                   </CContainer>
 
                   <HStack justify={"end"} p={3} mt={"auto"}>
@@ -255,8 +269,8 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             zIndex={2}
           >
             <CContainer gap={6} zIndex={2}>
-              {values.map((value) => {
-                return <ValueItem key={value.title} value={value} />;
+              {values.map((value, idx) => {
+                return <ValueItem key={idx} value={value} />;
               })}
             </CContainer>
           </CContainer>

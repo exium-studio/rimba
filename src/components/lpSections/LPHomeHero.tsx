@@ -3,28 +3,29 @@
 import { CContainer } from "@/components/ui/c-container";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
+import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import { RimbaLetterArt } from "@/components/widget/RimbaLetterArt";
 import { Interface__Content } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
-import { Props__Img } from "@/constants/props";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
-import { Box, Center, HStack, StackProps } from "@chakra-ui/react";
+import { Box, HStack, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 
 const HeroH = "100vh";
 
-const GalleryImg = (props: Props__Img) => {
+const GalleryImg = (props: any) => {
   // Props
-  const { ...restProps } = props;
+  const { content, ...restProps } = props;
 
   // States
   const rotation = Math.random() * 6 - 3;
 
   return (
-    <Center
+    <EditableContentContainer
+      content={content}
       className="ss"
       h={"100%"}
       p={2}
@@ -37,10 +38,11 @@ const GalleryImg = (props: Props__Img) => {
         h={"100%"}
         aspectRatio={Math.random() < 0.5 ? 1 : 2}
         alt="nature"
+        src={content.content}
         // transform={`rotate(${rotation}deg)`}
         {...restProps}
       />
-    </Center>
+    </EditableContentContainer>
   );
 };
 const OverviewGallery = (props: StackProps) => {
@@ -83,11 +85,11 @@ const OverviewGallery = (props: StackProps) => {
           h={"full"}
           gap={0}
         >
-          {galleryTop.map((item: Interface__Content) => {
-            return <GalleryImg key={item.content} src={item.content} />;
+          {galleryTop.map((content: Interface__Content) => {
+            return <GalleryImg key={content.content} content={content} />;
           })}
-          {galleryTop.map((item: Interface__Content) => {
-            return <GalleryImg key={item.content} src={item.content} />;
+          {galleryTop.map((content: Interface__Content) => {
+            return <GalleryImg key={content.content} content={content} />;
           })}
         </HStack>
       </CContainer>
@@ -100,11 +102,11 @@ const OverviewGallery = (props: StackProps) => {
           h={"full"}
           gap={0}
         >
-          {galleryBottom.map((item: Interface__Content) => {
-            return <GalleryImg key={item.content} src={item.content} />;
+          {galleryBottom.map((content: Interface__Content) => {
+            return <GalleryImg key={content.content} content={content} />;
           })}
-          {galleryBottom.map((item: Interface__Content) => {
-            return <GalleryImg key={item.content} src={item.content} />;
+          {galleryBottom.map((content: Interface__Content) => {
+            return <GalleryImg key={content.content} content={content} />;
           })}
         </HStack>
       </CContainer>
@@ -117,7 +119,8 @@ export const LPHomeHero = (props: StackProps) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { lang } = useLang();
+  const staticContents = useContents((s) => s.staticContents);
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -262,11 +265,20 @@ export const LPHomeHero = (props: StackProps) => {
         zIndex={2}
       >
         <CContainer className="hero_content" gap={4} align={"center"}>
-          <P fontSize={"xl"} textAlign={"center"} lineHeight={1.2}>
-            {l.lp_hero_subtitle}
-          </P>
+          <EditableContentContainer content={staticContents[1]}>
+            <P fontSize={"xl"} textAlign={"center"} lineHeight={1.2}>
+              {staticContents[1].content[lang]}
+            </P>
+          </EditableContentContainer>
 
-          <RimbaLetterArt h={"auto"} w={"full"} maxW={"320px"} />
+          <EditableContentContainer
+            content={staticContents[2]}
+            h={"auto"}
+            w={"full"}
+            maxW={"320px"}
+          >
+            <RimbaLetterArt src={staticContents[2].content} />
+          </EditableContentContainer>
         </CContainer>
       </CContainer>
 
@@ -287,15 +299,17 @@ export const LPHomeHero = (props: StackProps) => {
           pos={"relative"}
           justify={"center"}
         >
-          <P
-            className="hero_brief"
-            fontSize={"xl"}
-            textAlign={"center"}
-            maxW={"600px"}
-            zIndex={5}
-          >
-            {l.lp_hero_brief}
-          </P>
+          <EditableContentContainer content={staticContents[4]}>
+            <P
+              className="hero_brief"
+              fontSize={"xl"}
+              textAlign={"center"}
+              maxW={"600px"}
+              zIndex={5}
+            >
+              {staticContents[4].content[lang]}
+            </P>
+          </EditableContentContainer>
 
           <Box
             className="hero_brief_line"
@@ -321,9 +335,11 @@ export const LPHomeHero = (props: StackProps) => {
       />
 
       <CContainer className="hero_content" p={4} align={"center"} zIndex={5}>
-        <P maxW={"320px"} color={"light"} textAlign={"center"} opacity={0.6}>
-          {l.lp_hero_description}
-        </P>
+        <EditableContentContainer content={staticContents[3]}>
+          <P maxW={"320px"} color={"light"} textAlign={"center"} opacity={0.6}>
+            {staticContents[3].content[lang]}
+          </P>
+        </EditableContentContainer>
       </CContainer>
 
       <OverviewGallery zIndex={6} />

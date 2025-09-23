@@ -46,12 +46,12 @@ const ValueItem = (props: any) => {
         <CContainer gap={4}>
           <EditableContentContainer content={value.titleContent}>
             <P fontSize={"lg"} fontWeight={"semibold"}>
-              {value.titleContent.content[lang]}
+              {value.titleContent?.content[lang]}
             </P>
           </EditableContentContainer>
 
           <EditableContentContainer content={value.descriptionContent}>
-            <P opacity={0.8}>{value.descriptionContent.content[lang]}</P>
+            <P opacity={0.8}>{value.descriptionContent?.content[lang]}</P>
           </EditableContentContainer>
         </CContainer>
 
@@ -173,7 +173,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
           color={"p.200"}
           textAlign={"center"}
         >
-          {staticContents[15].content[lang]}
+          {staticContents[15]?.content[lang]}
         </H2>
       </EditableContentContainer>
 
@@ -231,14 +231,14 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                   <HStack w={"full"} justify={"space-between"} p={4}>
                     <EditableContentContainer content={staticContents[16]}>
                       <P fontSize={"lg"} fontWeight={"medium"}>
-                        {staticContents[16].content[lang]}
+                        {staticContents[16]?.content[lang]}
                       </P>
                     </EditableContentContainer>
                   </HStack>
 
                   <CContainer className="scrollY" flex={1} p={4}>
                     <EditableContentContainer content={staticContents[17]}>
-                      <P>{staticContents[17].content[lang]}</P>
+                      <P>{staticContents[17]?.content[lang]}</P>
                     </EditableContentContainer>
                   </CContainer>
 

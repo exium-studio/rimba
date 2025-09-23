@@ -36,7 +36,7 @@ const MapInfo = (props: StackProps) => {
           <P>{l.lp_home_location_area_size}</P>
           <EditableContentContainer content={staticContents[28]}>
             <P fontSize={"lg"} fontWeight={"semibold"}>
-              {staticContents[28].content[lang]}
+              {staticContents[28]?.content[lang]}
             </P>
           </EditableContentContainer>
         </CContainer>
@@ -51,7 +51,7 @@ const MapInfo = (props: StackProps) => {
           <P>{l.lp_home_location_protected_areas}</P>
           <EditableContentContainer content={staticContents[29]}>
             <P fontSize={"lg"} fontWeight={"semibold"}>
-              {staticContents[29].content[lang]}
+              {staticContents[29]?.content[lang]}
             </P>
           </EditableContentContainer>
         </CContainer>
@@ -74,8 +74,8 @@ const LocationListItem = (props: any) => {
   const { lang } = useLang();
 
   // States
-  const province = provinceContent.content[lang];
-  const locationList = locationListContent.content.map(
+  const province = provinceContent?.content[lang];
+  const locationList = locationListContent?.content.map(
     (location: any) => location[lang]
   );
 
@@ -223,7 +223,7 @@ export const LPHomeLocation = (props: StackProps) => {
               color={"p.700"}
               textAlign={"center"}
             >
-              {staticContents[27].content[lang]}
+              {staticContents[27]?.content[lang]}
             </H2>
           </EditableContentContainer>
 

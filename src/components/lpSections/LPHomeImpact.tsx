@@ -35,10 +35,10 @@ const StatItem = (props: any) => {
   return (
     <CContainer gap={4} {...restProps}>
       <P fontSize={"4xl"} fontWeight={"medium"}>
-        {stats.statContent.content[lang]}
+        {stats.statContent?.content[lang]}
       </P>
 
-      <P color={"fg.subtle"}>{stats.descriptionContent.content[lang]}</P>
+      <P color={"fg.subtle"}>{stats.descriptionContent?.content[lang]}</P>
     </CContainer>
   );
 };
@@ -59,7 +59,7 @@ const AnimalsChart = (props: StackProps) => {
     <CContainer gap={4} {...props}>
       <EditableContentContainer content={staticContents[46]}>
         <P fontSize={"lg"} fontWeight={"medium"}>
-          {staticContents[46].content[lang]}
+          {staticContents[46]?.content[lang]}
         </P>
       </EditableContentContainer>
 
@@ -98,7 +98,7 @@ const CompletionProgressChart = (props: StackProps) => {
     <CContainer gap={4} {...props}>
       <EditableContentContainer content={staticContents[47]}>
         <P fontSize={"lg"} fontWeight={"medium"}>
-          {staticContents[47].content[lang]}
+          {staticContents[47]?.content[lang]}
         </P>
       </EditableContentContainer>
 
@@ -158,7 +158,7 @@ export const LPHomeImpact = (props: StackProps) => {
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
-  const contentsRef = useRef<HTMLDivElement>(null);
+  const mainContentsRef = useRef<HTMLDivElement>(null);
   const chartContentsRef = useRef<HTMLDivElement>(null);
 
   // States
@@ -186,7 +186,7 @@ export const LPHomeImpact = (props: StackProps) => {
     () => {
       gsap.from(".section_title", {
         scrollTrigger: {
-          trigger: contentsRef.current,
+          trigger: mainContentsRef.current,
           start: "top 50%",
           // markers: true, // debug
         },
@@ -198,7 +198,7 @@ export const LPHomeImpact = (props: StackProps) => {
 
       gsap.from(".impact_content", {
         scrollTrigger: {
-          trigger: contentsRef.current,
+          trigger: mainContentsRef.current,
           start: "top 50%",
           // markers: true, // debug
         },
@@ -208,7 +208,7 @@ export const LPHomeImpact = (props: StackProps) => {
         duration: 1,
       });
 
-      gsap.from(".animals_chart", {
+      gsap.from(".completion_chart", {
         scrollTrigger: {
           trigger: chartContentsRef.current,
           start: "top 50%",
@@ -220,7 +220,7 @@ export const LPHomeImpact = (props: StackProps) => {
         duration: 1,
       });
 
-      gsap.from(".completion_chart", {
+      gsap.from(".animals_chart", {
         scrollTrigger: {
           trigger: chartContentsRef.current,
           start: "top 50%",
@@ -238,18 +238,23 @@ export const LPHomeImpact = (props: StackProps) => {
   return (
     <CContainer ref={containerRef} py={"80px"} {...restProps}>
       <LPSectionContainer gap={"80px"}>
-        <SimpleGrid ref={contentsRef} columns={[1, null, 2]} gap={8}>
+        <SimpleGrid ref={mainContentsRef} columns={[1, null, 2]} gap={8}>
           <CContainer>
             <EditableContentContainer content={staticContents[36]}>
-              <H2 className="section_title" color={"p.700"} mt={"-12px"}>
-                {staticContents[36].content[lang]}
+              <H2
+                className="section_title"
+                fontWeight={"bold"}
+                color={"p.700"}
+                mt={"-12px"}
+              >
+                {staticContents[36]?.content[lang]}
               </H2>
             </EditableContentContainer>
           </CContainer>
 
           <CContainer className="impact_content" gap={"80px"}>
             <EditableContentContainer content={staticContents[37]}>
-              <P fontSize={"lg"}>{staticContents[37].content[lang]}</P>
+              <P fontSize={"lg"}>{staticContents[37]?.content[lang]}</P>
             </EditableContentContainer>
 
             <SimpleGrid columns={[1, null, 2]} gap={8}>

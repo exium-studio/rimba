@@ -13,14 +13,7 @@ import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { formatDate } from "@/utils/formatter";
-import {
-  Box,
-  Center,
-  HStack,
-  Icon,
-  SimpleGrid,
-  StackProps,
-} from "@chakra-ui/react";
+import { Box, HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import gsap from "gsap";
@@ -119,7 +112,6 @@ export const LPHomeActivity = (props: StackProps) => {
         y: "100%",
         opacity: 0,
         duration: 1,
-        ease: "power2.out",
       });
 
       gsap.from(mainContentsRef.current, {
@@ -131,11 +123,10 @@ export const LPHomeActivity = (props: StackProps) => {
         y: "20%",
         opacity: 0,
         duration: 1,
-        ease: "power2.out",
       });
 
       if (!iss) {
-        gsap.from("#activity_item_1", {
+        gsap.from(".activity_item_1", {
           scrollTrigger: {
             trigger: mainContentsRef.current,
             start: "top 50%",
@@ -143,10 +134,9 @@ export const LPHomeActivity = (props: StackProps) => {
           },
           x: "70%",
           duration: 1,
-          ease: "power2.out",
         });
 
-        gsap.from("#activity_item_3", {
+        gsap.from(".activity_item_3", {
           scrollTrigger: {
             trigger: mainContentsRef.current,
             start: "top 50%",
@@ -154,11 +144,10 @@ export const LPHomeActivity = (props: StackProps) => {
           },
           x: "-70%",
           duration: 1,
-          ease: "power2.out",
         });
       }
 
-      gsap.from(".bottom_content", {
+      gsap.from(bottomContentsRef.current, {
         scrollTrigger: {
           trigger: bottomContentsRef.current,
           start: "top 80%",
@@ -167,7 +156,6 @@ export const LPHomeActivity = (props: StackProps) => {
         y: "100%",
         opacity: 0,
         duration: 1,
-        ease: "power2.out",
       });
     },
     { scope: containerRef, dependencies: [iss] }
@@ -187,7 +175,7 @@ export const LPHomeActivity = (props: StackProps) => {
           color={"p.700"}
           textAlign={"center"}
         >
-          {staticContents[24].content[lang]}
+          {staticContents[24]?.content[lang]}
         </H2>
       </EditableContentContainer>
 
@@ -198,7 +186,7 @@ export const LPHomeActivity = (props: StackProps) => {
               <ActivityItem
                 key={activity.id}
                 activity={activity}
-                id={`activity_item_${idx + 1}`}
+                className={`activity_item_${idx + 1}`}
                 zIndex={idx === 1 ? 2 : 1}
               />
             );
@@ -206,40 +194,29 @@ export const LPHomeActivity = (props: StackProps) => {
         </SimpleGrid>
       </CContainer>
 
-      <CContainer ref={bottomContentsRef}>
-        <EditableContentContainer
-          content={staticContents[25]}
-          mx={"auto"}
-          mt={"80px"}
-        >
-          <P
-            className="bottom_content"
-            textAlign={"center"}
-            maxW={"500px"}
-            mx={"auto"}
-          >
-            {staticContents[25].content[lang]}
+      <CContainer ref={bottomContentsRef} mt={"80px"}>
+        <EditableContentContainer content={staticContents[25]} mx={"auto"}>
+          <P textAlign={"center"} maxW={"500px"} mx={"auto"}>
+            {staticContents[25]?.content[lang]}
           </P>
         </EditableContentContainer>
 
-        <Center className="bottom_content">
-          <NavLink to={"/about0us/activities"}>
-            <Btn
-              w={"fit"}
-              pr={3}
-              colorPalette={"p"}
-              variant={"ghost"}
-              mx={"auto"}
-              mt={4}
-            >
-              {l.all_activities}
+        <NavLink to={"/about-us/activities"}>
+          <Btn
+            w={"fit"}
+            pr={3}
+            colorPalette={"p"}
+            variant={"ghost"}
+            mx={"auto"}
+            mt={4}
+          >
+            {l.all_activities}
 
-              <Icon boxSize={5}>
-                <IconArrowUpRight stroke={1.5} />
-              </Icon>
-            </Btn>
-          </NavLink>
-        </Center>
+            <Icon boxSize={5}>
+              <IconArrowUpRight stroke={1.5} />
+            </Icon>
+          </Btn>
+        </NavLink>
       </CContainer>
     </LPSectionContainer>
   );

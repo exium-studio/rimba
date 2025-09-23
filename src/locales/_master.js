@@ -503,10 +503,6 @@ export const published_at = {
   id: "Diterbitkan pada",
   en: "Published at",
 };
-export const all_activities = {
-  id: "Semua kegiatan",
-  en: "All activities",
-};
 
 // Message
 export const msg_location_test_helper = {
@@ -1023,6 +1019,10 @@ export const offline_route = {
 };
 
 // LP
+export const all_activities = {
+  id: "Semua kegiatan",
+  en: "All activities",
+};
 export const lp_home_location_area_size = {
   id: "Luas Kawasan",
   en: "Area Size",
@@ -1030,4 +1030,12 @@ export const lp_home_location_area_size = {
 export const lp_home_location_protected_areas = {
   id: "Kawasan Lindung",
   en: "Protected Area",
+};
+export const see_document = {
+  id: "Lihat dokumen",
+  en: "See document",
+};
+export const all_document = {
+  id: "Semua dokumen",
+  en: "All document",
 };

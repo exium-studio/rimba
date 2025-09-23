@@ -10,14 +10,15 @@ import {
 } from "@tabler/icons-react";
 import { forwardRef } from "react";
 
-interface Props extends IconProps {
+interface Props extends Omit<IconProps, "stroke"> {
   name?: string;
   mimeType?: string;
   iconProps?: any;
+  stroke?: number;
 }
 
 export const FileIcon = forwardRef<SVGSVGElement, Props>(
-  ({ name, mimeType, iconProps, ...restProps }, ref) => {
+  ({ name, mimeType, iconProps, stroke, ...restProps }, ref) => {
     const extension = name?.toLowerCase().split(".").pop() as string;
     const mime = mimeType?.toLowerCase();
 
@@ -68,7 +69,7 @@ export const FileIcon = forwardRef<SVGSVGElement, Props>(
 
     return (
       <ChakraIcon ref={ref} color={`${iconColor} !important`} {...restProps}>
-        <IconComponent stroke={1.5} {...iconProps} />
+        <IconComponent stroke={stroke || 1.5} {...iconProps} />
       </ChakraIcon>
     );
   }

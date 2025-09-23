@@ -194,7 +194,7 @@ export const staticContents = {
     ],
   },
   36: {
-    id: 34,
+    id: 36,
     type: "Text",
     content: {
       id: "Dampak Program Koridor RIMBA",
@@ -202,7 +202,7 @@ export const staticContents = {
     },
   },
   37: {
-    id: 34,
+    id: 37,
     type: "Text",
     content: {
       id: "Melindungi 3,8 juta hektar bentang alam di Riau, Jambi, dan Sumatera Barat, menjadi koridor Gajah, Harimau, dan berbagai jenis burung, sekaligus menjaga fungsi ekosistem penting.",
@@ -210,7 +210,7 @@ export const staticContents = {
     },
   },
   38: {
-    id: 34,
+    id: 38,
     type: "Text",
     content: {
       id: "50+",
@@ -218,7 +218,7 @@ export const staticContents = {
     },
   },
   39: {
-    id: 34,
+    id: 39,
     type: "Text",
     content: {
       id: "Desa & komunitas lokal terlibat dalam proyek konservasi",
@@ -226,7 +226,7 @@ export const staticContents = {
     },
   },
   40: {
-    id: 34,
+    id: 40,
     type: "Text",
     content: {
       id: "15,000+ ha",
@@ -234,7 +234,7 @@ export const staticContents = {
     },
   },
   41: {
-    id: 34,
+    id: 41,
     type: "Text",
     content: {
       id: "Hutan primer & sekunder direhabilitasi, meningkatkan kualitas ekosistem",
@@ -242,7 +242,7 @@ export const staticContents = {
     },
   },
   42: {
-    id: 34,
+    id: 42,
     type: "Text",
     content: {
       id: "500+",
@@ -250,7 +250,7 @@ export const staticContents = {
     },
   },
   43: {
-    id: 34,
+    id: 43,
     type: "Text",
     content: {
       id: "Satwa liar dipantau & dilindungi (Gajah, Harimau, Burung, dll.)",
@@ -258,7 +258,7 @@ export const staticContents = {
     },
   },
   44: {
-    id: 34,
+    id: 44,
     type: "Text",
     content: {
       id: "1200+",
@@ -266,7 +266,7 @@ export const staticContents = {
     },
   },
   45: {
-    id: 34,
+    id: 45,
     type: "Text",
     content: {
       id: "Individu mendapatkan manfaat langsung dari program pemberdayaan masyarakat",
@@ -274,7 +274,7 @@ export const staticContents = {
     },
   },
   46: {
-    id: 34,
+    id: 46,
     type: "Text",
     content: {
       id: "Komposisi Satwa",
@@ -282,11 +282,27 @@ export const staticContents = {
     },
   },
   47: {
-    id: 34,
+    id: 47,
     type: "Text",
     content: {
       id: "Persentase Penyelesaian Program RIMBA",
       en: "RIMBA Program Completion Percentage",
+    },
+  },
+  50: {
+    id: 50,
+    type: "Text",
+    content: {
+      id: "Dokumen Hukum",
+      en: "Legal Document",
+    },
+  },
+  51: {
+    id: 50,
+    type: "Text",
+    content: {
+      id: "Menyajikan informasi hukum yang jelas, akurat, dan mudah dipahami untuk semua pemangku kepentingan.",
+      en: "Presenting clear, accurate, and easy-to-understand legal information for all stakeholders.",
     },
   },
 };
@@ -353,4 +369,53 @@ export const completionProgress = [
   { "2023": 78, "2024": 71, "2025": null },
   { "2023": 85, "2024": 79, "2025": null },
   { "2023": 92, "2024": 87, "2025": null }, // Des
+];
+
+export const legalDocs = [
+  {
+    title: {
+      id: "Peraturan Presiden Republik Indonesia Nomor 13 Tahun 2012 tentang Rencana Tata Ruang Pulau Sumatera",
+      en: "Presidential Decree No. 13 of 2012 on Sumatra's Spatial Plan",
+    },
+    description: {
+      id: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
+      en: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
+    },
+    file: [
+      {
+        id: 1,
+        fileName: "laporan_rimba_2023.pdf",
+        filePath: "/documents/rimba/laporan_rimba_2023.pdf",
+        fileUrl: "",
+        fileMimeType: "application/pdf",
+        fileSize: "2.3mB",
+        created_at: "2023-09-01T08:00:00Z",
+        updated_at: "2023-09-05T10:00:00Z",
+        deleted_at: null,
+      },
+    ],
+  },
+  {
+    title: {
+      id: "Permen ATR BPN Nomor 11 tahun 2023",
+      en: "Presidential Decree No. 13 of 2012 on Sumatra's Spatial Plan",
+    },
+    description: {
+      id: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
+      en: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
+    },
+    file: [
+      {
+        id: 2,
+        fileName: "peta_koridor_rimba.png",
+        filePath: "/images/rimba/peta_koridor_rimba.png",
+        fileUrl: "",
+        fileMimeType: "application/pdf",
+        fileSize: "1.1mB",
+        created_at: "2023-09-10T09:30:00Z",
+        updated_at: null,
+        deleted_at: null,
+      },
+    ],
+  },
 ];

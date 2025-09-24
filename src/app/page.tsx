@@ -18,7 +18,7 @@ const IndexRoute = () => {
       <TopNav />
 
       <CContainer zIndex={2} bg={"light"} roundedBottom={"3xl"}>
-        {/* <LPHomeHero />
+        <LPHomeHero />
 
         <LPHomeStrategyValue />
 
@@ -28,7 +28,7 @@ const IndexRoute = () => {
 
         <LPHomeImpact />
 
-        <LPHomeLegalDocs /> */}
+        <LPHomeLegalDocs />
 
         <LPHomeNews />
 

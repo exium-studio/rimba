@@ -148,7 +148,7 @@ const MobileLayout = (props: any) => {
             <HStack>
               <Clock />
 
-              <Today dateVariant="basic" />
+              <Today dateVariant="numeric" />
             </HStack>
           </HStack>
 

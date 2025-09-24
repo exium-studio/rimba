@@ -168,7 +168,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
         pos={"absolute"}
         top={0}
         left={0}
-        opacity={0.05}
+        opacity={0.025}
       />
 
       <LPSectionContainer zIndex={2}>

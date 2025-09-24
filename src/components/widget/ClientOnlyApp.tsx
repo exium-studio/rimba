@@ -58,7 +58,7 @@ export default function ClientOnlyApp(props: Props) {
     setColorMode(hour >= 18 || hour < 6 ? "dark" : "light");
   }
 
-  // Handle mount
+  // handle mount
   useEffect(() => {
     mountedGlobal = true;
     setMounted(true);

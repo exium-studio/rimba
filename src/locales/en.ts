@@ -26,8 +26,8 @@ const translations = {
     "description": "Please try again."
   },
   "all": "All",
-  "all_activities": "All activities",
   "all_document": "All document",
+  "all_events": "All events",
   "april": "April",
   "august": "August",
   "back": "Back",
@@ -189,7 +189,7 @@ const translations = {
     "about_us": {
       "index": "About Us",
       "rimba_corridor_program": "RIMBA Corridor Program",
-      "activity": "Activity",
+      "events": "Events",
       "news": "News",
       "partners": "Partners"
     },

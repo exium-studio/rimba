@@ -26,8 +26,8 @@ const translations = {
     "description": "Silakan coba lagi."
   },
   "all": "Semua",
-  "all_activities": "Semua kegiatan",
   "all_document": "Semua dokumen",
+  "all_events": "Semua kegiatan",
   "april": "April",
   "august": "Agustus",
   "back": "Kembali",
@@ -189,7 +189,7 @@ const translations = {
     "about_us": {
       "index": "Tentang Kami",
       "rimba_corridor_program": "Program Koridor RIMBA",
-      "activity": "Kegiatan",
+      "events": "Kegiatan",
       "news": "Berita",
       "partners": "Mitra"
     },

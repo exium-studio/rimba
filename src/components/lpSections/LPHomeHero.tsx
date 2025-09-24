@@ -5,16 +5,19 @@ import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import { RimbaLetterArt } from "@/components/widget/RimbaLetterArt";
-import { Interface__Content } from "@/constants/interfaces";
+import { Interface_CMSContent } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
-import { Box, HStack, StackProps } from "@chakra-ui/react";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import { Box, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
+import { IconChevronDown } from "@tabler/icons-react";
 import gsap from "gsap";
 import { useRef } from "react";
 
 const HeroH = "100vh";
+const HeroW = "100vw";
 
 const GalleryImg = (props: any) => {
   // Props
@@ -85,10 +88,10 @@ const OverviewGallery = (props: StackProps) => {
           h={"full"}
           gap={0}
         >
-          {galleryTop.map((content: Interface__Content) => {
+          {galleryTop.map((content: Interface_CMSContent) => {
             return <GalleryImg key={content?.content} content={content} />;
           })}
-          {galleryTop.map((content: Interface__Content) => {
+          {galleryTop.map((content: Interface_CMSContent) => {
             return <GalleryImg key={content?.content} content={content} />;
           })}
         </HStack>
@@ -102,10 +105,10 @@ const OverviewGallery = (props: StackProps) => {
           h={"full"}
           gap={0}
         >
-          {galleryBottom.map((content: Interface__Content) => {
+          {galleryBottom.map((content: Interface_CMSContent) => {
             return <GalleryImg key={content?.content} content={content} />;
           })}
-          {galleryBottom.map((content: Interface__Content) => {
+          {galleryBottom.map((content: Interface_CMSContent) => {
             return <GalleryImg key={content?.content} content={content} />;
           })}
         </HStack>
@@ -121,6 +124,9 @@ export const LPHomeHero = (props: StackProps) => {
   // Contexts
   const { lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
+
+  // Hooks
+  const iss = useIsSmScreenWidth();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -140,11 +146,28 @@ export const LPHomeHero = (props: StackProps) => {
         },
       });
 
-      tl.to(".hero_bush", {
-        scale: 1.8,
-        ease: "none",
-        duration: 2.5,
-      })
+      tl.fromTo(
+        ".hero_bush",
+        {
+          scale: 1.5,
+          ease: "none",
+          duration: 2.5,
+        },
+        {
+          scale: 3,
+          ease: "none",
+          duration: 2.5,
+        }
+      )
+        .to(
+          ".hero_bush_2",
+          {
+            scale: 1.8,
+            ease: "none",
+            duration: 2.5,
+          },
+          "<"
+        )
         .to(
           ".hero_bg",
           {
@@ -155,17 +178,32 @@ export const LPHomeHero = (props: StackProps) => {
           "<"
         )
         .to(
-          ".hero_content",
+          ".hero_content_1",
           {
-            opacity: 0,
-            scale: 1.3,
             ease: "none",
             duration: 2.5,
           },
           "<"
         )
         .to(
-          ".hero_brief_contents",
+          ".hero_content_2",
+          {
+            ease: "none",
+            duration: 2.5,
+          },
+          "<"
+        )
+        .to(
+          ".hero_container",
+          {
+            opacity: 0,
+            ease: "none",
+            duration: 2.5,
+          },
+          ">"
+        )
+        .to(
+          ".hero_brief_container",
           {
             opacity: 1,
             ease: "none",
@@ -183,7 +221,7 @@ export const LPHomeHero = (props: StackProps) => {
           ">"
         )
         .to(
-          ".hero_brief",
+          ".hero_brief_content",
           {
             opacity: 0,
             ease: "none",
@@ -229,7 +267,7 @@ export const LPHomeHero = (props: StackProps) => {
           "<"
         );
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [iss] }
   );
 
   return (
@@ -247,39 +285,87 @@ export const LPHomeHero = (props: StackProps) => {
         alt="forest"
         h={HeroH}
         pos={"absolute"}
-        zIndex={1}
         imageProps={{
           unoptimized: true,
         }}
+        zIndex={1}
       />
 
-      <CContainer
-        flex={1}
+      <Img
+        className="hero_bush_2"
+        src={`${IMAGES_PATH}/lp/home/hero-bush.png`}
+        alt="bush"
         h={HeroH}
-        gap={4}
-        px={"60px"}
-        py={4}
-        color={"light"}
-        justify={"center"}
-        align={"center"}
-        zIndex={2}
-      >
-        <CContainer className="hero_content" gap={4} align={"center"}>
-          <EditableContentContainer content={staticContents[1]}>
-            <P fontSize={"xl"} textAlign={"center"} lineHeight={1.2}>
-              {staticContents[1]?.content[lang]}
-            </P>
-          </EditableContentContainer>
+        pos={"absolute"}
+        pointerEvents={"none"}
+        zIndex={4}
+      />
 
-          <EditableContentContainer
-            content={staticContents[2]}
-            h={"auto"}
-            w={"full"}
-            maxW={"320px"}
+      <CContainer h={HeroH} w={HeroW} pos={"absolute"}>
+        <Stack
+          className="hero_container"
+          h={`calc(${HeroH} - 72px)`}
+          flexDir={["column", null, "row"]}
+          flex={1}
+          gap={12}
+          align={"center"}
+          justify={"center"}
+          p={[8, null, 20]}
+          color={"light"}
+          zIndex={5}
+        >
+          <CContainer
+            className="hero_content_1"
+            maxW={["220px", null, "320px"]}
+            gap={4}
+            mt={"auto"}
+            ml={[0, null, "12px"]}
+            mr={"auto"}
           >
-            <RimbaLetterArt src={staticContents[2]?.content} />
-          </EditableContentContainer>
-        </CContainer>
+            <EditableContentContainer
+              content={staticContents[2]}
+              h={"auto"}
+              w={"full"}
+            >
+              <RimbaLetterArt src={staticContents[2]?.content} />
+            </EditableContentContainer>
+          </CContainer>
+
+          <CContainer
+            className="hero_content_2"
+            maxW={"320px"}
+            gap={4}
+            mt={[0, null, "auto"]}
+            ml={"auto"}
+          >
+            <EditableContentContainer content={staticContents[1]}>
+              <P
+                fontSize={["lg", null, "xl"]}
+                fontWeight={"medium"}
+                lineHeight={1.2}
+              >
+                {staticContents[1]?.content[lang]}
+              </P>
+            </EditableContentContainer>
+
+            <EditableContentContainer content={staticContents[3]}>
+              <P color={"light"} opacity={0.8}>
+                {staticContents[3]?.content[lang]}
+              </P>
+            </EditableContentContainer>
+          </CContainer>
+        </Stack>
+
+        <Icon
+          boxSize={5}
+          color={"light"}
+          opacity={0.8}
+          mb={4}
+          mx={"auto"}
+          zIndex={6}
+        >
+          <IconChevronDown />
+        </Icon>
       </CContainer>
 
       <CContainer
@@ -289,7 +375,7 @@ export const LPHomeHero = (props: StackProps) => {
         zIndex={6}
       >
         <CContainer
-          className="hero_brief_contents"
+          className="hero_brief_container"
           h={HeroH}
           align={"center"}
           bg={"blackAlpha.800"}
@@ -301,7 +387,7 @@ export const LPHomeHero = (props: StackProps) => {
         >
           <EditableContentContainer content={staticContents[4]}>
             <P
-              className="hero_brief"
+              className="hero_brief_content"
               fontSize={"18px"}
               textAlign={"center"}
               maxW={"600px"}
@@ -333,14 +419,6 @@ export const LPHomeHero = (props: StackProps) => {
         pointerEvents={"none"}
         zIndex={5}
       />
-
-      <CContainer className="hero_content" p={4} align={"center"} zIndex={5}>
-        <EditableContentContainer content={staticContents[3]}>
-          <P maxW={"320px"} color={"light"} textAlign={"center"} opacity={0.6}>
-            {staticContents[3]?.content[lang]}
-          </P>
-        </EditableContentContainer>
-      </CContainer>
 
       <OverviewGallery zIndex={6} />
     </CContainer>

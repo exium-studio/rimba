@@ -126,7 +126,7 @@ export const staticContents = {
   24: {
     id: 24,
     type: "Text",
-    content: { id: "Kegiatan Kami", en: "Our Activities" },
+    content: { id: "Kegiatan Kami", en: "Our Events" },
   },
   25: {
     id: 25,
@@ -305,9 +305,17 @@ export const staticContents = {
       en: "Presenting clear, accurate, and easy-to-understand legal information for all stakeholders.",
     },
   },
+  52: {
+    id: 50,
+    type: "Text",
+    content: {
+      id: "Berita dan Catatan Lapangan",
+      en: "News and Field Notes",
+    },
+  },
 };
 
-export const activities = [
+export const homeEvents = [
   {
     id: 1,
     thumbnail: `https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80`,
@@ -349,14 +357,14 @@ export const activities = [
   },
 ];
 
-export const animals = [
+export const homeSpeciesComposition = [
   { name: "Gajah", value: 150, percentage: 30 },
   { name: "Harimau", value: 100, percentage: 20 },
   { name: "Burung", value: 200, percentage: 40 },
   { name: "Lainnya", value: 50, percentage: 10 },
 ];
 
-export const completionProgress = [
+export const homeCompletionProgress = [
   { "2023": 5, "2024": 3, "2025": 2 }, // Jan
   { "2023": 12, "2024": 8, "2025": 7 },
   { "2023": 20, "2024": 15, "2025": 14 },
@@ -371,7 +379,7 @@ export const completionProgress = [
   { "2023": 92, "2024": 87, "2025": null }, // Des
 ];
 
-export const legalDocs = [
+export const homeLegalDocs = [
   {
     id: 1,
     title: {
@@ -443,5 +451,115 @@ export const legalDocs = [
         deleted_at: null,
       },
     ],
+  },
+];
+
+export const homeNews = [
+  {
+    id: 1,
+    newsCategory: [
+      {
+        id: 1,
+        name: "Wildlife",
+        description: "Berita terkait satwa liar di Koridor Rimba",
+        createdAt: "2025-01-01T00:00:00Z",
+        updatedAt: "2025-01-01T00:00:00Z",
+        deletedAt: null,
+      },
+    ],
+    thumbnail: [
+      {
+        id: 1,
+        fileName: "harimau.jpg",
+        filePath: "/images/news1.jpg",
+        fileUrl: "/images/news1.jpg",
+        fileMimeType: "image/jpeg",
+        fileSize: "500KB",
+        createdAt: "2025-01-01T00:00:00Z",
+        updatedAt: "2025-01-01T00:00:00Z",
+        deletedAt: null,
+      },
+    ],
+    title: {
+      id: "Penemuan Jejak Harimau Sumatera di Koridor Rimba",
+    },
+    slug: "jejak-harimau-sumatera-koridor-rimba",
+    description:
+      "Tim konservasi mendeteksi jejak harimau Sumatera di wilayah utara koridor.",
+    newsContent:
+      "Tim konservasi berhasil menemukan jejak harimau Sumatera di Koridor Rimba utara...",
+    createdAt: "2025-09-24T08:00:00Z",
+    updatedAt: "2025-09-24T08:00:00Z",
+    deletedAt: null,
+  },
+  {
+    id: 2,
+    newsCategory: [
+      {
+        id: 2,
+        name: "Environment",
+        description: "Berita terkait konservasi dan ekosistem hutan",
+        createdAt: "2025-01-01T00:00:00Z",
+        updatedAt: "2025-01-01T00:00:00Z",
+        deletedAt: null,
+      },
+    ],
+    thumbnail: [
+      {
+        id: 2,
+        fileName: "pohon.jpg",
+        filePath: "/images/news2.jpg",
+        fileUrl: "/images/news2.jpg",
+        fileMimeType: "image/jpeg",
+        fileSize: "450KB",
+        createdAt: "2025-01-01T00:00:00Z",
+        updatedAt: "2025-01-01T00:00:00Z",
+        deletedAt: null,
+      },
+    ],
+    title: "Penanaman 5000 Pohon untuk Memperluas Habitat",
+    slug: "penanaman-5000-pohon-habitat",
+    description:
+      "Program restorasi hutan berjalan dengan penanaman ribuan pohon lokal.",
+    newsContent:
+      "Sebanyak 5000 pohon lokal telah ditanam di Koridor Rimba untuk memperluas habitat satwa liar...",
+    createdAt: "2025-09-20T08:00:00Z",
+    updatedAt: "2025-09-20T08:00:00Z",
+    deletedAt: null,
+  },
+  {
+    id: 3,
+    newsCategory: [
+      {
+        id: 3,
+        name: "Community",
+        description: "Berita terkait masyarakat dan edukasi konservasi",
+        createdAt: "2025-01-01T00:00:00Z",
+        updatedAt: "2025-01-01T00:00:00Z",
+        deletedAt: null,
+      },
+    ],
+    thumbnail: [
+      {
+        id: 3,
+        fileName: "workshop.jpg",
+        filePath: "/images/news3.jpg",
+        fileUrl: "/images/news3.jpg",
+        fileMimeType: "image/jpeg",
+        fileSize: "400KB",
+        createdAt: "2025-01-01T00:00:00Z",
+        updatedAt: "2025-01-01T00:00:00Z",
+        deletedAt: null,
+      },
+    ],
+    title: "Workshop Edukasi Masyarakat tentang Satwa Liar",
+    slug: "workshop-edukasi-masyarakat-satwa",
+    description:
+      "Masyarakat desa mengikuti workshop konservasi untuk meningkatkan kesadaran.",
+    newsContent:
+      "Masyarakat desa sekitar Koridor Rimba mengikuti workshop edukasi tentang pelestarian satwa liar...",
+    createdAt: "2025-09-18T08:00:00Z",
+    updatedAt: "2025-09-18T08:00:00Z",
+    deletedAt: null,
   },
 ];

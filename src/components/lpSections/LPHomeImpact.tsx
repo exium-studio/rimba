@@ -45,7 +45,7 @@ const StatItem = (props: any) => {
 const CompletionProgressChart = (props: StackProps) => {
   // Contexts
   const { lang } = useLang();
-  const completionProgress = useContents((s) => s.completionProgress);
+  const homeCompletionProgress = useContents((s) => s.homeCompletionProgress);
   const staticContents = useContents((s) => s.staticContents);
 
   // Hooks
@@ -53,10 +53,10 @@ const CompletionProgressChart = (props: StackProps) => {
 
   // States
   const chart = useChart({
-    data: completionProgress.map((progress: any, idx: number) => {
+    data: homeCompletionProgress.map((progress: any, idx: number) => {
       return { ...progress, month: MONTHS[lang][idx].slice(0, iss ? 2 : 3) };
     }),
-    series: Object.keys(completionProgress[0]).map((key, idx) => {
+    series: Object.keys(homeCompletionProgress[0]).map((key, idx) => {
       return {
         name: key,
         color: COLORS[idx % COLORS.length],
@@ -117,13 +117,13 @@ const CompletionProgressChart = (props: StackProps) => {
 const AnimalsChart = (props: StackProps) => {
   // Contexts
   const { lang } = useLang();
-  const animals = useContents((s) => s.animals);
+  const homeSpeciesComposition = useContents((s) => s.homeSpeciesComposition);
   const staticContents = useContents((s) => s.staticContents);
 
   // States
   const chart = useChart<BarListData>({
     sort: { by: "value", direction: "desc" },
-    data: animals,
+    data: homeSpeciesComposition,
     series: [{ name: "name", color: "p.subtle" }],
   });
 

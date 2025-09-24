@@ -19,55 +19,77 @@ import { IconArrowUpRight } from "@tabler/icons-react";
 import gsap from "gsap";
 import { useRef } from "react";
 
-const ActivityItem = (props: any) => {
+const EventItem = (props: any) => {
   // Props
-  const { activity, ...restProps } = props;
+  const { event, ...restProps } = props;
 
   // Contexts
   const { l, lang } = useLang();
 
   return (
-    <CContainer rounded={"4xl"} bg={"p.900"} p={2} {...restProps}>
+    <CContainer
+      rounded={"3xl"}
+      bg={"p.900"}
+      color={"light"}
+      p={2}
+      {...restProps}
+    >
       <CContainer>
-        <Img src={activity.thumbnail} aspectRatio={1} rounded={"3xl"} />
+        <Img src={event.thumbnail} aspectRatio={1} rounded={"2xl"} />
       </CContainer>
 
       <CContainer
         flex={1}
         bg={"p.900"}
-        color={"light"}
-        roundedTopRight={"3xl"}
-        roundedBottomLeft={"3xl"}
-        roundedBottomRight={"3xl"}
+        roundedTopRight={"2xl"}
+        roundedBottomLeft={"2xl"}
+        roundedBottomRight={"2xl"}
         mt={"-40px"}
         pos={"relative"}
         zIndex={2}
       >
-        <CContainer p={6}>
+        <CContainer p={4}>
           <Box pos={"absolute"} top={"-29.5px"} left={0}>
             <FolderShape h={"30px"} color={"p.900"} />
           </Box>
 
-          <P fontSize={"sm"} opacity={0.4}>
-            {formatDate(activity.createdAt)}
+          <P opacity={0.6} pos={"absolute"} top={"-20px"} left={4} zIndex={2}>
+            {formatDate(event.createdAt, {
+              variant: "year",
+            })}
           </P>
 
-          <P fontSize={"lg"} fontWeight={"medium"} lineClamp={2} mt={2}>
-            {activity.title[lang]}
+          <P fontSize={"lg"} fontWeight={"medium"} lineClamp={1} mt={2}>
+            {event.title[lang]}
           </P>
 
-          <P opacity={0.6} mt={4} lineClamp={3}>
-            {activity.description[lang]}
+          <P lineClamp={2} opacity={0.6} mt={4} mb={8}>
+            {event.description[lang]}
           </P>
         </CContainer>
 
-        <HStack justify={"end"} p={3} mt={"auto"}>
+        <HStack justify={"space-between"} p={3} mt={"auto"}>
+          <HStack align={"end"}>
+            <P fontSize={"xl"} fontWeight={"semibold"} lineHeight={1.2} ml={1}>
+              {formatDate(event.createdAt, {
+                variant: "day",
+              })}
+            </P>
+
+            <P>
+              {formatDate(event.createdAt, {
+                variant: "shortMonth",
+              })}
+            </P>
+          </HStack>
+
           <Btn
             colorPalette={"p"}
             color={"p.300"}
             variant={"ghost"}
             size={"md"}
             pr={3}
+            mt={"auto"}
             _hover={{
               bg: "blackAlpha.300",
             }}
@@ -84,14 +106,14 @@ const ActivityItem = (props: any) => {
   );
 };
 
-export const LPHomeActivity = (props: StackProps) => {
+export const LPHomeEvents = (props: StackProps) => {
   // Props
   const { ...restProps } = props;
 
   // Contexts
   const { l, lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
-  const activities = useContents((s) => s.activities);
+  const homeEvents = useContents((s) => s.homeEvents);
 
   // Hooks
   // const iss = useIsSmScreenWidth();
@@ -128,7 +150,7 @@ export const LPHomeActivity = (props: StackProps) => {
       });
 
       if (!iss) {
-        gsap.from(".activity_item_1", {
+        gsap.from(".event_item_1", {
           scrollTrigger: {
             trigger: mainContentsRef.current,
             start: "top 65%",
@@ -138,7 +160,7 @@ export const LPHomeActivity = (props: StackProps) => {
           duration: 0.75,
         });
 
-        gsap.from(".activity_item_3", {
+        gsap.from(".event_item_3", {
           scrollTrigger: {
             trigger: mainContentsRef.current,
             start: "top 65%",
@@ -183,12 +205,12 @@ export const LPHomeActivity = (props: StackProps) => {
 
       <CContainer mt={"80px"}>
         <SimpleGrid ref={mainContentsRef} columns={[1, null, 3]} gap={8}>
-          {activities.map((activity: any, idx: number) => {
+          {homeEvents.map((event: any, idx: number) => {
             return (
-              <ActivityItem
-                key={activity.id}
-                activity={activity}
-                className={`activity_item_${idx + 1}`}
+              <EventItem
+                key={event.id}
+                event={event}
+                className={`event_item_${idx + 1}`}
                 zIndex={idx === 1 ? 2 : 1}
               />
             );
@@ -203,7 +225,7 @@ export const LPHomeActivity = (props: StackProps) => {
           </P>
         </EditableContentContainer>
 
-        <NavLink to={"/about-us/activities"}>
+        <NavLink to={"/about-us/homeEvents"}>
           <Btn
             w={"fit"}
             pr={3}
@@ -212,7 +234,7 @@ export const LPHomeActivity = (props: StackProps) => {
             mx={"auto"}
             mt={4}
           >
-            {l.all_activities}
+            {l.all_events}
 
             <Icon boxSize={5}>
               <IconArrowUpRight stroke={1.5} />

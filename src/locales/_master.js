@@ -17,9 +17,9 @@ export const lp_navs = {
       id: "Program Koridor RIMBA",
       en: "RIMBA Corridor Program",
     },
-    activity: {
+    events: {
       id: "Kegiatan",
-      en: "Activity",
+      en: "Events",
     },
     news: {
       id: "Berita",
@@ -1019,9 +1019,9 @@ export const offline_route = {
 };
 
 // LP
-export const all_activities = {
+export const all_events = {
   id: "Semua kegiatan",
-  en: "All activities",
+  en: "All events",
 };
 export const lp_home_location_area_size = {
   id: "Luas Kawasan",

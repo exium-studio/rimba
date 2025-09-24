@@ -35,7 +35,7 @@ const DocItem = (props: any) => {
       color={"dark"}
       rounded={"3xl"}
       border={"1px solid"}
-      borderColor={"border.muted"}
+      borderColor={"p.500"}
       {...restProps}
     >
       <CContainer flex={1} p={5} gap={4} align={"center"}>
@@ -164,11 +164,12 @@ export const LPHomeLegalDocs = (props: StackProps) => {
         src={`${IMAGES_PATH}/lp/home/legal-docs-bg.png`}
         h={"full"}
         w={"full"}
-        objectFit={"cover"}
+        objectFit={"contain"}
         pos={"absolute"}
-        top={0}
-        left={0}
-        opacity={0.025}
+        top={"50%"}
+        left={"50%"}
+        transform={"translate(-50%, -50%)"}
+        opacity={0.05}
       />
 
       <LPSectionContainer zIndex={2}>

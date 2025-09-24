@@ -16,16 +16,35 @@ import {
 } from "./types";
 import { ReactNode } from "react";
 
-export interface Interface__Content extends Interface__CUD {
+// CMS
+export interface Interface_CMSNewsCategory {
+  id: number;
+  name: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+}
+export interface Interface__CMSNews {
+  id: number;
+  newsCategory: Interface_CMSNewsCategory[];
+  thumbnail: Interface__StorageFile[];
+  title: Interface__CMSContentText;
+  slug: string;
+  description: Interface__CMSContentText;
+  newsContent: Interface__CMSContentText;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+}
+export interface Interface_CMSContent extends Interface__CUD {
   id: number;
   type: string;
   content: any;
 }
-
-export interface Interface__Content {
-  id: number;
-  contentType?: string;
-  content: any;
+export interface Interface__CMSContentText {
+  id: "string";
+  en: "string";
 }
 
 // Navs

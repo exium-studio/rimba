@@ -159,6 +159,17 @@ export const LPHomeLocation = (props: StackProps) => {
   // Animation
   useGSAP(
     () => {
+      gsap.from(".section_title", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 50%",
+          // markers: true, // debug
+        },
+        y: "20%",
+        opacity: 0,
+        duration: 0.75,
+      });
+
       gsap.to("#sumatra-map, #riau-map, #sumatra-barat-map, #jambi-map", {
         scrollTrigger: {
           trigger: containerRef.current,

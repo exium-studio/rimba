@@ -35,7 +35,11 @@ const EventItem = (props: any) => {
       {...restProps}
     >
       <CContainer>
-        <Img src={event.thumbnail} aspectRatio={1} rounded={"2xl"} />
+        <Img
+          src={event.thumbnail?.[0]?.fileUrl}
+          aspectRatio={1}
+          rounded={"2xl"}
+        />
       </CContainer>
 
       <CContainer
@@ -53,7 +57,7 @@ const EventItem = (props: any) => {
             <FolderShape h={"30px"} color={"p.900"} />
           </Box>
 
-          <P opacity={0.6} pos={"absolute"} top={"-20px"} left={4} zIndex={2}>
+          <P opacity={0.8} pos={"absolute"} top={"-20px"} left={4} zIndex={2}>
             {formatDate(event.createdAt, {
               variant: "year",
             })}
@@ -133,7 +137,7 @@ export const LPHomeEvents = (props: StackProps) => {
           start: "top 80%",
           // markers: true, // debug
         },
-        y: "100%",
+        y: "20%",
         opacity: 0,
         duration: 0.75,
       });

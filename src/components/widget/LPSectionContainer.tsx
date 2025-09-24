@@ -16,12 +16,7 @@ export const LPSectionContainer = forwardRef<
   const { children, wrapperProps, ...restProps } = props;
 
   return (
-    <CContainer
-      ref={ref}
-      px={[4, null, 12]}
-      overflow={"clip"}
-      {...wrapperProps}
-    >
+    <CContainer ref={ref} px={[4, null, 12]} {...wrapperProps}>
       <CContainer
         w="full"
         maxW={MAX_W_LP_SECTION_CONTAINER}

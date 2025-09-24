@@ -318,7 +318,21 @@ export const staticContents = {
 export const homeEvents = [
   {
     id: 1,
-    thumbnail: `https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80`,
+    thumbnail: [
+      {
+        id: 1,
+        fileName: "ecosystem_corridor.jpg",
+        filePath:
+          "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+        fileUrl:
+          "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+        fileMimeType: "image/jpeg",
+        fileSize: "600KB",
+        createdAt: "2025-01-15T08:30:00Z",
+        updatedAt: "2025-01-15T08:30:00Z",
+        deletedAt: null,
+      },
+    ],
     title: {
       id: "Koridor Ekosistem: Menjaga Alam, Menggerakkan Ekonomi",
       en: "Ecosystem Corridor: Preserving Nature, Driving Economy",
@@ -331,7 +345,21 @@ export const homeEvents = [
   },
   {
     id: 2,
-    thumbnail: `https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80`,
+    thumbnail: [
+      {
+        id: 2,
+        fileName: "nature_maps.jpg",
+        filePath:
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
+        fileUrl:
+          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
+        fileMimeType: "image/jpeg",
+        fileSize: "550KB",
+        createdAt: "2025-01-15T08:30:00Z",
+        updatedAt: "2025-01-15T08:30:00Z",
+        deletedAt: null,
+      },
+    ],
     title: {
       id: "Data Bukan Sekadar Angka: Alam yang Terlihat Lewat Peta",
       en: "Data Is Not Just Numbers: Nature Revealed Through Maps",
@@ -344,7 +372,21 @@ export const homeEvents = [
   },
   {
     id: 3,
-    thumbnail: `https://images.unsplash.com/photo-1521207418485-99c705420785?auto=format&fit=crop&w=1200&q=80`,
+    thumbnail: [
+      {
+        id: 3,
+        fileName: "clean_water.jpg",
+        filePath:
+          "https://images.unsplash.com/photo-1521207418485-99c705420785?auto=format&fit=crop&w=1200&q=80",
+        fileUrl:
+          "https://images.unsplash.com/photo-1521207418485-99c705420785?auto=format&fit=crop&w=1200&q=80",
+        fileMimeType: "image/jpeg",
+        fileSize: "580KB",
+        createdAt: "2025-01-15T08:30:00Z",
+        updatedAt: "2025-01-15T08:30:00Z",
+        deletedAt: null,
+      },
+    ],
     title: {
       id: "Air Bersih untuk Semua: Kolaborasi Data dan Infrastruktur",
       en: "Clean Water for Everyone: Collaboration of Data and Infrastructure",
@@ -398,7 +440,7 @@ export const homeLegalDocs = [
         fileUrl: "",
         fileMimeType: "application/pdf",
         fileSize: "2.3mB",
-        created_at: "2023-09-01T08:00:00Z",
+        createdAt: "2023-09-01T08:00:00Z",
         updated_at: "2023-09-05T10:00:00Z",
         deleted_at: null,
       },
@@ -422,7 +464,7 @@ export const homeLegalDocs = [
         fileUrl: "",
         fileMimeType: "application/pdf",
         fileSize: "1.1mB",
-        created_at: "2023-09-10T09:30:00Z",
+        createdAt: "2023-09-10T09:30:00Z",
         updated_at: null,
         deleted_at: null,
       },
@@ -446,7 +488,7 @@ export const homeLegalDocs = [
         fileUrl: "",
         fileMimeType: "application/pdf",
         fileSize: "1.1mB",
-        created_at: "2023-09-10T09:30:00Z",
+        createdAt: "2023-09-10T09:30:00Z",
         updated_at: null,
         deleted_at: null,
       },
@@ -460,8 +502,11 @@ export const homeNews = [
     newsCategory: [
       {
         id: 1,
-        name: "Wildlife",
-        description: "Berita terkait satwa liar di Koridor Rimba",
+        name: { id: "Satwa Liar", en: "Wildlife" },
+        description: {
+          id: "Berita terkait satwa liar di Koridor Rimba",
+          en: "News related to wildlife in Koridor Rimba",
+        },
         createdAt: "2025-01-01T00:00:00Z",
         updatedAt: "2025-01-01T00:00:00Z",
         deletedAt: null,
@@ -471,8 +516,8 @@ export const homeNews = [
       {
         id: 1,
         fileName: "harimau.jpg",
-        filePath: "/images/news1.jpg",
-        fileUrl: "/images/news1.jpg",
+        filePath: `https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80`,
+        fileUrl: `${IMAGES_PATH}/default-gallery/7.jpg`,
         fileMimeType: "image/jpeg",
         fileSize: "500KB",
         createdAt: "2025-01-01T00:00:00Z",
@@ -482,12 +527,20 @@ export const homeNews = [
     ],
     title: {
       id: "Penemuan Jejak Harimau Sumatera di Koridor Rimba",
+      en: "Discovery of Sumatran Tiger Tracks in Koridor Rimba",
     },
-    slug: "jejak-harimau-sumatera-koridor-rimba",
-    description:
-      "Tim konservasi mendeteksi jejak harimau Sumatera di wilayah utara koridor.",
-    newsContent:
-      "Tim konservasi berhasil menemukan jejak harimau Sumatera di Koridor Rimba utara...",
+    slug: {
+      id: "jejak-harimau-sumatera-koridor-rimba",
+      en: "sumatran-tiger-tracks-koridor-rimba",
+    },
+    description: {
+      id: "Tim konservasi mendeteksi jejak harimau Sumatera di wilayah utara koridor.",
+      en: "The conservation team detected Sumatran tiger tracks in the northern area of the corridor.",
+    },
+    newsContent: {
+      id: "Tim konservasi berhasil menemukan jejak harimau Sumatera di Koridor Rimba utara...",
+      en: "The conservation team successfully discovered Sumatran tiger tracks in the northern Koridor Rimba...",
+    },
     createdAt: "2025-09-24T08:00:00Z",
     updatedAt: "2025-09-24T08:00:00Z",
     deletedAt: null,
@@ -497,8 +550,11 @@ export const homeNews = [
     newsCategory: [
       {
         id: 2,
-        name: "Environment",
-        description: "Berita terkait konservasi dan ekosistem hutan",
+        name: { id: "Lingkungan", en: "Environment" },
+        description: {
+          id: "Berita terkait konservasi dan ekosistem hutan",
+          en: "News related to conservation and forest ecosystems",
+        },
         createdAt: "2025-01-01T00:00:00Z",
         updatedAt: "2025-01-01T00:00:00Z",
         deletedAt: null,
@@ -508,8 +564,8 @@ export const homeNews = [
       {
         id: 2,
         fileName: "pohon.jpg",
-        filePath: "/images/news2.jpg",
-        fileUrl: "/images/news2.jpg",
+        filePath: `https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80`,
+        fileUrl: `https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80`,
         fileMimeType: "image/jpeg",
         fileSize: "450KB",
         createdAt: "2025-01-01T00:00:00Z",
@@ -517,12 +573,22 @@ export const homeNews = [
         deletedAt: null,
       },
     ],
-    title: "Penanaman 5000 Pohon untuk Memperluas Habitat",
-    slug: "penanaman-5000-pohon-habitat",
-    description:
-      "Program restorasi hutan berjalan dengan penanaman ribuan pohon lokal.",
-    newsContent:
-      "Sebanyak 5000 pohon lokal telah ditanam di Koridor Rimba untuk memperluas habitat satwa liar...",
+    title: {
+      id: "Penanaman 5000 Pohon untuk Memperluas Habitat",
+      en: "Planting 5000 Trees to Expand Habitat",
+    },
+    slug: {
+      id: "penanaman-5000-pohon-habitat",
+      en: "planting-5000-trees-habitat",
+    },
+    description: {
+      id: "Program restorasi hutan berjalan dengan penanaman ribuan pohon lokal.",
+      en: "The forest restoration program is underway with the planting of thousands of local trees.",
+    },
+    newsContent: {
+      id: "Sebanyak 5000 pohon lokal telah ditanam di Koridor Rimba untuk memperluas habitat satwa liar...",
+      en: "A total of 5000 local trees have been planted in Koridor Rimba to expand wildlife habitat...",
+    },
     createdAt: "2025-09-20T08:00:00Z",
     updatedAt: "2025-09-20T08:00:00Z",
     deletedAt: null,
@@ -532,8 +598,11 @@ export const homeNews = [
     newsCategory: [
       {
         id: 3,
-        name: "Community",
-        description: "Berita terkait masyarakat dan edukasi konservasi",
+        name: { id: "Komunitas", en: "Community" },
+        description: {
+          id: "Berita terkait masyarakat dan edukasi konservasi",
+          en: "News related to community and conservation education",
+        },
         createdAt: "2025-01-01T00:00:00Z",
         updatedAt: "2025-01-01T00:00:00Z",
         deletedAt: null,
@@ -543,8 +612,9 @@ export const homeNews = [
       {
         id: 3,
         fileName: "workshop.jpg",
-        filePath: "/images/news3.jpg",
-        fileUrl: "/images/news3.jpg",
+        filePath:
+          "https://images.unsplash.com/photo-1506784983877-45594efa4cbe",
+        fileUrl: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe",
         fileMimeType: "image/jpeg",
         fileSize: "400KB",
         createdAt: "2025-01-01T00:00:00Z",
@@ -552,12 +622,22 @@ export const homeNews = [
         deletedAt: null,
       },
     ],
-    title: "Workshop Edukasi Masyarakat tentang Satwa Liar",
-    slug: "workshop-edukasi-masyarakat-satwa",
-    description:
-      "Masyarakat desa mengikuti workshop konservasi untuk meningkatkan kesadaran.",
-    newsContent:
-      "Masyarakat desa sekitar Koridor Rimba mengikuti workshop edukasi tentang pelestarian satwa liar...",
+    title: {
+      id: "Workshop Edukasi Masyarakat tentang Satwa Liar",
+      en: "Community Workshop on Wildlife Education",
+    },
+    slug: {
+      id: "workshop-edukasi-masyarakat-satwa",
+      en: "community-workshop-wildlife-education",
+    },
+    description: {
+      id: "Masyarakat desa mengikuti workshop konservasi untuk meningkatkan kesadaran.",
+      en: "Village communities participate in conservation workshops to raise awareness.",
+    },
+    newsContent: {
+      id: "Masyarakat desa sekitar Koridor Rimba mengikuti workshop edukasi tentang pelestarian satwa liar...",
+      en: "Village communities around Koridor Rimba participated in workshops about wildlife conservation...",
+    },
     createdAt: "2025-09-18T08:00:00Z",
     updatedAt: "2025-09-18T08:00:00Z",
     deletedAt: null,

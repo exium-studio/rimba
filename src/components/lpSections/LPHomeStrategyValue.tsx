@@ -108,7 +108,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
           start: "top 80%",
           // markers: true, // debug
         },
-        y: "100%",
+        y: "20%",
         opacity: 0,
         duration: 0.75,
       });
@@ -161,6 +161,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         bg: "p.900",
         bgImage: `url(${IMAGES_PATH}/lp/home/strategy-value-bg.png)`,
       }}
+      overflow={"clip"}
       {...restProps}
     >
       <EditableContentContainer content={staticContents[15]} mx={"auto"}>

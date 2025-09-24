@@ -17,25 +17,31 @@ import {
 import { ReactNode } from "react";
 
 // CMS
-export interface Interface_CMSNewsCategory {
+export interface Interface_CMSEventsCategory extends Interface__CUD {
   id: number;
-  name: string;
-  description: string;
-  createdAt: string;
-  updatedAt: string;
-  deletedAt: string | null;
+  name: Interface__CMSContentText;
+  description: Interface__CMSContentText;
 }
-export interface Interface__CMSNews {
+export interface Interface__CMSEvents extends Interface__CUD {
+  eventCategory: Interface_CMSEventsCategory[];
+  thumbnail: Interface__StorageFile[];
+  title: Interface__CMSContentText;
+  description: Interface__CMSContentText;
+  eventContent: Interface__CMSContentText;
+}
+export interface Interface_CMSNewsCategory extends Interface__CUD {
+  id: number;
+  name: Interface__CMSContentText;
+  description: Interface__CMSContentText;
+}
+export interface Interface__CMSNews extends Interface__CUD {
   id: number;
   newsCategory: Interface_CMSNewsCategory[];
   thumbnail: Interface__StorageFile[];
   title: Interface__CMSContentText;
-  slug: string;
+  slug: Interface__CMSContentText;
   description: Interface__CMSContentText;
   newsContent: Interface__CMSContentText;
-  createdAt: string;
-  updatedAt: string;
-  deletedAt: string | null;
 }
 export interface Interface_CMSContent extends Interface__CUD {
   id: number;
@@ -113,9 +119,9 @@ export interface Interface__Req<T = any> {
 
 // CUD
 export interface Interface__CUD {
-  created_at?: string;
-  updated_at?: string | null;
-  deleted_at?: string | null;
+  createdAt?: string;
+  updatedAt?: string | null;
+  deletedAt?: string | null;
 }
 
 // Storage

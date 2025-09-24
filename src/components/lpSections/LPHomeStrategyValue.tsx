@@ -152,7 +152,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
     <LPSectionContainer
       ref={containerRef}
       pt={"100px"}
-      pb={0}
+      pb={["60px", null, 0]}
       bgPos={"top"}
       bgSize={"cover"}
       color={"light"}

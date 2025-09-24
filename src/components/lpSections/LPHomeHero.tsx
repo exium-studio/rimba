@@ -302,7 +302,7 @@ export const LPHomeHero = (props: StackProps) => {
           <EditableContentContainer content={staticContents[4]}>
             <P
               className="hero_brief"
-              fontSize={"xl"}
+              fontSize={"18px"}
               textAlign={"center"}
               maxW={"600px"}
               // zIndex={2}

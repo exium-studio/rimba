@@ -13,7 +13,7 @@ const withPWA = require("@ducanh2912/next-pwa").default({
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  devIndicators: false,
+  // devIndicators: false,
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
   },

@@ -10,6 +10,7 @@ import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Interface__CMSNews } from "@/constants/interfaces";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { formatDate } from "@/utils/formatter";
 import { Center, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
@@ -25,11 +26,14 @@ const NewsItem = (props: any) => {
   // Contexts
   const { l, lang } = useLang();
 
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
   // Refs
   const itemContainerRef = useRef<HTMLDivElement>(null);
 
   // States
-  const oddIdx = idx % 2 === 1;
+  const oddIdx = iss ? false : idx % 2 === 1;
 
   // Animation
   useGSAP(

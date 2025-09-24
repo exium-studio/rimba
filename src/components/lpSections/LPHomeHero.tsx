@@ -211,6 +211,15 @@ export const LPHomeHero = (props: StackProps) => {
           ">"
         )
         .to(
+          ".hero_chevron_down",
+          {
+            opacity: 0,
+            ease: "none",
+            duration: 2.5,
+          },
+          "<"
+        )
+        .to(
           ".hero_brief_container",
           {
             opacity: 1,

@@ -134,6 +134,14 @@ export const LPHomeHero = (props: StackProps) => {
   // Animation
   useGSAP(
     () => {
+      gsap.to(".hero_chevron_down", {
+        y: 20,
+        duration: 1,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+      });
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -357,6 +365,7 @@ export const LPHomeHero = (props: StackProps) => {
         </Stack>
 
         <Icon
+          className="hero_chevron_down"
           boxSize={5}
           color={"light"}
           opacity={0.8}

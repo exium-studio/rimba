@@ -239,7 +239,7 @@ export const LPHomeLocation = (props: StackProps) => {
           </EditableContentContainer>
 
           <CContainer
-            h={ciss ? "700px" : "800px"}
+            h={sw < 560 ? "560px" : ciss ? "700px" : "800px"}
             maxH={ciss ? "" : "500px"}
             w={"80%"}
             aspectRatio={1}
@@ -326,6 +326,7 @@ export const LPHomeLocation = (props: StackProps) => {
           h={"80vh"}
           maxH={"600px"}
           aspectRatio={1}
+          mt={ciss ? 20 : 0}
           pos={"absolute"}
           top={"50%"}
           transform={"translateY(-50%)"}
@@ -340,6 +341,7 @@ export const LPHomeLocation = (props: StackProps) => {
           h={"80vh"}
           maxH={"600px"}
           aspectRatio={1}
+          mt={ciss ? 20 : 0}
           pos={"absolute"}
           top={"50%"}
           transform={"translateY(-50%)"}
@@ -354,6 +356,7 @@ export const LPHomeLocation = (props: StackProps) => {
           h={"80vh"}
           maxH={"600px"}
           aspectRatio={1}
+          mt={ciss ? 20 : 0}
           pos={"absolute"}
           top={"50%"}
           transform={"translateY(-50%)"}
@@ -368,6 +371,7 @@ export const LPHomeLocation = (props: StackProps) => {
           h={"80vh"}
           maxH={"600px"}
           aspectRatio={1}
+          mt={ciss ? 20 : 0}
           pos={"absolute"}
           top={"50%"}
           transform={"translateY(-50%)"}

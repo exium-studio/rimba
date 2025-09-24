@@ -13,7 +13,7 @@ import { TopNav } from "@/components/widget/TopNav";
 
 const IndexRoute = () => {
   return (
-    <CContainer>
+    <CContainer overflowX={"clip"}>
       <TopNav />
 
       <CContainer zIndex={2}>

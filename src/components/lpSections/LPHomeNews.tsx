@@ -78,7 +78,7 @@ const NewsItem = (props: any) => {
           borderColor={"d1"}
           pos={"absolute"}
           top={8}
-          left={-8}
+          left={-4}
         >
           <P fontSize={"lg"} fontWeight={"medium"} lineHeight={1}>
             {formatDate(news.createdAt, { variant: "year" })}
@@ -95,7 +95,7 @@ const NewsItem = (props: any) => {
           border={"1px solid"}
           borderColor={"d1"}
           pos={"absolute"}
-          bottom={-4}
+          bottom={0}
           right={8}
         >
           <P fontSize={"xl"} fontWeight={"semibold"} lineHeight={1}>

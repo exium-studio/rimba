@@ -4,7 +4,7 @@ import {
   animals,
   staticContents,
   legalDocs,
-} from "@/constants/dummy";
+} from "@/constants/_dummy";
 import { create } from "zustand";
 
 interface State_Actions {

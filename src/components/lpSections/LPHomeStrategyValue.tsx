@@ -156,7 +156,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       bgPos={"top"}
       bgSize={"cover"}
       color={"light"}
-      mt={"-1px"}
+      mt={"-4px"}
       wrapperProps={{
         bg: "p.900",
         bgImage: `url(${IMAGES_PATH}/lp/home/strategy-value-bg.png)`,

@@ -42,10 +42,10 @@ const NewsItem = (props: any) => {
         scrollTrigger: {
           trigger: itemContainerRef.current,
           start: "top bottom",
+          end: "bottom 20%",
           scrub: true,
-          // markers: true, // debug
         },
-        y: "100%",
+        y: "100px",
         duration: 0.75,
         stagger: 0.2,
       });
@@ -99,7 +99,7 @@ const NewsItem = (props: any) => {
           border={"1px solid"}
           borderColor={"d1"}
           pos={"absolute"}
-          bottom={0}
+          bottom={[4, null, -4]}
           right={8}
         >
           <P fontSize={"xl"} fontWeight={"semibold"} lineHeight={1}>
@@ -110,18 +110,17 @@ const NewsItem = (props: any) => {
       </Center>
 
       <CContainer justify={"center"} gap={4} p={2} order={oddIdx ? 1 : 2}>
-        <P fontSize={"xl"} fontWeight={"semibold"} lineClamp={2}>
+        <P fontSize={["xl", null, "2xl"]} fontWeight={"semibold"} lineClamp={2}>
           {news.title[lang]}
         </P>
 
-        <P lineClamp={2}>{news.description[lang]}</P>
+        <P lineClamp={4}>{news.description[lang]}</P>
 
         <Btn
           w={"fit"}
           colorPalette={"p"}
-          variant={"ghost"}
+          variant={"outline"}
           pr={[5, null, 3]}
-          ml={"auto"}
           mt={4}
         >
           {l.learn_more}

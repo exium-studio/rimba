@@ -14,11 +14,11 @@ import { TopNav } from "@/components/widget/TopNav";
 
 const IndexRoute = () => {
   return (
-    <CContainer overflowX={"clip"}>
+    <CContainer bg={"p.900"} overflowX={"clip"}>
       <TopNav />
 
-      <CContainer zIndex={2}>
-        <LPHomeHero />
+      <CContainer zIndex={2} bg={"light"} roundedBottom={"3xl"}>
+        {/* <LPHomeHero />
 
         <LPHomeStrategyValue />
 
@@ -28,7 +28,7 @@ const IndexRoute = () => {
 
         <LPHomeImpact />
 
-        <LPHomeLegalDocs />
+        <LPHomeLegalDocs /> */}
 
         <LPHomeNews />
 

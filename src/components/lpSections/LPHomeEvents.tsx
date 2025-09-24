@@ -63,11 +63,11 @@ const EventItem = (props: any) => {
             })}
           </P>
 
-          <P fontSize={"lg"} fontWeight={"medium"} lineClamp={1} mt={2}>
+          <P fontSize={"xl"} fontWeight={"medium"} lineClamp={1} mt={2}>
             {event.title[lang]}
           </P>
 
-          <P lineClamp={2} opacity={0.6} mt={4} mb={8}>
+          <P lineClamp={2} mt={4} mb={8}>
             {event.description[lang]}
           </P>
         </CContainer>

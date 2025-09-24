@@ -38,30 +38,30 @@ const DocItem = (props: any) => {
       borderColor={"p.500"}
       {...restProps}
     >
-      <CContainer flex={1} p={5} gap={4} align={"center"}>
+      <CContainer flex={1} p={5} gap={4}>
         <FileIcon
           mimeType={file.fileMimeType}
           color={"fg.subtle"}
           boxSize={16}
           stroke={1.3}
+          my={5}
         />
 
-        <P
-          fontSize={"lg"}
-          fontWeight={"medium"}
-          lineClamp={2}
-          textAlign={"center"}
-        >
+        <P fontSize={"xl"} fontWeight={"semibold"} lineClamp={2}>
           {doc.title[lang]}
         </P>
 
-        <P color={"fg.subtle"} lineClamp={2} textAlign={"center"}>
-          {doc.description[lang]}
-        </P>
+        <P lineClamp={2}>{doc.description[lang]}</P>
       </CContainer>
 
-      <CContainer mt={"auto"} p={5} align={"center"}>
-        <Btn w={"fit"} variant={"ghost"} colorPalette={"p"} pr={[5, null, 3]}>
+      <CContainer mt={"auto"} p={4}>
+        <Btn
+          w={"fit"}
+          variant={"ghost"}
+          colorPalette={"p"}
+          pr={[5, null, 3]}
+          ml={"auto"}
+        >
           {l.see_document}
 
           <Icon boxSize={5}>

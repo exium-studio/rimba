@@ -1,19 +1,273 @@
 "use client";
 
+import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import { StackProps } from "@chakra-ui/react";
+import { Img } from "@/components/ui/img";
+import { NavLink } from "@/components/ui/nav-link";
+import { P } from "@/components/ui/p";
+import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
+import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
+import { LP_NAVS } from "@/constants/navs";
+import { IMAGES_PATH } from "@/constants/paths";
+import useContents from "@/context/useContents";
+import useLang from "@/context/useLang";
+import useScreen from "@/hooks/useScreen";
+import { pluckString } from "@/utils/string";
+import { HStack, Icon, Image, SimpleGrid, StackProps } from "@chakra-ui/react";
+import {
+  IconBrandFacebook,
+  IconBrandInstagram,
+  IconBrandX,
+  IconBrandYoutube,
+  IconMail,
+  IconMapPin,
+  IconPhone,
+} from "@tabler/icons-react";
+import { useEffect, useRef, useState } from "react";
 
-export const LPFooter = (props: StackProps) => {
-  // Props
-  const { ...restProps } = props;
+const TheFooter = (props: StackProps) => {
+  // Contexts
+  const { l, lang } = useLang();
+  const staticContents = useContents((s) => s.staticContents);
+
+  // States
+  const mainNavs = [
+    LP_NAVS[0].list[0],
+    LP_NAVS[0].list[1],
+    ...LP_NAVS[0].list[2].subMenus![0].list,
+  ];
+  const mapNavs = [...LP_NAVS[0].list[3].subMenus![0].list];
+  const appNavs = [...LP_NAVS[0].list[4].subMenus![0].list];
 
   return (
-    <CContainer
-      minH={"500px"}
-      bg={"p.900"}
-      // bgImage={`url(${IMAGES_PATH}/lp/footer-bg.png)`}
-      zIndex={1}
-      {...restProps}
-    ></CContainer>
+    <CContainer {...props}>
+      <LPSectionContainer pt={"80px"} color={"light"}>
+        <SimpleGrid columns={[1, null, 2, 4]} gap={8}>
+          <CContainer gap={4}>
+            <HStack
+              className="content_container_1"
+              w={"fit"}
+              gap={4}
+              bg={"light"}
+              p={2}
+              rounded={"lg"}
+            >
+              <Image src={`${IMAGES_PATH}/atrbpn-logo.png`} h={"40px"} />
+              <Image src={`${IMAGES_PATH}/gef-logo.png`} h={"40px"} />
+              <Image src={`${IMAGES_PATH}/unep-logo.png`} h={"40px"} />
+            </HStack>
+
+            <EditableContentContainer content={staticContents[57]}>
+              <P fontSize={"lg"} maxW={"400px"}>
+                {staticContents[57]?.content[lang]}
+              </P>
+            </EditableContentContainer>
+          </CContainer>
+
+          <CContainer gap={1}>
+            {mainNavs.map((nav) => {
+              return (
+                <NavLink key={nav.path} to={nav.path} w={"fit"}>
+                  <Btn
+                    key={nav.path}
+                    size={"sm"}
+                    justifyContent={"start"}
+                    variant={"ghost"}
+                    colorPalette={"light"}
+                  >
+                    {pluckString(l, nav.labelKey)}
+                  </Btn>
+                </NavLink>
+              );
+            })}
+          </CContainer>
+
+          <CContainer gap={1}>
+            {mapNavs.map((nav) => {
+              return (
+                <NavLink key={nav.path} to={nav.path} w={"fit"}>
+                  <Btn
+                    key={nav.path}
+                    size={"sm"}
+                    justifyContent={"start"}
+                    variant={"ghost"}
+                    colorPalette={"light"}
+                  >
+                    {pluckString(l, nav.labelKey)}
+                  </Btn>
+                </NavLink>
+              );
+            })}
+          </CContainer>
+
+          <CContainer gap={1}>
+            {appNavs.map((nav) => {
+              return (
+                <NavLink key={nav.path} to={nav.path} w={"fit"}>
+                  <Btn
+                    key={nav.path}
+                    size={"sm"}
+                    justifyContent={"start"}
+                    variant={"ghost"}
+                    colorPalette={"light"}
+                  >
+                    {pluckString(l, nav.labelKey)}
+                  </Btn>
+                </NavLink>
+              );
+            })}
+          </CContainer>
+        </SimpleGrid>
+
+        <CContainer
+          pt={8}
+          borderTop={"1px solid"}
+          borderColor={"whiteAlpha.200"}
+          mt={8}
+        >
+          <SimpleGrid columns={[1, null, 2]} gap={8}>
+            <CContainer gap={2}>
+              <HStack>
+                <Icon boxSize={5}>
+                  <IconMail stroke={1.5} />
+                </Icon>
+
+                <P>info@rimba.com</P>
+              </HStack>
+
+              <HStack>
+                <Icon boxSize={5}>
+                  <IconPhone stroke={1.5} />
+                </Icon>
+
+                <P>021-777-788</P>
+              </HStack>
+
+              <HStack>
+                <Icon boxSize={5}>
+                  <IconMapPin stroke={1.5} />
+                </Icon>
+
+                <P>Jl. Sisingamangaraja No. 2, Kebayoran Baru, Jakarta 12110</P>
+              </HStack>
+            </CContainer>
+
+            <CContainer
+              align={["", null, "end"]}
+              justify={["", null, "end"]}
+              gap={4}
+            >
+              <HStack>
+                <Btn
+                  iconButton
+                  colorPalette={"light"}
+                  variant={"outline"}
+                  borderColor={"whiteAlpha.400"}
+                >
+                  <Icon boxSize={5}>
+                    <IconBrandFacebook stroke={1.5} />
+                  </Icon>
+                </Btn>
+
+                <Btn
+                  iconButton
+                  colorPalette={"light"}
+                  variant={"outline"}
+                  borderColor={"whiteAlpha.400"}
+                >
+                  <Icon boxSize={5}>
+                    <IconBrandInstagram stroke={1.5} />
+                  </Icon>
+                </Btn>
+
+                <Btn
+                  iconButton
+                  colorPalette={"light"}
+                  variant={"outline"}
+                  borderColor={"whiteAlpha.400"}
+                >
+                  <Icon boxSize={5}>
+                    <IconBrandX stroke={1.5} />
+                  </Icon>
+                </Btn>
+
+                <Btn
+                  iconButton
+                  colorPalette={"light"}
+                  variant={"outline"}
+                  borderColor={"whiteAlpha.400"}
+                >
+                  <Icon boxSize={5}>
+                    <IconBrandYoutube stroke={1.5} />
+                  </Icon>
+                </Btn>
+              </HStack>
+
+              <P
+                whiteSpace={"nowrap"}
+              >{`Copyright © ${new Date().getFullYear()}`}</P>
+            </CContainer>
+          </SimpleGrid>
+        </CContainer>
+      </LPSectionContainer>
+
+      <Img
+        src={`${IMAGES_PATH}/lp/footer.png`}
+        h={"200px"}
+        aspectRatio={1}
+        objectFit="cover"
+        objectPos="top"
+      />
+    </CContainer>
+  );
+};
+export const LPFooter = (props: StackProps) => {
+  // Hooks
+  const { sw, sh } = useScreen();
+
+  // Refs
+  const spacerRef = useRef<HTMLDivElement>(null);
+
+  // States
+  const [footerHeight, setFooterHeight] = useState(0);
+  const isScreenSmH = sh < footerHeight;
+
+  // measure footer height
+  useEffect(() => {
+    if (!spacerRef.current) return;
+
+    const updateHeight = () => {
+      setFooterHeight(spacerRef.current?.offsetHeight || 0);
+    };
+
+    updateHeight();
+
+    window.addEventListener("resize", updateHeight);
+
+    return () => window.removeEventListener("resize", updateHeight);
+  }, [sw, sh]);
+
+  return (
+    <>
+      {!isScreenSmH && (
+        <CContainer
+          ref={spacerRef}
+          aria-hidden="true"
+          visibility={"hidden"}
+          pointerEvents={"none"}
+          userSelect={"none"}
+        >
+          <TheFooter />
+        </CContainer>
+      )}
+
+      <TheFooter
+        bg="p.900"
+        pos={isScreenSmH ? "static" : "fixed"}
+        bottom={0}
+        left={0}
+        {...props}
+      />
+    </>
   );
 };

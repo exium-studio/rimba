@@ -298,7 +298,7 @@ export const staticContents = {
     },
   },
   51: {
-    id: 50,
+    id: 51,
     type: "Text",
     content: {
       id: "Menyajikan informasi hukum yang jelas, akurat, dan mudah dipahami untuk semua pemangku kepentingan.",
@@ -306,11 +306,59 @@ export const staticContents = {
     },
   },
   52: {
-    id: 50,
+    id: 52,
     type: "Text",
     content: {
       id: "Berita dan Catatan Lapangan",
       en: "News and Field Notes",
+    },
+  },
+  53: {
+    id: 53,
+    type: "Text",
+    content: {
+      id: "Mitra",
+      en: "Partners",
+    },
+  },
+  54: {
+    id: 54,
+    type: "Text",
+    content: {
+      id: "Proyek RIMBA mendapatkan persetujuan GEF Executive Director pada 13 Februari 2020 dengan nilai dana sebesar USD 9.431.763, dengan durasi proyek selama 72 bulan. Perjanjian kerjasama proyek (Project Cooperation Agreement) ditandatangani oleh Dirjen Tata Ruang dari Kementrian Agraria dan Tata Ruang (ATR) dan United Nations Environment Programme (UNEP) pada 30 Juni 2022.",
+      en: "The RIMBA project received approval from the GEF Executive Director on February 13, 2020, with a funding value of USD 9,431,763 and a project duration of 72 months. The Project Cooperation Agreement was signed by the Director General of Spatial Planning of the Ministry of Agrarian Affairs and Spatial Planning (ATR) and the United Nations Environment Programme (UNEP) on June 30, 2022.",
+    },
+  },
+  55: {
+    id: 55,
+    type: "ImageArray",
+    content: [
+      `${IMAGES_PATH}/lp/home/logo-ipsum-1.png`,
+      `${IMAGES_PATH}/lp/home/logo-ipsum-2.png`,
+      `${IMAGES_PATH}/lp/home/logo-ipsum-3.png`,
+      `${IMAGES_PATH}/lp/home/logo-ipsum-1.png`,
+      `${IMAGES_PATH}/lp/home/logo-ipsum-2.png`,
+      `${IMAGES_PATH}/lp/home/logo-ipsum-3.png`,
+    ],
+  },
+  56: {
+    id: 56,
+    type: "ImageArray",
+    content: [
+      `${IMAGES_PATH}/lp/home/logo-ipsum-1.png`,
+      `${IMAGES_PATH}/lp/home/logo-ipsum-2.png`,
+      `${IMAGES_PATH}/lp/home/logo-ipsum-3.png`,
+      `${IMAGES_PATH}/lp/home/logo-ipsum-1.png`,
+      `${IMAGES_PATH}/lp/home/logo-ipsum-2.png`,
+      `${IMAGES_PATH}/lp/home/logo-ipsum-3.png`,
+    ],
+  },
+  57: {
+    id: 57,
+    type: "Text",
+    content: {
+      id: "Kementerian Agraria dan Tata Ruang Badan Pertanahan Nasional",
+      en: "Ministry of Agrarian Affairs and Spatial Planning National Land Administration",
     },
   },
 };
@@ -534,8 +582,8 @@ export const homeNews = [
       en: "sumatran-tiger-tracks-koridor-rimba",
     },
     description: {
-      id: "Tim konservasi mendeteksi jejak harimau Sumatera di wilayah utara koridor.",
-      en: "The conservation team detected Sumatran tiger tracks in the northern area of the corridor.",
+      id: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est. Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
+      en: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est. Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
     },
     newsContent: {
       id: "Tim konservasi berhasil menemukan jejak harimau Sumatera di Koridor Rimba utara...",
@@ -582,8 +630,8 @@ export const homeNews = [
       en: "planting-5000-trees-habitat",
     },
     description: {
-      id: "Program restorasi hutan berjalan dengan penanaman ribuan pohon lokal.",
-      en: "The forest restoration program is underway with the planting of thousands of local trees.",
+      id: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est. Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
+      en: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est. Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
     },
     newsContent: {
       id: "Sebanyak 5000 pohon lokal telah ditanam di Koridor Rimba untuk memperluas habitat satwa liar...",
@@ -631,8 +679,8 @@ export const homeNews = [
       en: "community-workshop-wildlife-education",
     },
     description: {
-      id: "Masyarakat desa mengikuti workshop konservasi untuk meningkatkan kesadaran.",
-      en: "Village communities participate in conservation workshops to raise awareness.",
+      id: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est. Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
+      en: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est. Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
     },
     newsContent: {
       id: "Masyarakat desa sekitar Koridor Rimba mengikuti workshop edukasi tentang pelestarian satwa liar...",

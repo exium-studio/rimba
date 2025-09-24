@@ -179,7 +179,7 @@ export const LPHomeNews = (props: StackProps) => {
     <LPSectionContainer
       ref={containerRef}
       py={"80px"}
-      wrapperProps={{
+      outerContainerProps={{
         bg: "bg.subtle",
       }}
       {...restProps}

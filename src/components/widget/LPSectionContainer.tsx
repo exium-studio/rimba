@@ -6,17 +6,17 @@ import { StackProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
 interface Props__LPSectionContainer extends StackProps {
-  wrapperProps?: StackProps;
+  outerContainerProps?: StackProps;
 }
 
 export const LPSectionContainer = forwardRef<
   HTMLDivElement,
   Props__LPSectionContainer
 >((props, ref) => {
-  const { children, wrapperProps, ...restProps } = props;
+  const { children, outerContainerProps, ...restProps } = props;
 
   return (
-    <CContainer ref={ref} px={[4, null, 12]} {...wrapperProps}>
+    <CContainer ref={ref} px={[4, null, 12]} {...outerContainerProps}>
       <CContainer
         w="full"
         maxW={MAX_W_LP_SECTION_CONTAINER}

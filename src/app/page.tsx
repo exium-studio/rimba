@@ -7,6 +7,7 @@ import { LPHomeImpact } from "@/components/lpSections/LPHomeImpact";
 import { LPHomeLegalDocs } from "@/components/lpSections/LPHomeLegalDocs";
 import { LPHomeLocation } from "@/components/lpSections/LPHomeLocation";
 import { LPHomeNews } from "@/components/lpSections/LPHomeNews";
+import { LPHomePartners } from "@/components/lpSections/LPHomePartners";
 import { LPHomeStrategyValue } from "@/components/lpSections/LPHomeStrategyValue";
 import { CContainer } from "@/components/ui/c-container";
 import { TopNav } from "@/components/widget/TopNav";
@@ -30,6 +31,8 @@ const IndexRoute = () => {
         <LPHomeLegalDocs />
 
         <LPHomeNews />
+
+        <LPHomePartners />
       </CContainer>
 
       <LPFooter />

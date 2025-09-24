@@ -106,11 +106,11 @@ const NewsItem = (props: any) => {
       </Center>
 
       <CContainer justify={"center"} gap={4} p={2} order={oddIdx ? 1 : 2}>
-        <P fontSize={"xl"} fontWeight={"semibold"}>
+        <P fontSize={"xl"} fontWeight={"semibold"} lineClamp={2}>
           {news.title[lang]}
         </P>
 
-        <P>{news.description[lang]}</P>
+        <P lineClamp={2}>{news.description[lang]}</P>
 
         <Btn
           w={"fit"}

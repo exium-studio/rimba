@@ -55,7 +55,7 @@ const DocItem = (props: any) => {
           {doc.title[lang]}
         </P>
 
-        <P color={"fg.subtle"} lineClamp={3} textAlign={"center"}>
+        <P color={"fg.subtle"} lineClamp={2} textAlign={"center"}>
           {doc.description[lang]}
         </P>
       </CContainer>

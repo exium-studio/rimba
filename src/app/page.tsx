@@ -21,9 +21,9 @@ const IndexRoute = () => {
 
         <LPHomeStrategyValue />
 
-        <LPHomeEvents />
-
         <LPHomeLocation />
+
+        <LPHomeEvents />
 
         <LPHomeImpact />
 

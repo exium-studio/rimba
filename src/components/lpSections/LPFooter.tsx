@@ -23,7 +23,94 @@ import {
   IconMapPin,
   IconPhone,
 } from "@tabler/icons-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+
+const Contacts = () => {
+  // Contexts
+  const { lang } = useLang();
+  const staticContents = useContents((s) => s.staticContents);
+
+  // States
+  const contacts = [
+    {
+      icon: IconMail,
+      textContent: staticContents[58],
+    },
+    {
+      icon: IconPhone,
+      textContent: staticContents[59],
+    },
+    {
+      icon: IconMapPin,
+      textContent: staticContents[60],
+    },
+  ];
+
+  return (
+    <CContainer gap={2}>
+      {contacts.map((contact, idx) => {
+        return (
+          <EditableContentContainer content={contact.textContent} key={idx}>
+            <HStack>
+              <contact.icon />
+              <EditableContentContainer content={contact.textContent}>
+                <P>{contact.textContent?.content[lang]}</P>
+              </EditableContentContainer>
+            </HStack>
+          </EditableContentContainer>
+        );
+      })}
+    </CContainer>
+  );
+};
+const Sosmeds = () => {
+  // Contexts
+  const staticContents = useContents((s) => s.staticContents);
+
+  // States
+  const sosmeds = [
+    {
+      icon: IconBrandFacebook,
+      linkContent: staticContents[61],
+    },
+    {
+      icon: IconBrandInstagram,
+      linkContent: staticContents[62],
+    },
+    {
+      icon: IconBrandX,
+      linkContent: staticContents[63],
+    },
+    {
+      icon: IconBrandYoutube,
+      linkContent: staticContents[64],
+    },
+  ];
+
+  return (
+    <HStack>
+      {sosmeds.map((sosmed, idx) => {
+        return (
+          <EditableContentContainer content={sosmed.linkContent} key={idx}>
+            <Link href={sosmed.linkContent?.content} target="_blank">
+              <Btn
+                iconButton
+                colorPalette={"light"}
+                variant={"outline"}
+                borderColor={"whiteAlpha.400"}
+              >
+                <Icon boxSize={5}>
+                  <sosmed.icon />
+                </Icon>
+              </Btn>
+            </Link>
+          </EditableContentContainer>
+        );
+      })}
+    </HStack>
+  );
+};
 
 const TheFooter = (props: StackProps) => {
   // Contexts
@@ -74,6 +161,7 @@ const TheFooter = (props: StackProps) => {
                     justifyContent={"start"}
                     variant={"ghost"}
                     colorPalette={"light"}
+                    fontWeight={"normal"}
                   >
                     {pluckString(l, nav.labelKey)}
                   </Btn>
@@ -92,6 +180,7 @@ const TheFooter = (props: StackProps) => {
                     justifyContent={"start"}
                     variant={"ghost"}
                     colorPalette={"light"}
+                    fontWeight={"normal"}
                   >
                     {pluckString(l, nav.labelKey)}
                   </Btn>
@@ -110,6 +199,7 @@ const TheFooter = (props: StackProps) => {
                     justifyContent={"start"}
                     variant={"ghost"}
                     colorPalette={"light"}
+                    fontWeight={"normal"}
                   >
                     {pluckString(l, nav.labelKey)}
                   </Btn>
@@ -126,82 +216,14 @@ const TheFooter = (props: StackProps) => {
           mt={8}
         >
           <SimpleGrid columns={[1, null, 2]} gap={8}>
-            <CContainer gap={2}>
-              <HStack>
-                <Icon boxSize={5}>
-                  <IconMail stroke={1.5} />
-                </Icon>
-
-                <P>info@rimba.com</P>
-              </HStack>
-
-              <HStack>
-                <Icon boxSize={5}>
-                  <IconPhone stroke={1.5} />
-                </Icon>
-
-                <P>021-777-788</P>
-              </HStack>
-
-              <HStack>
-                <Icon boxSize={5}>
-                  <IconMapPin stroke={1.5} />
-                </Icon>
-
-                <P>Jl. Sisingamangaraja No. 2, Kebayoran Baru, Jakarta 12110</P>
-              </HStack>
-            </CContainer>
+            <Contacts />
 
             <CContainer
               align={["", null, "end"]}
               justify={["", null, "end"]}
               gap={4}
             >
-              <HStack>
-                <Btn
-                  iconButton
-                  colorPalette={"light"}
-                  variant={"outline"}
-                  borderColor={"whiteAlpha.400"}
-                >
-                  <Icon boxSize={5}>
-                    <IconBrandFacebook stroke={1.5} />
-                  </Icon>
-                </Btn>
-
-                <Btn
-                  iconButton
-                  colorPalette={"light"}
-                  variant={"outline"}
-                  borderColor={"whiteAlpha.400"}
-                >
-                  <Icon boxSize={5}>
-                    <IconBrandInstagram stroke={1.5} />
-                  </Icon>
-                </Btn>
-
-                <Btn
-                  iconButton
-                  colorPalette={"light"}
-                  variant={"outline"}
-                  borderColor={"whiteAlpha.400"}
-                >
-                  <Icon boxSize={5}>
-                    <IconBrandX stroke={1.5} />
-                  </Icon>
-                </Btn>
-
-                <Btn
-                  iconButton
-                  colorPalette={"light"}
-                  variant={"outline"}
-                  borderColor={"whiteAlpha.400"}
-                >
-                  <Icon boxSize={5}>
-                    <IconBrandYoutube stroke={1.5} />
-                  </Icon>
-                </Btn>
-              </HStack>
+              <Sosmeds />
 
               <P
                 whiteSpace={"nowrap"}

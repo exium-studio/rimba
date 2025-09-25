@@ -325,7 +325,6 @@ export const LPHomeHero = (props: StackProps) => {
           flexDir={["column", null, "row"]}
           flex={1}
           gap={12}
-          align={"center"}
           justify={"center"}
           p={[8, null, 20]}
           color={"light"}
@@ -353,7 +352,6 @@ export const LPHomeHero = (props: StackProps) => {
             maxW={"320px"}
             gap={4}
             mt={[0, null, "auto"]}
-            ml={"auto"}
           >
             <EditableContentContainer content={staticContents[1]}>
               <P

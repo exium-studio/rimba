@@ -124,31 +124,39 @@ export const LPHomePartners = (props: StackProps) => {
       </LPSectionContainer>
 
       <CContainer gap={"80px"} mb={"80px"} overflow={"hidden"}>
-        <CContainer>
-          <HStack
-            className="partners_logos"
-            ref={partnerLogos1Ref}
-            w="max"
-            gap={"80px"}
-          >
-            {resolvedParterLogos1.map((imgUrl: string, idx: number) => (
-              <Image key={`${idx}-${imgUrl}`} src={imgUrl} h={"40px"} />
-            ))}
-          </HStack>
-        </CContainer>
+        <EditableContentContainer w={"full"} content={staticContents[55]}>
+          <CContainer>
+            <HStack
+              className="partners_logos"
+              ref={partnerLogos1Ref}
+              w="max"
+              gap={"80px"}
+            >
+              {resolvedParterLogos1.map((imgUrl: string, idx: number) => (
+                <Image key={`${idx}-${imgUrl}`} src={imgUrl} h={"40px"} />
+              ))}
+            </HStack>
+          </CContainer>
+        </EditableContentContainer>
 
-        <CContainer align={"end"}>
-          <HStack
-            className="partners_logos"
-            ref={partnerLogos2Ref}
-            w="max"
-            gap={"80px"}
-          >
-            {resolvedParterLogos2.map((imgUrl: string, idx: number) => (
-              <Image key={`${idx}-${imgUrl}`} src={imgUrl} h={"40px"} />
-            ))}
-          </HStack>
-        </CContainer>
+        <EditableContentContainer
+          w={"full"}
+          content={staticContents[56]}
+          align={"end"}
+        >
+          <CContainer align={"end"}>
+            <HStack
+              className="partners_logos"
+              ref={partnerLogos2Ref}
+              w="max"
+              gap={"80px"}
+            >
+              {resolvedParterLogos2.map((imgUrl: string, idx: number) => (
+                <Image key={`${idx}-${imgUrl}`} src={imgUrl} h={"40px"} />
+              ))}
+            </HStack>
+          </CContainer>
+        </EditableContentContainer>
       </CContainer>
     </CContainer>
   );

@@ -361,6 +361,50 @@ export const staticContents = {
       en: "Ministry of Agrarian Affairs and Spatial Planning National Land Administration",
     },
   },
+  58: {
+    id: 58,
+    type: "Text",
+    content: {
+      id: "info@rimba.com",
+      en: "info@rimba.com",
+    },
+  },
+  59: {
+    id: 59,
+    type: "Text",
+    content: {
+      id: "021-777-788",
+      en: "021-777-788",
+    },
+  },
+  60: {
+    id: 60,
+    type: "Text",
+    content: {
+      id: "Jl. Sisingamangaraja No. 2, Kebayoran Baru, Jakarta 12110",
+      en: "Jl. Sisingamangaraja No. 2, Kebayoran Baru, Jakarta 12110",
+    },
+  },
+  61: {
+    id: 61,
+    type: "Link",
+    content: "https://facebook.com",
+  },
+  62: {
+    id: 62,
+    type: "Link",
+    content: "https://instagram.com",
+  },
+  63: {
+    id: 63,
+    type: "Link",
+    content: "https://x.com",
+  },
+  64: {
+    id: 64,
+    type: "Link",
+    content: "https://youtube.com",
+  },
 };
 
 export const homeEvents = [

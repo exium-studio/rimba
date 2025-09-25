@@ -45,7 +45,7 @@ const ValueItem = (props: any) => {
       <HStack align={"start"} gap={6}>
         <CContainer gap={4}>
           <EditableContentContainer content={value.titleContent}>
-            <P fontSize={"xl"} fontWeight={"semibold"}>
+            <P fontSize={["xl", null, "xl"]} fontWeight={"semibold"}>
               {value.titleContent?.content[lang]}
             </P>
           </EditableContentContainer>
@@ -244,7 +244,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                     <NavLink to="/about-us/rimba-corridor-program" w={"fit"}>
                       <Btn
                         colorPalette={"p"}
-                        variant={"plain"}
+                        variant={"outline"}
                         size={"md"}
                         pr={3}
                       >
@@ -265,7 +265,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             className="strategy_value_content_2"
             flex={"0 1 450px"}
             gap={8}
-            minH={"full"}
+            minH={"max"}
             justify={["", null, "center"]}
             zIndex={2}
           >

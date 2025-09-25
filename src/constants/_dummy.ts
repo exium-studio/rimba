@@ -126,7 +126,10 @@ export const staticContents = {
   24: {
     id: 24,
     type: "Text",
-    content: { id: "Kegiatan Kami", en: "Our Events" },
+    content: {
+      id: "Rangkaian Kegiatan Kami di Koridor Ekosistem RIMBA",
+      en: "Our RIMBA Ecosystem Corridor Activities",
+    },
   },
   25: {
     id: 25,
@@ -197,8 +200,8 @@ export const staticContents = {
     id: 36,
     type: "Text",
     content: {
-      id: "Dampak Program Koridor RIMBA",
-      en: "RIMBA Corridor Program Impact",
+      id: "Dampak Nyata Program Koridor RIMBA untuk Lingkungan",
+      en: "Real Impact of RIMBA Ecosystem Corridor for Environment",
     },
   },
   37: {
@@ -407,7 +410,7 @@ export const staticContents = {
   },
 };
 
-export const homeEvents = [
+export const homeActivities = [
   {
     id: 1,
     thumbnail: [
@@ -433,6 +436,7 @@ export const homeEvents = [
       id: "Dengan teknologi pemetaan dan data spasial, pelestarian alam kini lebih terukur dan transparan. Penggunaan data lingkungan membantu pengambil kebijakan, peneliti, dan masyarakat.",
       en: "With spatial mapping and spatial data, nature preservation is now more accurate and transparent. Using environmental data helps policymakers, researchers, and the public.",
     },
+    plannedDate: "2025-01-15T08:30:00.000Z",
     createdAt: "2025-01-15T08:30:00.000Z",
   },
   {
@@ -460,6 +464,7 @@ export const homeEvents = [
       id: "Dengan teknologi pemetaan dan data spasial, pelestarian alam kini lebih terukur dan transparan. Penggunaan data lingkungan membantu pengambil kebijakan, peneliti, dan masyarakat.",
       en: "With spatial mapping and spatial data, nature preservation is now more accurate and transparent. Using environmental data helps policymakers, researchers, and the public.",
     },
+    plannedDate: "2025-01-15T08:30:00.000Z",
     createdAt: "2025-01-15T08:30:00.000Z",
   },
   {
@@ -487,6 +492,7 @@ export const homeEvents = [
       id: "Akses air bersih kini tak hanya soal infrastruktur, tapi juga soal informasi. Penggunaan sensor kualitas air dan dashboard pelaporan membuat distribusi air lebih adil dan tanggap terhadap krisis lokal.",
       en: "Clean water access is not just infrastructure, but also information. Using water quality sensors and reporting dashboards makes water distribution more equitable and responsive to local crises.",
     },
+    plannedDate: "2025-01-15T08:30:00.000Z",
     createdAt: "2025-01-15T08:30:00.000Z",
   },
 ];

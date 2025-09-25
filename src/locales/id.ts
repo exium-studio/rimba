@@ -189,7 +189,7 @@ const translations = {
     "about_us": {
       "index": "Tentang Kami",
       "rimba_corridor_program": "Program Koridor RIMBA",
-      "events": "Kegiatan",
+      "activities": "Kegiatan",
       "news": "Berita",
       "partners": "Mitra"
     },
@@ -269,6 +269,7 @@ const translations = {
   "previous": "Sebelumnya",
   "profile": "Profil",
   "published_at": "Diterbitkan pada",
+  "read_more": "Baca selengkapnya",
   "recieve": "Terima",
   "reset": "Reset",
   "retry": "Coba lagi",

@@ -27,7 +27,7 @@ const translations = {
   },
   "all": "All",
   "all_document": "All document",
-  "all_events": "All events",
+  "all_events": "All activities",
   "april": "April",
   "august": "August",
   "back": "Back",
@@ -189,7 +189,7 @@ const translations = {
     "about_us": {
       "index": "About Us",
       "rimba_corridor_program": "RIMBA Corridor Program",
-      "events": "Events",
+      "activities": "Activities",
       "news": "News",
       "partners": "Partners"
     },
@@ -269,6 +269,7 @@ const translations = {
   "previous": "Previous",
   "profile": "Profile",
   "published_at": "Published at",
+  "read_more": "Read more",
   "recieve": "Recieve",
   "reset": "Reset",
   "retry": "Retry",

@@ -186,7 +186,7 @@ export const LPHomeImpact = (props: StackProps) => {
     () => {
       gsap.from(".section_title", {
         scrollTrigger: {
-          trigger: mainContentsRef.current,
+          trigger: containerRef.current,
           start: "top 50%",
           // markers: true, // debug
         },
@@ -198,7 +198,7 @@ export const LPHomeImpact = (props: StackProps) => {
 
       gsap.from(".impact_content", {
         scrollTrigger: {
-          trigger: mainContentsRef.current,
+          trigger: containerRef.current,
           start: "top 50%",
           // markers: true, // debug
         },
@@ -238,15 +238,15 @@ export const LPHomeImpact = (props: StackProps) => {
   return (
     <CContainer ref={containerRef} py={"80px"} {...restProps}>
       <LPSectionContainer gap={"80px"}>
-        <SimpleGrid ref={mainContentsRef} columns={[1, null, 2]} gap={8}>
+        <SimpleGrid
+          ref={mainContentsRef}
+          columns={[1, null, 2]}
+          gapX={"80px"}
+          gapY={8}
+        >
           <CContainer>
-            <EditableContentContainer content={staticContents[36]}>
-              <H2
-                className="section_title"
-                fontWeight={"bold"}
-                color={"p.700"}
-                mt={"-12px"}
-              >
+            <EditableContentContainer content={staticContents[36]} mt={"-12px"}>
+              <H2 className="section_title" fontWeight={"bold"} color={"p.700"}>
                 {staticContents[36]?.content[lang]}
               </H2>
             </EditableContentContainer>
@@ -265,7 +265,12 @@ export const LPHomeImpact = (props: StackProps) => {
           </CContainer>
         </SimpleGrid>
 
-        <SimpleGrid ref={chartContentsRef} columns={[1, null, 2]} gap={8}>
+        <SimpleGrid
+          ref={chartContentsRef}
+          columns={[1, null, 2]}
+          gapX={"80px"}
+          gapY={8}
+        >
           <CompletionProgressChart className="completion_chart" />
 
           <AnimalsChart className="animals_chart" />

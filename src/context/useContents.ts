@@ -1,5 +1,5 @@
 import {
-  homeEvents,
+  homeActivities,
   homeCompletionProgress,
   homeSpeciesComposition,
   staticContents,
@@ -10,7 +10,7 @@ import { create } from "zustand";
 
 interface State_Actions {
   staticContents: any;
-  homeEvents: any;
+  homeActivities: any;
   homeSpeciesComposition: any;
   homeCompletionProgress: any;
   legalDocuments: any;
@@ -20,7 +20,7 @@ interface State_Actions {
 
 const useContents = create<State_Actions>((set) => ({
   staticContents: staticContents || [],
-  homeEvents: homeEvents || [],
+  homeActivities: homeActivities || [],
   homeSpeciesComposition: homeSpeciesComposition || [],
   homeCompletionProgress: homeCompletionProgress || [],
   legalDocuments: homeLegalDocs || [],
@@ -28,7 +28,7 @@ const useContents = create<State_Actions>((set) => ({
   setContents: (newState) =>
     set({
       staticContents: newState.staticContents,
-      homeEvents: newState.homeEvents,
+      homeActivities: newState.homeActivities,
       homeSpeciesComposition: newState.homeSpeciesComposition,
       homeCompletionProgress: newState.homeCompletionProgress,
       legalDocuments: newState.legalDocuments,

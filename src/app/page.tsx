@@ -1,7 +1,7 @@
 "use client";
 
 import { LPFooter } from "@/components/lpSections/LPFooter";
-import { LPHomeEvents } from "@/components/lpSections/LPHomeEvents";
+import { LPHomeActivities } from "@/components/lpSections/LPHomeActivities";
 import { LPHomeHero } from "@/components/lpSections/LPHomeHero";
 import { LPHomeImpact } from "@/components/lpSections/LPHomeImpact";
 import { LPHomeLegalDocs } from "@/components/lpSections/LPHomeLegalDocs";
@@ -24,7 +24,7 @@ const IndexRoute = () => {
 
         <LPHomeLocation />
 
-        <LPHomeEvents />
+        <LPHomeActivities />
 
         <LPHomeImpact />
 

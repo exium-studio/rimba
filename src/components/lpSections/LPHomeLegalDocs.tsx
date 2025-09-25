@@ -8,12 +8,14 @@ import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
+import FolderShape from "@/components/widget/FolderShape";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import { Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
+import { formatDate } from "@/utils/formatter";
+import { Box, HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import gsap from "gsap";
@@ -68,6 +70,96 @@ const DocItem = (props: any) => {
             <IconArrowUpRight stroke={1.5} />
           </Icon>
         </Btn>
+      </CContainer>
+    </CContainer>
+  );
+};
+const EventItem = (props: any) => {
+  // Props
+  const { event, ...restProps } = props;
+
+  // Contexts
+  const { l, lang } = useLang();
+
+  return (
+    <CContainer
+      rounded={"3xl"}
+      bg={"p.900"}
+      color={"light"}
+      p={2}
+      {...restProps}
+    >
+      <CContainer>
+        <Img
+          src={event.thumbnail?.[0]?.fileUrl}
+          aspectRatio={1}
+          rounded={"2xl"}
+        />
+      </CContainer>
+
+      <CContainer
+        flex={1}
+        bg={"p.900"}
+        roundedTopRight={"2xl"}
+        roundedBottomLeft={"2xl"}
+        roundedBottomRight={"2xl"}
+        mt={"-40px"}
+        pos={"relative"}
+        zIndex={2}
+      >
+        <CContainer p={4}>
+          <Box pos={"absolute"} top={"-29.5px"} left={0}>
+            <FolderShape h={"30px"} color={"p.900"} />
+          </Box>
+
+          <P opacity={0.8} pos={"absolute"} top={"-20px"} left={4} zIndex={2}>
+            {formatDate(event.createdAt, {
+              variant: "year",
+            })}
+          </P>
+
+          <P fontSize={"xl"} fontWeight={"medium"} lineClamp={1} mt={2}>
+            {event.title[lang]}
+          </P>
+
+          <P lineClamp={2} mt={4} mb={8}>
+            {event.description[lang]}
+          </P>
+        </CContainer>
+
+        <HStack justify={"space-between"} p={3} mt={"auto"}>
+          <HStack align={"end"}>
+            <P fontSize={"xl"} fontWeight={"semibold"} lineHeight={1.2} ml={1}>
+              {formatDate(event.createdAt, {
+                variant: "day",
+              })}
+            </P>
+
+            <P>
+              {formatDate(event.createdAt, {
+                variant: "shortMonth",
+              })}
+            </P>
+          </HStack>
+
+          <Btn
+            colorPalette={"p"}
+            color={"p.300"}
+            variant={"ghost"}
+            size={"md"}
+            pr={3}
+            mt={"auto"}
+            _hover={{
+              bg: "blackAlpha.300",
+            }}
+          >
+            {l.learn_more}
+
+            <Icon boxSize={5}>
+              <IconArrowUpRight stroke={1.5} />
+            </Icon>
+          </Btn>
+        </HStack>
       </CContainer>
     </CContainer>
   );
@@ -214,7 +306,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
               w={"fit"}
               pr={3}
               colorPalette={"p"}
-              variant={"ghost"}
+              variant={"outline"}
               mx={"auto"}
               mt={4}
             >

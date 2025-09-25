@@ -123,7 +123,7 @@ const NewsItem = (props: any) => {
           pr={[5, null, 3]}
           mt={4}
         >
-          {l.learn_more}
+          {l.read_more}
           <Icon>
             <IconArrowUpRight />
           </Icon>

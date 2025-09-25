@@ -17,17 +17,19 @@ import {
 import { ReactNode } from "react";
 
 // CMS
-export interface Interface_CMSEventsCategory extends Interface__CUD {
+export interface Interface_CMSActivityCategory extends Interface__CUD {
   id: number;
   name: Interface__CMSContentText;
   description: Interface__CMSContentText;
 }
-export interface Interface__CMSEvents extends Interface__CUD {
-  eventCategory: Interface_CMSEventsCategory[];
+export interface Interface__CMSActivity extends Interface__CUD {
+  id: number;
+  eventCategory: Interface_CMSActivityCategory[];
   thumbnail: Interface__StorageFile[];
   title: Interface__CMSContentText;
   description: Interface__CMSContentText;
   eventContent: Interface__CMSContentText;
+  plannedDate: string;
 }
 export interface Interface_CMSNewsCategory extends Interface__CUD {
   id: number;

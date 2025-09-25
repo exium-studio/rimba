@@ -286,7 +286,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
                 key={idx}
                 doc={doc}
                 className={`doc_item_${idx + 1}`}
-                zIndex={idx === 1 ? 2 : 1}
+                zIndex={!iss ? (idx === 1 ? 2 : 1) : idx}
               />
             );
           })}

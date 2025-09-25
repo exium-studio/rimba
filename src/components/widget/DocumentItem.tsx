@@ -119,8 +119,8 @@ export const DocumentItem = (props: Props__DocumentItem) => {
         </CContainer>
 
         <HStack justify={"space-between"} p={3} mt={"auto"}>
-          <HStack align={"end"}>
-            <P fontSize={"xl"} fontWeight={"semibold"} lineHeight={1.2} ml={1}>
+          <HStack align={"end"} gap={1} opacity={0.4} ml={1}>
+            <P fontSize={"xl"} fontWeight={"medium"} lineHeight={1.2} ml={1}>
               {formatDate(document.createdAt, {
                 variant: "day",
               })}

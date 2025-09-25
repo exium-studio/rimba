@@ -408,6 +408,110 @@ export const staticContents = {
     type: "Link",
     content: "https://youtube.com",
   },
+  65: {
+    id: 65,
+    type: "Text",
+    content: {
+      id: "Dokumen dan Informasi Hukum",
+      en: "Legal Documents and Informations",
+    },
+  },
+  66: {
+    id: 66,
+    type: "Text",
+    content: {
+      id: "Program Koridor RIMBA",
+      en: "RIMBA Ecosystem Corridor Program",
+    },
+  },
+  67: {
+    id: 67,
+    type: "Text",
+    content: {
+      id: "Tujuan Program",
+      en: "Program Objectives",
+    },
+  },
+  68: {
+    id: 68,
+    type: "Text",
+    content: {
+      id: "Program Koridor RIMBA membantu Pemerintah Indonesia dalam menerapkan transisi ekonomi hijau dengan emisi rendah karbon serta melaksanakan peta jalan penyelamatan ekosistem di tiga provinsi: Riau, Jambi, dan Sumatera Barat.",
+      en: "The RIMBA Corridor Program assists the Indonesian Government in implementing a green economy transition with low carbon emissions and implementing an ecosystem rescue roadmap in three provinces: Riau, Jambi, and West Sumatra.",
+    },
+  },
+  69: {
+    id: 69,
+    type: "Text",
+    content: {
+      id: "Melestarikan Keanekaragaman Hayati",
+      en: "Preserving Diversity of Life",
+    },
+  },
+  70: {
+    id: 70,
+    type: "Text",
+    content: {
+      id: "Meningkatkan fungsi koridor ekosistem untuk menjaga keberlangsungan satwa dan habitatnya.",
+      en: "Increasing the function of the ecosystem corridor to preserve the survival of wildlife and their habitats.",
+    },
+  },
+  71: {
+    id: 71,
+    type: "Text",
+    content: {
+      id: "Perlindungan Alam",
+      en: "Preserving Nature",
+    },
+  },
+  72: {
+    id: 72,
+    type: "Text",
+    content: {
+      id: "Meningkatkan cadangan karbon melalui perlindungan dan pemulihan ekosistem.",
+      en: "Increasing carbon storage by preserving and recovering ecosystems.",
+    },
+  },
+  73: {
+    id: 73,
+    type: "Text",
+    content: {
+      id: "Tata Ruang Berkelanjutan",
+      en: "Sustainable Spatial Planning",
+    },
+  },
+  74: {
+    id: 74,
+    type: "Text",
+    content: {
+      id: "Menjadikan rencana tata ruang sebagai instrumen pembangunan ekonomi hijau.",
+      en: "Making spatial planning a tool for sustainable economic development.",
+    },
+  },
+  75: {
+    id: 75,
+    type: "Text",
+    content: {
+      id: "Manajemen Lanskap",
+      en: "Land Management",
+    },
+  },
+  76: {
+    id: 76,
+    type: "Text",
+    content: {
+      id: "Mengembangkan tata kelola bentang alam yang kolaboratif dan menyeluruh.",
+      en: "Developing collaborative and comprehensive land management. ",
+    },
+  },
+  77: {
+    id: 77,
+    type: "Text",
+    content: {
+      id: "Kesepakatan Dibangun",
+      en: "Project Cooperation Agreement (PCA) antara Kementerian ATR/BPN dan UNEP–GEF disepakati pada Juni 2021.",
+    },
+  },
 };
 
 export const homeActivities = [

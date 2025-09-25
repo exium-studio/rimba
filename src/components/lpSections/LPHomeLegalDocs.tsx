@@ -2,7 +2,6 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import { FileIcon } from "@/components/ui/file-icon";
 import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
@@ -19,7 +18,7 @@ import { Box, HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const DocItem = (props: any) => {
   // Props
@@ -29,71 +28,68 @@ const DocItem = (props: any) => {
   const { l, lang } = useLang();
 
   // States
-  const file = doc.file?.[0];
+  const [hover, setHover] = useState<boolean>(false);
 
   return (
-    <CContainer
-      bg={"light"}
-      color={"dark"}
-      rounded={"3xl"}
-      border={"1px solid"}
-      borderColor={"p.500"}
-      {...restProps}
-    >
-      <CContainer flex={1} p={5} gap={4}>
-        <FileIcon
-          mimeType={file.fileMimeType}
-          color={"fg.subtle"}
-          boxSize={16}
-          stroke={1.3}
-          my={5}
-        />
-
-        <P fontSize={"xl"} fontWeight={"semibold"} lineClamp={2}>
-          {doc.title[lang]}
-        </P>
-
-        <P lineClamp={2}>{doc.description[lang]}</P>
-      </CContainer>
-
-      <CContainer mt={"auto"} p={4}>
-        <Btn
-          w={"fit"}
-          variant={"ghost"}
-          colorPalette={"p"}
-          pr={[5, null, 3]}
-          ml={"auto"}
-        >
-          {l.see_document}
-
-          <Icon boxSize={5}>
-            <IconArrowUpRight stroke={1.5} />
-          </Icon>
-        </Btn>
-      </CContainer>
-    </CContainer>
-  );
-};
-const EventItem = (props: any) => {
-  // Props
-  const { event, ...restProps } = props;
-
-  // Contexts
-  const { l, lang } = useLang();
-
-  return (
-    <CContainer
-      rounded={"3xl"}
-      bg={"p.900"}
-      color={"light"}
-      p={2}
-      {...restProps}
-    >
-      <CContainer>
-        <Img
-          src={event.thumbnail?.[0]?.fileUrl}
-          aspectRatio={1}
+    <CContainer rounded={"3xl"} bg={"p.900"} color={"light"} {...restProps}>
+      <CContainer
+        h={"140px"}
+        pos={"relative"}
+        p={2}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        <Box
+          w={"90%"}
+          h={"200px"}
+          bg={"bg.emphasized"}
+          border={"1px solid"}
+          borderColor={"d4"}
           rounded={"2xl"}
+          pos={"absolute"}
+          left={"50%"}
+          bottom={-20}
+          transform={
+            hover
+              ? "rotate(15deg) translateX(-50%) translateY(-10px)"
+              : "rotate(10deg) translateX(-50%)"
+          }
+          transition={"200ms"}
+          zIndex={1}
+        />
+        <Box
+          w={"90%"}
+          h={"200px"}
+          bg={"bg.muted"}
+          border={"1px solid"}
+          borderColor={"d4"}
+          rounded={"2xl"}
+          pos={"absolute"}
+          left={"50%"}
+          bottom={-20}
+          transform={
+            hover
+              ? "rotate(10deg)  translateX(-50%) translateY(5px)"
+              : "rotate(5deg)  translateX(-50%)"
+          }
+          transition={"200ms"}
+          zIndex={2}
+        />
+        <Box
+          w={"90%"}
+          h={"200px"}
+          bg={"light"}
+          border={"1px solid"}
+          borderColor={"d4"}
+          rounded={"2xl"}
+          pos={"absolute"}
+          left={"50%"}
+          bottom={-20}
+          transform={
+            hover ? "translateX(-50%) translateY(-5px)" : "translateX(-50%)"
+          }
+          transition={"200ms"}
+          zIndex={3}
         />
       </CContainer>
 
@@ -105,60 +101,62 @@ const EventItem = (props: any) => {
         roundedBottomRight={"2xl"}
         mt={"-40px"}
         pos={"relative"}
-        zIndex={2}
+        zIndex={4}
       >
-        <CContainer p={4}>
+        <CContainer p={5}>
           <Box pos={"absolute"} top={"-29.5px"} left={0}>
             <FolderShape h={"30px"} color={"p.900"} />
           </Box>
 
           <P opacity={0.8} pos={"absolute"} top={"-20px"} left={4} zIndex={2}>
-            {formatDate(event.createdAt, {
+            {formatDate(doc.createdAt, {
               variant: "year",
             })}
           </P>
 
           <P fontSize={"xl"} fontWeight={"medium"} lineClamp={1} mt={2}>
-            {event.title[lang]}
+            {doc.title[lang]}
           </P>
 
-          <P lineClamp={2} mt={4} mb={8}>
-            {event.description[lang]}
+          <P lineClamp={2} opacity={0.4} mt={4} mb={8}>
+            {doc.description[lang]}
           </P>
         </CContainer>
 
         <HStack justify={"space-between"} p={3} mt={"auto"}>
           <HStack align={"end"}>
             <P fontSize={"xl"} fontWeight={"semibold"} lineHeight={1.2} ml={1}>
-              {formatDate(event.createdAt, {
+              {formatDate(doc.createdAt, {
                 variant: "day",
               })}
             </P>
 
             <P>
-              {formatDate(event.createdAt, {
+              {formatDate(doc.createdAt, {
                 variant: "shortMonth",
               })}
             </P>
           </HStack>
 
-          <Btn
-            colorPalette={"p"}
-            color={"p.300"}
-            variant={"ghost"}
-            size={"md"}
-            pr={3}
-            mt={"auto"}
-            _hover={{
-              bg: "blackAlpha.300",
-            }}
-          >
-            {l.learn_more}
+          <NavLink w={"fit"} to={`/document/${doc.id}`}>
+            <Btn
+              colorPalette={"p"}
+              color={"p.300"}
+              variant={"ghost"}
+              size={"md"}
+              pr={3}
+              mt={"auto"}
+              _hover={{
+                bg: "blackAlpha.300",
+              }}
+            >
+              {l.learn_more}
 
-            <Icon boxSize={5}>
-              <IconArrowUpRight stroke={1.5} />
-            </Icon>
-          </Btn>
+              <Icon boxSize={5}>
+                <IconArrowUpRight stroke={1.5} />
+              </Icon>
+            </Btn>
+          </NavLink>
         </HStack>
       </CContainer>
     </CContainer>

@@ -3,7 +3,7 @@ import {
   homeCompletionProgress,
   homeSpeciesComposition,
   staticContents,
-  homeLegalDocs,
+  homeLegalDocuments,
   homeNews,
 } from "@/constants/_dummy";
 import { create } from "zustand";
@@ -23,7 +23,7 @@ const useContents = create<State_Actions>((set) => ({
   homeActivities: homeActivities || [],
   homeSpeciesComposition: homeSpeciesComposition || [],
   homeCompletionProgress: homeCompletionProgress || [],
-  legalDocuments: homeLegalDocs || [],
+  legalDocuments: homeLegalDocuments || [],
   homeNews: homeNews || [],
   setContents: (newState) =>
     set({

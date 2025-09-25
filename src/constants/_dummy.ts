@@ -519,7 +519,7 @@ export const homeCompletionProgress = [
   { "2023": 92, "2024": 87, "2025": null }, // Des
 ];
 
-export const homeLegalDocs = [
+export const homeLegalDocuments = [
   {
     id: 1,
     title: {

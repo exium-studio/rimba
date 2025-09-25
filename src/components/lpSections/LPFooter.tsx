@@ -51,14 +51,12 @@ const Contacts = () => {
     <CContainer gap={2}>
       {contacts.map((contact, idx) => {
         return (
-          <EditableContentContainer content={contact.textContent} key={idx}>
-            <HStack>
-              <contact.icon />
-              <EditableContentContainer content={contact.textContent}>
-                <P>{contact.textContent?.content[lang]}</P>
-              </EditableContentContainer>
-            </HStack>
-          </EditableContentContainer>
+          <HStack key={idx}>
+            <contact.icon />
+            <EditableContentContainer content={contact.textContent}>
+              <P>{contact.textContent?.content[lang]}</P>
+            </EditableContentContainer>
+          </HStack>
         );
       })}
     </CContainer>

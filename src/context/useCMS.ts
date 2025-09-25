@@ -30,7 +30,7 @@ const useCMS = create<CMSState>((set) => {
       }
     },
 
-    highlightedContentIds: [30, 29, 27, 35],
+    highlightedContentIds: [],
     setHighlightedContentIds: (newIds: number[]) =>
       set({ highlightedContentIds: newIds }),
 

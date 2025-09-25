@@ -25,7 +25,6 @@ export const LangMenu = (props: Props__LangMenu) => {
             px={2}
             pr={1}
             variant={"ghost"}
-            color={"current"}
             size="sm"
             {...restProps}
           >

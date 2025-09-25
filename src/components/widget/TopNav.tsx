@@ -127,7 +127,7 @@ const MobileTopNav = () => {
           p={showContents ? 2 : 0}
           overflow={"clip"}
           flex={1}
-          transition={"200ms"}
+          transition={"500ms"}
         >
           {LP_NAVS[0].list.map((nav) => {
             return (
@@ -216,7 +216,23 @@ const MobileTopNav = () => {
           })}
 
           <CContainer mt={"auto"} p={4}>
-            <Btn colorPalette={"p"}>Sign up/Sign in</Btn>
+            <HStack>
+              <LangMenu
+                size={"xl"}
+                colorPalette={"light"}
+                variant={"outline"}
+                borderColor={"whiteAlpha.400"}
+                px={4}
+                pr={3}
+                menuContentProps={{
+                  mb: 4,
+                }}
+              />
+
+              <Btn flex={1} colorPalette={"p"}>
+                Sign up/Sign in
+              </Btn>
+            </HStack>
           </CContainer>
         </CContainer>
       </CContainer>
@@ -252,7 +268,9 @@ const DesktopTopNav = () => {
         rounded="xl"
         transition="200ms"
       >
-        <PartnersLogo ml={2} />
+        <NavLink to="/" w={"fit"}>
+          <PartnersLogo ml={2} />
+        </NavLink>
 
         <HStack>
           {LP_NAVS[0].list.map((nav, idx) => {

@@ -1,6 +1,7 @@
 import { BtnProps } from "@/components/ui/btn";
 import {
   Interface_CMSContent,
+  Interface__CMSDocument,
   Interface__FormattedTableData,
   Interface__FormattedTableHeader,
   Interface__SelectOption,
@@ -29,6 +30,9 @@ import {
 } from "./types";
 import { ImageProps } from "next/image";
 
+export interface Props__DocumentItem extends StackProps {
+  document: Interface__CMSDocument;
+}
 export interface Props__EditableContentContainer
   extends Omit<StackProps, "content"> {
   content: Interface_CMSContent;

@@ -17,6 +17,12 @@ import {
 import { ReactNode } from "react";
 
 // CMS
+export interface Interface__CMSDocument extends Interface__CUD {
+  id: number;
+  title: Interface__CMSContentText;
+  description: Interface__CMSContentText;
+  file: Interface__StorageFile[];
+}
 export interface Interface_CMSActivityCategory extends Interface__CUD {
   id: number;
   name: Interface__CMSContentText;

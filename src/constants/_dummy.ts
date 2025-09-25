@@ -543,6 +543,9 @@ export const homeLegalDocuments = [
         deleted_at: null,
       },
     ],
+    createdAt: "2025-09-24T08:00:00Z",
+    updatedAt: "2025-09-24T08:00:00Z",
+    deletedAt: null,
   },
   {
     id: 2,
@@ -567,6 +570,9 @@ export const homeLegalDocuments = [
         deleted_at: null,
       },
     ],
+    createdAt: "2025-09-24T08:00:00Z",
+    updatedAt: "2025-09-24T08:00:00Z",
+    deletedAt: null,
   },
   {
     id: 3,
@@ -591,6 +597,9 @@ export const homeLegalDocuments = [
         deleted_at: null,
       },
     ],
+    createdAt: "2025-09-24T08:00:00Z",
+    updatedAt: "2025-09-24T08:00:00Z",
+    deletedAt: null,
   },
 ];
 

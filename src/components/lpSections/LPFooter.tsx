@@ -52,7 +52,7 @@ const Contacts = () => {
       {contacts.map((contact, idx) => {
         return (
           <HStack key={idx}>
-            <contact.icon />
+            <contact.icon stroke={1.5} />
             <EditableContentContainer content={contact.textContent}>
               <P>{contact.textContent?.content[lang]}</P>
             </EditableContentContainer>
@@ -99,7 +99,7 @@ const Sosmeds = () => {
                 borderColor={"whiteAlpha.400"}
               >
                 <Icon boxSize={5}>
-                  <sosmed.icon />
+                  <sosmed.icon stroke={1.5} />
                 </Icon>
               </Btn>
             </Link>

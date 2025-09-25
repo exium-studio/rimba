@@ -167,7 +167,7 @@ const MobileTopNav = () => {
                       <AccordionItemContent p={1}>
                         {nav.subMenus[0].list.map((subNav) => {
                           return (
-                            <NavLink key={subNav.path} to={nav.path}>
+                            <NavLink key={subNav.path} to={subNav.path}>
                               <Btn
                                 clicky={false}
                                 justifyContent={"start"}

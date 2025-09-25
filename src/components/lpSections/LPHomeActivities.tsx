@@ -76,6 +76,10 @@ const ActivityItem = (props: any) => {
               rounded="lg"
               pos={"absolute"}
               mt={"188px"}
+              transition={"200ms"}
+              _hover={{
+                transform: "scale(1.1)",
+              }}
             />
           </Center>
         </Center>

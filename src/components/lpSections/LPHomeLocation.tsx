@@ -91,6 +91,10 @@ const LocationListItem = (props: any) => {
       borderColor={ciss ? "border.muted" : "d1"}
       overflowY={"auto"}
       pos={"relative"}
+      transition={"200ms"}
+      _hover={{
+        borderColor: "p.400",
+      }}
       {...restProps}
     >
       <HStack flex={1} align={"stretch"} gap={4} overflowY={"auto"}>

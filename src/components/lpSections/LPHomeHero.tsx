@@ -5,14 +5,14 @@ import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import { RimbaLetterArt } from "@/components/widget/RimbaLetterArt";
+import { ScrollDownIndicator } from "@/components/widget/ScrollDownIndicator";
 import { Interface_CMSContent } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import { Box, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
+import { Box, HStack, Stack, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
-import { IconChevronDown } from "@tabler/icons-react";
 import gsap from "gsap";
 import { useRef } from "react";
 
@@ -134,14 +134,6 @@ export const LPHomeHero = (props: StackProps) => {
   // Animation
   useGSAP(
     () => {
-      gsap.to(".hero_chevron_down", {
-        y: 20,
-        duration: 1,
-        repeat: -1,
-        yoyo: true,
-        ease: "power1.inOut",
-      });
-
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -371,17 +363,13 @@ export const LPHomeHero = (props: StackProps) => {
           </CContainer>
         </Stack>
 
-        <Icon
-          className="hero_chevron_down"
-          boxSize={5}
+        <ScrollDownIndicator
           color={"light"}
           opacity={0.8}
           mb={4}
           mx={"auto"}
           zIndex={6}
-        >
-          <IconChevronDown />
-        </Icon>
+        />
       </CContainer>
 
       <CContainer

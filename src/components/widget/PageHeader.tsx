@@ -6,6 +6,7 @@ import { Img } from "@/components/ui/img";
 import { Breadcrumbs } from "@/components/widget/Breadcrumbs";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
+import { ScrollDownIndicator } from "@/components/widget/ScrollDownIndicator";
 import useLang from "@/context/useLang";
 import { StackProps } from "@chakra-ui/react";
 
@@ -62,6 +63,12 @@ export const PageHeader = (props: Props) => {
             </H1>
           </EditableContentContainer>
         </CContainer>
+
+        <ScrollDownIndicator
+          display={["", null, "none"]}
+          mx={"auto"}
+          zIndex={2}
+        />
       </LPSectionContainer>
     </CContainer>
   );

@@ -14,12 +14,47 @@ import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { formatDate } from "@/utils/formatter";
-import { Box, HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
+import {
+  Box,
+  BoxProps,
+  HStack,
+  Icon,
+  SimpleGrid,
+  StackProps,
+} from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
-import { IconArrowUpRight } from "@tabler/icons-react";
+import { IconArrowUpRight, IconFileTypePdf } from "@tabler/icons-react";
 import gsap from "gsap";
 import { useRef, useState } from "react";
 
+const DocPaper = (props: BoxProps) => {
+  return (
+    <Box
+      w={"90%"}
+      h={"200px"}
+      border={"1px solid"}
+      borderColor={"d4"}
+      rounded={"2xl"}
+      pos={"absolute"}
+      left={"50%"}
+      bottom={-20}
+      transition={"200ms"}
+      {...props}
+    >
+      <Box pos={"relative"}>
+        <Icon
+          boxSize={8}
+          color={"fg.subtle"}
+          pos={"absolute"}
+          top={4}
+          right={4}
+        >
+          <IconFileTypePdf stroke={1.5} />
+        </Icon>
+      </Box>
+    </Box>
+  );
+};
 const DocItem = (props: any) => {
   // Props
   const { doc, ...restProps } = props;
@@ -39,56 +74,31 @@ const DocItem = (props: any) => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <Box
-          w={"90%"}
-          h={"200px"}
+        <DocPaper
           bg={"bg.emphasized"}
-          border={"1px solid"}
-          borderColor={"d4"}
-          rounded={"2xl"}
-          pos={"absolute"}
-          left={"50%"}
-          bottom={-20}
           transform={
             hover
               ? "rotate(15deg) translateX(-50%) translateY(-10px)"
               : "rotate(10deg) translateX(-50%)"
           }
-          transition={"200ms"}
           zIndex={1}
         />
-        <Box
-          w={"90%"}
-          h={"200px"}
+
+        <DocPaper
           bg={"bg.muted"}
-          border={"1px solid"}
-          borderColor={"d4"}
-          rounded={"2xl"}
-          pos={"absolute"}
-          left={"50%"}
-          bottom={-20}
           transform={
             hover
               ? "rotate(10deg)  translateX(-50%) translateY(5px)"
               : "rotate(5deg)  translateX(-50%)"
           }
-          transition={"200ms"}
           zIndex={2}
         />
-        <Box
-          w={"90%"}
-          h={"200px"}
+
+        <DocPaper
           bg={"light"}
-          border={"1px solid"}
-          borderColor={"d4"}
-          rounded={"2xl"}
-          pos={"absolute"}
-          left={"50%"}
-          bottom={-20}
           transform={
             hover ? "translateX(-50%) translateY(-5px)" : "translateX(-50%)"
           }
-          transition={"200ms"}
           zIndex={3}
         />
       </CContainer>

@@ -185,6 +185,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
           zIndex={2}
           // align={"stretch"}
         >
+          {/* iphone mockup */}
           <CContainer
             className={"strategy_value_content_1"}
             flex={"0 1 330px"}
@@ -196,7 +197,6 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             pos={"relative"}
             px={2}
           >
-            {/* iphone mockup */}
             <Img
               src={`${IMAGES_PATH}/iphone-frame.png`}
               alt="iphone mockup"
@@ -228,7 +228,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
                 >
                   <HStack w={"full"} justify={"space-between"} p={4}>
                     <EditableContentContainer content={staticContents[16]}>
-                      <P fontSize={"lg"} fontWeight={"medium"}>
+                      <P fontSize={"xl"} fontWeight={"semibold"}>
                         {staticContents[16]?.content[lang]}
                       </P>
                     </EditableContentContainer>

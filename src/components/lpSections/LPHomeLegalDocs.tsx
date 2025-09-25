@@ -288,7 +288,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
           ref={mainContentsRef}
           columns={[1, null, 3]}
           gap={8}
-          mt={"80px"}
+          mt={"100px"}
         >
           {legalDocuments?.map((doc: any, idx: number) => {
             return (

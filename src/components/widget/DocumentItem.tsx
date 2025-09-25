@@ -119,8 +119,14 @@ export const DocumentItem = (props: Props__DocumentItem) => {
         </CContainer>
 
         <HStack justify={"space-between"} p={3} mt={"auto"}>
-          <HStack align={"end"} gap={1} opacity={0.4} ml={1}>
-            <P fontSize={"xl"} fontWeight={"medium"} lineHeight={1.2} ml={1}>
+          <HStack
+            align={"end"}
+            gap={1}
+            opacity={0.4}
+            ml={1}
+            whiteSpace={"nowrap"}
+          >
+            <P fontSize={"lg"} fontWeight={"medium"} lineHeight={1.2} ml={1}>
               {formatDate(document.createdAt, {
                 variant: "day",
               })}
@@ -145,7 +151,7 @@ export const DocumentItem = (props: Props__DocumentItem) => {
                 bg: "blackAlpha.300",
               }}
             >
-              {l.learn_more}
+              <P lineClamp={1}>{l.learn_more}</P>
 
               <Icon boxSize={5}>
                 <IconArrowUpRight stroke={1.5} />

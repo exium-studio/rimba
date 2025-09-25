@@ -241,41 +241,49 @@ const TheFooter = (props: StackProps) => {
     </CContainer>
   );
 };
-export const LPFooter = (props: StackProps) => {
-  const { sh } = useScreen();
-  const footerRef = useRef<HTMLDivElement>(null);
 
+export const LPFooter = (props: StackProps) => {
+  const { sw, sh } = useScreen();
+  const dummyRef = useRef<HTMLDivElement>(null);
+  const [footerHeight, setFooterHeight] = useState(0);
   const [isScreenSmH, setIsScreenSmH] = useState(false);
 
   useEffect(() => {
-    if (!footerRef.current) return;
+    if (!dummyRef.current) return;
 
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
         const height = entry.contentRect.height;
-        setIsScreenSmH(sh < height);
+        if (height === 0) return;
+        setFooterHeight(height);
+        setIsScreenSmH(sh - 100 < height);
       }
     });
 
-    observer.observe(footerRef.current);
-
+    observer.observe(dummyRef.current);
     return () => observer.disconnect();
-  }, [sh]);
+  }, [sw, sh]);
 
   return (
     <>
-      {!isScreenSmH && (
-        <CContainer
-          ref={footerRef}
-          aria-hidden="true"
-          visibility="hidden"
-          pointerEvents="none"
-          userSelect="none"
-        >
-          <TheFooter />
-        </CContainer>
-      )}
+      {/* Dummy footer untuk observasi */}
+      <div
+        ref={dummyRef}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          opacity: 0,
+          pointerEvents: "none",
+        }}
+      >
+        <TheFooter />
+      </div>
 
+      {/* Spacer untuk push konten, hanya kalau footer fixed */}
+      {!isScreenSmH && <div style={{ height: footerHeight }} />}
+
+      {/* Actual footer */}
       <TheFooter
         bg="p.900"
         pos={isScreenSmH ? "static" : "fixed"}

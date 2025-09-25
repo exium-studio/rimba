@@ -45,7 +45,7 @@ const ValueItem = (props: any) => {
       <HStack align={"start"} gap={6}>
         <CContainer gap={4}>
           <EditableContentContainer content={value.titleContent}>
-            <P fontSize={["xl", null, "xl"]} fontWeight={"semibold"}>
+            <P fontSize={"lg"} fontWeight={"semibold"}>
               {value.titleContent?.content[lang]}
             </P>
           </EditableContentContainer>

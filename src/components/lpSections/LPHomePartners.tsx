@@ -92,15 +92,18 @@ export const LPHomePartners = (props: StackProps) => {
           <HStack className="content_container_1" gap={8} align={"start"}>
             <Image
               src={`${IMAGES_PATH}/atrbpn-logo.png`}
-              h={["64px", null, "100px"]}
+              h={"full"}
+              maxH={["64px", null, "80px"]}
             />
             <Image
               src={`${IMAGES_PATH}/gef-logo.png`}
-              h={["64px", null, "100px"]}
+              h={"full"}
+              maxH={["64px", null, "80px"]}
             />
             <Image
               src={`${IMAGES_PATH}/unep-logo.png`}
-              h={["64px", null, "100px"]}
+              h={"full"}
+              maxH={["64px", null, "80px"]}
             />
           </HStack>
 

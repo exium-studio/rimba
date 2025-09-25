@@ -309,7 +309,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
             </P>
           </EditableContentContainer>
 
-          <NavLink to={"/document"}>
+          <NavLink to={"/documents"}>
             <Btn
               w={"fit"}
               pr={3}

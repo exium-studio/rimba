@@ -1023,7 +1023,7 @@ export const offline_route = {
 };
 
 // LP
-export const all_events = {
+export const all_activities = {
   id: "Semua kegiatan",
   en: "All activities",
 };

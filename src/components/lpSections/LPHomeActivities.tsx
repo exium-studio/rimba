@@ -98,7 +98,13 @@ const ActivityItem = (props: any) => {
               </P>
 
               <NavLink to={`/activities/${activity.id}`} w={"fit"} ml={"auto"}>
-                <Btn colorPalette={"p"} variant={"ghost"} pr={3} mt={"auto"}>
+                <Btn
+                  colorPalette={"p"}
+                  variant={"ghost"}
+                  size={"md"}
+                  pr={3}
+                  mt={"auto"}
+                >
                   {l.learn_more}
 
                   <Icon boxSize={5}>
@@ -194,9 +200,9 @@ export const LPHomeActivities = (props: StackProps) => {
               <P maxW={"500px"}>{staticContents[25]?.content[lang]}</P>
             </EditableContentContainer>
 
-            <NavLink to={"/about-us/homeActivities"} w={"fit"}>
+            <NavLink to={"/about-us/activities"} w={"fit"}>
               <Btn pr={3} colorPalette={"p"} variant={"outline"} mt={4}>
-                {l.all_events}
+                {l.all_activities}
 
                 <Icon boxSize={5}>
                   <IconArrowUpRight stroke={1.5} />

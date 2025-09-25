@@ -31,7 +31,7 @@ export const LP_NAVS: Interface__NavItem[] = [
       },
       {
         labelKey: "lp_navs.document",
-        path: `/document`,
+        path: `/documents`,
       },
       {
         labelKey: "lp_navs.about_us.index",

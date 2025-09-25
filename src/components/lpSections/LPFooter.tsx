@@ -242,40 +242,35 @@ const TheFooter = (props: StackProps) => {
   );
 };
 export const LPFooter = (props: StackProps) => {
-  // Hooks
-  const { sw, sh } = useScreen();
+  const { sh } = useScreen();
+  const footerRef = useRef<HTMLDivElement>(null);
 
-  // Refs
-  const spacerRef = useRef<HTMLDivElement>(null);
+  const [isScreenSmH, setIsScreenSmH] = useState(false);
 
-  // States
-  const [footerHeight, setFooterHeight] = useState(0);
-  const isScreenSmH = sh < footerHeight;
-
-  // measure footer height
   useEffect(() => {
-    if (!spacerRef.current) return;
+    if (!footerRef.current) return;
 
-    const updateHeight = () => {
-      setFooterHeight(spacerRef.current?.offsetHeight || 0);
-    };
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const height = entry.contentRect.height;
+        setIsScreenSmH(sh < height);
+      }
+    });
 
-    updateHeight();
+    observer.observe(footerRef.current);
 
-    window.addEventListener("resize", updateHeight);
-
-    return () => window.removeEventListener("resize", updateHeight);
-  }, [sw, sh]);
+    return () => observer.disconnect();
+  }, [sh]);
 
   return (
     <>
       {!isScreenSmH && (
         <CContainer
-          ref={spacerRef}
+          ref={footerRef}
           aria-hidden="true"
-          visibility={"hidden"}
-          pointerEvents={"none"}
-          userSelect={"none"}
+          visibility="hidden"
+          pointerEvents="none"
+          userSelect="none"
         >
           <TheFooter />
         </CContainer>

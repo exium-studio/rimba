@@ -56,6 +56,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
         scrollTrigger: {
           trigger: mainContentsRef.current,
           start: "top 80%",
+          invalidateOnRefresh: true,
           // markers: true, // debug
         },
         y: "20%",

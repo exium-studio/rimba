@@ -180,6 +180,7 @@ export const LPHomeLocation = (props: StackProps) => {
           start: "top 50%",
           end: "bottom 20%",
           scrub: true,
+          invalidateOnRefresh: true,
         },
         y: "20%",
         ease: "none",
@@ -189,11 +190,12 @@ export const LPHomeLocation = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
-          end: "bottom bottom",
-          scrub: true,
+          end: "bottom 70%",
+          toggleActions: "play none none reverse",
+          invalidateOnRefresh: true,
         },
         opacity: 0,
-        stagger: 0.5,
+        stagger: 0.2,
         ease: "none",
       });
 
@@ -204,6 +206,7 @@ export const LPHomeLocation = (props: StackProps) => {
             start: "top 80%",
             end: "bottom bottom",
             toggleActions: "play none none reverse",
+            invalidateOnRefresh: true,
           },
           y: "50%",
           opacity: 0,

@@ -38,6 +38,30 @@ export const LPHomePartners = (props: StackProps) => {
       const totalWidth1 = partnerLogos1Ref.current.scrollWidth;
       const totalWidth2 = partnerLogos2Ref.current.scrollWidth;
 
+      gsap.from(".content_container_1", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 50%",
+          invalidateOnRefresh: true,
+        },
+        x: !iss ? "-20%" : "",
+        y: iss ? "20%" : "",
+        opacity: 0,
+        duration: 0.75,
+      });
+
+      gsap.from(".content_container_2", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 50%",
+          invalidateOnRefresh: true,
+        },
+        x: !iss ? "20%" : "",
+        y: iss ? "20%" : "",
+        opacity: 0,
+        duration: 0.75,
+      });
+
       // row 1 → left
       gsap.to(partnerLogos1Ref.current, {
         x: `-50%`,
@@ -52,29 +76,6 @@ export const LPHomePartners = (props: StackProps) => {
         duration: totalWidth2 / 50,
         ease: "linear",
         repeat: -1,
-      });
-
-      // fade in content
-      gsap.from(".content_container_1", {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 50%",
-        },
-        x: !iss ? "-20%" : "",
-        y: iss ? "20%" : "",
-        opacity: 0,
-        duration: 0.75,
-      });
-
-      gsap.from(".content_container_2", {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 50%",
-        },
-        x: !iss ? "20%" : "",
-        y: iss ? "20%" : "",
-        opacity: 0,
-        duration: 0.75,
       });
     },
     { scope: containerRef }

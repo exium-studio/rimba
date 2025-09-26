@@ -7,7 +7,7 @@ import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 
-export default function DocumentsRoute() {
+export default function ActivitiesPage() {
   // Contexts
   const { l, lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);

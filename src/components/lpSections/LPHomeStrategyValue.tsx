@@ -117,6 +117,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         scrollTrigger: {
           trigger: contentsRef.current,
           start: "top 50%",
+          invalidateOnRefresh: true,
           // markers: true, // debug
         },
         x: !iss ? "-20%" : "",
@@ -129,6 +130,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         scrollTrigger: {
           trigger: contentsRef.current,
           start: "top 50%",
+          invalidateOnRefresh: true,
           // markers: true, // debug
         },
         x: !iss ? "20%" : "",

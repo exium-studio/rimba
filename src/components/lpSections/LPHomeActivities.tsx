@@ -44,21 +44,6 @@ const ActivityItem = (props: any) => {
       pos={"relative"}
       {...restProps}
     >
-      {/* <LPSectionContainer
-        w={"full"}
-        mx={"auto"}
-        outerContainerProps={{
-          pos: "absolute",
-          top: 0,
-        }}
-      >
-        <HStack color={"light"} justify={"space-between"} p={4} mt={4}>
-          <P>{formatDate(activity.plannedDate, { variant: "dayMonth" })}</P>
-
-          <P>{formatDate(activity.plannedDate, { variant: "year" })}</P>
-        </HStack>
-      </LPSectionContainer> */}
-
       <CContainer w={"300px"} bg={"light"} rounded="xl">
         <Center aspectRatio={1} w="full" p={2}>
           <Center
@@ -150,6 +135,7 @@ export const LPHomeActivities = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
+          invalidateOnRefresh: true,
           // markers: true, // debug
         },
         x: !iss ? "-20%" : "",
@@ -162,6 +148,7 @@ export const LPHomeActivities = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
+          invalidateOnRefresh: true,
           // markers: true, // debug
         },
         x: !iss ? "20%" : "",

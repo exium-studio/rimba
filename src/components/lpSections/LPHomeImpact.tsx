@@ -188,7 +188,6 @@ export const LPHomeImpact = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
-
           // markers: true, // debug
         },
         x: !iss ? "-20%" : "",
@@ -201,7 +200,6 @@ export const LPHomeImpact = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
-
           // markers: true, // debug
         },
         x: !iss ? "20%" : "",
@@ -214,7 +212,6 @@ export const LPHomeImpact = (props: StackProps) => {
         scrollTrigger: {
           trigger: chartContentsRef.current,
           start: "top 50%",
-
           // markers: true, // debug
         },
         x: !iss ? "-20%" : "",
@@ -227,7 +224,6 @@ export const LPHomeImpact = (props: StackProps) => {
         scrollTrigger: {
           trigger: chartContentsRef.current,
           start: "top 50%",
-
           // markers: true, // debug
         },
         x: !iss ? "20%" : "",

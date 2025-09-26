@@ -135,6 +135,10 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const purpose = {
+  id: "Tujuan",
+  en: "Purpose",
+};
 export const example_UI = {
   id: "Contoh UI",
   en: "Example UI",

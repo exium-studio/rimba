@@ -35,9 +35,6 @@ export const LPPartners = (props: StackProps) => {
     () => {
       if (!partnerLogos1Ref.current || !partnerLogos2Ref.current) return;
 
-      const totalWidth1 = partnerLogos1Ref.current.scrollWidth;
-      const totalWidth2 = partnerLogos2Ref.current.scrollWidth;
-
       gsap.from(".content_container_1", {
         scrollTrigger: {
           trigger: containerRef.current,
@@ -58,22 +55,6 @@ export const LPPartners = (props: StackProps) => {
         y: iss ? "20%" : "",
         opacity: 0,
         duration: 0.75,
-      });
-
-      // row 1 → left
-      gsap.to(partnerLogos1Ref.current, {
-        x: `-50%`,
-        duration: totalWidth1 / 50,
-        ease: "linear",
-        repeat: -1,
-      });
-
-      // row 2 → right
-      gsap.to(partnerLogos2Ref.current, {
-        x: `50%`,
-        duration: totalWidth2 / 50,
-        ease: "linear",
-        repeat: -1,
       });
     },
     { scope: containerRef }
@@ -130,6 +111,9 @@ export const LPPartners = (props: StackProps) => {
           <CContainer>
             <HStack
               className="partners_logos"
+              animation={`i-scroll-left-partner-logos ${
+                resolvedParterLogos1.length + 20
+              }s linear infinite`}
               ref={partnerLogos1Ref}
               w="max"
               gap={"80px"}
@@ -149,6 +133,9 @@ export const LPPartners = (props: StackProps) => {
           <CContainer align={"end"}>
             <HStack
               className="partners_logos"
+              animation={`i-scroll-right-partner-logos ${
+                resolvedParterLogos1.length + 20
+              }s linear infinite`}
               ref={partnerLogos2Ref}
               w="max"
               gap={"80px"}

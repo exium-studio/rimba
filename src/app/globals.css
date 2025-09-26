@@ -301,6 +301,22 @@ tspan {
 }
 
 /* Keyframes */
+@keyframes i-scroll-left-partner-logos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 40px));
+  }
+}
+@keyframes i-scroll-right-partner-logos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(50% + 40px));
+  }
+}
 @keyframes flyInFromTop {
   0% {
     transform: translateY(-100%);

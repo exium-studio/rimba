@@ -4,17 +4,14 @@ export const staticContents = {
   1: {
     id: 1,
     type: "Text",
-    content: {
-      id: "Program Koridor Ekosistem",
-      en: "Ecosystem Corridor Program",
-    },
+    content: `${IMAGES_PATH}/lp/home/hero-bg.jpg`,
   },
   2: {
     id: 2,
     type: "Text",
     content: {
-      id: "RIMBA",
-      en: "RIMBA",
+      id: "Program Koridor Ekosistem",
+      en: "Ecosystem Corridor Program",
     },
   },
   3: {

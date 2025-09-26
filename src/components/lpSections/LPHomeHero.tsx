@@ -288,17 +288,24 @@ export const LPHomeHero = (props: StackProps) => {
       overflow={"clip"}
       {...restProps}
     >
-      <Img
-        className="hero_bg"
-        src={`${IMAGES_PATH}/lp/home/hero-bg.jpg`}
-        alt="forest"
+      <EditableContentContainer
         h={HeroH}
+        w={"full"}
+        content={staticContents[1]}
         pos={"absolute"}
-        imageProps={{
-          unoptimized: true,
-        }}
         zIndex={1}
-      />
+      >
+        <Img
+          flex={1}
+          className="hero_bg"
+          src={staticContents[1]?.content}
+          alt="forest"
+          w={"full"}
+          imageProps={{
+            unoptimized: true,
+          }}
+        />
+      </EditableContentContainer>
 
       <Img
         className="hero_bush_2"
@@ -330,19 +337,13 @@ export const LPHomeHero = (props: StackProps) => {
             ml={[0, null, "12px"]}
             mr={"auto"}
           >
-            <EditableContentContainer
-              content={staticContents[2]}
-              h={"auto"}
-              w={"full"}
+            <H1
+              fontSize={["64px", null, "80px"]}
+              fontWeight={"bold"}
+              lineHeight={1}
             >
-              <H1
-                fontSize={["64px", null, "80px"]}
-                fontWeight={"bold"}
-                lineHeight={1}
-              >
-                {staticContents[2]?.content[lang]}
-              </H1>
-            </EditableContentContainer>
+              RIMBA
+            </H1>
           </CContainer>
 
           <CContainer
@@ -351,13 +352,13 @@ export const LPHomeHero = (props: StackProps) => {
             gap={4}
             mt={[0, null, "auto"]}
           >
-            <EditableContentContainer content={staticContents[1]}>
+            <EditableContentContainer content={staticContents[2]}>
               <P
                 fontSize={["lg", null, "xl"]}
                 fontWeight={"medium"}
                 lineHeight={1.2}
               >
-                {staticContents[1]?.content[lang]}
+                {staticContents[2]?.content[lang]}
               </P>
             </EditableContentContainer>
 

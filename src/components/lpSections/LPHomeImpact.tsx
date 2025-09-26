@@ -34,11 +34,15 @@ const StatItem = (props: any) => {
 
   return (
     <CContainer gap={4} {...restProps}>
-      <P fontSize={"4xl"} fontWeight={"medium"}>
-        {stats.statContent?.content[lang]}
-      </P>
+      <EditableContentContainer content={stats.valueContent}>
+        <P fontSize={"4xl"} fontWeight={"medium"}>
+          {stats.valueContent?.content[lang]}
+        </P>
+      </EditableContentContainer>
 
-      <P color={"fg.subtle"}>{stats.descriptionContent?.content[lang]}</P>
+      <EditableContentContainer content={stats.valueContent}>
+        <P color={"fg.subtle"}>{stats.descriptionContent?.content[lang]}</P>
+      </EditableContentContainer>
     </CContainer>
   );
 };
@@ -164,19 +168,19 @@ export const LPHomeImpact = (props: StackProps) => {
   // States
   const statsList = [
     {
-      statContent: staticContents[38],
+      valueContent: staticContents[38],
       descriptionContent: staticContents[39],
     },
     {
-      statContent: staticContents[40],
+      valueContent: staticContents[40],
       descriptionContent: staticContents[41],
     },
     {
-      statContent: staticContents[42],
+      valueContent: staticContents[42],
       descriptionContent: staticContents[43],
     },
     {
-      statContent: staticContents[44],
+      valueContent: staticContents[44],
       descriptionContent: staticContents[45],
     },
   ];

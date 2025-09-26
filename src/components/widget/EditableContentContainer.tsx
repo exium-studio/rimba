@@ -12,7 +12,7 @@ export const EditableContentContainer = (
 
   // Contexts
   const highlightedContentIds = useCMS((s) => s.highlightedContentIds);
-  const isHighlighted = !highlightedContentIds.includes(content.id);
+  const isHighlighted = highlightedContentIds.includes(content.id);
 
   return (
     <CContainer

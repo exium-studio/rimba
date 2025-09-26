@@ -1,5 +1,7 @@
 "use client";
 
+import { LPFooter } from "@/components/lpSections/LPFooter";
+import { LPPartners } from "@/components/lpSections/LPPartners";
 import { CContainer } from "@/components/ui/c-container";
 import { PageHeader } from "@/components/widget/PageHeader";
 import { TopNav } from "@/components/widget/TopNav";
@@ -18,12 +20,24 @@ export default function DocumentsRoute() {
 
       <PageHeader
         titleContent={staticContents[66]}
-        img={`${IMAGES_PATH}/lp/rimba-corridor-program/header-bg.png`}
+        img={`${IMAGES_PATH}/lp/about-us/partners/header-bg.jpg`}
         links={[
           { label: l.lp_navs.home, path: "/" },
           { label: staticContents[66].content[lang], path: "/documents" },
         ]}
       />
+
+      <CContainer
+        bg={"light"}
+        zIndex={2}
+        mt={"-24px"}
+        rounded={"3xl"}
+        overflow={"clip"}
+      >
+        <LPPartners bg={"light"} />
+      </CContainer>
+
+      <LPFooter />
     </CContainer>
   );
 }

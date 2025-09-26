@@ -729,30 +729,34 @@ export default function RimbaCorridorProgramPage() {
     <CContainer overflowX={"clip"} bg={"p.900"}>
       <TopNav />
 
-      <CContainer zIndex={2} bg={"light"} roundedBottom={"3xl"}>
-        <PageHeader
-          titleContent={staticContents[66]}
-          img={`${IMAGES_PATH}/lp/about-us/rimba-corridor-program/header-bg.jpg`}
-          links={[
-            { label: l.lp_navs.home, path: "/" },
-            {
-              label: staticContents[66].content[lang],
-              path: "/about-us/rimba-corridor-program",
-            },
-          ]}
-        />
+      <PageHeader
+        titleContent={staticContents[66]}
+        img={`${IMAGES_PATH}/lp/about-us/rimba-corridor-program/header-bg.jpg`}
+        links={[
+          { label: l.lp_navs.home, path: "/" },
+          {
+            label: staticContents[66].content[lang],
+            path: "/about-us/rimba-corridor-program",
+          },
+        ]}
+      />
 
-        <CContainer bg={"light"} zIndex={2} rounded={"3xl"} mt={"-24px"}>
-          <PurposeSection />
+      <CContainer
+        bg={"light"}
+        zIndex={2}
+        mt={"-24px"}
+        rounded={"3xl"}
+        overflow={"clip"}
+      >
+        <PurposeSection />
 
-          <StrategySection />
+        <StrategySection />
 
-          <ProgressSection />
+        <ProgressSection />
 
-          <TargetIndicatorSection />
+        <TargetIndicatorSection />
 
-          <StructureSection />
-        </CContainer>
+        <StructureSection />
       </CContainer>
 
       <LPFooter />

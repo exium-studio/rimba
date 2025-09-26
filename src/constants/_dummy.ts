@@ -794,6 +794,30 @@ export const staticContents = {
     type: "Image",
     content: `${IMAGES_PATH}/lp/about-us/rimba-corridor-program/organizational-structure.svg`,
   },
+  113: {
+    id: 113,
+    type: "Text",
+    content: {
+      id: "Kegiatan",
+      en: "Activities",
+    },
+  },
+  114: {
+    id: 114,
+    type: "Text",
+    content: {
+      id: "Berita dan Catatan Lapangan",
+      en: "News and Field Notes",
+    },
+  },
+  115: {
+    id: 115,
+    type: "Text",
+    content: {
+      id: "Mitra",
+      en: "Partners",
+    },
+  },
 };
 
 export const homeActivities = [

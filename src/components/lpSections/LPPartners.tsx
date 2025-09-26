@@ -14,7 +14,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 
-export const LPHomePartners = (props: StackProps) => {
+export const LPPartners = (props: StackProps) => {
   // Props
   const { ...restProps } = props;
 
@@ -85,8 +85,8 @@ export const LPHomePartners = (props: StackProps) => {
   const resolvedParterLogos2 = Array(6).fill(partnerLogos2).flat();
 
   return (
-    <CContainer bg={"bg.subtle"} roundedBottom={"3xl"}>
-      <LPSectionContainer ref={containerRef} py={"80px"} {...restProps}>
+    <CContainer bg={"bg.subtle"} roundedBottom={"3xl"} {...restProps}>
+      <LPSectionContainer ref={containerRef} py={"80px"}>
         <SimpleGrid columns={[1, null, 2]} gap={8}>
           <HStack className="content_container_1" gap={8} align={"start"}>
             <Image

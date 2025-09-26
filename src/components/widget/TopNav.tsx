@@ -84,7 +84,9 @@ const MobileTopNav = () => {
           top={0}
           zIndex={10}
         >
-          <PartnersLogo ml={2} />
+          <NavLink w={"fit"} to="/">
+            <PartnersLogo ml={2} />
+          </NavLink>
 
           {!open && (
             <Btn

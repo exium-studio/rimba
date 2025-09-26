@@ -174,19 +174,19 @@ const StrategySection = () => {
   // States
   const strategies = [
     {
-      bgImage: `${IMAGES_PATH}/lp/dummy.png`,
-      titleContent: staticContents[78],
-      descriptionContent: staticContents[79],
+      imgContent: staticContents[78],
+      titleContent: staticContents[79],
+      descriptionContent: staticContents[80],
     },
     {
-      bgImage: `${IMAGES_PATH}/lp/dummy.png`,
-      titleContent: staticContents[80],
-      descriptionContent: staticContents[81],
-    },
-    {
-      bgImage: `${IMAGES_PATH}/lp/dummy.png`,
+      imgContent: staticContents[81],
       titleContent: staticContents[82],
       descriptionContent: staticContents[83],
+    },
+    {
+      imgContent: staticContents[84],
+      titleContent: staticContents[85],
+      descriptionContent: staticContents[86],
     },
   ];
   const [activeIdx, setActiveIdx] = useState<number>(0);
@@ -194,7 +194,7 @@ const StrategySection = () => {
   // Animation
   useGSAP(
     () => {
-      gsap.from(".section_title", {
+      gsap.from(".strategy_section_title", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
@@ -234,21 +234,27 @@ const StrategySection = () => {
 
   return (
     <LPSectionContainer ref={containerRef} py={"80px"}>
-      <EditableContentContainer content={staticContents[77]} mx={"auto"}>
-        <H2
-          className="section_title"
-          fontWeight={"bold"}
-          color={"p.700"}
-          textAlign={"center"}
-        >
-          {staticContents[77]?.content[lang]}
-        </H2>
+      <EditableContentContainer
+        className="strategy_section_title"
+        content={staticContents[77]}
+        mx={"auto"}
+      >
+        <EditableContentContainer content={staticContents[77]}>
+          <H2 fontWeight={"bold"} color={"p.700"} textAlign={"center"}>
+            {staticContents[77]?.content[lang]}
+          </H2>
+        </EditableContentContainer>
       </EditableContentContainer>
 
-      <SimpleGrid columns={[1, null, 2]} gapX={"80px"} gapY={8} mt={"80px"}>
+      <SimpleGrid
+        ref={mainContentsRef}
+        columns={[1, null, 2]}
+        gapX={"80px"}
+        gapY={8}
+        mt={"80px"}
+      >
         <AccordionRoot
           className="content_1"
-          ref={mainContentsRef}
           value={[`${activeIdx}`]}
           onValueChange={(e) => {
             setActiveIdx(parseInt(e.value[0]));
@@ -263,24 +269,36 @@ const StrategySection = () => {
                       idx + 1
                     }/`}</P>
 
-                    <P fontSize={"xl"} fontWeight={"semibold"}>
-                      {strategy.titleContent?.content[lang]}
-                    </P>
+                    <EditableContentContainer content={strategy.titleContent}>
+                      <P fontSize={"xl"} fontWeight={"semibold"}>
+                        {strategy.titleContent?.content[lang]}
+                      </P>
+                    </EditableContentContainer>
                   </CContainer>
                 </AccordionItemTrigger>
 
                 <AccordionItemContent p={0} pt={4}>
-                  <P maxW={"600px"}>
-                    {strategy.descriptionContent?.content[lang]}
-                  </P>
+                  <EditableContentContainer
+                    content={strategy.descriptionContent}
+                  >
+                    <P maxW={"600px"}>
+                      {strategy.descriptionContent?.content[lang]}
+                    </P>
+                  </EditableContentContainer>
 
                   {iss && (
                     <CContainer className="content_2" mt={4}>
-                      <Img
+                      <EditableContentContainer
+                        content={strategy.imgContent}
+                        w={"full"}
                         aspectRatio={5 / 3}
-                        src={strategies[activeIdx].bgImage}
-                        rounded={"2xl"}
-                      />
+                      >
+                        <Img
+                          flex={1}
+                          src={strategies[activeIdx].imgContent?.content}
+                          rounded={"2xl"}
+                        />
+                      </EditableContentContainer>
                     </CContainer>
                   )}
                 </AccordionItemContent>
@@ -291,11 +309,17 @@ const StrategySection = () => {
 
         {!iss && (
           <CContainer className="content_2">
-            <Img
+            <EditableContentContainer
+              w={"full"}
               aspectRatio={5 / 3}
-              src={strategies[activeIdx].bgImage}
-              rounded={"2xl"}
-            />
+              content={strategies[activeIdx].imgContent}
+            >
+              <Img
+                flex={1}
+                src={strategies[activeIdx].imgContent?.content}
+                rounded={"2xl"}
+              />
+            </EditableContentContainer>
           </CContainer>
         )}
       </SimpleGrid>
@@ -320,8 +344,8 @@ const ProgressSection = () => {
       year: "2021",
       list: [
         {
-          titleContent: staticContents[85],
-          listContent: staticContents[86],
+          titleContent: staticContents[88],
+          listContent: staticContents[89],
         },
       ],
     },
@@ -329,8 +353,8 @@ const ProgressSection = () => {
       year: "2021-2023",
       list: [
         {
-          titleContent: staticContents[87],
-          listContent: staticContents[88],
+          titleContent: staticContents[90],
+          listContent: staticContents[91],
         },
       ],
     },
@@ -338,12 +362,12 @@ const ProgressSection = () => {
       year: "2024",
       list: [
         {
-          titleContent: staticContents[89],
-          listContent: staticContents[90],
+          titleContent: staticContents[92],
+          listContent: staticContents[93],
         },
         {
-          titleContent: staticContents[91],
-          listContent: staticContents[92],
+          titleContent: staticContents[94],
+          listContent: staticContents[95],
         },
       ],
     },
@@ -351,8 +375,8 @@ const ProgressSection = () => {
       year: "2025-2028",
       list: [
         {
-          titleContent: staticContents[93],
-          listContent: staticContents[94],
+          titleContent: staticContents[96],
+          listContent: staticContents[97],
         },
       ],
     },
@@ -361,7 +385,7 @@ const ProgressSection = () => {
   // Animation
   useGSAP(
     () => {
-      gsap.from(".section_title", {
+      gsap.from(".progress_section_title", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
@@ -388,14 +412,13 @@ const ProgressSection = () => {
 
   return (
     <LPSectionContainer py={"80px"}>
-      <EditableContentContainer content={staticContents[84]} mx={"auto"}>
-        <H2
-          className="section_title"
-          fontWeight={"bold"}
-          color={"p.700"}
-          textAlign={"center"}
-        >
-          {staticContents[84]?.content[lang]}
+      <EditableContentContainer
+        className="progress_section_title"
+        content={staticContents[87]}
+        mx={"auto"}
+      >
+        <H2 fontWeight={"bold"} color={"p.700"} textAlign={"center"}>
+          {staticContents[87]?.content[lang]}
         </H2>
       </EditableContentContainer>
 
@@ -424,8 +447,8 @@ const ProgressSection = () => {
                   borderLeft={oddIdx ? "" : "3px dashed"}
                   borderColor={"border.emphasized"}
                   pos={"absolute"}
-                  left={oddIdx ? "50%" : ""}
-                  right={oddIdx ? "" : "50%"}
+                  left={oddIdx ? "64%" : ""}
+                  right={oddIdx ? "" : "64%"}
                   top={"50%"}
                   zIndex={1}
                 />
@@ -503,31 +526,31 @@ const TargetIndicatorSection = () => {
   // States
   const indicators = [
     {
-      imgContent: staticContents[98],
-      titleContent: staticContents[99],
-      descriptionContent: staticContents[100],
+      imgContent: staticContents[99],
+      titleContent: staticContents[100],
+      descriptionContent: staticContents[101],
     },
     {
-      imgContent: staticContents[101],
-      titleContent: staticContents[102],
-      descriptionContent: staticContents[103],
+      imgContent: staticContents[102],
+      titleContent: staticContents[103],
+      descriptionContent: staticContents[104],
     },
     {
-      imgContent: staticContents[104],
-      titleContent: staticContents[105],
-      descriptionContent: staticContents[106],
+      imgContent: staticContents[105],
+      titleContent: staticContents[106],
+      descriptionContent: staticContents[107],
     },
     {
-      imgContent: staticContents[107],
-      titleContent: staticContents[108],
-      descriptionContent: staticContents[109],
+      imgContent: staticContents[108],
+      titleContent: staticContents[109],
+      descriptionContent: staticContents[110],
     },
   ];
 
   // Animation
   useGSAP(
     () => {
-      gsap.from(".section_title", {
+      gsap.from(".target_section_title", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
@@ -554,14 +577,13 @@ const TargetIndicatorSection = () => {
 
   return (
     <LPSectionContainer py={"80px"}>
-      <EditableContentContainer content={staticContents[97]} mx={"auto"}>
-        <H2
-          className="section_title"
-          fontWeight={"bold"}
-          color={"p.700"}
-          textAlign={"center"}
-        >
-          {staticContents[97]?.content[lang]}
+      <EditableContentContainer
+        className="target_section_title"
+        content={staticContents[98]}
+        mx={"auto"}
+      >
+        <H2 fontWeight={"bold"} color={"p.700"} textAlign={"center"}>
+          {staticContents[98]?.content[lang]}
         </H2>
       </EditableContentContainer>
 
@@ -623,7 +645,7 @@ const StructureSection = () => {
   // Animation
   useGSAP(
     () => {
-      gsap.from(".section_title", {
+      gsap.from(".structure_section_title", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
@@ -650,21 +672,20 @@ const StructureSection = () => {
 
   return (
     <LPSectionContainer py={"80px"}>
-      <EditableContentContainer content={staticContents[110]} mx={"auto"}>
-        <H2
-          className="section_title"
-          fontWeight={"bold"}
-          color={"p.700"}
-          textAlign={"center"}
-        >
-          {staticContents[110]?.content[lang]}
+      <EditableContentContainer
+        className="structure_section_title"
+        content={staticContents[111]}
+        mx={"auto"}
+      >
+        <H2 fontWeight={"bold"} color={"p.700"} textAlign={"center"}>
+          {staticContents[111]?.content[lang]}
         </H2>
       </EditableContentContainer>
 
-      <CContainer mt={"80px"}>
-        <EditableContentContainer content={staticContents[111]} mx={"auto"}>
+      <CContainer ref={mainContentRef} mt={"80px"}>
+        <EditableContentContainer content={staticContents[112]} mx={"auto"}>
           <Img
-            src={staticContents[111]?.content}
+            src={staticContents[112]?.content}
             alt="RIMBA organizational structure"
             auto
           />

@@ -35,6 +35,7 @@ const translations = {
   "cancel": "Cancel",
   "clear": "Clear",
   "close": "Close",
+  "component": "Component",
   "confirm": "Confirm",
   "dark_mode": "Dark mode",
   "date_format": "Date format",

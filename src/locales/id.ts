@@ -35,6 +35,7 @@ const translations = {
   "cancel": "Batal",
   "clear": "Clear",
   "close": "Tutup",
+  "component": "Komponen",
   "confirm": "Konfirmasi",
   "dark_mode": "Mode gelap",
   "date_format": "Format tanggal",

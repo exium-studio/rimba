@@ -192,7 +192,12 @@ export const LPHomeActivities = (props: StackProps) => {
             </EditableContentContainer>
 
             <NavLink to={"/about-us/activities"} w={"fit"}>
-              <Btn pr={3} colorPalette={"p"} variant={"outline"} mt={4}>
+              <Btn
+                pr={[5, null, 3]}
+                colorPalette={"p"}
+                variant={"outline"}
+                mt={4}
+              >
                 {l.all_activities}
 
                 <Icon boxSize={5}>

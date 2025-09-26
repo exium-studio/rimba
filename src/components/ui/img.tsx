@@ -8,8 +8,16 @@ import { useState } from "react";
 
 export const Img = (props: Props__Img) => {
   // Props
-  const { src, alt, onError, objectFit, objectPos, imageProps, ...restProps } =
-    props;
+  const {
+    src,
+    alt,
+    onError,
+    objectFit,
+    objectPos,
+    imageProps,
+    auto,
+    ...restProps
+  } = props;
 
   // States
   const fallbackSrc = `${IMAGES_PATH}/no-img.jpeg`;
@@ -37,8 +45,12 @@ export const Img = (props: Props__Img) => {
         style={{
           objectFit: (objectFit as any) ?? "cover",
           objectPosition: objectPos ?? "center",
+          width: "100%",
+          height: "100%",
         }}
-        fill={true}
+        fill={auto ? false : true}
+        width={auto ? 0 : undefined}
+        height={auto ? 0 : undefined}
         quality={80}
         {...imageProps}
       />

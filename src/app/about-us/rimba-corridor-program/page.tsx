@@ -7,6 +7,7 @@ import {
   AccordionItemTrigger,
   AccordionRoot,
 } from "@/components/ui/accordion";
+import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
@@ -20,10 +21,11 @@ import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import { Box, HStack, Icon, SimpleGrid } from "@chakra-ui/react";
+import { Box, Center, HStack, Icon, SimpleGrid } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
-import { IconTree } from "@tabler/icons-react";
+import { IconArrowUpRight, IconTree } from "@tabler/icons-react";
 import gsap from "gsap";
+import Link from "next/link";
 import { useRef, useState } from "react";
 
 const PurposeSection = () => {
@@ -141,7 +143,7 @@ const PurposeSection = () => {
                 </EditableContentContainer>
 
                 <HStack align={"end"} justify={"space-between"}>
-                  <P fontSize={"sm"} color={"fg.muted"}>{`${l.purpose} ${
+                  <P fontSize={"sm"} opacity={0.6}>{`${l.purpose} ${
                     idx + 1
                   }`}</P>
 
@@ -257,7 +259,7 @@ const StrategySection = () => {
               <AccordionItem key={idx} value={idx.toString()} p={5}>
                 <AccordionItemTrigger p={0}>
                   <CContainer gap={2}>
-                    <P fontSize={"sm"} color={"fg.muted"}>{`${l.component} ${
+                    <P fontSize={"sm"} opacity={0.6}>{`${l.component} ${
                       idx + 1
                     }/`}</P>
 
@@ -446,7 +448,7 @@ const ProgressSection = () => {
                 rounded={"2xl"}
                 zIndex={2}
               >
-                <P color={"fg.muted"} mb={2}>
+                <P opacity={0.6} mb={2}>
                   {progress.year}
                 </P>
 
@@ -471,7 +473,7 @@ const ProgressSection = () => {
                                     mt={"7px"}
                                   />
 
-                                  <P color={"fg.muted"}>{li[lang]}</P>
+                                  <P opacity={0.6}>{li[lang]}</P>
                                 </HStack>
                               );
                             })}
@@ -485,6 +487,186 @@ const ProgressSection = () => {
             </CContainer>
           );
         })}
+      </CContainer>
+    </LPSectionContainer>
+  );
+};
+const TargetIndicatorSection = () => {
+  // Contexts
+  const { lang } = useLang();
+  const staticContents = useContents((s) => s.staticContents);
+
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mainContentRef = useRef<HTMLDivElement>(null);
+
+  // States
+  const indicators = [
+    {
+      imgContent: staticContents[98],
+      titleContent: staticContents[99],
+      descriptionContent: staticContents[100],
+    },
+    {
+      imgContent: staticContents[101],
+      titleContent: staticContents[102],
+      descriptionContent: staticContents[103],
+    },
+    {
+      imgContent: staticContents[104],
+      titleContent: staticContents[105],
+      descriptionContent: staticContents[106],
+    },
+    {
+      imgContent: staticContents[107],
+      titleContent: staticContents[108],
+      descriptionContent: staticContents[109],
+    },
+  ];
+
+  // Animation
+  useGSAP(
+    () => {
+      gsap.from(".section_title", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          // markers: true, // debug
+        },
+        y: "20%",
+        opacity: 0,
+        duration: 0.75,
+      });
+
+      gsap.from(mainContentRef.current, {
+        scrollTrigger: {
+          trigger: mainContentRef.current,
+          start: "top 65%",
+          // markers: true, // debug
+        },
+        y: "20%",
+        opacity: 0,
+        duration: 0.75,
+      });
+    },
+    { scope: containerRef }
+  );
+
+  return (
+    <LPSectionContainer py={"80px"}>
+      <EditableContentContainer content={staticContents[97]} mx={"auto"}>
+        <H2
+          className="section_title"
+          fontWeight={"bold"}
+          color={"p.700"}
+          textAlign={"center"}
+        >
+          {staticContents[97]?.content[lang]}
+        </H2>
+      </EditableContentContainer>
+
+      <SimpleGrid ref={mainContentRef} columns={[1, 2, 4]} gap={6} mt={"80px"}>
+        {indicators.map((indicator, idx) => {
+          const oddIdx = idx % 2 === 1;
+
+          return (
+            <CContainer
+              key={idx}
+              bg={oddIdx ? "p.50" : "p.100"}
+              rounded={"2xl"}
+            >
+              <CContainer p={2}>
+                <Img
+                  aspectRatio={1}
+                  src={indicator.imgContent.content}
+                  rounded={"xl"}
+                />
+              </CContainer>
+
+              <CContainer gap={4} p={4}>
+                <P fontSize={"lg"} fontWeight={"semibold"}>
+                  {indicator.titleContent?.content[lang]}
+                </P>
+
+                <P opacity={0.6}>
+                  {indicator.descriptionContent?.content[lang]}
+                </P>
+              </CContainer>
+            </CContainer>
+          );
+        })}
+      </SimpleGrid>
+    </LPSectionContainer>
+  );
+};
+const StructureSection = () => {
+  // Contexts
+  const { l, lang } = useLang();
+  const staticContents = useContents((s) => s.staticContents);
+
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mainContentRef = useRef<HTMLDivElement>(null);
+
+  // Animation
+  useGSAP(
+    () => {
+      gsap.from(".section_title", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          // markers: true, // debug
+        },
+        y: "20%",
+        opacity: 0,
+        duration: 0.75,
+      });
+
+      gsap.from(mainContentRef.current, {
+        scrollTrigger: {
+          trigger: mainContentRef.current,
+          start: "top 65%",
+          // markers: true, // debug
+        },
+        y: "20%",
+        opacity: 0,
+        duration: 0.75,
+      });
+    },
+    { scope: containerRef }
+  );
+
+  return (
+    <LPSectionContainer py={"80px"}>
+      <EditableContentContainer content={staticContents[110]} mx={"auto"}>
+        <H2
+          className="section_title"
+          fontWeight={"bold"}
+          color={"p.700"}
+          textAlign={"center"}
+        >
+          {staticContents[110]?.content[lang]}
+        </H2>
+      </EditableContentContainer>
+
+      <CContainer mt={"80px"}>
+        <Img
+          src={staticContents[111]?.content}
+          alt="RIMBA organizational structure"
+          auto
+        />
+
+        <Center mt={8}>
+          <Link href={staticContents[111]?.content} target="_blank">
+            <Btn colorPalette={"p"} variant={"ghost"} pr={[5, null, 3]}>
+              {l.view}
+
+              <Icon>
+                <IconArrowUpRight />
+              </Icon>
+            </Btn>
+          </Link>
+        </Center>
       </CContainer>
     </LPSectionContainer>
   );
@@ -517,6 +699,10 @@ export default function RimbaCorridorProgramPage() {
         <StrategySection />
 
         <ProgressSection />
+
+        <TargetIndicatorSection />
+
+        <StructureSection />
       </CContainer>
 
       <LPFooter />

@@ -64,6 +64,7 @@ export interface Props__Img extends StackProps {
   alt?: string;
   objectFit?: string;
   objectPos?: string;
+  auto?: boolean;
   imageProps?: Omit<ImageProps, "src" | "width" | "height" | "alt">;
 }
 

@@ -128,6 +128,9 @@ const PurposeSection = () => {
                 bg={oddIdx ? "p.100" : "p.50"}
                 mt={showAll ? 0 : firstIdx ? 0 : "-140px"}
                 transition={"200ms"}
+                _hover={{
+                  borderColor: "p.500",
+                }}
                 zIndex={purposes.length - idx}
               >
                 <HStack>
@@ -469,6 +472,10 @@ const ProgressSection = () => {
                 border={"1px solid"}
                 borderColor={"d1"}
                 rounded={"2xl"}
+                transition={"200ms"}
+                _hover={{
+                  borderColor: "p.500",
+                }}
                 zIndex={2}
               >
                 <P opacity={0.6} mb={2}>
@@ -595,6 +602,12 @@ const TargetIndicatorSection = () => {
             <CContainer
               key={idx}
               bg={oddIdx ? "p.50" : "p.100"}
+              transition={"200ms"}
+              border={"1px solid"}
+              borderColor={"d1"}
+              _hover={{
+                borderColor: "p.500",
+              }}
               rounded={"2xl"}
             >
               <CContainer p={2}>

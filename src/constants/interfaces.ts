@@ -68,6 +68,7 @@ export interface Interface__NavItem {
     icon?: any;
     labelKey: string;
     descriptionKey?: string;
+    external?: boolean;
     path: string;
     backPath?: string;
     subMenus?: Interface__NavItem[];

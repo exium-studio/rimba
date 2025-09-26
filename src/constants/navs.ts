@@ -73,16 +73,19 @@ export const LP_NAVS: Interface__NavItem[] = [
                 icon: IconMap,
                 labelKey: "lp_navs.map.printed_map",
                 path: `1`, // TODO fill the path
+                external: true,
               },
               {
                 icon: IconMap2,
                 labelKey: "lp_navs.map.metadata",
                 path: `2`, // TODO fill the path
+                external: true,
               },
               {
                 icon: IconMapQuestion,
                 labelKey: "lp_navs.map.study_method_map",
                 path: `3`, // TODO fill the path
+                external: true,
               },
             ],
           },
@@ -101,8 +104,9 @@ export const LP_NAVS: Interface__NavItem[] = [
               },
               {
                 icon: IconDeviceDesktopAnalytics,
-                labelKey: "lp_navs.related_apps.monev",
-                path: `/related-apps/monev`,
+                labelKey: "lp_navs.related_apps.admin_portal",
+                path: `https://admin-rimba-atrbpn.vercel.app`,
+                external: true,
               },
             ],
           },

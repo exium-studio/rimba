@@ -19,11 +19,14 @@ export default function DocumentsRoute() {
       <TopNav />
 
       <PageHeader
-        titleContent={staticContents[66]}
+        titleContent={staticContents[115]}
         img={`${IMAGES_PATH}/lp/about-us/partners/header-bg.jpg`}
         links={[
           { label: l.lp_navs.home, path: "/" },
-          { label: staticContents[66].content[lang], path: "/documents" },
+          {
+            label: staticContents[115].content[lang],
+            path: "/about-us/partners",
+          },
         ]}
       />
 

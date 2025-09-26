@@ -17,11 +17,14 @@ export default function ActivitiesPage() {
       <TopNav />
 
       <PageHeader
-        titleContent={staticContents[66]}
-        img={`${IMAGES_PATH}/lp/rimba-corridor-program/header-bg.png`}
+        titleContent={staticContents[113]}
+        img={`${IMAGES_PATH}/lp/about-us/activities/header-bg.jpg`}
         links={[
           { label: l.lp_navs.home, path: "/" },
-          { label: staticContents[66].content[lang], path: "/documents" },
+          {
+            label: staticContents[113].content[lang],
+            path: "/about-us/activities",
+          },
         ]}
       />
     </CContainer>

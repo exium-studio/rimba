@@ -17,11 +17,14 @@ export default function NewsPage() {
       <TopNav />
 
       <PageHeader
-        titleContent={staticContents[66]}
-        img={`${IMAGES_PATH}/lp/rimba-corridor-program/header-bg.png`}
+        titleContent={staticContents[114]}
+        img={`${IMAGES_PATH}/lp/about-us/news/header-bg.jpg`}
         links={[
           { label: l.lp_navs.home, path: "/" },
-          { label: staticContents[66].content[lang], path: "/documents" },
+          {
+            label: staticContents[114].content[lang],
+            path: "/about-us/news",
+          },
         ]}
       />
     </CContainer>

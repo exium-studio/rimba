@@ -6,7 +6,6 @@ import { Img } from "@/components/ui/img";
 import { Breadcrumbs } from "@/components/widget/Breadcrumbs";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
-import { ScrollDownIndicator } from "@/components/widget/ScrollDownIndicator";
 import useLang from "@/context/useLang";
 import { StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
@@ -82,19 +81,12 @@ export const PageHeader = (props: Props) => {
             <Breadcrumbs links={links} justify={["center", null, "start"]} />
           )}
 
-          <EditableContentContainer content={titleContent}>
+          <EditableContentContainer content={titleContent} mb={"24px"}>
             <H1 fontWeight={"semibold"} lineHeight={1.4}>
               {titleContent.content[lang]}
             </H1>
           </EditableContentContainer>
         </CContainer>
-
-        <ScrollDownIndicator
-          display={["", null, "none"]}
-          mx={"auto"}
-          mb={"48px"}
-          zIndex={2}
-        />
       </LPSectionContainer>
     </CContainer>
   );

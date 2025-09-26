@@ -82,7 +82,7 @@ export const PageHeader = (props: Props) => {
             <Breadcrumbs links={links} justify={["center", null, "start"]} />
           )}
 
-          <EditableContentContainer content={titleContent} mb={"24px"}>
+          <EditableContentContainer content={titleContent}>
             <H1 fontWeight={"semibold"} lineHeight={1.4}>
               {titleContent.content[lang]}
             </H1>
@@ -92,6 +92,7 @@ export const PageHeader = (props: Props) => {
         <ScrollDownIndicator
           display={["", null, "none"]}
           mx={"auto"}
+          mb={"48px"}
           zIndex={2}
         />
       </LPSectionContainer>

@@ -91,13 +91,16 @@ const NewsItem = (props: any) => {
 
         <CContainer
           className="news_date ss"
-          bg={"p.500"}
+          aspectRatio={1}
+          w={"70px"}
           color={"light"}
-          w={"fit"}
+          justify={"center"}
+          align={"center"}
           p={4}
-          rounded={"xl"}
+          bg={"p.500"}
           border={"1px solid"}
           borderColor={"d1"}
+          rounded={"full"}
           pos={"absolute"}
           bottom={[4, null, -4]}
           right={8}
@@ -105,6 +108,7 @@ const NewsItem = (props: any) => {
           <P fontSize={"xl"} fontWeight={"semibold"} lineHeight={1}>
             {formatDate(news.createdAt, { variant: "day" })}
           </P>
+
           <P>{formatDate(news.createdAt, { variant: "shortMonth" })}</P>
         </CContainer>
       </Center>

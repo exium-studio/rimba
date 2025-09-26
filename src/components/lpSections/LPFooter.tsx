@@ -286,8 +286,8 @@ export const LPFooter = (props: StackProps) => {
       {/* Actual footer */}
       <TheFooter
         bg="p.900"
-        mt={isScreenSmH ? "-24px" : 0}
-        pt={isScreenSmH ? "24px" : 0}
+        mt={"-24px"}
+        pt={"24px"}
         pos={isScreenSmH ? "static" : "fixed"}
         bottom={0}
         left={0}

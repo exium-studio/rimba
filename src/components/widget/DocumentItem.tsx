@@ -103,12 +103,6 @@ export const DocumentItem = (props: Props__DocumentItem) => {
             <FolderShape h={"30px"} color={"p.900"} />
           </Box>
 
-          <P opacity={0.8} pos={"absolute"} top={"-20px"} left={4} zIndex={2}>
-            {formatDate(document.createdAt, {
-              variant: "year",
-            })}
-          </P>
-
           <P fontSize={"xl"} fontWeight={"medium"} lineClamp={1} mt={2}>
             {document.title[lang]}
           </P>
@@ -119,25 +113,11 @@ export const DocumentItem = (props: Props__DocumentItem) => {
         </CContainer>
 
         <HStack justify={"space-between"} p={3} mt={"auto"}>
-          <HStack
-            align={"end"}
-            gap={1}
-            opacity={0.4}
-            ml={1}
-            whiteSpace={"nowrap"}
-          >
-            <P fontSize={"lg"} fontWeight={"medium"} lineHeight={1.2} ml={1}>
-              {formatDate(document.createdAt, {
-                variant: "day",
-              })}
-            </P>
-
-            <P>
-              {formatDate(document.createdAt, {
-                variant: "shortMonth",
-              })}
-            </P>
-          </HStack>
+          <P opacity={0.4} whiteSpace={"nowrap"} ml={2}>
+            {formatDate(document.createdAt, {
+              variant: "numeric",
+            })}
+          </P>
 
           <NavLink w={"fit"} to={`/document/${document.id}`}>
             <Btn

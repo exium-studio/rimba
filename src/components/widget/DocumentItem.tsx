@@ -27,13 +27,7 @@ const DocPaper = (props: BoxProps) => {
       {...props}
     >
       <Box pos={"relative"}>
-        <Icon
-          boxSize={8}
-          color={"fg.subtle"}
-          pos={"absolute"}
-          top={4}
-          right={4}
-        >
+        <Icon boxSize={8} color={"d4"} pos={"absolute"} top={4} right={4}>
           <IconFileTypePdf stroke={1.5} />
         </Icon>
       </Box>

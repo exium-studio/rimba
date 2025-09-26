@@ -125,13 +125,12 @@ export const LPHomeActivities = (props: StackProps) => {
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
   const mainContentsRef = useRef<HTMLDivElement>(null);
-  const descContentRef = useRef<HTMLDivElement>(null);
   const carouselContainerRef = useRef<HTMLDivElement>(null);
 
   // Animation
   useGSAP(
     () => {
-      gsap.from(".section_title", {
+      gsap.from(".content_1", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
@@ -144,7 +143,7 @@ export const LPHomeActivities = (props: StackProps) => {
         duration: 0.75,
       });
 
-      gsap.from(descContentRef.current, {
+      gsap.from("content_2", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
@@ -180,13 +179,17 @@ export const LPHomeActivities = (props: StackProps) => {
         {...restProps}
       >
         <SimpleGrid columns={[1, null, 2]} gapX={"80px"} gapY={8}>
-          <EditableContentContainer content={staticContents[24]} mt={"-12px"}>
-            <H2 className="section_title" fontWeight={"bold"} color={"p.700"}>
+          <EditableContentContainer
+            className="content_1"
+            content={staticContents[24]}
+            mt={"-12px"}
+          >
+            <H2 fontWeight={"bold"} color={"p.700"}>
               {staticContents[24]?.content[lang]}
             </H2>
           </EditableContentContainer>
 
-          <CContainer ref={descContentRef} justify={"end"}>
+          <CContainer className="content_2" justify={"end"}>
             <EditableContentContainer content={staticContents[25]}>
               <P maxW={"500px"}>{staticContents[25]?.content[lang]}</P>
             </EditableContentContainer>

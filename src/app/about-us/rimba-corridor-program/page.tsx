@@ -576,21 +576,33 @@ const TargetIndicatorSection = () => {
               rounded={"2xl"}
             >
               <CContainer p={2}>
-                <Img
+                <EditableContentContainer
+                  content={indicator.imgContent}
                   aspectRatio={1}
-                  src={indicator.imgContent.content}
-                  rounded={"xl"}
-                />
+                  w={"full"}
+                >
+                  <Img
+                    src={indicator.imgContent.content}
+                    flex={1}
+                    rounded={"xl"}
+                  />
+                </EditableContentContainer>
               </CContainer>
 
               <CContainer gap={4} p={4}>
-                <P fontSize={"lg"} fontWeight={"semibold"}>
-                  {indicator.titleContent?.content[lang]}
-                </P>
+                <EditableContentContainer content={indicator.titleContent}>
+                  <P fontSize={"lg"} fontWeight={"semibold"}>
+                    {indicator.titleContent?.content[lang]}
+                  </P>
+                </EditableContentContainer>
 
-                <P opacity={0.6}>
-                  {indicator.descriptionContent?.content[lang]}
-                </P>
+                <EditableContentContainer
+                  content={indicator.descriptionContent}
+                >
+                  <P opacity={0.6}>
+                    {indicator.descriptionContent?.content[lang]}
+                  </P>
+                </EditableContentContainer>
               </CContainer>
             </CContainer>
           );
@@ -650,11 +662,13 @@ const StructureSection = () => {
       </EditableContentContainer>
 
       <CContainer mt={"80px"}>
-        <Img
-          src={staticContents[111]?.content}
-          alt="RIMBA organizational structure"
-          auto
-        />
+        <EditableContentContainer content={staticContents[111]} mx={"auto"}>
+          <Img
+            src={staticContents[111]?.content}
+            alt="RIMBA organizational structure"
+            auto
+          />
+        </EditableContentContainer>
 
         <Center mt={8}>
           <Link href={staticContents[111]?.content} target="_blank">

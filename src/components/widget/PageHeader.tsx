@@ -81,7 +81,7 @@ export const PageHeader = (props: Props) => {
             <Breadcrumbs links={links} justify={["center", null, "start"]} />
           )}
 
-          <EditableContentContainer content={titleContent} mb={"24px"}>
+          <EditableContentContainer content={titleContent} mb={"48px"}>
             <H1 fontWeight={"semibold"} lineHeight={1.4}>
               {titleContent.content[lang]}
             </H1>

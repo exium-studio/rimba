@@ -692,7 +692,7 @@ export default function RimbaCorridorProgramPage() {
   const staticContents = useContents((s) => s.staticContents);
 
   return (
-    <CContainer overflowX={"clip"}>
+    <CContainer overflowX={"clip"} bg={"p.900"}>
       <TopNav />
 
       <CContainer zIndex={2} bg={"light"} roundedBottom={"3xl"}>
@@ -708,15 +708,17 @@ export default function RimbaCorridorProgramPage() {
           ]}
         />
 
-        <PurposeSection />
+        <CContainer bg={"light"} zIndex={2} rounded={"3xl"} mt={"-24px"}>
+          <PurposeSection />
 
-        <StrategySection />
+          <StrategySection />
 
-        <ProgressSection />
+          <ProgressSection />
 
-        <TargetIndicatorSection />
+          <TargetIndicatorSection />
 
-        <StructureSection />
+          <StructureSection />
+        </CContainer>
       </CContainer>
 
       <LPFooter />

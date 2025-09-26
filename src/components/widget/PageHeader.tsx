@@ -9,6 +9,9 @@ import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { ScrollDownIndicator } from "@/components/widget/ScrollDownIndicator";
 import useLang from "@/context/useLang";
 import { StackProps } from "@chakra-ui/react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
 
 interface Props extends StackProps {
   titleContent: any;
@@ -23,8 +26,29 @@ export const PageHeader = (props: Props) => {
   // Contexts
   const { lang } = useLang();
 
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Animation
+  useGSAP(
+    () => {
+      gsap.to(".header-bg", {
+        scrollTrigger: {
+          trigger: ".header-bg",
+          start: "top top",
+          scrub: true,
+          pin: true,
+          // markers: true, // debug
+        },
+        duration: 0.75,
+      });
+    },
+    { scope: containerRef }
+  );
+
   return (
     <CContainer
+      ref={containerRef}
       minH={["100vh", null, "600px"]}
       overflow={"clip"}
       {...restProps}
@@ -42,6 +66,7 @@ export const PageHeader = (props: Props) => {
       >
         {img && (
           <Img
+            className="header-bg"
             src={img}
             h={"full"}
             w={"full"}
@@ -57,7 +82,7 @@ export const PageHeader = (props: Props) => {
             <Breadcrumbs links={links} justify={["center", null, "start"]} />
           )}
 
-          <EditableContentContainer content={titleContent}>
+          <EditableContentContainer content={titleContent} mb={"24px"}>
             <H1 fontWeight={"semibold"} lineHeight={1.4}>
               {titleContent.content[lang]}
             </H1>

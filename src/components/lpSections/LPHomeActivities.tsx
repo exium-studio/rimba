@@ -134,7 +134,6 @@ export const LPHomeActivities = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
-
           // markers: true, // debug
         },
         x: !iss ? "-20%" : "",
@@ -146,8 +145,7 @@ export const LPHomeActivities = (props: StackProps) => {
       gsap.from("content_2", {
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 50%",
-
+          start: "top 80%",
           // markers: true, // debug
         },
         x: !iss ? "20%" : "",

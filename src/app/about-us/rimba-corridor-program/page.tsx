@@ -197,7 +197,7 @@ const StrategySection = () => {
   // Animation
   useGSAP(
     () => {
-      gsap.from(".strategy_section_title", {
+      gsap.from(".section_title", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
@@ -238,7 +238,7 @@ const StrategySection = () => {
   return (
     <LPSectionContainer ref={containerRef} py={"80px"}>
       <EditableContentContainer
-        className="strategy_section_title"
+        className="section_title"
         content={staticContents[77]}
         mx={"auto"}
       >
@@ -388,7 +388,7 @@ const ProgressSection = () => {
   // Animation
   useGSAP(
     () => {
-      gsap.from(".progress_section_title", {
+      gsap.from(".section_title", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
@@ -414,9 +414,9 @@ const ProgressSection = () => {
   );
 
   return (
-    <LPSectionContainer py={"80px"}>
+    <LPSectionContainer ref={containerRef} py={"80px"}>
       <EditableContentContainer
-        className="progress_section_title"
+        className="section_title"
         content={staticContents[87]}
         mx={"auto"}
       >
@@ -557,7 +557,7 @@ const TargetIndicatorSection = () => {
   // Animation
   useGSAP(
     () => {
-      gsap.from(".target_section_title", {
+      gsap.from(".section_title", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
@@ -583,9 +583,9 @@ const TargetIndicatorSection = () => {
   );
 
   return (
-    <LPSectionContainer py={"80px"}>
+    <LPSectionContainer ref={containerRef} py={"80px"}>
       <EditableContentContainer
-        className="target_section_title"
+        className="section_title"
         content={staticContents[98]}
         mx={"auto"}
       >
@@ -658,7 +658,7 @@ const StructureSection = () => {
   // Animation
   useGSAP(
     () => {
-      gsap.from(".structure_section_title", {
+      gsap.from(".section_title", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
@@ -684,9 +684,9 @@ const StructureSection = () => {
   );
 
   return (
-    <LPSectionContainer py={"80px"}>
+    <LPSectionContainer ref={containerRef} py={"80px"}>
       <EditableContentContainer
-        className="structure_section_title"
+        className="section_title"
         content={staticContents[111]}
         mx={"auto"}
       >

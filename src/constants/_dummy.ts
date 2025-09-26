@@ -596,38 +596,32 @@ export const staticContents = {
   },
   88: {
     id: 88,
-    type: "Text",
-    content: {
-      id: "Project Management Unit (PMU) RIMBA dibentuk pada 2022.",
-      en: "Project Management Unit (PMU) RIMBA established in 2022.",
-    },
+    type: "TextArray",
+    content: [
+      {
+        id: "Project Management Unit (PMU) RIMBA dibentuk pada 2022.",
+        en: "Project Management Unit (PMU) RIMBA established in 2022.",
+      },
+      {
+        id: "Review baseline dan Inception Workshop",
+        en: "Review baseline and Inception Workshop",
+      },
+      {
+        id: "Project Implementation Unit (PIU) RIMBA dibentuk pada 2023.",
+        en: "Project Implementation Unit (PIU) RIMBA established in 2023.",
+      },
+    ],
   },
   89: {
     id: 89,
-    type: "Text",
-    content: {
-      id: "Review baseline dan Inception Workshop",
-      en: "Review baseline and Inception Workshop",
-    },
-  },
-  90: {
-    id: 90,
-    type: "Text",
-    content: {
-      id: "Project Implementation Unit (PIU) RIMBA dibentuk pada 2023.",
-      en: "Project Implementation Unit (PIU) RIMBA established in 2023.",
-    },
-  },
-  91: {
-    id: 91,
     type: "Text",
     content: {
       id: "Januari - Juni 2024 Pengadaan",
       en: "January - June 2024 Procurement",
     },
   },
-  92: {
-    id: 92,
+  90: {
+    id: 90,
     type: "TextArray",
     content: [
       {
@@ -636,16 +630,16 @@ export const staticContents = {
       },
     ],
   },
-  93: {
-    id: 93,
+  91: {
+    id: 91,
     type: "Text",
     content: {
       id: "Juli-Desember 2024",
       en: "July-December 2024",
     },
   },
-  94: {
-    id: 94,
+  92: {
+    id: 92,
     type: "Text",
     content: [
       {
@@ -662,16 +656,16 @@ export const staticContents = {
       },
     ],
   },
-  95: {
-    id: 95,
+  93: {
+    id: 93,
     type: "Text",
     content: {
       id: "Fase Implementasi",
       en: "Implementation Phase",
     },
   },
-  96: {
-    id: 96,
+  94: {
+    id: 94,
     type: "TextArray",
     content: [
       {

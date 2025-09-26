@@ -47,7 +47,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
           start: "top 80%",
           // markers: true, // debug
         },
-        y: "100%",
+        y: "20%",
         opacity: 0,
         duration: 0.75,
       });

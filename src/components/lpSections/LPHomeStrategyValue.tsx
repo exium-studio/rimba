@@ -78,7 +78,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
-  const contentsRef = useRef<HTMLDivElement>(null);
+  const mainContentsRef = useRef<HTMLDivElement>(null);
 
   // States
   const values = [
@@ -113,11 +113,10 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         duration: 0.75,
       });
 
-      gsap.from(".strategy_value_content_1", {
+      gsap.from(".content_1", {
         scrollTrigger: {
-          trigger: contentsRef.current,
-          start: "top 50%",
-
+          trigger: mainContentsRef.current,
+          start: "top 65%",
           // markers: true, // debug
         },
         x: !iss ? "-20%" : "",
@@ -126,11 +125,10 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         duration: 0.75,
       });
 
-      gsap.from(".strategy_value_content_2", {
+      gsap.from(".content_2", {
         scrollTrigger: {
-          trigger: contentsRef.current,
-          start: "top 50%",
-
+          trigger: mainContentsRef.current,
+          start: "top 65%",
           // markers: true, // debug
         },
         x: !iss ? "20%" : "",
@@ -179,7 +177,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
 
       <CContainer mt={"80px"} pos={"relative"}>
         <Stack
-          ref={contentsRef}
+          ref={mainContentsRef}
           flexDir={iss ? "column" : "row"}
           justify={"center"}
           gapX={"80px"}
@@ -189,7 +187,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         >
           {/* iphone mockup */}
           <CContainer
-            className={"strategy_value_content_1"}
+            className={"content_1"}
             flex={"0 1 330px"}
             maxW={"330px"}
             mx={["auto", null, 0]}
@@ -264,7 +262,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
           </CContainer>
 
           <CContainer
-            className="strategy_value_content_2"
+            className="content_2"
             flex={"0 1 450px"}
             gap={8}
             minH={"max"}

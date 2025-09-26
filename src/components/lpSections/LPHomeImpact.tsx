@@ -184,10 +184,10 @@ export const LPHomeImpact = (props: StackProps) => {
   // Animation
   useGSAP(
     () => {
-      gsap.from(".section_title", {
+      gsap.from(".content_1", {
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 50%",
+          start: "top 65%",
           // markers: true, // debug
         },
         x: !iss ? "-20%" : "",
@@ -196,10 +196,10 @@ export const LPHomeImpact = (props: StackProps) => {
         duration: 0.75,
       });
 
-      gsap.from(".impact_content", {
+      gsap.from(".content_2", {
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 50%",
+          start: "top 65%",
           // markers: true, // debug
         },
         x: !iss ? "20%" : "",
@@ -211,7 +211,7 @@ export const LPHomeImpact = (props: StackProps) => {
       gsap.from(".completion_chart", {
         scrollTrigger: {
           trigger: chartContentsRef.current,
-          start: "top 50%",
+          start: "top 65%",
           // markers: true, // debug
         },
         x: !iss ? "-20%" : "",
@@ -223,7 +223,7 @@ export const LPHomeImpact = (props: StackProps) => {
       gsap.from(".animals_chart", {
         scrollTrigger: {
           trigger: chartContentsRef.current,
-          start: "top 50%",
+          start: "top 65%",
           // markers: true, // debug
         },
         x: !iss ? "20%" : "",
@@ -244,15 +244,15 @@ export const LPHomeImpact = (props: StackProps) => {
           gapX={"80px"}
           gapY={8}
         >
-          <CContainer>
+          <CContainer className="content_1">
             <EditableContentContainer content={staticContents[36]} mt={"-12px"}>
-              <H2 className="section_title" fontWeight={"bold"} color={"p.700"}>
+              <H2 fontWeight={"bold"} color={"p.700"}>
                 {staticContents[36]?.content[lang]}
               </H2>
             </EditableContentContainer>
           </CContainer>
 
-          <CContainer className="impact_content" gap={"80px"}>
+          <CContainer className="content_2" gap={"80px"}>
             <EditableContentContainer content={staticContents[37]}>
               <P fontSize={"lg"}>{staticContents[37]?.content[lang]}</P>
             </EditableContentContainer>

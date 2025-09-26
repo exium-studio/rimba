@@ -1,5 +1,6 @@
 "use client";
 
+import { LPFooter } from "@/components/lpSections/LPFooter";
 import {
   AccordionItem,
   AccordionItemContent,
@@ -11,6 +12,7 @@ import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
+import { DotIndicator } from "@/components/widget/Indicator";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { PageHeader } from "@/components/widget/PageHeader";
 import { TopNav } from "@/components/widget/TopNav";
@@ -18,7 +20,7 @@ import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import { HStack, Icon, SimpleGrid } from "@chakra-ui/react";
+import { Box, HStack, Icon, SimpleGrid } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import { IconTree } from "@tabler/icons-react";
 import gsap from "gsap";
@@ -196,18 +198,31 @@ const StrategySection = () => {
           start: "top 80%",
           // markers: true, // debug
         },
-        y: "100%",
+        y: "20%",
         opacity: 0,
         duration: 0.75,
       });
 
-      gsap.from(mainContentsRef.current, {
+      gsap.from(".content_1", {
         scrollTrigger: {
           trigger: mainContentsRef.current,
-          start: "top 80%",
+          start: "top 65%",
           // markers: true, // debug
         },
-        y: "20%",
+        x: !iss ? "-20%" : "",
+        y: iss ? "20%" : "",
+        opacity: 0,
+        duration: 0.75,
+      });
+
+      gsap.from(".content_2", {
+        scrollTrigger: {
+          trigger: mainContentsRef.current,
+          start: "top 65%",
+          // markers: true, // debug
+        },
+        x: !iss ? "20%" : "",
+        y: iss ? "20%" : "",
         opacity: 0,
         duration: 0.75,
       });
@@ -230,6 +245,7 @@ const StrategySection = () => {
 
       <SimpleGrid columns={[1, null, 2]} gapX={"80px"} gapY={8} mt={"80px"}>
         <AccordionRoot
+          className="content_1"
           ref={mainContentsRef}
           value={[`${activeIdx}`]}
           onValueChange={(e) => {
@@ -255,25 +271,226 @@ const StrategySection = () => {
                   <P maxW={"600px"}>
                     {strategy.descriptionContent?.content[lang]}
                   </P>
+
+                  {iss && (
+                    <CContainer className="content_2" mt={4}>
+                      <Img
+                        aspectRatio={5 / 3}
+                        src={strategies[activeIdx].bgImage}
+                        rounded={"2xl"}
+                      />
+                    </CContainer>
+                  )}
                 </AccordionItemContent>
               </AccordionItem>
             );
           })}
         </AccordionRoot>
 
-        <CContainer position="relative">
-          <Img
-            aspectRatio={5 / 3}
-            src={strategies[activeIdx].bgImage}
-            rounded={"3xl"}
-          />
-        </CContainer>
+        {!iss && (
+          <CContainer className="content_2">
+            <Img
+              aspectRatio={5 / 3}
+              src={strategies[activeIdx].bgImage}
+              rounded={"2xl"}
+            />
+          </CContainer>
+        )}
       </SimpleGrid>
     </LPSectionContainer>
   );
 };
+const ProgressSection = () => {
+  // Contexts
+  const { lang } = useLang();
+  const staticContents = useContents((s) => s.staticContents);
 
-export default function DocumentsRoute() {
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mainContentRef = useRef<HTMLDivElement>(null);
+
+  // States
+  const progresses = [
+    {
+      year: "2021",
+      list: [
+        {
+          titleContent: staticContents[85],
+          listContent: staticContents[86],
+        },
+      ],
+    },
+    {
+      year: "2021-2023",
+      list: [
+        {
+          titleContent: staticContents[87],
+          listContent: staticContents[88],
+        },
+      ],
+    },
+    {
+      year: "2024",
+      list: [
+        {
+          titleContent: staticContents[89],
+          listContent: staticContents[90],
+        },
+        {
+          titleContent: staticContents[91],
+          listContent: staticContents[92],
+        },
+      ],
+    },
+    {
+      year: "2025-2028",
+      list: [
+        {
+          titleContent: staticContents[93],
+          listContent: staticContents[94],
+        },
+      ],
+    },
+  ];
+
+  // Animation
+  useGSAP(
+    () => {
+      gsap.from(".section_title", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          // markers: true, // debug
+        },
+        y: "20%",
+        opacity: 0,
+        duration: 0.75,
+      });
+
+      gsap.from(mainContentRef.current, {
+        scrollTrigger: {
+          trigger: mainContentRef.current,
+          start: "top 65%",
+          // markers: true, // debug
+        },
+        y: "20%",
+        opacity: 0,
+        duration: 0.75,
+      });
+    },
+    { scope: containerRef, dependencies: [iss] }
+  );
+
+  return (
+    <LPSectionContainer py={"80px"}>
+      <EditableContentContainer content={staticContents[84]} mx={"auto"}>
+        <H2
+          className="section_title"
+          fontWeight={"bold"}
+          color={"p.700"}
+          textAlign={"center"}
+        >
+          {staticContents[84]?.content[lang]}
+        </H2>
+      </EditableContentContainer>
+
+      <CContainer ref={mainContentRef} gap={[0, null, 4]} mt={"80px"}>
+        {progresses.map((progress, idx) => {
+          const firstIdx = idx === 0;
+          const lastIdx = idx === progresses.length - 1;
+          const oddIdx = idx % 2 === 0;
+
+          return (
+            <CContainer
+              key={idx}
+              w={["full", null, "calc(50% - 32px)"]}
+              h={"fit"}
+              ml={oddIdx ? 0 : "auto"}
+              pos={"relative"}
+            >
+              {!iss && (
+                <Box
+                  display={lastIdx ? "none" : "block"}
+                  w={"full"}
+                  minH={"full"}
+                  h={"full"}
+                  borderTop={"3px dashed"}
+                  borderRight={oddIdx ? "3px dashed" : ""}
+                  borderLeft={oddIdx ? "" : "3px dashed"}
+                  borderColor={"border.emphasized"}
+                  pos={"absolute"}
+                  left={oddIdx ? "50%" : ""}
+                  right={oddIdx ? "" : "50%"}
+                  top={"50%"}
+                  zIndex={1}
+                />
+              )}
+
+              {iss && !firstIdx && (
+                <Box
+                  borderLeft={"3px dashed"}
+                  borderColor={"border.emphasized"}
+                  h={"40px"}
+                  mx={"auto"}
+                />
+              )}
+
+              <CContainer
+                bg={"p.100"}
+                p={4}
+                border={"1px solid"}
+                borderColor={"d1"}
+                rounded={"2xl"}
+                zIndex={2}
+              >
+                <P color={"fg.muted"} mb={2}>
+                  {progress.year}
+                </P>
+
+                <CContainer gap={4}>
+                  {progress.list.map((p, pIdx) => {
+                    return (
+                      <CContainer key={pIdx} gap={2}>
+                        <EditableContentContainer content={p.titleContent}>
+                          <P fontSize={"xl"} fontWeight={"semibold"}>
+                            {p.titleContent?.content[lang]}
+                          </P>
+                        </EditableContentContainer>
+
+                        <EditableContentContainer content={p.listContent}>
+                          <CContainer gap={1}>
+                            {p.listContent.content.map((li: any) => {
+                              return (
+                                <HStack key={li[lang]} align={"start"}>
+                                  <DotIndicator
+                                    color={"fg.subtle"}
+                                    ml={0}
+                                    mt={"7px"}
+                                  />
+
+                                  <P color={"fg.muted"}>{li[lang]}</P>
+                                </HStack>
+                              );
+                            })}
+                          </CContainer>
+                        </EditableContentContainer>
+                      </CContainer>
+                    );
+                  })}
+                </CContainer>
+              </CContainer>
+            </CContainer>
+          );
+        })}
+      </CContainer>
+    </LPSectionContainer>
+  );
+};
+
+export default function RimbaCorridorProgramPage() {
   // Contexts
   const { l, lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
@@ -282,21 +499,27 @@ export default function DocumentsRoute() {
     <CContainer overflowX={"clip"}>
       <TopNav />
 
-      <PageHeader
-        titleContent={staticContents[66]}
-        img={`${IMAGES_PATH}/lp/about-us/rimba-corridor-program/header-bg.jpg`}
-        links={[
-          { label: l.lp_navs.home, path: "/" },
-          {
-            label: staticContents[66].content[lang],
-            path: "/about-us/rimba-corridor-program",
-          },
-        ]}
-      />
+      <CContainer zIndex={2} bg={"light"} roundedBottom={"3xl"}>
+        <PageHeader
+          titleContent={staticContents[66]}
+          img={`${IMAGES_PATH}/lp/about-us/rimba-corridor-program/header-bg.jpg`}
+          links={[
+            { label: l.lp_navs.home, path: "/" },
+            {
+              label: staticContents[66].content[lang],
+              path: "/about-us/rimba-corridor-program",
+            },
+          ]}
+        />
 
-      <PurposeSection />
+        <PurposeSection />
 
-      <StrategySection />
+        <StrategySection />
+
+        <ProgressSection />
+      </CContainer>
+
+      <LPFooter />
     </CContainer>
   );
 }

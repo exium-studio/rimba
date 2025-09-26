@@ -1,4 +1,4 @@
-import { IMAGES_PATH, SVGS_PATH } from "@/constants/paths";
+import { IMAGES_PATH } from "@/constants/paths";
 
 export const staticContents = {
   1: {
@@ -11,8 +11,11 @@ export const staticContents = {
   },
   2: {
     id: 2,
-    type: "Image",
-    content: `${SVGS_PATH}/rimba_letter_art_light.svg`,
+    type: "Text",
+    content: {
+      id: "RIMBA",
+      en: "RIMBA",
+    },
   },
   3: {
     id: 3,

@@ -1,5 +1,6 @@
 "use client";
 
+import { LPFooter } from "@/components/lpSections/LPFooter";
 import { CContainer } from "@/components/ui/c-container";
 import { PageHeader } from "@/components/widget/PageHeader";
 import { TopNav } from "@/components/widget/TopNav";
@@ -27,6 +28,16 @@ export default function ActivitiesPage() {
           },
         ]}
       />
+
+      <CContainer
+        bg={"light"}
+        zIndex={2}
+        mt={"-24px"}
+        rounded={"3xl"}
+        overflow={"clip"}
+      ></CContainer>
+
+      <LPFooter />
     </CContainer>
   );
 }

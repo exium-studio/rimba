@@ -1,10 +1,10 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
+import { H1 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
-import { RimbaLetterArt } from "@/components/widget/RimbaLetterArt";
 import { ScrollDownIndicator } from "@/components/widget/ScrollDownIndicator";
 import { Interface_CMSContent } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
@@ -335,7 +335,13 @@ export const LPHomeHero = (props: StackProps) => {
               h={"auto"}
               w={"full"}
             >
-              <RimbaLetterArt src={staticContents[2]?.content} />
+              <H1
+                fontSize={["64px", null, "80px"]}
+                fontWeight={"bold"}
+                lineHeight={1}
+              >
+                {staticContents[2]?.content[lang]}
+              </H1>
             </EditableContentContainer>
           </CContainer>
 

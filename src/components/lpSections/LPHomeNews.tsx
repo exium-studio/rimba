@@ -163,7 +163,7 @@ export const LPHomeNews = (props: StackProps) => {
         scrollTrigger: {
           trigger: ".news_item",
           start: "top 80%",
-          invalidateOnRefresh: true,
+
           // markers: true, // debug
         },
         y: "20%",

@@ -42,7 +42,6 @@ export const LPHomePartners = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
-          invalidateOnRefresh: true,
         },
         x: !iss ? "-20%" : "",
         y: iss ? "20%" : "",
@@ -54,7 +53,6 @@ export const LPHomePartners = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
-          invalidateOnRefresh: true,
         },
         x: !iss ? "20%" : "",
         y: iss ? "20%" : "",

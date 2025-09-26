@@ -1037,7 +1037,7 @@ export const homeNews = [
         id: 1,
         fileName: "harimau.jpg",
         filePath: `https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80`,
-        fileUrl: `${IMAGES_PATH}/default-gallery/7.jpg`,
+        fileUrl: `${IMAGES_PATH}/lp/home/news-1.jpg`,
         fileMimeType: "image/jpeg",
         fileSize: "500KB",
         createdAt: "2025-01-01T00:00:00Z",

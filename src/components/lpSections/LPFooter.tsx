@@ -291,6 +291,7 @@ export const LPFooter = (props: StackProps) => {
         pos={isScreenSmH ? "static" : "fixed"}
         bottom={0}
         left={0}
+        zIndex={1}
         {...props}
       />
     </>

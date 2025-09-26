@@ -169,7 +169,11 @@ const MobileTopNav = () => {
                       <AccordionItemContent p={1}>
                         {nav.subMenus[0].list.map((subNav) => {
                           return (
-                            <NavLink key={subNav.path} to={subNav.path}>
+                            <NavLink
+                              key={subNav.path}
+                              to={subNav.path}
+                              external={subNav.external}
+                            >
                               <Btn
                                 clicky={false}
                                 justifyContent={"start"}
@@ -196,7 +200,7 @@ const MobileTopNav = () => {
                 )}
 
                 {!nav.subMenus && (
-                  <NavLink to={nav.path}>
+                  <NavLink to={nav.path} external={nav.external}>
                     <Btn
                       clicky={false}
                       justifyContent={"start"}
@@ -315,7 +319,11 @@ const DesktopTopNav = () => {
                         <CContainer>
                           {nav.subMenus[0].list.map((subNav) => {
                             return (
-                              <NavLink key={subNav.path} to={subNav.path}>
+                              <NavLink
+                                key={subNav.path}
+                                to={subNav.path}
+                                external={subNav.external}
+                              >
                                 <MenuItem value={subNav.path} pr={4}>
                                   <Icon boxSize={5}>
                                     <subNav.icon stroke={1.5} />
@@ -334,7 +342,7 @@ const DesktopTopNav = () => {
                   )}
 
                   {!nav.subMenus && (
-                    <NavLink to={nav.path}>
+                    <NavLink to={nav.path} external={nav.external}>
                       <Btn
                         clicky={false}
                         variant={"ghost"}

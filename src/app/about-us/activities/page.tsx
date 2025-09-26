@@ -44,10 +44,10 @@ export default function ActivitiesPage() {
 
       <CContainer
         bg={"light"}
-        zIndex={2}
-        mt={"-24px"}
         rounded={"3xl"}
+        mt={"-24px"}
         overflow={"clip"}
+        zIndex={2}
       >
         <ListSection />
       </CContainer>

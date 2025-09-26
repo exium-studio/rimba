@@ -39,6 +39,8 @@ export const PageHeader = (props: Props) => {
           pin: true,
           // markers: true, // debug
         },
+        y: "-30%",
+        opacity: 0,
         duration: 0.75,
       });
     },
@@ -50,6 +52,7 @@ export const PageHeader = (props: Props) => {
       ref={containerRef}
       minH={["100vh", null, "600px"]}
       overflow={"clip"}
+      zIndex={2}
       {...restProps}
     >
       <LPSectionContainer

@@ -2,11 +2,24 @@
 
 import { LPFooter } from "@/components/lpSections/LPFooter";
 import { CContainer } from "@/components/ui/c-container";
+import SearchInput from "@/components/ui/search-input";
+import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { PageHeader } from "@/components/widget/PageHeader";
 import { TopNav } from "@/components/widget/TopNav";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
+import { HStack } from "@chakra-ui/react";
+
+const ListSection = () => {
+  return (
+    <LPSectionContainer py={"80px"}>
+      <HStack wrap={"wrap"}>
+        <SearchInput maxW={"400px"} />
+      </HStack>
+    </LPSectionContainer>
+  );
+};
 
 export default function NewsPage() {
   // Contexts
@@ -35,7 +48,9 @@ export default function NewsPage() {
         mt={"-24px"}
         rounded={"3xl"}
         overflow={"clip"}
-      ></CContainer>
+      >
+        <ListSection />
+      </CContainer>
 
       <LPFooter />
     </CContainer>

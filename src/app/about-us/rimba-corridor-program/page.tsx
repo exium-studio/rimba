@@ -18,10 +18,13 @@ export default function DocumentsRoute() {
 
       <PageHeader
         titleContent={staticContents[66]}
-        img={`${IMAGES_PATH}/lp/rimba-corridor-program/header-bg.png`}
+        img={`${IMAGES_PATH}/lp/about-us/rimba-corridor-program/header-bg.png`}
         links={[
           { label: l.lp_navs.home, path: "/" },
-          { label: staticContents[66].content[lang], path: "/documents" },
+          {
+            label: staticContents[66].content[lang],
+            path: "/rimba-corridor-program",
+          },
         ]}
       />
     </CContainer>

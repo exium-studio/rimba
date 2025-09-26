@@ -162,7 +162,7 @@ export const staticContents = {
   30: { id: 30, type: "Text", content: { id: "Riau", en: "Riau" } },
   31: {
     id: 31,
-    type: "Text",
+    type: "TextArray",
     content: [
       { id: "Kampar", en: "Kampar" },
       { id: "Kuantan Singing", en: "Kuantan Singing" },
@@ -177,7 +177,7 @@ export const staticContents = {
   },
   33: {
     id: 33,
-    type: "Text",
+    type: "TextArray",
     content: [
       { id: "Kampar", en: "Kampar" },
       { id: "Kuantan Singing", en: "Kuantan Singing" },
@@ -188,7 +188,7 @@ export const staticContents = {
   34: { id: 34, type: "Text", content: { id: "Jambi", en: "Jambi" } },
   35: {
     id: 35,
-    type: "Text",
+    type: "TextArray",
     content: [
       { id: "Kampar", en: "Kampar" },
       { id: "Kuantan Singing", en: "Kuantan Singing" },
@@ -508,9 +508,274 @@ export const staticContents = {
     id: 77,
     type: "Text",
     content: {
-      id: "Kesepakatan Dibangun",
-      en: "Project Cooperation Agreement (PCA) antara Kementerian ATR/BPN dan UNEP–GEF disepakati pada Juni 2021.",
+      id: "Penguatan Kelembagaan",
+      en: "Strengthening Institutions",
     },
+  },
+  78: {
+    id: 78,
+    type: "Text",
+    content: {
+      id: "Membentuk kerangka kelembagaan yang berkelanjutan dan efektif untuk pengelolaan sumber daya alam dalam mendukung ekonomi hijau.",
+      en: "Building a sustainable and effective framework for managing natural resources to support green economy.",
+    },
+  },
+  79: {
+    id: 79,
+    type: "Text",
+    content: {
+      id: "Demonstrasi Ekonomi Hijau",
+      en: "Green Economy Demonstration",
+    },
+  },
+  80: {
+    id: 80,
+    type: "Text",
+    content: {
+      id: "Menerapkan praktik ekonomi hijau di tingkat tapak sebagai contoh nyata transformasi ekonomi berkelanjutan yang inklusif dan adaptif.",
+      en: "Implementing green economy practices at the grassroots level as a concrete example of sustainable transformation that is inclusive and adaptable.",
+    },
+  },
+  81: {
+    id: 81,
+    type: "Text",
+    content: {
+      id: "Monitoring & Pembelajaran",
+      en: "Monitoring & Learning",
+    },
+  },
+  82: {
+    id: 82,
+    type: "Text",
+    content: {
+      id: "Mengembangkan sistem pemantauan dan evaluasi berbasis data serta berbagi pembelajaran untuk meningkatkan efektivitas program berkelanjutan.",
+      en: "Developing monitoring and evaluation systems based on data and sharing learning to improve the effectiveness of sustainable programs.",
+    },
+  },
+  83: {
+    id: 83,
+    type: "Text",
+    content: {
+      id: "Progress Perjalanan Program",
+      en: "Program Journey Progress",
+    },
+  },
+  84: {
+    id: 84,
+    type: "Text",
+    content: {
+      id: "Kesepakatan Dibangun",
+      en: "Agreement Built",
+    },
+  },
+  85: {
+    id: 85,
+    type: "TextArray",
+    content: [
+      {
+        id: "Project Cooperation Agreement (PCA) antara Kementerian ATR/BPN dan UNEP-GEF disepakati pada Juni 2021.",
+        en: "Project Cooperation Agreement (PCA) between Ministry of ATR/BPN and UNEP-GEF agreed on June 2021.",
+      },
+    ],
+  },
+  86: {
+    id: 86,
+    type: "Text",
+    content: {
+      id: "Fase Persiapan (Juli 2021 - Mei 2023)",
+      en: "Preparation Phase (July 2021 - May 2023)",
+    },
+  },
+  87: {
+    id: 87,
+    type: "Text",
+    content: {
+      id: "Project Management Unit (PMU) RIMBA dibentuk pada 2022.",
+      en: "Project Management Unit (PMU) RIMBA established in 2022.",
+    },
+  },
+  88: {
+    id: 88,
+    type: "Text",
+    content: {
+      id: "Review baseline dan Inception Workshop",
+      en: "Review baseline and Inception Workshop",
+    },
+  },
+  89: {
+    id: 89,
+    type: "Text",
+    content: {
+      id: "Project Implementation Unit (PIU) RIMBA dibentuk pada 2023.",
+      en: "Project Implementation Unit (PIU) RIMBA established in 2023.",
+    },
+  },
+  90: {
+    id: 90,
+    type: "Text",
+    content: {
+      id: "Januari - Juni 2024 Pengadaan",
+      en: "January - June 2024 Procurement",
+    },
+  },
+  91: {
+    id: 91,
+    type: "TextArray",
+    content: [
+      {
+        id: "Proses kontraktual (bidding) dan swakelola kerja asma dengan universitas serta NGO.",
+        en: "Contractual (bidding) and swakelola kerja asma with universities and NGOs.",
+      },
+    ],
+  },
+  92: {
+    id: 92,
+    type: "Text",
+    content: {
+      id: "Juli-Desember 2024",
+      en: "July-December 2024",
+    },
+  },
+  93: {
+    id: 93,
+    type: "Text",
+    content: [
+      {
+        id: "Focus Group Discussion (FGD) dengan multi-stakeholders.",
+        en: "Focus Group Discussion (FGD) with multi-stakeholders.",
+      },
+      {
+        id: "Menyusun rencana tata ruang khususnya KSN.",
+        en: "Drafting specific spatial planning such as KSN.",
+      },
+      {
+        id: "Menyusun roadmap kelembagaan dan kajia pendukung untuk pemantapan Program Koridor RIMBA.",
+        en: "Drafting institutional and supporting roadmap for implementation of the RIMBA Corridor Program.",
+      },
+    ],
+  },
+  94: {
+    id: 94,
+    type: "Text",
+    content: {
+      id: "Fase Implementasi",
+      en: "Implementation Phase",
+    },
+  },
+  95: {
+    id: 95,
+    type: "TextArray",
+    content: [
+      {
+        id: "Pelaksanaan program utama dan demonstrasi ekonomi hijau di Kawasan Koridor RIMBA.",
+        en: "Main program implementation and green economy demonstration at the RIMBA Corridor.",
+      },
+    ],
+  },
+  96: {
+    id: 96,
+    type: "Text",
+    content: {
+      id: "Indicator Capaian Program",
+      en: "Program Achievement Indicator",
+    },
+  },
+  97: {
+    id: 97,
+    type: "Image",
+    content: `${IMAGES_PATH}/lp/dummy.png`,
+  },
+  98: {
+    id: 98,
+    type: "Text",
+    content: {
+      id: "Peningkatan Tutupan Hutan",
+      en: "Forest Closure Increase",
+    },
+  },
+  99: {
+    id: 99,
+    type: "Text",
+    content: {
+      id: "Tutupan hutan meningkat hingga 14%, memperkuat ekosistem dan menjaga keberlanjutan lingkungan.",
+      en: "Forest closure increased to 14%, strengthening ecosystem and ensuring sustainable environment.",
+    },
+  },
+  100: {
+    id: 100,
+    type: "Image",
+    content: `${IMAGES_PATH}/lp/dummy.png`,
+  },
+  101: {
+    id: 101,
+    type: "Text",
+    content: {
+      id: "Pengurangan Emisi Gas RUmah Kaca",
+      en: "Decrease in Gas Emissions from Glass Houses",
+    },
+  },
+  102: {
+    id: 102,
+    type: "Text",
+    content: {
+      id: "Kawasan RIMBA berhasil menurunkan emisi hingga 2%, berkontribusi pada mitigasi perubahan iklim.",
+      en: "RIMBA corridor successfully reduced emissions to 2%, contributing to climate mitigation.",
+    },
+  },
+  103: {
+    id: 103,
+    type: "Image",
+    content: `${IMAGES_PATH}/lp/dummy.png`,
+  },
+  104: {
+    id: 104,
+    type: "Text",
+    content: {
+      id: "Pekerjaan Berbasis Ekonomi Hijau",
+      en: "Green Economy Based Jobs",
+    },
+  },
+  105: {
+    id: 105,
+    type: "Text",
+    content: {
+      id: "Sebanyak 700 keluarga memperoleh pekerjaan baru yang ramah lingkungan dan berkelanjutan.",
+      en: "700 families received new jobs that are environmentally friendly and sustainable.",
+    },
+  },
+  106: {
+    id: 106,
+    type: "Image",
+    content: `${IMAGES_PATH}/lp/dummy.png`,
+  },
+  107: {
+    id: 107,
+    type: "Text",
+    content: {
+      id: "Konektivitas Habitat Hutan",
+      en: "Habitat Connectivity",
+    },
+  },
+  108: {
+    id: 108,
+    type: "Text",
+    content: {
+      id: "Konektivitas habitat meningkat hingga 30%, mendukung kelestarian keanekaragaman hayati.",
+      en: "Habitat connectivity increased to 30%, supporting biodiversity conservation.",
+    },
+  },
+  109: {
+    id: 109,
+    type: "Text",
+    content: {
+      id: "Struktur Organisasi",
+      en: "Organization Structure",
+    },
+  },
+  110: {
+    id: 110,
+    type: "Image",
+    content: `${IMAGES_PATH}/lp/about-us/rimba-corridor-program/organizational-structure.svg`,
   },
 };
 

@@ -43,7 +43,7 @@ const MobileTopNav = () => {
   useBackOnClose("mobile-nav", open, onOpen, onClose);
   const debouncedShowContents = useDebouncedCallback(() => {
     setShowContents(true);
-  }, 200);
+  }, 300);
   useDisableBodyScroll(open);
 
   // States
@@ -64,8 +64,8 @@ const MobileTopNav = () => {
       pos={"fixed"}
       top={0}
       left={0}
-      transition={"200ms"}
       overflowY={"auto"}
+      transition={"300ms"}
       zIndex={10}
     >
       <CContainer
@@ -74,7 +74,7 @@ const MobileTopNav = () => {
         h={open ? "100dvh" : "64px"}
         rounded={open ? "" : "lg"}
         overflowY={open ? "auto" : "clip"}
-        transition={"200ms"}
+        transition={"300ms"}
       >
         <HStack
           justify={"space-between"}

@@ -324,7 +324,7 @@ const DesktopTopNav = () => {
                                 to={subNav.path}
                                 external={subNav.external}
                               >
-                                <MenuItem value={subNav.path} pr={4}>
+                                <MenuItem value={subNav.path} pr={5}>
                                   <Icon boxSize={5}>
                                     <subNav.icon stroke={1.5} />
                                   </Icon>

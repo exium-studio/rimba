@@ -97,7 +97,7 @@ export const DocumentItem = (props: Props__DocumentItem) => {
             <FolderShape h={"30px"} color={"p.900"} />
           </Box>
 
-          <P fontSize={"xl"} fontWeight={"medium"} lineClamp={1} mt={2}>
+          <P fontSize={"lg"} fontWeight={"medium"} lineClamp={1} mt={2}>
             {document.title[lang]}
           </P>
 

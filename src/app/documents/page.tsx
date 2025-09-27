@@ -54,8 +54,6 @@ const ListSection = () => {
     ),
   };
 
-  console.log(data);
-
   return (
     <LPSectionContainer py={"80px"}>
       <Stack flexDir={["column", null, "row"]}>

@@ -15,7 +15,7 @@ import {
   IconSeedling,
   IconSettings,
   IconShieldHalf,
-  IconTree,
+  IconTrees,
   IconUser,
 } from "@tabler/icons-react";
 
@@ -40,7 +40,7 @@ export const LP_NAVS: Interface__NavItem[] = [
           {
             list: [
               {
-                icon: IconTree,
+                icon: IconTrees,
                 labelKey: "lp_navs.about_us.rimba_corridor_program",
                 path: `/about-us/rimba-corridor-program`,
               },

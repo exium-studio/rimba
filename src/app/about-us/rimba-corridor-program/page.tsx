@@ -23,7 +23,7 @@ import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { Box, Center, HStack, Icon, SimpleGrid } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
-import { IconArrowUpRight, IconTree } from "@tabler/icons-react";
+import { IconArrowUpRight, IconTrees } from "@tabler/icons-react";
 import gsap from "gsap";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -151,7 +151,7 @@ const PurposeSection = () => {
                   }`}</P>
 
                   <Icon boxSize={8} color={"p.700"}>
-                    <IconTree stroke={1.5} />
+                    <IconTrees stroke={1.5} />
                   </Icon>
                 </HStack>
               </CContainer>

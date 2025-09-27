@@ -107,7 +107,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
 
         <SimpleGrid
           ref={mainContentsRef}
-          columns={[1, null, 2, 4]}
+          columns={[1, null, 2, legalDocuments.length]}
           gap={6}
           mt={"100px"}
         >

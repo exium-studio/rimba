@@ -35,7 +35,7 @@ export const LPPartners = (props: StackProps) => {
     () => {
       if (!partnerLogos1Ref.current || !partnerLogos2Ref.current) return;
 
-      gsap.from(".content_container_1", {
+      gsap.from(".content_1", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
@@ -46,13 +46,23 @@ export const LPPartners = (props: StackProps) => {
         duration: 0.75,
       });
 
-      gsap.from(".content_container_2", {
+      gsap.from(".content_2", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
         },
         x: !iss ? "20%" : "",
         y: iss ? "20%" : "",
+        opacity: 0,
+        duration: 0.75,
+      });
+
+      gsap.from(".content_3", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 50%",
+        },
+        y: "20%",
         opacity: 0,
         duration: 0.75,
       });
@@ -69,7 +79,7 @@ export const LPPartners = (props: StackProps) => {
     <CContainer bg={"bg.subtle"} roundedBottom={"3xl"} {...restProps}>
       <LPSectionContainer ref={containerRef} py={"80px"}>
         <SimpleGrid columns={[1, null, 2]} gap={8}>
-          <HStack className="content_container_1" gap={8} align={"start"}>
+          <HStack className="content_1" gap={8} align={"start"}>
             <Image
               src={`${IMAGES_PATH}/atrbpn-logo.png`}
               h={"full"}
@@ -87,7 +97,7 @@ export const LPPartners = (props: StackProps) => {
             />
           </HStack>
 
-          <CContainer className="content_container_2">
+          <CContainer className="content_2">
             <EditableContentContainer content={staticContents[53]}>
               <H2
                 className="section_title"
@@ -106,7 +116,12 @@ export const LPPartners = (props: StackProps) => {
         </SimpleGrid>
       </LPSectionContainer>
 
-      <CContainer gap={"80px"} mb={"80px"} overflow={"hidden"}>
+      <CContainer
+        className="content_3"
+        gap={"80px"}
+        mb={"80px"}
+        overflow={"clip"}
+      >
         <EditableContentContainer w={"full"} content={staticContents[55]}>
           <CContainer>
             <HStack

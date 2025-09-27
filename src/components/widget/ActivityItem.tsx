@@ -34,7 +34,7 @@ export const ActivityItem = (props: Props) => {
         <Center
           aspectRatio={1}
           w="full"
-          rounded={"lg"}
+          rounded={"xl"}
           overflow={"clip"}
           pos={"relative"}
         >

@@ -26,7 +26,7 @@ export const ActivityItem = (props: Props) => {
 
   return (
     <CContainer bg={"light"} rounded="2xl" {...restProps}>
-      <Center aspectRatio={1} w="full" p={2}>
+      <Center aspectRatio={1} w="full" p={thumbnailFill ? 2 : 0}>
         <Center
           aspectRatio={1}
           w="full"
@@ -80,7 +80,7 @@ export const ActivityItem = (props: Props) => {
       </Center>
 
       <CContainer h={["196px", null, "188px"]}>
-        <CContainer gap={4} px={4} pt={3}>
+        <CContainer gap={4} px={4} pt={thumbnailFill ? 3 : 4}>
           <P fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
             {activity.title[lang]}
           </P>

@@ -61,6 +61,7 @@ export const LPPartners = (props: StackProps) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
+          // markers: true,
         },
         y: "20%",
         opacity: 0,
@@ -76,8 +77,8 @@ export const LPPartners = (props: StackProps) => {
   const resolvedParterLogos2 = Array(6).fill(partnerLogos2).flat();
 
   return (
-    <CContainer bg={"bg.subtle"} roundedBottom={"3xl"} {...restProps}>
-      <LPSectionContainer ref={containerRef} py={"80px"}>
+    <CContainer ref={containerRef} roundedBottom={"3xl"} {...restProps}>
+      <LPSectionContainer py={"80px"}>
         <SimpleGrid columns={[1, null, 2]} gap={8}>
           <HStack className="content_1" gap={8} align={"start"}>
             <Image
@@ -120,7 +121,7 @@ export const LPPartners = (props: StackProps) => {
         className="content_3"
         gap={"80px"}
         mb={"80px"}
-        overflow={"clip"}
+        overflow={"hidden"}
       >
         <EditableContentContainer w={"full"} content={staticContents[55]}>
           <CContainer>

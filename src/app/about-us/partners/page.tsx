@@ -37,7 +37,7 @@ export default function DocumentsRoute() {
         rounded={"3xl"}
         overflow={"clip"}
       >
-        <LPPartners bg={"light"} />
+        <LPPartners />
       </CContainer>
 
       <LPFooter />

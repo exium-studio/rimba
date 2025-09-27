@@ -32,7 +32,7 @@ const IndexRoute = () => {
 
         <LPHomeNews />
 
-        <LPPartners />
+        <LPPartners bg={"bg.subtle"} />
       </CContainer>
 
       <LPFooter />

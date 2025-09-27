@@ -51,8 +51,11 @@ const Contacts = () => {
     <CContainer gap={2}>
       {contacts.map((contact, idx) => {
         return (
-          <HStack key={idx}>
-            <contact.icon stroke={1.5} />
+          <HStack key={idx} align={"start"}>
+            <Icon boxSize={5}>
+              <contact.icon stroke={1.5} />
+            </Icon>
+
             <EditableContentContainer content={contact.textContent}>
               <P>{contact.textContent?.content[lang]}</P>
             </EditableContentContainer>

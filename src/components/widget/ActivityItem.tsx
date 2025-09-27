@@ -10,11 +10,7 @@ import { Interface__CMSActivity } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import { formatDate } from "@/utils/formatter";
 import { Badge, Center, HStack, Icon, StackProps } from "@chakra-ui/react";
-import {
-  IconArrowUpRight,
-  IconCalendarEvent,
-  IconSeedling,
-} from "@tabler/icons-react";
+import { IconArrowUpRight, IconSeedling } from "@tabler/icons-react";
 
 interface Props extends StackProps {
   activity: Interface__CMSActivity;
@@ -38,16 +34,6 @@ export const ActivityItem = (props: Props) => {
           overflow={"clip"}
           pos={"relative"}
         >
-          <HStack wrap={"wrap"} zIndex={2} pos={"absolute"} bottom={4} left={4}>
-            {activity.eventCategory?.map((category) => {
-              return (
-                <Badge key={category.id} w={"fit"}>
-                  {category.name[lang]}
-                </Badge>
-              );
-            })}
-          </HStack>
-
           <HStack
             w={"full"}
             p={4}
@@ -59,18 +45,22 @@ export const ActivityItem = (props: Props) => {
             left={0}
           >
             <Tooltip content={l.estimated_planned_date}>
-              <HStack w={"fit"}>
-                <Icon boxSize={5}>
-                  <IconCalendarEvent stroke={1.5} />
-                </Icon>
-
-                <P>{formatDate(activity.plannedDate)}</P>
-              </HStack>
+              <P>{formatDate(activity.plannedDate)}</P>
             </Tooltip>
 
             <Icon>
               <IconSeedling stroke={1.5} />
             </Icon>
+          </HStack>
+
+          <HStack wrap={"wrap"} zIndex={2} pos={"absolute"} bottom={4} left={4}>
+            {activity.eventCategory?.map((category) => {
+              return (
+                <Badge key={category.id} w={"fit"}>
+                  {category.name[lang]}
+                </Badge>
+              );
+            })}
           </HStack>
 
           <Img

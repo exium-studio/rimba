@@ -36,7 +36,7 @@ const ListSection = () => {
     Interface__CMSNews[]
   >({
     initialData: homeNews,
-    // url: `/api/cms/public-request/get-all-legal-document`,
+    // url: `/api/cms/public-request/get-all-news`,
     dependencies: [],
   });
 
@@ -46,7 +46,7 @@ const ListSection = () => {
     error: <FeedbackRetry onRetry={makeRequest} />,
     empty: <FeedbackNoData />,
     loaded: (
-      <SimpleGrid columns={[1, null, 2, 4]} gap={6} mt={"32px"}>
+      <SimpleGrid columns={[1, null, 2, 4]} gap={6}>
         {data?.map((news) => {
           return (
             <NewsItem
@@ -69,7 +69,7 @@ const ListSection = () => {
             setFilter({ ...filter, search: inputValue })
           }
           inputValue={filter.search}
-          w={"300px"}
+          w={["", null, "300px"]}
           debounceTime={0}
         />
 
@@ -81,7 +81,7 @@ const ListSection = () => {
             inputValue={filter.year}
             formatted={false}
             placeholder={l.year}
-            w={"110px"}
+            w={["", null, "110px"]}
           />
 
           <Btn
@@ -102,7 +102,7 @@ const ListSection = () => {
         </HStack>
       </Stack>
 
-      <CContainer mt={8}>
+      <CContainer mt={12}>
         {loading && render.loading}
         {!loading && (
           <>

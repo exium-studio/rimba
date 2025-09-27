@@ -62,7 +62,7 @@ const ListSection = () => {
             setFilter({ ...filter, search: inputValue })
           }
           inputValue={filter.search}
-          w={"300px"}
+          w={["", null, "300px"]}
           debounceTime={0}
         />
 
@@ -74,7 +74,7 @@ const ListSection = () => {
             inputValue={filter.year}
             formatted={false}
             placeholder={l.year}
-            w={"110px"}
+            w={["", null, "110px"]}
           />
 
           <Btn

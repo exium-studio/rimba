@@ -13,7 +13,6 @@ import { Interface__CMSDocument } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
-import useScreen from "@/hooks/useScreen";
 import { Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
@@ -28,10 +27,6 @@ export const LPHomeLegalDocs = (props: StackProps) => {
   const { l, lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
   const legalDocuments = useContents((s) => s.legalDocuments);
-
-  // Hooks
-  const { sw } = useScreen();
-  const ciss = sw < 1200;
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -63,28 +58,6 @@ export const LPHomeLegalDocs = (props: StackProps) => {
         duration: 0.75,
       });
 
-      if (!ciss) {
-        gsap.from(".doc_item_1", {
-          scrollTrigger: {
-            trigger: mainContentsRef.current,
-            start: "top 65%",
-            // markers: true, // debug
-          },
-          x: "70%",
-          duration: 0.75,
-        });
-
-        gsap.from(".doc_item_3", {
-          scrollTrigger: {
-            trigger: mainContentsRef.current,
-            start: "top 65%",
-            // markers: true, // debug
-          },
-          x: "-70%",
-          duration: 0.75,
-        });
-      }
-
       gsap.from(bottomContentsRef.current, {
         scrollTrigger: {
           trigger: bottomContentsRef.current,
@@ -96,7 +69,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
         duration: 0.75,
       });
     },
-    { scope: containerRef, dependencies: [ciss] }
+    { scope: containerRef }
   );
 
   return (
@@ -134,7 +107,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
 
         <SimpleGrid
           ref={mainContentsRef}
-          columns={[1, null, 2, 3]}
+          columns={[1, null, 2, 4]}
           gap={6}
           mt={"100px"}
         >
@@ -144,7 +117,6 @@ export const LPHomeLegalDocs = (props: StackProps) => {
                 key={idx}
                 document={doc}
                 className={`doc_item_${idx + 1}`}
-                zIndex={!ciss ? (idx === 1 ? 2 : 1) : idx}
               />
             );
           })}

@@ -7,8 +7,7 @@ import { P } from "@/components/ui/p";
 import FolderShape from "@/components/widget/FolderShape";
 import { Props__DocumentItem } from "@/constants/props";
 import useLang from "@/context/useLang";
-import { formatDate } from "@/utils/formatter";
-import { Box, BoxProps, HStack, Icon } from "@chakra-ui/react";
+import { Box, BoxProps, Icon } from "@chakra-ui/react";
 import { IconArrowUpRight, IconFileTypePdf } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -92,7 +91,7 @@ export const DocumentItem = (props: Props__DocumentItem) => {
         pos={"relative"}
         zIndex={4}
       >
-        <CContainer p={5}>
+        <CContainer p={5} pb={2}>
           <Box pos={"absolute"} top={"-29.5px"} left={0}>
             <FolderShape h={"30px"} color={"p.900"} />
           </Box>
@@ -101,26 +100,19 @@ export const DocumentItem = (props: Props__DocumentItem) => {
             {document.title[lang]}
           </P>
 
-          <P lineClamp={2} opacity={0.4} mt={4} mb={8}>
+          <P lineClamp={2} opacity={0.4} mt={4}>
             {document.description[lang]}
           </P>
         </CContainer>
 
-        <HStack justify={"space-between"} p={3} mt={"auto"}>
-          <P opacity={0.4} whiteSpace={"nowrap"} ml={2}>
-            {formatDate(document.createdAt, {
-              variant: "numeric",
-            })}
-          </P>
-
-          <NavLink w={"fit"} to={`/document/${document.id}`}>
+        <CContainer p={3}>
+          <NavLink to={`/document/${document.id}`} w={"fit"} mt={4} ml={"auto"}>
             <Btn
               colorPalette={"p"}
               color={"p.300"}
               variant={"ghost"}
               size={"md"}
               pr={3}
-              mt={"auto"}
               _hover={{
                 bg: "blackAlpha.300",
               }}
@@ -132,7 +124,7 @@ export const DocumentItem = (props: Props__DocumentItem) => {
               </Icon>
             </Btn>
           </NavLink>
-        </HStack>
+        </CContainer>
       </CContainer>
     </CContainer>
   );

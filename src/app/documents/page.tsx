@@ -46,7 +46,7 @@ const ListSection = () => {
     error: <FeedbackRetry onRetry={makeRequest} />,
     empty: <FeedbackNoData />,
     loaded: (
-      <SimpleGrid columns={[1, null, 2, 3]} gap={6} mt={"32px"}>
+      <SimpleGrid columns={[1, null, 2, 4]} gap={6} mt={"32px"}>
         {data?.map((doc: Interface__CMSDocument) => {
           return <DocumentItem key={doc.id} document={doc} zIndex={2} />;
         })}

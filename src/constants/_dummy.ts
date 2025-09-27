@@ -1078,7 +1078,7 @@ export const homeLegalDocuments = [
     deletedAt: null,
   },
   {
-    id: 3,
+    id: 4,
     title: {
       id: "Permen ATR BPN Nomor 11 tahun 2023",
       en: "Presidential Decree No. 13 of 2012 on Sumatra's Spatial Plan",

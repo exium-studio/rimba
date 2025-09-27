@@ -9,6 +9,7 @@ import SearchInput from "@/components/ui/search-input";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
+import { NewsItem } from "@/components/widget/NewsItem";
 import { PageHeader } from "@/components/widget/PageHeader";
 import { TopNav } from "@/components/widget/TopNav";
 import { homeNews } from "@/constants/_dummy";
@@ -47,7 +48,14 @@ const ListSection = () => {
     loaded: (
       <SimpleGrid columns={[1, null, 2, 4]} gap={6} mt={"32px"}>
         {data?.map((news) => {
-          return <CContainer key={news.id}></CContainer>;
+          return (
+            <NewsItem
+              key={news.id}
+              news={news}
+              border={"1px solid"}
+              borderColor={"border.muted"}
+            />
+          );
         })}
       </SimpleGrid>
     ),

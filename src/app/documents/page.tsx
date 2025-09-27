@@ -48,7 +48,7 @@ const ListSection = () => {
     loaded: (
       <SimpleGrid columns={[1, null, 2, 3]} gap={6} mt={"32px"}>
         {data?.map((doc: Interface__CMSDocument) => {
-          return <DocumentItem key={doc.id} document={doc} />;
+          return <DocumentItem key={doc.id} document={doc} zIndex={2} />;
         })}
       </SimpleGrid>
     ),

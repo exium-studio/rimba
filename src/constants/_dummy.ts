@@ -823,6 +823,22 @@ export const staticContents = {
 export const homeActivities = [
   {
     id: 1,
+    eventCategory: [
+      {
+        id: 1,
+        name: {
+          id: "Konservasi",
+          en: "Conservation",
+        },
+        description: {
+          id: "Kategori kegiatan yang berfokus pada pelestarian lingkungan.",
+          en: "Category of activities focused on environmental preservation.",
+        },
+        createdAt: "2025-01-15T08:30:00Z",
+        updatedAt: "2025-01-15T08:30:00Z",
+        deletedAt: null,
+      },
+    ],
     thumbnail: [
       {
         id: 1,
@@ -846,11 +862,33 @@ export const homeActivities = [
       id: "Dengan teknologi pemetaan dan data spasial, pelestarian alam kini lebih terukur dan transparan. Penggunaan data lingkungan membantu pengambil kebijakan, peneliti, dan masyarakat.",
       en: "With spatial mapping and spatial data, nature preservation is now more accurate and transparent. Using environmental data helps policymakers, researchers, and the public.",
     },
+    eventContent: {
+      id: "Detail kegiatan koridor ekosistem.",
+      en: "Detailed content about the ecosystem corridor activity.",
+    },
     plannedDate: "2025-01-15T08:30:00.000Z",
     createdAt: "2025-01-15T08:30:00.000Z",
+    updatedAt: "2025-01-15T08:30:00.000Z",
+    deletedAt: null,
   },
   {
     id: 2,
+    eventCategory: [
+      {
+        id: 2,
+        name: {
+          id: "Pemetaan",
+          en: "Mapping",
+        },
+        description: {
+          id: "Kategori kegiatan yang menggunakan peta dan data spasial.",
+          en: "Category of activities using maps and spatial data.",
+        },
+        createdAt: "2025-01-15T08:30:00Z",
+        updatedAt: "2025-01-15T08:30:00Z",
+        deletedAt: null,
+      },
+    ],
     thumbnail: [
       {
         id: 2,
@@ -874,11 +912,33 @@ export const homeActivities = [
       id: "Dengan teknologi pemetaan dan data spasial, pelestarian alam kini lebih terukur dan transparan. Penggunaan data lingkungan membantu pengambil kebijakan, peneliti, dan masyarakat.",
       en: "With spatial mapping and spatial data, nature preservation is now more accurate and transparent. Using environmental data helps policymakers, researchers, and the public.",
     },
+    eventContent: {
+      id: "Detail kegiatan pemetaan alam.",
+      en: "Detailed content about the mapping activity.",
+    },
     plannedDate: "2025-01-15T08:30:00.000Z",
     createdAt: "2025-01-15T08:30:00.000Z",
+    updatedAt: "2025-01-15T08:30:00.000Z",
+    deletedAt: null,
   },
   {
     id: 3,
+    eventCategory: [
+      {
+        id: 3,
+        name: {
+          id: "Infrastruktur",
+          en: "Infrastructure",
+        },
+        description: {
+          id: "Kategori kegiatan terkait pembangunan infrastruktur berkelanjutan.",
+          en: "Category of activities related to sustainable infrastructure.",
+        },
+        createdAt: "2025-01-15T08:30:00Z",
+        updatedAt: "2025-01-15T08:30:00Z",
+        deletedAt: null,
+      },
+    ],
     thumbnail: [
       {
         id: 3,
@@ -902,8 +962,14 @@ export const homeActivities = [
       id: "Akses air bersih kini tak hanya soal infrastruktur, tapi juga soal informasi. Penggunaan sensor kualitas air dan dashboard pelaporan membuat distribusi air lebih adil dan tanggap terhadap krisis lokal.",
       en: "Clean water access is not just infrastructure, but also information. Using water quality sensors and reporting dashboards makes water distribution more equitable and responsive to local crises.",
     },
+    eventContent: {
+      id: "Detail kegiatan akses air bersih.",
+      en: "Detailed content about the clean water activity.",
+    },
     plannedDate: "2025-01-15T08:30:00.000Z",
     createdAt: "2025-01-15T08:30:00.000Z",
+    updatedAt: "2025-01-15T08:30:00.000Z",
+    deletedAt: null,
   },
 ];
 
@@ -959,6 +1025,33 @@ export const homeLegalDocuments = [
   },
   {
     id: 2,
+    title: {
+      id: "Permen ATR BPN Nomor 11 tahun 2023",
+      en: "Presidential Decree No. 13 of 2012 on Sumatra's Spatial Plan",
+    },
+    description: {
+      id: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
+      en: "Lorem ipsum dolor sit amet consectetur. Diam at egestas massa id blandit mattis nunc nunc. Leo at in venenatis viverra erat vitae nullam consectetur est.",
+    },
+    file: [
+      {
+        id: 2,
+        fileName: "peta_koridor_rimba.png",
+        filePath: "/images/rimba/peta_koridor_rimba.png",
+        fileUrl: "",
+        fileMimeType: "application/pdf",
+        fileSize: "1.1mB",
+        createdAt: "2023-09-10T09:30:00Z",
+        updated_at: null,
+        deleted_at: null,
+      },
+    ],
+    createdAt: "2025-09-24T08:00:00Z",
+    updatedAt: "2025-09-24T08:00:00Z",
+    deletedAt: null,
+  },
+  {
+    id: 3,
     title: {
       id: "Permen ATR BPN Nomor 11 tahun 2023",
       en: "Presidential Decree No. 13 of 2012 on Sumatra's Spatial Plan",

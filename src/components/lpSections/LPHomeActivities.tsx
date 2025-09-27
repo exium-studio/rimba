@@ -3,17 +3,16 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { H2 } from "@/components/ui/heading";
-import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import { ActivityItem } from "@/components/widget/ActivityItem";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Interface__CMSActivity } from "@/constants/interfaces";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import { formatDate } from "@/utils/formatter";
-import { Center, HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
+import { HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import {
   IconArrowLeft,
@@ -23,13 +22,10 @@ import {
 import gsap from "gsap";
 import { useRef } from "react";
 
-const ActivityItem = (props: any) => {
+const ActivityItemFull = (props: any) => {
   // Props
   const { activity: acttivityProps, ...restProps } = props;
   const activity = acttivityProps as Interface__CMSActivity;
-
-  // Contexts
-  const { l, lang } = useLang();
 
   return (
     <CContainer
@@ -44,67 +40,7 @@ const ActivityItem = (props: any) => {
       pos={"relative"}
       {...restProps}
     >
-      <CContainer w={"300px"} bg={"light"} rounded="xl">
-        <Center aspectRatio={1} w="full" p={2}>
-          <Center
-            aspectRatio={1}
-            w="full"
-            rounded={"lg"}
-            overflow={"clip"}
-            pos={"relative"}
-          >
-            <Img
-              src={activity.thumbnail?.[0]?.fileUrl}
-              aspectRatio={1}
-              w={"100vw"}
-              h={"700px"}
-              rounded="lg"
-              pos={"absolute"}
-              mt={"188px"}
-              transition={"200ms"}
-              _hover={{
-                transform: "scale(1.1)",
-              }}
-            />
-          </Center>
-        </Center>
-
-        <CContainer h={"188px"}>
-          <CContainer gap={4} px={4} pt={3}>
-            <P fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
-              {activity.title[lang]}
-            </P>
-
-            <P color={"fg.subtle"} lineClamp={3}>
-              {activity.description[lang]}
-            </P>
-          </CContainer>
-
-          <CContainer p={2} mt={"auto"}>
-            <HStack justify={"space-between"}>
-              <P color={"fg.subtle"} ml={2}>
-                {formatDate(activity.plannedDate, { variant: "numeric" })}
-              </P>
-
-              <NavLink to={`/activities/${activity.id}`} w={"fit"} ml={"auto"}>
-                <Btn
-                  colorPalette={"p"}
-                  variant={"ghost"}
-                  size={"md"}
-                  pr={3}
-                  mt={"auto"}
-                >
-                  {l.learn_more}
-
-                  <Icon boxSize={5}>
-                    <IconArrowUpRight stroke={1.5} />
-                  </Icon>
-                </Btn>
-              </NavLink>
-            </HStack>
-          </CContainer>
-        </CContainer>
-      </CContainer>
+      <ActivityItem activity={activity} thumbnailFill={true} w={"300px"} />
     </CContainer>
   );
 };
@@ -119,7 +55,6 @@ export const LPHomeActivities = (props: StackProps) => {
   const homeActivities = useContents((s) => s.homeActivities);
 
   // Hooks
-  // const iss = useIsSmScreenWidth();
   const iss = useIsSmScreenWidth();
 
   // Refs
@@ -220,7 +155,7 @@ export const LPHomeActivities = (props: StackProps) => {
           <HStack ref={mainContentsRef} w={"max"} gap={0}>
             {homeActivities.map((activity: any, idx: number) => {
               return (
-                <ActivityItem
+                <ActivityItemFull
                   key={activity.id}
                   activity={activity}
                   className={`event_item_${idx + 1}`}

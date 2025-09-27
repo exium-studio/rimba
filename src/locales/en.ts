@@ -132,6 +132,7 @@ const translations = {
     "title": "Location not supported",
     "description": "Your device does not support location features."
   },
+  "estimated_planned_date": "Estimated implementation date",
   "example_UI": "Example UI",
   "february": "February",
   "friday": "Friday",

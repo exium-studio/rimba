@@ -531,6 +531,10 @@ export const purpose = {
   id: "Tujuan",
   en: "Purpose",
 };
+export const estimated_planned_date = {
+  id: "Estimasi tanggal pelaksanaan",
+  en: "Estimated implementation date",
+};
 
 // Message
 export const msg_location_test_helper = {

@@ -132,6 +132,7 @@ const translations = {
     "title": "Lokasi tidak didukung",
     "description": "Perangkat Anda tidak mendukung fitur lokasi."
   },
+  "estimated_planned_date": "Estimasi tanggal pelaksanaan",
   "example_UI": "Contoh UI",
   "february": "Februari",
   "friday": "Jumat",

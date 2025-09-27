@@ -184,7 +184,7 @@ export interface Props__SelectOptions {
 
 export interface Props__StringInput extends Omit<InputProps, "onChange"> {
   inputValue?: string;
-  onChange?: (inputValue: Props__StringInput["inputValue"]) => void;
+  onChange?: (inputValue: string) => void;
   placeholder?: string;
   boxProps?: BoxProps;
   invalid?: boolean;
@@ -194,7 +194,7 @@ export interface Props__StringInput extends Omit<InputProps, "onChange"> {
 
 export interface Props__PasswordInput extends Omit<InputProps, "onChange"> {
   name?: string;
-  onChange?: (inputValue: Props__PasswordInput["inputValue"]) => void;
+  onChange?: (inputValue: string) => void;
   inputValue?: string | undefined;
   placeholder?: string;
   boxProps?: BoxProps;
@@ -204,7 +204,7 @@ export interface Props__PasswordInput extends Omit<InputProps, "onChange"> {
 export interface Props__SearchInput
   extends Omit<InputGroupProps, "children" | "onChange"> {
   inputValue?: string;
-  onChange?: (inputValue: Props__SearchInput["inputValue"]) => void;
+  onChange?: (inputValue: string) => void;
   placeholder?: string;
   additionalPlaceholder?: string;
   tooltipLabel?: string;
@@ -214,12 +214,13 @@ export interface Props__SearchInput
   iconProps?: IconProps;
   invalid?: boolean;
   noIcon?: boolean;
+  debounceTime?: number;
   children?: React.ReactNode;
 }
 
 export interface Props__TextareaInput extends Omit<TextareaProps, "onChange"> {
   inputValue?: string;
-  onChange?: (inputValue: Props__TextareaInput["inputValue"]) => void;
+  onChange?: (inputValue: string) => void;
   invalid?: boolean;
   placeholder?: string;
 }
@@ -329,7 +330,7 @@ export interface Props__DateTimePickerInput
 
 export interface Props__NumInput extends Omit<InputProps, "onChange"> {
   inputValue?: number | null;
-  onChange?: (inputValue: Props__NumInput["inputValue"]) => void;
+  onChange?: (inputValue: number | null) => void;
   placeholder?: string;
   invalid?: boolean;
   boxProps?: BoxProps;

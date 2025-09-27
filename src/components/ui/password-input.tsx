@@ -15,7 +15,6 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
       placeholder = "••••••••",
       boxProps,
       invalid,
-
       ...restProps
     } = props;
 

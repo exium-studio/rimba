@@ -121,13 +121,13 @@ const CompletionProgressChart = (props: StackProps) => {
 const AnimalsChart = (props: StackProps) => {
   // Contexts
   const { lang } = useLang();
-  const homeSpeciesComposition = useContents((s) => s.homeSpeciesComposition);
+  const homeAnimalComposition = useContents((s) => s.homeAnimalComposition);
   const staticContents = useContents((s) => s.staticContents);
 
   // States
   const chart = useChart<BarListData>({
     sort: { by: "value", direction: "desc" },
-    data: homeSpeciesComposition,
+    data: homeAnimalComposition,
     series: [{ name: "name", color: "p.subtle" }],
   });
 

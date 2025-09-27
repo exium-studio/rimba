@@ -135,14 +135,6 @@ export const settings_navs = {
 };
 
 // Semantic UI
-export const component = {
-  id: "Komponen",
-  en: "Component",
-};
-export const purpose = {
-  id: "Tujuan",
-  en: "Purpose",
-};
 export const example_UI = {
   id: "Contoh UI",
   en: "Example UI",
@@ -514,6 +506,30 @@ export const published_at = {
 export const read_more = {
   id: "Baca selengkapnya",
   en: "Read more",
+};
+export const apply = {
+  id: "Terapkan",
+  en: "Apply",
+};
+export const navigation = {
+  id: "Navigasi",
+  en: "Navigation",
+};
+export const map = {
+  id: "Peta",
+  en: "Map",
+};
+export const related_apps = {
+  id: "Aplikasi Terkait",
+  en: "Related App",
+};
+export const component = {
+  id: "Komponen",
+  en: "Component",
+};
+export const purpose = {
+  id: "Tujuan",
+  en: "Purpose",
 };
 
 // Message

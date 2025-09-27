@@ -28,6 +28,7 @@ const translations = {
   "all": "All",
   "all_activities": "All activities",
   "all_document": "All document",
+  "apply": "Apply",
   "april": "April",
   "august": "August",
   "back": "Back",
@@ -211,6 +212,7 @@ const translations = {
   "maintenance_route": {
     "description": "We are currently performing maintenance to provide better service. Sorry for the inconvenience."
   },
+  "map": "Map",
   "march": "March",
   "maximize": "Maximize",
   "may": "May",
@@ -243,6 +245,7 @@ const translations = {
   "msg_soft_delete": "Data will be hidden but can be restored later.",
   "msg_toggle_dark_mode": "Toggle dark mode",
   "my_profile": "My profile",
+  "navigation": "Navigation",
   "navs": {
     "dashboard": "Dashboard",
     "transaction": "Transaction",
@@ -273,6 +276,7 @@ const translations = {
   "purpose": "Purpose",
   "read_more": "Read more",
   "recieve": "Recieve",
+  "related_apps": "Related App",
   "reset": "Reset",
   "retry": "Retry",
   "rounded": "Rounded",

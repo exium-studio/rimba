@@ -281,7 +281,7 @@ export const staticContents = {
     type: "Text",
     content: {
       id: "Komposisi Satwa",
-      en: "Species Composition",
+      en: "Animal Composition",
     },
   },
   47: {
@@ -907,7 +907,7 @@ export const homeActivities = [
   },
 ];
 
-export const homeSpeciesComposition = [
+export const homeAnimalComposition = [
   { name: "Gajah", value: 150, percentage: 30 },
   { name: "Harimau", value: 100, percentage: 20 },
   { name: "Burung", value: 200, percentage: 40 },

@@ -15,8 +15,8 @@ import {
   IconSeedling,
   IconSettings,
   IconShieldHalf,
+  IconTree,
   IconUser,
-  IconWorld,
 } from "@tabler/icons-react";
 
 export const PRIVATE_ROUTE_INDEX = "/pvt";
@@ -40,7 +40,7 @@ export const LP_NAVS: Interface__NavItem[] = [
           {
             list: [
               {
-                icon: IconWorld,
+                icon: IconTree,
                 labelKey: "lp_navs.about_us.rimba_corridor_program",
                 path: `/about-us/rimba-corridor-program`,
               },

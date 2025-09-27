@@ -16,7 +16,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 
-const HeroH = "100vh";
+const HeroH = "100lvh";
 const HeroW = "100vw";
 
 const GalleryImg = (props: any) => {

@@ -135,7 +135,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
         <SimpleGrid
           ref={mainContentsRef}
           columns={[1, null, 2, 3]}
-          gap={8}
+          gap={6}
           mt={"100px"}
         >
           {legalDocuments?.map((doc: Interface__CMSDocument, idx: number) => {

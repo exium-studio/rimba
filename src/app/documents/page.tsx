@@ -6,18 +6,20 @@ import { CContainer } from "@/components/ui/c-container";
 import { CSpinner } from "@/components/ui/c-spinner";
 import { NumInput } from "@/components/ui/number-input";
 import SearchInput from "@/components/ui/search-input";
+import { DocumentItem } from "@/components/widget/DocumentItem";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { PageHeader } from "@/components/widget/PageHeader";
 import { TopNav } from "@/components/widget/TopNav";
 import { homeLegalDocuments } from "@/constants/_dummy";
+import { Interface__CMSDocument } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import { isEmptyArray } from "@/utils/array";
-import { HStack, Stack } from "@chakra-ui/react";
+import { HStack, SimpleGrid, Stack } from "@chakra-ui/react";
 import { useState } from "react";
 
 const ListSection = () => {
@@ -30,9 +32,11 @@ const ListSection = () => {
     year: null as number | null,
   };
   const [filter, setFilter] = useState(DEFAULT_FILTER);
-  const { error, loading, data, makeRequest } = useDataState<any>({
+  const { error, loading, data, makeRequest } = useDataState<
+    Interface__CMSDocument[]
+  >({
     initialData: homeLegalDocuments,
-    url: `/api/cms/public-request/get-all-legal-document`,
+    // url: `/api/cms/public-request/get-all-legal-document`,
     dependencies: [],
   });
 
@@ -41,8 +45,16 @@ const ListSection = () => {
     loading: <CSpinner />,
     error: <FeedbackRetry onRetry={makeRequest} />,
     empty: <FeedbackNoData />,
-    loaded: <></>,
+    loaded: (
+      <SimpleGrid columns={[1, null, 2, 3]} gap={6} mt={"32px"}>
+        {data?.map((doc: Interface__CMSDocument) => {
+          return <DocumentItem key={doc.id} document={doc} />;
+        })}
+      </SimpleGrid>
+    ),
   };
+
+  console.log(data);
 
   return (
     <LPSectionContainer py={"80px"}>

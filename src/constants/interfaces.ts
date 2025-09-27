@@ -57,8 +57,8 @@ export interface Interface_CMSContent extends Interface__CUD {
   content: any;
 }
 export interface Interface__CMSContentText {
-  id: "string";
-  en: "string";
+  id: string;
+  en: string;
 }
 
 // Navs

@@ -178,22 +178,6 @@ export const LPHomeHero = (props: StackProps) => {
           "<"
         )
         .to(
-          ".hero_content_1",
-          {
-            ease: "none",
-            duration: 2.5,
-          },
-          "<"
-        )
-        .to(
-          ".hero_content_2",
-          {
-            ease: "none",
-            duration: 2.5,
-          },
-          "<"
-        )
-        .to(
           ".hero_container",
           {
             opacity: 0,
@@ -371,6 +355,7 @@ export const LPHomeHero = (props: StackProps) => {
         </Stack>
 
         <ScrollDownIndicator
+          className="hero_chevron_down"
           color={"light"}
           opacity={0.8}
           mb={4}

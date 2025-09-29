@@ -1,6 +1,6 @@
 import { Provider } from "@/components/ui/provider";
 import { Toaster } from "@/components/ui/toaster";
-import ClientOnlyApp from "@/components/widget/ClientOnlyApp";
+import ClientSideOnly from "@/components/widget/ClientSideOnly";
 import { APP } from "@/constants/_meta";
 import { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
@@ -69,7 +69,7 @@ const RootLayout = (props: Props) => {
       <body>
         <Provider>
           <Toaster />
-          <ClientOnlyApp>{children}</ClientOnlyApp>
+          <ClientSideOnly>{children}</ClientSideOnly>
         </Provider>
       </body>
     </html>

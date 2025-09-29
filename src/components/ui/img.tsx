@@ -1,7 +1,7 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { IMAGES_PATH } from "@/constants/paths";
+import { SVGS_PATH } from "@/constants/paths";
 import { Props__Img } from "@/constants/props";
 import Image from "next/image";
 import { useState } from "react";
@@ -15,17 +15,22 @@ export const Img = (props: Props__Img) => {
     objectFit,
     objectPos,
     imageProps,
-    auto,
+    fluid,
+    fallbackSrc,
+    wide,
     ...restProps
   } = props;
 
   // States
-  const fallbackSrc = `${IMAGES_PATH}/no-img.jpeg`;
-  const [currentSrc, setCurrentSrc] = useState(src || fallbackSrc);
+  const resolvedFallbackSrc =
+    fallbackSrc || wide
+      ? `${SVGS_PATH}/no-img-wide.svg`
+      : `${SVGS_PATH}/no-img.svg`;
+  const [currentSrc, setCurrentSrc] = useState(src || resolvedFallbackSrc);
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    if (currentSrc !== fallbackSrc) {
-      setCurrentSrc(fallbackSrc);
+    if (currentSrc !== resolvedFallbackSrc) {
+      setCurrentSrc(resolvedFallbackSrc);
     }
     if (onError) onError(e);
   };
@@ -48,9 +53,9 @@ export const Img = (props: Props__Img) => {
           width: "100%",
           height: "100%",
         }}
-        fill={auto ? false : true}
-        width={auto ? 0 : undefined}
-        height={auto ? 0 : undefined}
+        fill={fluid ? false : true}
+        width={fluid ? 0 : undefined}
+        height={fluid ? 0 : undefined}
         quality={80}
         {...imageProps}
       />

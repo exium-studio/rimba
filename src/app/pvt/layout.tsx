@@ -146,7 +146,7 @@ const MobileLayout = (props: any) => {
             </HStack>
 
             <HStack>
-              <Clock />
+              <Clock showTimezone={sw > 320} />
 
               <Today dateVariant="numeric" />
             </HStack>
@@ -185,14 +185,6 @@ const MobileLayout = (props: any) => {
                   </HStack>
                 );
               })}
-            </HStack>
-
-            <HStack flexShrink={0} gap={1}>
-              <HStack mx={1}>
-                {/* <Clock /> */}
-
-                {/* <Today dateVariant="basic" /> */}
-              </HStack>
             </HStack>
           </HStack>
         </CContainer>

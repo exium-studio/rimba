@@ -1,7 +1,8 @@
 "use client";
 
+import { CContainer } from "@/components/ui/c-container";
 import { Props__PasswordInput } from "@/constants/props";
-import { Box, Center, Icon, IconButton } from "@chakra-ui/react";
+import { Center, Icon, IconButton } from "@chakra-ui/react";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import { forwardRef, useState } from "react";
 import { StringInput } from "./string-input";
@@ -15,6 +16,10 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
       placeholder = "••••••••",
       containerProps,
       invalid,
+      flex,
+      flexShrink,
+      flexGrow,
+      flexBasis,
       ...restProps
     } = props;
 
@@ -22,10 +27,15 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
     const [showPassword, setShowPassword] = useState<boolean>(false);
 
     return (
-      <Box
+      <CContainer
         w={restProps?.w || "full"}
         h={restProps?.h}
+        flex={flex}
+        flexShrink={flexShrink}
+        flexGrow={flexGrow}
+        flexBasis={flexBasis}
         position={"relative"}
+        display={"inline-flex"}
         {...containerProps}
       >
         <StringInput
@@ -71,7 +81,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
             </Icon>
           </IconButton>
         </Center>
-      </Box>
+      </CContainer>
     );
   }
 );

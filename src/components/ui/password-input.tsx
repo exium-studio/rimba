@@ -13,7 +13,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
       onChange,
       inputValue,
       placeholder = "••••••••",
-      boxProps,
+      containerProps,
       invalid,
       ...restProps
     } = props;
@@ -22,7 +22,12 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
     const [showPassword, setShowPassword] = useState<boolean>(false);
 
     return (
-      <Box w={"full"} position={"relative"} {...boxProps}>
+      <Box
+        w={restProps?.w || "full"}
+        h={restProps?.h}
+        position={"relative"}
+        {...containerProps}
+      >
         <StringInput
           ref={ref}
           name={name}

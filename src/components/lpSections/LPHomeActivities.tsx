@@ -77,7 +77,7 @@ export const LPHomeActivities = (props: StackProps) => {
         duration: 0.75,
       });
 
-      gsap.from("content_2", {
+      gsap.from(".content_2", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",

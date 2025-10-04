@@ -23,9 +23,8 @@ export const Img = (props: Props__Img) => {
 
   // States
   const resolvedFallbackSrc =
-    fallbackSrc || wide
-      ? `${SVGS_PATH}/no-img-wide.svg`
-      : `${SVGS_PATH}/no-img.svg`;
+    fallbackSrc ??
+    (wide ? `${SVGS_PATH}/no-img-wide.svg` : `${SVGS_PATH}/no-img.svg`);
   const [currentSrc, setCurrentSrc] = useState(src || resolvedFallbackSrc);
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -53,10 +52,14 @@ export const Img = (props: Props__Img) => {
           width: "100%",
           height: "100%",
         }}
-        fill={fluid ? false : true}
+        fill={!fluid}
         width={fluid ? 0 : undefined}
         height={fluid ? 0 : undefined}
         quality={80}
+        sizes={
+          imageProps?.sizes ??
+          "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        }
         {...imageProps}
       />
     </CContainer>

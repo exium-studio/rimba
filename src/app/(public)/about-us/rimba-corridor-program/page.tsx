@@ -120,6 +120,7 @@ const PurposeSection = () => {
             return (
               <CContainer
                 key={idx}
+                minH={"180px"}
                 gap={4}
                 p={5}
                 border={"1px solid"}
@@ -145,7 +146,7 @@ const PurposeSection = () => {
                   <P>{purpose.descriptionContent?.content[lang]}</P>
                 </EditableContentContainer>
 
-                <HStack align={"end"} justify={"space-between"}>
+                <HStack align={"end"} justify={"space-between"} mt={"auto"}>
                   <P fontSize={"sm"} opacity={0.6}>{`${l.purpose} ${
                     idx + 1
                   }`}</P>

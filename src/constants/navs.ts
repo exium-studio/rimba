@@ -105,7 +105,7 @@ export const LP_NAVS: Interface__NavItem[] = [
               {
                 icon: IconDeviceDesktopAnalytics,
                 labelKey: "lp_navs.related_apps.admin_portal",
-                path: `https://admin-rimba-atrbpn.vercel.app`,
+                path: process.env.NEXT_PUBLIC_ADMIN_URL as string,
                 external: true,
               },
             ],

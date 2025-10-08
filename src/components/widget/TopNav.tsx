@@ -328,7 +328,7 @@ const DesktopTopNav = () => {
                         </Btn>
                       </MenuTrigger>
 
-                      <MenuContent w={"max"} mt={4} zIndex={99}>
+                      <MenuContent w={"240px"} mt={4} zIndex={99}>
                         <CContainer px={3} py={1}>
                           <P
                             color={"fg.muted"}
@@ -354,7 +354,7 @@ const DesktopTopNav = () => {
                                     <subNav.icon stroke={1.5} />
                                   </Icon>
 
-                                  <P fontWeight={"medium"}>
+                                  <P fontWeight={"medium"} lineClamp={1}>
                                     {pluckString(l, subNav.labelKey)}
                                   </P>
 

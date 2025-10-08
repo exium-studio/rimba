@@ -1,8 +1,6 @@
 import { Interface__NavItem } from "@/constants/interfaces";
 import {
   IconBook2,
-  IconDatabase,
-  IconDeviceAnalytics,
   IconDeviceDesktop,
   IconDeviceDesktopAnalytics,
   IconHeartHandshake,
@@ -11,7 +9,6 @@ import {
   IconMap2,
   IconMapQuestion,
   IconNews,
-  IconReceipt,
   IconSeedling,
   IconSettings,
   IconShieldHalf,
@@ -35,7 +32,7 @@ export const LP_NAVS: Interface__NavItem[] = [
       },
       {
         labelKey: "lp_navs.about_us.index",
-        path: `/about_us`,
+        path: `/about-us`,
         subMenus: [
           {
             list: [
@@ -107,43 +104,6 @@ export const LP_NAVS: Interface__NavItem[] = [
                 labelKey: "lp_navs.related_apps.admin_portal",
                 path: process.env.NEXT_PUBLIC_ADMIN_URL as string,
                 external: true,
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-];
-
-export const NAVS: Interface__NavItem[] = [
-  {
-    groupLabelKey: "main",
-    list: [
-      {
-        icon: IconDeviceAnalytics,
-        labelKey: "navs.dashboard",
-        path: `${PRIVATE_ROUTE_INDEX}/dashboard`,
-      },
-      {
-        icon: IconReceipt,
-        labelKey: "navs.transaction",
-        path: `${PRIVATE_ROUTE_INDEX}/transaction`,
-      },
-      {
-        icon: IconDatabase,
-        labelKey: "navs.master_data.index",
-        path: `${PRIVATE_ROUTE_INDEX}/master-data`,
-        subMenus: [
-          {
-            list: [
-              {
-                labelKey: "navs.master_data.user",
-                path: `${PRIVATE_ROUTE_INDEX}/master-data/user`,
-              },
-              {
-                labelKey: "navs.master_data.category",
-                path: `${PRIVATE_ROUTE_INDEX}/master-data/category`,
               },
             ],
           },

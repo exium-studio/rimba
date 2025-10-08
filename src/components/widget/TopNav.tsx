@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import { BottomIndicator, DotIndicator } from "@/components/widget/Indicator";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { PartnersLogo } from "@/components/widget/PartnersLogo";
 import { LP_NAVS } from "@/constants/navs";
@@ -30,9 +31,8 @@ import { back } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { HStack, Icon, useDisclosure } from "@chakra-ui/react";
 import { IconChevronDown, IconMenu, IconX } from "@tabler/icons-react";
+import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
-
-// const DESKTOP_NAV_BG = "light";
 
 const MobileTopNav = () => {
   // Contexts
@@ -250,6 +250,7 @@ const DesktopTopNav = () => {
   const { l } = useLang();
 
   // States
+  const pathname = usePathname();
   const [, setScrolled] = useState(false);
 
   // handle scroll
@@ -280,6 +281,8 @@ const DesktopTopNav = () => {
 
         <HStack>
           {LP_NAVS[0].list.map((nav, idx) => {
+            const isMainNavsActive = pathname.includes(nav.path);
+
             return (
               idx !== 0 && (
                 <Fragment key={nav.path}>
@@ -302,6 +305,14 @@ const DesktopTopNav = () => {
                           <Icon boxSize={5}>
                             <IconChevronDown stroke={1.5} />
                           </Icon>
+
+                          {isMainNavsActive && (
+                            <BottomIndicator
+                              bg={"p.500"}
+                              w={"20px"}
+                              bottom={"-2px"}
+                            />
+                          )}
                         </Btn>
                       </MenuTrigger>
 
@@ -318,6 +329,8 @@ const DesktopTopNav = () => {
 
                         <CContainer>
                           {nav.subMenus[0].list.map((subNav) => {
+                            const isSubNavsActive = pathname === subNav.path;
+
                             return (
                               <NavLink
                                 key={subNav.path}
@@ -332,6 +345,10 @@ const DesktopTopNav = () => {
                                   <P fontWeight={"medium"}>
                                     {pluckString(l, subNav.labelKey)}
                                   </P>
+
+                                  {isSubNavsActive && (
+                                    <DotIndicator ml={"auto"} mr={-1} />
+                                  )}
                                 </MenuItem>
                               </NavLink>
                             );
@@ -346,13 +363,20 @@ const DesktopTopNav = () => {
                       <Btn
                         clicky={false}
                         variant={"ghost"}
-                        // color={scrolled ? "dark" : "light"}
                         color={"light"}
                         _hover={{
                           bg: "d1",
                         }}
                       >
                         {pluckString(l, nav.labelKey)}
+
+                        {isMainNavsActive && (
+                          <BottomIndicator
+                            bg={"p.500"}
+                            w={"20px"}
+                            bottom={"-2px"}
+                          />
+                        )}
                       </Btn>
                     </NavLink>
                   )}

@@ -1,5 +1,5 @@
 import { Interface__NavItem } from "@/constants/interfaces";
-import { NAVS, OTHER_NAVS } from "@/constants/navs";
+import { LP_NAVS, OTHER_NAVS } from "@/constants/navs";
 import { isClient } from "@/utils/client";
 
 export function openWindow(url: string) {
@@ -38,7 +38,7 @@ export function getActiveNavs(
   };
 
   // check NAVS
-  for (const navGroup of NAVS) {
+  for (const navGroup of LP_NAVS) {
     const result = findInList(navGroup.list);
     if (result) return result;
   }

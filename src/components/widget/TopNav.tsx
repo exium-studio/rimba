@@ -39,6 +39,7 @@ const MobileTopNav = () => {
   const { l } = useLang();
 
   // Hooks
+  const pathname = usePathname();
   const { open, onOpen, onClose } = useDisclosure();
   useBackOnClose("mobile-nav", open, onOpen, onClose);
   const debouncedShowContents = useDebouncedCallback(() => {
@@ -132,6 +133,11 @@ const MobileTopNav = () => {
           transition={"500ms"}
         >
           {LP_NAVS[0].list.map((nav) => {
+            console.debug(pathname, nav.path);
+            const isMainNavsActive =
+              (nav.path === "/" && pathname === "/") ||
+              (nav.path !== "/" && pathname.startsWith(nav.path));
+
             return (
               <Fragment key={nav.path}>
                 {nav.subMenus && (
@@ -153,7 +159,7 @@ const MobileTopNav = () => {
                         clicky={false}
                         justifyContent={"start"}
                         variant={"ghost"}
-                        color={"light"}
+                        color={isMainNavsActive ? "p.400" : "light"}
                         _open={{
                           bg: "transparent",
                         }}
@@ -168,6 +174,8 @@ const MobileTopNav = () => {
 
                       <AccordionItemContent p={1}>
                         {nav.subMenus[0].list.map((subNav) => {
+                          const isSubNavsActive = pathname === subNav.path;
+
                           return (
                             <NavLink
                               key={subNav.path}
@@ -190,6 +198,10 @@ const MobileTopNav = () => {
                                 <P fontSize={"lg"}>
                                   {pluckString(l, subNav.labelKey)}
                                 </P>
+
+                                {isSubNavsActive && (
+                                  <DotIndicator ml={"auto"} />
+                                )}
                               </Btn>
                             </NavLink>
                           );
@@ -206,7 +218,7 @@ const MobileTopNav = () => {
                       justifyContent={"start"}
                       variant={"ghost"}
                       px={4}
-                      color={"light"}
+                      color={isMainNavsActive ? "p.400" : "light"}
                       _hover={{
                         bg: "blackAlpha.500",
                       }}

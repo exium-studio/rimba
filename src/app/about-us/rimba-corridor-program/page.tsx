@@ -700,7 +700,7 @@ const StructureSection = () => {
           <Img
             src={staticContents[112]?.content}
             alt="RIMBA organizational structure"
-            auto
+            fluid
           />
         </EditableContentContainer>
 

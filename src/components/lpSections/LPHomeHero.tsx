@@ -291,16 +291,6 @@ export const LPHomeHero = (props: StackProps) => {
         />
       </EditableContentContainer>
 
-      <Img
-        className="hero_bush_2"
-        src={`${IMAGES_PATH}/lp/home/hero-bush.png`}
-        alt="bush"
-        h={HeroH}
-        pos={"absolute"}
-        pointerEvents={"none"}
-        zIndex={4}
-      />
-
       <CContainer h={HeroH} w={HeroW} pos={"absolute"}>
         <Stack
           className="hero_container"
@@ -407,10 +397,21 @@ export const LPHomeHero = (props: StackProps) => {
       </CContainer>
 
       <Img
+        className="hero_bush_2"
+        src={`${IMAGES_PATH}/lp/home/hero-bush.png`}
+        alt="bush"
+        h={HeroH}
+        w={"full"}
+        pos={"absolute"}
+        pointerEvents={"none"}
+        zIndex={4}
+      />
+      <Img
         className="hero_bush"
         src={`${IMAGES_PATH}/lp/home/hero-bush.png`}
         alt="bush"
         h={HeroH}
+        w={"full"}
         pos={"absolute"}
         pointerEvents={"none"}
         zIndex={5}

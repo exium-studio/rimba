@@ -329,6 +329,7 @@ export const LPHomeLocation = (props: StackProps) => {
           src={`${SVGS_PATH}/sumatra-map.svg`}
           h={"80vh"}
           maxH={"600px"}
+          w={"full"}
           aspectRatio={1}
           mt={ciss ? 20 : 0}
           pos={"absolute"}
@@ -344,6 +345,7 @@ export const LPHomeLocation = (props: StackProps) => {
           src={`${SVGS_PATH}/riau-map.svg`}
           h={"80vh"}
           maxH={"600px"}
+          w={"full"}
           aspectRatio={1}
           mt={ciss ? 20 : 0}
           pos={"absolute"}
@@ -359,6 +361,7 @@ export const LPHomeLocation = (props: StackProps) => {
           src={`${SVGS_PATH}/sumatra-barat-map.svg`}
           h={"80vh"}
           maxH={"600px"}
+          w={"full"}
           aspectRatio={1}
           mt={ciss ? 20 : 0}
           pos={"absolute"}
@@ -374,6 +377,7 @@ export const LPHomeLocation = (props: StackProps) => {
           src={`${SVGS_PATH}/jambi-map.svg`}
           h={"80vh"}
           maxH={"600px"}
+          w={"full"}
           aspectRatio={1}
           mt={ciss ? 20 : 0}
           pos={"absolute"}

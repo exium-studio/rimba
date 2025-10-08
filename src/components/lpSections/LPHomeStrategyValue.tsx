@@ -200,6 +200,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             <Img
               src={`${IMAGES_PATH}/iphone-frame.png`}
               alt="iphone mockup"
+              w={"full"}
               aspectRatio={1 / 2}
               pointerEvents={"none"}
               pos={"absolute"}

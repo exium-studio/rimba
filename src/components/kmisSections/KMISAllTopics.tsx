@@ -439,7 +439,7 @@ const Data = (props: any) => {
                 />
 
                 <CContainer p={4} gap={2} pos={"relative"}>
-                  <Badge pos={"absolute"} top={"-40px"}>
+                  <Badge pos={"absolute"} top={"-28px"} left={2}>
                     <P fontSize={"xs"} lineClamp={1} maxW={"100px"}>
                       {topic.category.title}
                     </P>

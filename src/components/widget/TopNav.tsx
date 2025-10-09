@@ -133,7 +133,6 @@ const MobileTopNav = () => {
           transition={"500ms"}
         >
           {LP_NAVS[0].list.map((nav) => {
-            console.debug(pathname, nav.path);
             const isMainNavsActive =
               (nav.path === "/" && pathname === "/") ||
               (nav.path !== "/" && pathname.startsWith(nav.path));

@@ -26,7 +26,7 @@ export const KMISHero = (props: Props) => {
       mt={"90px"}
       py={8}
       outerContainerProps={{
-        px: [2, null, 10],
+        px: [2, null, 12],
       }}
       {...restProps}
     >
@@ -36,7 +36,7 @@ export const KMISHero = (props: Props) => {
         pos={"relative"}
         bg={"p.900"}
         color={"light"}
-        rounded={"2xl"}
+        rounded={"xl"}
         overflow={"clip"}
       >
         <Img

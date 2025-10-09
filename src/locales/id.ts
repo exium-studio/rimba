@@ -46,6 +46,7 @@ const translations = {
   "december": "Desember",
   "delete_": "Hapus",
   "deleted_file": "File dihapus",
+  "educator": "Pengajar",
   "error_400_default": {
     "title": "Bad request",
     "description": "Periksa kembali data atau langkah yang dilakukan."
@@ -332,6 +333,8 @@ const translations = {
   },
   "show": "Tampilkan",
   "showing": "Menampilkan",
+  "start_learning": "Mulai belajar",
+  "student": "Pelajar",
   "submit": "Submit",
   "success_200_default": {
     "title": "Ok",

@@ -51,3 +51,27 @@ export function getActiveNavs(
 
   return [];
 }
+
+export function imgUrl(url?: string | null): string | undefined {
+  if (!url) return undefined;
+
+  return `${process.env.NEXT_PUBLIC_IMG_STORAGE_BASE_URL}${
+    url.startsWith("/") ? "" : "/"
+  }${url}`;
+}
+
+export function videoUrl(url?: string | null): string | undefined {
+  if (!url) return undefined;
+
+  return `${process.env.NEXT_PUBLIC_VIDEO_STORAGE_BASE_URL}${
+    url.startsWith("/") ? "" : "/"
+  }${url}`;
+}
+
+export function fileUrl(url?: string | null): string | undefined {
+  if (!url) return undefined;
+
+  return `${process.env.NEXT_PUBLIC_FILE_STORAGE_BASE_URL}${
+    url.startsWith("/") ? "" : "/"
+  }${url}`;
+}

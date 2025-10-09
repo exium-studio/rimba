@@ -13,19 +13,23 @@ const withPWA = require("@ducanh2912/next-pwa").default({
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  devIndicators: false,
-  experimental: {
-    optimizePackageImports: ["@chakra-ui/react"],
-  },
   images: {
-    qualities: [75, 80, 90, 100],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "images.unsplash.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "doc.rimbaexium.org",
+        pathname: "/storage/documents/**",
+      },
     ],
+    qualities: [60, 70, 80, 90, 100],
+  },
+  experimental: {
+    optimizePackageImports: ["@chakra-ui/react"],
   },
   webpack(config, { dev }) {
     if (dev) {

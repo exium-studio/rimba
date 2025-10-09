@@ -543,6 +543,18 @@ export const all_categories = {
   id: "Semua kategori",
   en: "All categories",
 };
+export const student = {
+  id: "Pelajar",
+  en: "Student",
+};
+export const educator = {
+  id: "Pengajar",
+  en: "Educator",
+};
+export const start_learning = {
+  id: "Mulai belajar",
+  en: "Start learning",
+};
 
 // Message
 export const msg_location_test_helper = {

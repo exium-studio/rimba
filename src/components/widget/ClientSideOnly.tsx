@@ -10,6 +10,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
+import { LoadingBar } from "@/components/widget/LoadingBar";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,6 +96,7 @@ export default function ClientSideOnly(props: Props) {
 
   return (
     <>
+      <LoadingBar />
       <GlobalDisclosure />
       {children}
     </>

@@ -818,6 +818,38 @@ export const staticContents = {
       en: "Partners",
     },
   },
+  116: {
+    id: 116,
+    type: "Text",
+    content: {
+      id: "Portal Ilmu, Gerbang Kesuksesan",
+      en: "Portal of Knowledge, Gateway to Success",
+    },
+  },
+  117: {
+    id: 117,
+    type: "Text",
+    content: {
+      id: "Tempat belajar online yang seru dan mudah diakses. Yuk, belajar bareng dan jadi versi terbaik dari diri kamu!",
+      en: "Fun and easy-to-access online learning platform. Learn together and become the best version of yourself!",
+    },
+  },
+  118: {
+    id: 118,
+    type: "Text",
+    content: {
+      id: "Semua Kursus Ada di Sini!",
+      en: "All Courses Are Here!",
+    },
+  },
+  119: {
+    id: 119,
+    type: "Text",
+    content: {
+      id: "Mau belajara hal baru atau tingkatkan skill? Cari kursus favoritmu dan mulai petualangan belajar hari ini.",
+      en: "Want to learn something new or upgrade your skills? Find your favorite course and start your learning adventure today.",
+    },
+  },
 };
 
 export const homeActivities = [

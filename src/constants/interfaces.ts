@@ -12,9 +12,133 @@ import {
   Type__DateRange,
   Type__DateRangePresets,
   Type__DisclosureSizes,
+  Type__MaterialType,
   Type__TimeRange,
 } from "./types";
 import { ReactNode } from "react";
+
+// CMS
+export interface Interface__CMSLegalDocs extends Interface__CUD {
+  id: string;
+  title: Interface__CMSTextContent;
+  description: Interface__CMSTextContent;
+  document: Interface__StorageFile[];
+}
+export interface Interface__CMSTextContent {
+  id: string;
+  en: string;
+}
+
+// KMIS
+export interface Interface__KMISTopic extends Interface__CUD {
+  id: string;
+  category: Interface__KMISTopicCategory;
+  topicCover: Interface__StorageFile[];
+  title: string;
+  description: string;
+  totalQuiz: number;
+  quizDuration: number; // seconds
+}
+export interface Interface__KMISMaterial extends Interface__CUD {
+  id: string;
+  createdUser: Interface__User;
+  uploadedUser: Interface__User;
+  topic: Interface__KMISTopic;
+  materialFile: Interface__StorageFile[];
+  materialCover: Interface__StorageFile[];
+  title: string;
+  materialType: Type__MaterialType;
+  materialUrl: any;
+  description: string;
+  isPublic: boolean;
+}
+export interface Interface__KMISQuiz extends Interface__CUD {
+  id: string;
+  topic: Interface__KMISTopic;
+  question: string;
+  answerA: string;
+  answerB: string;
+  answerC: string;
+  answerD: string;
+  correctOption: string;
+  explanation: string;
+}
+export interface Interface__KMISQuizAssessment extends Interface__CUD {
+  id: string;
+  attemptUser: Interface__User;
+  topic: Interface__KMISTopic;
+  attemptStatus: number;
+  assessmentStatus: boolean;
+  totalMaterial: number;
+  completedMaterial: number;
+  completedQuiz: number;
+  quizStarted: string;
+  quizFinished: string;
+  questionsAnswered: number;
+  correctCount: number;
+  wrongCount: number;
+  emptyCount: number;
+  scoreTotal: number;
+  feedback: string | null;
+  certificate: Interface__StorageFile[];
+}
+export interface Interface__KMISQuizResponse extends Interface__CUD {
+  id: string;
+  learningParticipant: Interface__KMISQuizAssessment;
+  quiz: Interface__KMISQuiz;
+  selectedOption: string;
+  isMarker: boolean | number;
+  isCorrect: boolean | number;
+  answeredAt: string;
+}
+export interface Interface__KMISEducator extends Interface__CUD {
+  id: string;
+  user: Interface__User;
+  totalMaterial: number;
+}
+export interface Interface__KMISStudent extends Interface__CUD {
+  id: string;
+  user: Interface__User;
+  totalTopic: number;
+  totalAttempts: number;
+  totalFinished: number;
+  avgScoreFinished: number;
+}
+export interface Interface__KMISTopicCategory extends Interface__CUD {
+  id: string;
+  categoryCover: Interface__StorageFile[];
+  title: string;
+  description: string;
+}
+
+// Auth
+export interface Interface__User extends Interface__CUD {
+  id: string;
+  photoProfile: Interface__StorageFile[];
+  name: string;
+  email: string;
+  role: Interface__Role;
+  accountStatus: string | number;
+  // optional
+  gender: boolean | number | null; // 1 male, 0 female
+  phoneNumber: string | null;
+  birthDate: string | null;
+  address: string | null;
+  // audit timestamps
+  registerAt: string;
+  lastLogin: string | null;
+  lastChangePassword: string | null;
+  deactiveAt: string | null;
+}
+export interface Interface__Role {
+  id: string;
+  name: string;
+  description: string;
+  permissions: string[];
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+}
 
 // CMS
 export interface Interface__CMSDocument extends Interface__CUD {

@@ -70,7 +70,7 @@ const MobileTopNav = () => {
       zIndex={10}
     >
       <CContainer
-        bg={open ? "blackAlpha.800" : "blackAlpha.700"}
+        bg={open ? "blackAlpha.900" : "blackAlpha.800"}
         backdropFilter={open ? "blur(10px)" : "blur(5px)"}
         h={open ? "100dvh" : "64px"}
         rounded={open ? "" : "lg"}
@@ -282,7 +282,7 @@ const DesktopTopNav = () => {
         gap={8}
         p={2}
         mx={"auto"}
-        bg={"blackAlpha.700"}
+        bg={"blackAlpha.800"}
         backdropFilter={"blur(5px)"}
         rounded="xl"
         transition="200ms"

@@ -216,6 +216,7 @@ export interface Props__SearchInput
   invalid?: boolean;
   noIcon?: boolean;
   debounceTime?: number;
+  queryKey?: string;
   children?: React.ReactNode;
 }
 

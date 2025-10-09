@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import useRequest from "@/hooks/useRequest";
 import useRenderTrigger from "@/context/useRenderTrigger";
+import { useLoadingBar } from "@/context/useLoadingBar";
 
 interface Props<T> {
   initialData?: T;
+  dummyData?: T;
   url?: string;
   method?: string;
   payload?: any;
+  params?: any;
   dependencies?: any[];
   conditions?: boolean;
   noRt?: boolean;
@@ -22,20 +25,25 @@ const useDataState = <T = any>(props: Props<T>) => {
   // Props
   const {
     initialData,
+    dummyData,
     payload,
+    params,
     url,
     method,
     dependencies = [],
     conditions = true,
     noRt = false,
     initialPage = 1,
-    initialLimit = 10,
+    initialLimit = 15,
     intialOffset = 0,
     dataResource = true,
   } = props;
 
+  // Contexts
+  const setLoadingBar = useLoadingBar((s) => s.setLoadingBar);
+
   // States
-  const [data, setData] = useState<T | undefined>(initialData);
+  const [data, setData] = useState<T | undefined>(dummyData || initialData);
   const [initialLoading, setInitialLoading] = useState<boolean>(true);
   const [loadingLoadMore, setLoadingLoadMore] = useState<boolean>(false);
   const [page, setPage] = useState(initialPage);
@@ -46,20 +54,24 @@ const useDataState = <T = any>(props: Props<T>) => {
   const { req, response, loading, error, status } = useRequest({
     id: url || "data-state",
     showLoadingToast: false,
-    showErrorToast: false,
+    showErrorToast: true,
     showSuccessToast: false,
   });
   const payloadData = {
-    ...payload,
     limit,
     page,
+    ...payload,
   };
-
+  const paramsData = {
+    limit,
+    page,
+    ...params,
+  };
   const baseConfig = {
     url: url,
     method,
     data: payloadData,
-    params: payloadData,
+    params: paramsData,
   };
 
   // Refs
@@ -82,9 +94,6 @@ const useDataState = <T = any>(props: Props<T>) => {
 
     const currentUrl = url;
 
-    // setData(undefined);
-
-    // Delay microtask untuk memastikan ini benar url terbaru
     Promise.resolve().then(() => {
       if (latestUrlRef.current !== currentUrl) {
         return; // Skip if outdated
@@ -94,15 +103,19 @@ const useDataState = <T = any>(props: Props<T>) => {
         config,
         onResolve: {
           onSuccess: (r) => {
-            setData(
-              dataResource
-                ? Array.isArray(r?.data?.data)
-                  ? r?.data?.data
-                  : r?.data?.data?.data
-                : r?.data?.data
-            );
             setPagination(r?.data?.data?.pagination);
             setInitialLoading(false);
+            if (dummyData) {
+              setData(dummyData);
+            } else {
+              setData(
+                dataResource
+                  ? Array.isArray(r?.data?.data)
+                    ? r?.data?.data
+                    : r?.data?.data?.data
+                  : r?.data?.data
+              );
+            }
           },
           onError: () => {
             setInitialLoading(false);
@@ -131,8 +144,12 @@ const useDataState = <T = any>(props: Props<T>) => {
       },
     });
   }
+  function onRetry() {
+    setInitialLoading(true);
+    makeRequest();
+  }
 
-  // Handle request via useEffect
+  // start request via useEffect
   useEffect(() => {
     if (!conditions || !url) return;
 
@@ -155,23 +172,26 @@ const useDataState = <T = any>(props: Props<T>) => {
     ...(dependencies || []),
   ]);
 
-  // Handle set initial limit
+  // set initial limit
   useEffect(() => {
     setLimit(initialLimit);
   }, [initialLimit]);
 
-  // Handle initial loading when no url
+  // initialLoading = true when no url
   useEffect(() => {
-    setInitialLoading(false);
-  }, []);
+    if (!url) {
+      setInitialLoading(false);
+    }
+  }, [url]);
 
-  // Handle initial loading to tru when limit & page changes
+  // trigger loading bar on initialLoading | loading  is true
   useEffect(() => {
-    setInitialLoading(true);
-  }, [limit, page]);
+    setLoadingBar(initialLoading || loading);
+  }, [loading, initialLoading]);
 
   return {
     makeRequest,
+    onRetry,
     data,
     setData,
     initialLoading,

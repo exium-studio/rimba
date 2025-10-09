@@ -535,6 +535,14 @@ export const estimated_planned_date = {
   id: "Estimasi tanggal pelaksanaan",
   en: "Estimated implementation date",
 };
+export const category = {
+  id: "Kategori",
+  en: "Category",
+};
+export const all_categories = {
+  id: "Semua kategori",
+  en: "All categories",
+};
 
 // Message
 export const msg_location_test_helper = {

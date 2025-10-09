@@ -19,7 +19,7 @@ export const SigninDisclosure = (props: any) => {
 
   return (
     <DisclosureRoot open={open} lazyLoad size={"xl"}>
-      <DisclosureContent>
+      <DisclosureContent rounded={"2xl"}>
         <DisclosureBody
           rounded={"2xl"}
           p={0}

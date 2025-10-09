@@ -1,6 +1,7 @@
 "use client";
 
 import { Field } from "@/components/ui/field";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
@@ -8,17 +9,15 @@ import { setStorage } from "@/utils/client";
 import { HStack, Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
+import { useRouter } from "next/navigation";
 import * as yup from "yup";
 import { Btn } from "../ui/btn";
 import { CContainer } from "../ui/c-container";
+import { Divider } from "../ui/divider";
 import { P } from "../ui/p";
 import { PasswordInput } from "../ui/password-input";
 import { StringInput } from "../ui/string-input";
-import { Divider } from "../ui/divider";
 import ResetPasswordDisclosure from "./ResetPasswordDisclosure";
-import useAuthMiddleware from "@/context/useAuthMiddleware";
-import { useRouter } from "next/navigation";
-import { APP } from "@/constants/_meta";
 
 interface Props extends StackProps {}
 
@@ -90,16 +89,18 @@ const SigninForm = (props: Props) => {
       w={"full"}
       maxW={"380px"}
       p={6}
-      gap={4}
+      gap={8}
       rounded={themeConfig.radii.container}
       {...restProps}
     >
-      <CContainer gap={1}>
-        <P textAlign={"center"} fontWeight={"bold"} fontSize={"lg"}>
-          {APP.name}
+      <CContainer gap={2}>
+        <P textAlign={"center"} fontWeight={"bold"} fontSize={"xl"}>
+          KMIS Sign in
         </P>
 
-        <P textAlign={"center"}>{l.msg_signin}</P>
+        <P color={"fg.subtle"} textAlign={"center"}>
+          {l.msg_signin}
+        </P>
       </CContainer>
 
       <form id="signin_form" onSubmit={formik.handleSubmit}>

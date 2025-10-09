@@ -20,6 +20,7 @@ import { P } from "@/components/ui/p";
 import { BottomIndicator, DotIndicator } from "@/components/widget/Indicator";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { PartnersLogo } from "@/components/widget/PartnersLogo";
+import { SigninDisclosureTrigger } from "@/components/widget/SigninDisclosure";
 import { LP_NAVS } from "@/constants/navs";
 import { MAIN_BUTTON_SIZE } from "@/constants/sizes";
 import useLang from "@/context/useLang";
@@ -246,9 +247,9 @@ const MobileTopNav = () => {
                 }}
               />
 
-              <Btn flex={1} colorPalette={"p"}>
-                Sign up/Sign in
-              </Btn>
+              <SigninDisclosureTrigger flex={1}>
+                <Btn colorPalette={"p"}>Sign up/Sign in</Btn>
+              </SigninDisclosureTrigger>
             </HStack>
           </CContainer>
         </CContainer>
@@ -412,9 +413,11 @@ const DesktopTopNav = () => {
             }}
           />
 
-          <Btn colorPalette={"p"} px={6} color={"p.50"}>
-            Sign in/Sign up
-          </Btn>
+          <SigninDisclosureTrigger>
+            <Btn colorPalette={"p"} px={6} color={"p.50"}>
+              Sign in/Sign up
+            </Btn>
+          </SigninDisclosureTrigger>
         </HStack>
       </HStack>
     </LPSectionContainer>

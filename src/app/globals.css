@@ -301,6 +301,14 @@ tspan {
 }
 
 /* Keyframes */
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 @keyframes i-scroll-left-partner-logos {
   0% {
     transform: translateX(0);

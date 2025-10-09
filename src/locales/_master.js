@@ -51,7 +51,7 @@ export const lp_navs = {
   related_apps: {
     index: {
       id: "Aplikasi Terkait",
-      en: "Related App",
+      en: "Related Apps",
     },
     kmis: {
       id: "KMIS",
@@ -521,7 +521,7 @@ export const map = {
 };
 export const related_apps = {
   id: "Aplikasi Terkait",
-  en: "Related App",
+  en: "Related Apps",
 };
 export const component = {
   id: "Komponen",

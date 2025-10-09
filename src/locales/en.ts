@@ -206,7 +206,7 @@ const translations = {
       "study_method_map": "Study Method Map"
     },
     "related_apps": {
-      "index": "Related App",
+      "index": "Related Apps",
       "kmis": "KMIS",
       "admin_portal": "Admin Portal"
     }
@@ -280,7 +280,7 @@ const translations = {
   "purpose": "Purpose",
   "read_more": "Read more",
   "recieve": "Recieve",
-  "related_apps": "Related App",
+  "related_apps": "Related Apps",
   "reset": "Reset",
   "retry": "Retry",
   "rounded": "Rounded",

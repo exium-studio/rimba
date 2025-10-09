@@ -23,7 +23,7 @@ export const KMISHero = (props: Props) => {
 
   return (
     <LPSectionContainer
-      mt={"90px"}
+      mt={"100px"}
       py={8}
       outerContainerProps={{
         px: [2, null, 12],

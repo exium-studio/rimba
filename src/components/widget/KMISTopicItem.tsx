@@ -72,6 +72,7 @@ const StartLearningButton = (props: any) => {
       id={"signin-fallback-start-learning"}
       w={"full"}
       ml={["0", null, "auto"]}
+      onClick={authToken ? startLearning : undefined}
     >
       <Btn
         w={["full", null, "fit"]}

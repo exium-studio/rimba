@@ -555,7 +555,10 @@ export const start_learning = {
   id: "Mulai belajar",
   en: "Start learning",
 };
-
+export const name = {
+  id: "Nama",
+  en: "Name",
+};
 // Message
 export const msg_location_test_helper = {
   id: "Klik dapatkan lokasi untuk mendapatkan data lokasi.",
@@ -641,7 +644,14 @@ export const msg_file_input_dropzone = {
   id: "Drag and drop/klik untuk unggah berkas",
   en: "Drag and drop/click to upload files",
 };
-
+export const msg_already_have_account = {
+  id: "Sudah punya akun?",
+  en: "Already have an account?",
+};
+export const msg_dont_have_an_account = {
+  id: "Belum punya akun?",
+  en: "Don't have an account?",
+};
 // Alert
 export const alert_offline = {
   title: {

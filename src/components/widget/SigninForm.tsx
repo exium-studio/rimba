@@ -1,15 +1,16 @@
 "use client";
 
 import { Field } from "@/components/ui/field";
+import BrandWatermark from "@/components/widget/BrandWatermark";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
-import { setStorage } from "@/utils/client";
+import { back, setStorage } from "@/utils/client";
 import { HStack, Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import * as yup from "yup";
 import { Btn } from "../ui/btn";
 import { CContainer } from "../ui/c-container";
@@ -21,6 +22,155 @@ import ResetPasswordDisclosure from "./ResetPasswordDisclosure";
 
 interface Props extends StackProps {}
 
+const SignupForm = (props: any) => {
+  // Props
+  const { setMode } = props;
+
+  // Contexts
+  const { l } = useLang();
+
+  // Hooks
+  const { req, loading } = useRequest({
+    id: "signup",
+  });
+
+  // States
+  const formik = useFormik({
+    validateOnChange: false,
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      passwordConfirmation: "",
+    },
+    validationSchema: yup.object().shape({
+      name: yup.string().required(l.msg_required_form),
+      email: yup.string().required(l.msg_required_form),
+      password: yup.string().required(l.msg_required_form),
+      passwordConfirmation: yup
+        .string()
+        .required(l.msg_required_form)
+        .oneOf([yup.ref("password")], l.msg_password_confirmation_not_match),
+    }),
+    onSubmit: (values) => {
+      const payload = values;
+      const url = `/api/signup`;
+      const config = {
+        url,
+        method: "POST",
+        data: payload,
+      };
+
+      req({
+        config,
+        onResolve: {
+          onSuccess: () => {
+            setMode("signin");
+          },
+        },
+      });
+    },
+  });
+
+  return (
+    <>
+      <CContainer gap={2}>
+        <P fontWeight={"bold"} fontSize={"xl"}>
+          Sign Up
+        </P>
+      </CContainer>
+
+      <CContainer gap={4}>
+        <HStack>
+          <P>{l.msg_already_have_account}</P>
+
+          <P
+            color={"p.500"}
+            cursor={"pointer"}
+            onClick={() => {
+              setMode("signin");
+            }}
+          >
+            Sign in
+          </P>
+        </HStack>
+
+        <form id="signin_form" onSubmit={formik.handleSubmit}>
+          <Field
+            label={l.name}
+            invalid={!!formik.errors.name}
+            errorText={formik.errors.name as string}
+            mb={4}
+          >
+            <StringInput
+              onChange={(input) => {
+                formik.setFieldValue("name", input);
+              }}
+              inputValue={formik.values.name}
+              placeholder="Email/Username"
+            />
+          </Field>
+
+          <Field
+            label={"Email"}
+            invalid={!!formik.errors.email}
+            errorText={formik.errors.email as string}
+            mb={4}
+          >
+            <StringInput
+              onChange={(input) => {
+                formik.setFieldValue("email", input);
+              }}
+              inputValue={formik.values.email}
+              placeholder="Email/Username"
+            />
+          </Field>
+
+          <Field
+            label={"Password"}
+            invalid={!!formik.errors.password}
+            errorText={formik.errors.password as string}
+            mb={4}
+          >
+            <PasswordInput
+              onChange={(input) => {
+                formik.setFieldValue("password", input);
+              }}
+              inputValue={formik.values.password}
+              placeholder="Password"
+            />
+          </Field>
+
+          <Field
+            label={l.password_confirmation}
+            invalid={!!formik.errors.passwordConfirmation}
+            errorText={formik.errors.passwordConfirmation as string}
+          >
+            <PasswordInput
+              onChange={(input) => {
+                formik.setFieldValue("passwordConfirmation", input);
+              }}
+              inputValue={formik.values.passwordConfirmation}
+              placeholder="Password"
+            />
+          </Field>
+
+          <Btn
+            type="submit"
+            form="signin_form"
+            w={"full"}
+            mt={6}
+            size={"lg"}
+            loading={loading}
+            colorPalette={"p"}
+          >
+            Sign up
+          </Btn>
+        </form>
+      </CContainer>
+    </>
+  );
+};
 const SigninForm = (props: Props) => {
   // Props
   const { ...restProps } = props;
@@ -32,7 +182,6 @@ const SigninForm = (props: Props) => {
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
 
   // Hooks
-  const router = useRouter();
   const { req, loading } = useRequest({
     id: "signin",
     loadingMessage: l.loading_signin,
@@ -47,6 +196,7 @@ const SigninForm = (props: Props) => {
   });
 
   // States
+  const [mode, setMode] = useState<"signin" | "signup">("signin");
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
@@ -76,7 +226,7 @@ const SigninForm = (props: Props) => {
             setStorage("__user_data", JSON.stringify(r.data.data?.user));
             setAuthToken(r.data.data?.token);
             setPermissions(r.data.data?.permissions);
-            router.push("/demo");
+            back();
           },
         },
       });
@@ -88,95 +238,122 @@ const SigninForm = (props: Props) => {
       m={"auto"}
       w={"full"}
       maxW={"380px"}
-      p={6}
+      minH={"680px"}
+      justify={"space-between"}
+      px={6}
+      py={12}
       gap={8}
       rounded={themeConfig.radii.container}
       {...restProps}
     >
-      <CContainer gap={2}>
-        <P textAlign={"center"} fontWeight={"bold"} fontSize={"xl"}>
-          RIMBA KMIS
-        </P>
+      <BrandWatermark visibility={"hidden"} />
 
-        <P color={"fg.subtle"} textAlign={"center"}>
-          {l.msg_signin}
-        </P>
-      </CContainer>
+      {mode === "signin" && (
+        <CContainer gap={4}>
+          <CContainer gap={2}>
+            <P fontWeight={"bold"} fontSize={"xl"}>
+              RIMBA KMIS
+            </P>
 
-      <form id="signin_form" onSubmit={formik.handleSubmit}>
-        <Field
-          invalid={!!formik.errors.identifier}
-          errorText={formik.errors.identifier as string}
-          mb={4}
-        >
-          <InputGroup
-            w={"full"}
-            startElement={
-              <Icon boxSize={5}>
-                <IconUser stroke={1.5} />
-              </Icon>
-            }
-          >
-            <StringInput
-              name="identifier"
-              onChange={(input) => {
-                formik.setFieldValue("identifier", input);
-              }}
-              inputValue={formik.values.identifier}
-              placeholder="Email/Username"
-              pl={"40px !important"}
-            />
-          </InputGroup>
-        </Field>
+            <P color={"fg.subtle"}>{l.msg_signin}</P>
+          </CContainer>
 
-        <Field
-          invalid={!!formik.errors.password}
-          errorText={formik.errors.password as string}
-        >
-          <InputGroup
-            w={"full"}
-            startElement={
-              <Icon boxSize={5}>
-                <IconLock stroke={1.5} />
-              </Icon>
-            }
-          >
-            <PasswordInput
-              name="password"
-              onChange={(input) => {
-                formik.setFieldValue("password", input);
-              }}
-              inputValue={formik.values.password}
-              placeholder="Password"
-              pl={"40px !important"}
-            />
-          </InputGroup>
-        </Field>
+          <CContainer gap={4}>
+            <HStack>
+              <P>{l.msg_dont_have_an_account}</P>
 
-        <Btn
-          type="submit"
-          form="signin_form"
-          w={"full"}
-          mt={6}
-          size={"lg"}
-          loading={loading}
-          colorPalette={themeConfig.colorPalette}
-        >
-          Login
-        </Btn>
+              <P
+                color={"p.500"}
+                cursor={"pointer"}
+                onClick={() => {
+                  setMode("signup");
+                }}
+              >
+                Sign up
+              </P>
+            </HStack>
 
-        <HStack mt={4}>
-          <Divider h={"1px"} w={"full"} />
+            <form id="signin_form" onSubmit={formik.handleSubmit}>
+              <Field
+                invalid={!!formik.errors.identifier}
+                errorText={formik.errors.identifier as string}
+                mb={4}
+              >
+                <InputGroup
+                  w={"full"}
+                  startElement={
+                    <Icon boxSize={5}>
+                      <IconUser stroke={1.5} />
+                    </Icon>
+                  }
+                >
+                  <StringInput
+                    name="identifier"
+                    onChange={(input) => {
+                      formik.setFieldValue("identifier", input);
+                    }}
+                    inputValue={formik.values.identifier}
+                    placeholder="Email/Username"
+                    pl={"40px !important"}
+                  />
+                </InputGroup>
+              </Field>
 
-          <ResetPasswordDisclosure>
-            <Btn variant={"ghost"} color={themeConfig.primaryColor}>
-              Reset Password
-            </Btn>
-          </ResetPasswordDisclosure>
+              <Field
+                invalid={!!formik.errors.password}
+                errorText={formik.errors.password as string}
+              >
+                <InputGroup
+                  w={"full"}
+                  startElement={
+                    <Icon boxSize={5}>
+                      <IconLock stroke={1.5} />
+                    </Icon>
+                  }
+                >
+                  <PasswordInput
+                    name="password"
+                    onChange={(input) => {
+                      formik.setFieldValue("password", input);
+                    }}
+                    inputValue={formik.values.password}
+                    placeholder="Password"
+                    pl={"40px !important"}
+                  />
+                </InputGroup>
+              </Field>
 
-          <Divider h={"1px"} w={"full"} />
-        </HStack>
-      </form>
+              <Btn
+                type="submit"
+                form="signin_form"
+                w={"full"}
+                mt={6}
+                size={"lg"}
+                loading={loading}
+                colorPalette={themeConfig.colorPalette}
+              >
+                Login
+              </Btn>
+
+              <HStack mt={4}>
+                <Divider h={"1px"} w={"full"} />
+
+                <ResetPasswordDisclosure>
+                  <Btn variant={"ghost"} color={themeConfig.primaryColor}>
+                    Reset Password
+                  </Btn>
+                </ResetPasswordDisclosure>
+
+                <Divider h={"1px"} w={"full"} />
+              </HStack>
+            </form>
+          </CContainer>
+        </CContainer>
+      )}
+
+      {mode === "signup" && <SignupForm setMode={setMode} />}
+
+      <BrandWatermark />
     </CContainer>
   );
 };

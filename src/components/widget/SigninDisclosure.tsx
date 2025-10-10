@@ -18,7 +18,7 @@ export const SigninDisclosure = (props: any) => {
   const { open } = props;
 
   return (
-    <DisclosureRoot open={open} lazyLoad size={"xl"}>
+    <DisclosureRoot open={open} lazyLoad size={"xl"} scrollBehavior={"outside"}>
       <DisclosureContent rounded={"2xl"}>
         <DisclosureBody
           rounded={"2xl"}

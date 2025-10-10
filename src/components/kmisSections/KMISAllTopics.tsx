@@ -311,12 +311,13 @@ const Data = (props: any) => {
   };
 
   useEffect(() => {
-    setFr(false);
-  }, []);
-  useEffect(() => {
     if (!fr) {
       if (data) {
         scrollTo(topicListContainerRef, 122);
+      }
+    } else {
+      if (data) {
+        setFr(false);
       }
     }
   }, [data]);

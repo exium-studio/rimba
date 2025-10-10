@@ -80,6 +80,10 @@ const translations = {
     "title": "Request timeout",
     "description": "The request took too long, please try again."
   },
+  "error_409_course_already_subbed": {
+    "title": "Already subscribed",
+    "description": "You are already subscribed to this course."
+  },
   "error_409_default": {
     "title": "Conflict",
     "description": "The same data already exists."

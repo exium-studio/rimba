@@ -981,6 +981,13 @@ export const error_409_default = {
     en: "The same data already exists.",
   },
 };
+export const error_409_course_already_subbed = {
+  title: { id: "Sudah terdaftar", en: "Already subscribed" },
+  description: {
+    id: "Kamu sudah terdaftar dalam kelas ini.",
+    en: "You are already subscribed to this course.",
+  },
+};
 export const error_413_default = {
   title: { id: "Payload too large", en: "Payload too large" },
   description: {

@@ -80,6 +80,10 @@ const translations = {
     "title": "Request timeout",
     "description": "Permintaan terlalu lama, silakan coba lagi."
   },
+  "error_409_course_already_subbed": {
+    "title": "Sudah terdaftar",
+    "description": "Kamu sudah terdaftar dalam kelas ini."
+  },
   "error_409_default": {
     "title": "Conflict",
     "description": "Data yang sama sudah ada."

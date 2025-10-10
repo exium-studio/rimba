@@ -124,6 +124,14 @@ export default function useRequest<T = any>(props: Props) {
             return l.error_404_default;
         }
 
+      case 409:
+        switch (errorCase) {
+          case "ALREADY_EXISTS":
+            return l.error_409_course_already_subbed;
+          default:
+            return l.error_409_default;
+        }
+
       case 422:
         switch (errorCase) {
           default:

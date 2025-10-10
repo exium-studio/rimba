@@ -70,9 +70,8 @@ const StartLearningButton = (props: any) => {
   return (
     <SigninDisclosureTrigger
       id={"signin-fallback-start-learning"}
-      w={"full"}
-      ml={["0", null, "auto"]}
       onClick={authToken ? startLearning : undefined}
+      mt={2}
     >
       <Btn
         w={["full", null, "fit"]}
@@ -162,9 +161,9 @@ const DetailTopic = (props: any) => {
                   {l.student}
                 </P>
               </HStack>
-
-              <StartLearningButton topic={topic} />
             </Stack>
+
+            <StartLearningButton topic={topic} />
           </CContainer>
         </Stack>
 

@@ -111,7 +111,7 @@ const AllCategory = (props: any) => {
 
   return (
     <>
-      <Btn variant={"ghost"} colorPalette={"p"} onClick={onOpen} {...restProps}>
+      <Btn variant={"outline"} onClick={onOpen} {...restProps}>
         {l.all_categories}
       </Btn>
 

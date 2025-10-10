@@ -464,7 +464,7 @@ const DesktopTopNav = () => {
                   _hover={{ bg: "d3" }}
                   cursor={"pointer"}
                   p={2}
-                  bg={"d2"}
+                  // bg={"d2"}
                   rounded={"lg"}
                   h={"40px"}
                 >
@@ -474,8 +474,8 @@ const DesktopTopNav = () => {
                     size={"xs"}
                   />
 
-                  <Icon color={"fg.subtle"} boxSize={5}>
-                    <IconSelector stroke={1.5} />
+                  <Icon boxSize={5} color={"light"}>
+                    <IconChevronDown stroke={1.5} />
                   </Icon>
                 </HStack>
               </MenuTrigger>

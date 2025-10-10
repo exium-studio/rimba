@@ -17,14 +17,13 @@ import {
   DisclosureRoot,
 } from "@/components/ui/disclosure";
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
-import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import BackButton from "@/components/widget/BackButton";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
+import { KMISTopicItem } from "@/components/widget/KMISTopicItem";
 import { Limitation } from "@/components/widget/Limitation";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Pagination } from "@/components/widget/Pagination";
@@ -38,20 +37,15 @@ import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import { useScrollWithOffset } from "@/hooks/useScrollWithOffset";
 import { isEmptyArray } from "@/utils/array";
-import { formatDate } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
-import { imgUrl } from "@/utils/url";
 import {
-  Badge,
   HStack,
-  Icon,
   SimpleGrid,
   Skeleton,
   Stack,
   StackProps,
   useDisclosure,
 } from "@chakra-ui/react";
-import { IconEye, IconRefresh, IconRocket } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 
 interface Props extends StackProps {}
@@ -260,129 +254,6 @@ const Filters = (props: any) => {
   );
 };
 
-const DetailTopic = (props: any) => {
-  // Props
-  const { topic, idx, ...restProps } = props;
-  const resolvedTopic: Interface__KMISTopic = topic;
-
-  // Contexts
-  const { l } = useLang();
-
-  // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`topic-detail-${topic.id}-${idx}`, open, onOpen, onClose);
-
-  // States
-  const { error, loading, data, onRetry } = useDataState<any>({
-    initialData: undefined,
-    url: `/api/kmis/public-request/get-topic/${resolvedTopic.id}`,
-    conditions: open,
-    dependencies: [open],
-  });
-  const render = {
-    loading: <Skeleton minH={"400px"} />,
-    error: <FeedbackRetry onRetry={onRetry} minH={"400px"} />,
-    empty: <FeedbackNoData minH={"400px"} />,
-    loaded: (
-      <CContainer gap={8}>
-        <HStack gapX={8} gapY={4}>
-          <Img
-            src={imgUrl(data?.topicCover?.[0]?.filePath)}
-            aspectRatio={1.1}
-            fluid
-            rounded={"lg"}
-          />
-
-          <CContainer gap={2}>
-            <Badge w={"fit"}>{data?.category.title}</Badge>
-            <P fontSize={"lg"} fontWeight={"semibold"}>
-              {data?.title}
-            </P>
-
-            <HStack color={"fg.subtle"}>
-              <Icon>
-                <IconRocket stroke={1.5} />
-              </Icon>
-
-              <P>{formatDate(data?.createdAt)}</P>
-            </HStack>
-
-            <HStack color={"fg.subtle"}>
-              <Icon>
-                <IconRefresh stroke={1.5} />
-              </Icon>
-
-              <P>{formatDate(data?.updatedAt as string)}</P>
-            </HStack>
-
-            <HStack gap={4} align={"end"} mt={"auto"}>
-              <HStack align={"end"}>
-                <P fontSize={"lg"}>123</P>
-                <P>{l.student}</P>
-              </HStack>
-
-              <Btn colorPalette={"p"}>{l.start_learning}</Btn>
-            </HStack>
-          </CContainer>
-        </HStack>
-
-        <P>{data?.description}</P>
-
-        <CContainer>
-          <P fontWeight={"semibold"}>Terstimonial</P>
-
-          <CContainer>
-            <HStack w={"max"}></HStack>
-          </CContainer>
-        </CContainer>
-      </CContainer>
-    ),
-  };
-
-  return (
-    <>
-      <Btn
-        colorPalette={"p"}
-        variant={"outline"}
-        onClick={onOpen}
-        {...restProps}
-      >
-        <Icon>
-          <IconEye stroke={1.5} />
-        </Icon>
-        {l.view}
-      </Btn>
-
-      <DisclosureRoot open={open} lazyLoad size={"xl"}>
-        <DisclosureContent>
-          <DisclosureHeader>
-            <DisclosureHeaderContent title={`Detail ${topic.title}`} />
-          </DisclosureHeader>
-
-          <DisclosureBody>
-            {loading && render.loading}
-            {!loading && (
-              <>
-                {error && render.error}
-                {!error && (
-                  <>
-                    {data && render.loaded}
-                    {(!data || isEmptyArray(data)) && render.empty}
-                  </>
-                )}
-              </>
-            )}
-          </DisclosureBody>
-
-          <DisclosureFooter>
-            <BackButton />
-          </DisclosureFooter>
-        </DisclosureContent>
-      </DisclosureRoot>
-    </>
-  );
-};
-
 const Data = (props: any) => {
   // Props
   const { filter, ...restProps } = props;
@@ -422,43 +293,7 @@ const Data = (props: any) => {
       <CContainer ref={topicListContainerRef} gap={4}>
         <SimpleGrid columns={[1, 2, 3, null, 4]} gap={4}>
           {data?.map((topic, idx) => {
-            return (
-              <CContainer
-                className="ss"
-                key={topic.id}
-                rounded={"lg"}
-                overflow={"clip"}
-                border={"1px solid"}
-                borderColor={"d1"}
-              >
-                <Img
-                  key={topic?.topicCover?.[0]?.filePath}
-                  src={imgUrl(topic?.topicCover?.[0]?.filePath)}
-                  aspectRatio={1.1}
-                  rounded={"lg"}
-                />
-
-                <CContainer p={4} gap={2} pos={"relative"}>
-                  <Badge pos={"absolute"} top={"-28px"} left={2}>
-                    <P fontSize={"xs"} lineClamp={1} maxW={"100px"}>
-                      {topic.category.title}
-                    </P>
-                  </Badge>
-
-                  <P fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
-                    {topic.title}
-                  </P>
-
-                  <P color={"fg.subtle"} lineClamp={1}>
-                    {topic.description}
-                  </P>
-                </CContainer>
-
-                <CContainer p={2} pt={0}>
-                  <DetailTopic topic={topic} idx={idx} />
-                </CContainer>
-              </CContainer>
-            );
+            return <KMISTopicItem key={idx} topic={topic} idx={idx} />;
           })}
         </SimpleGrid>
 

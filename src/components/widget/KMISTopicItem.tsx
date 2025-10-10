@@ -40,7 +40,7 @@ import {
   IconRocket,
 } from "@tabler/icons-react";
 
-const StartLearningButton = (props: any) => {
+const EnrollButton = (props: any) => {
   // Props
   const { topic } = props;
 
@@ -79,7 +79,7 @@ const StartLearningButton = (props: any) => {
         ml={"auto"}
         onClick={authToken ? startLearning : () => {}}
       >
-        {l.start_learning}
+        {l.enroll_now}
 
         <Icon>
           <IconArrowRight stroke={1.5} />
@@ -122,7 +122,7 @@ const DetailTopic = (props: any) => {
             rounded={"lg"}
           />
 
-          <CContainer gap={2}>
+          <CContainer gap={2} py={2}>
             <Badge w={"fit"}>{data?.category.title}</Badge>
 
             <P fontSize={"lg"} fontWeight={"semibold"}>
@@ -163,7 +163,7 @@ const DetailTopic = (props: any) => {
               </HStack>
             </Stack>
 
-            <StartLearningButton topic={topic} />
+            <EnrollButton topic={topic} />
           </CContainer>
         </Stack>
 
@@ -196,8 +196,8 @@ const DetailTopic = (props: any) => {
 
       <DisclosureRoot open={open} lazyLoad size={"xl"}>
         <DisclosureContent>
-          <DisclosureHeader>
-            <DisclosureHeaderContent title={`Detail ${topic.title}`} />
+          <DisclosureHeader border={"none"}>
+            <DisclosureHeaderContent title={``} />
           </DisclosureHeader>
 
           <DisclosureBody>

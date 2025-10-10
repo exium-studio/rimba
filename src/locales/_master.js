@@ -567,6 +567,10 @@ export const certificate = {
   id: "Sertifikat",
   en: "Certificate",
 };
+export const enroll_now = {
+  id: "Daftar sekarang",
+  en: "Enroll now",
+};
 
 // Message
 export const msg_location_test_helper = {

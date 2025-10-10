@@ -48,6 +48,7 @@ const translations = {
   "delete_": "Hapus",
   "deleted_file": "File dihapus",
   "educator": "Pengajar",
+  "enroll_now": "Daftar sekarang",
   "error_400_default": {
     "title": "Bad request",
     "description": "Periksa kembali data atau langkah yang dilakukan."

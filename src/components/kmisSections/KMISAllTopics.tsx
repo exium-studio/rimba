@@ -247,9 +247,24 @@ const Filters = (props: any) => {
   // Props
   const { filter, setFilter, ...restProps } = props;
 
+  // Contexts
+  const { l } = useLang();
+
+  // States
+  const [localFilter, setLocalFilter] = useState(filter);
+
+  // Utils
+  function onConfirm() {
+    setFilter(localFilter);
+  }
+
   return (
-    <CContainer flex={1} {...restProps}>
-      <CategoryFilter filter={filter} setFilter={setFilter} />
+    <CContainer flex={1} gap={4} {...restProps}>
+      <CategoryFilter filter={localFilter} setFilter={setLocalFilter} />
+
+      <Btn colorPalette={"p"} variant={"outline"} onClick={onConfirm}>
+        {l.apply} filter
+      </Btn>
     </CContainer>
   );
 };

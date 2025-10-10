@@ -26,13 +26,12 @@ import { SigninDisclosureTrigger } from "@/components/widget/SigninDisclosure";
 import SimplePopover from "@/components/widget/SimplePopover";
 import { LP_NAVS } from "@/constants/navs";
 import { MAIN_BUTTON_SIZE } from "@/constants/sizes";
-import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import { useDisableBodyScroll } from "@/hooks/useDisableBodyScroll";
 import useScreen from "@/hooks/useScreen";
-import { getUserData } from "@/utils/auth";
+import { getAuthToken, getUserData } from "@/utils/auth";
 import { back } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
@@ -49,7 +48,7 @@ import { Fragment, useEffect, useState } from "react";
 const MobileTopNav = () => {
   // Contexts
   const { l } = useLang();
-  const authToken = useAuthMiddleware((s) => s.verifiedAuthToken);
+  const authToken = getAuthToken();
 
   // Hooks
   const pathname = usePathname();
@@ -302,7 +301,7 @@ const MobileTopNav = () => {
 const DesktopTopNav = () => {
   // Contexts
   const { l } = useLang();
-  const authToken = useAuthMiddleware((s) => s.verifiedAuthToken);
+  const authToken = getAuthToken();
 
   // States
   const user = getUserData();
@@ -459,26 +458,32 @@ const DesktopTopNav = () => {
           />
 
           {authToken && (
-            <SimplePopover content={<MiniProfile />} p={"0 !important"} mt={4}>
-              <HStack
-                _hover={{ bg: "d3" }}
-                cursor={"pointer"}
-                p={2}
-                bg={"d2"}
-                rounded={"lg"}
-                h={"40px"}
-              >
-                <Avatar
-                  name={user?.name}
-                  src={user?.photoProfile?.[0]?.filePath}
-                  size={"xs"}
-                />
+            <MenuRoot>
+              <MenuTrigger asChild>
+                <HStack
+                  _hover={{ bg: "d3" }}
+                  cursor={"pointer"}
+                  p={2}
+                  bg={"d2"}
+                  rounded={"lg"}
+                  h={"40px"}
+                >
+                  <Avatar
+                    name={user?.name}
+                    src={user?.photoProfile?.[0]?.filePath}
+                    size={"xs"}
+                  />
 
-                <Icon color={"fg.subtle"} boxSize={5}>
-                  <IconSelector stroke={1.5} />
-                </Icon>
-              </HStack>
-            </SimplePopover>
+                  <Icon color={"fg.subtle"} boxSize={5}>
+                    <IconSelector stroke={1.5} />
+                  </Icon>
+                </HStack>
+              </MenuTrigger>
+
+              <MenuContent p={0} mt={4} w={"240px"}>
+                <MiniProfile />
+              </MenuContent>
+            </MenuRoot>
           )}
 
           {!authToken && (

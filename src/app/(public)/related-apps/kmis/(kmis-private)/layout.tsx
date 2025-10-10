@@ -13,7 +13,7 @@ interface Props {
 
 export default function PrivateRoutesLayout({ children }: Props) {
   // Contexts
-  const localAuthToken = getAuthToken();
+  const authToken = getAuthToken();
   const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
   const setRole = useAuthMiddleware((s) => s.setRole);
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
@@ -33,20 +33,20 @@ export default function PrivateRoutesLayout({ children }: Props) {
 
   useEffect(() => {
     // If there's no local token → redirect after first render
-    if (!localAuthToken) {
+    if (!authToken) {
       setChecked(true);
       return;
     }
 
     // If token exists but not verified yet → verify
-    if (localAuthToken && !verifiedAuthToken) {
+    if (authToken && !verifiedAuthToken) {
       const config = { method: "GET", url: "/api/profile/get-user-profile" };
       req({
         config,
         onResolve: {
           onSuccess: (r) => {
             const user = r.data.data;
-            setVerifiedAuthToken(localAuthToken);
+            setVerifiedAuthToken(authToken);
             setRole(user.role);
             setPermissions(user.role.permissions);
             setChecked(true);
@@ -59,7 +59,7 @@ export default function PrivateRoutesLayout({ children }: Props) {
     } else {
       setChecked(true);
     }
-  }, [localAuthToken, verifiedAuthToken]);
+  }, [authToken, verifiedAuthToken]);
 
   useEffect(() => {
     // Redirect only when check is done and no verified token

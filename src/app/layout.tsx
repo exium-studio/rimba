@@ -56,7 +56,7 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const RootLayout = (props: Props) => {
+export default function RootLayout(props: Props) {
   // Props
   const { children } = props;
 
@@ -74,6 +74,4 @@ const RootLayout = (props: Props) => {
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

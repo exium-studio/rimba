@@ -7,7 +7,7 @@ import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { DotIndicator } from "@/components/widget/Indicator";
-import { PRIVATE_ROUTE_INDEX } from "@/constants/navs";
+import { SVGS_PATH } from "@/constants/paths";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
@@ -15,6 +15,7 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
 import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
+import { imgUrl } from "@/utils/url";
 import { Icon, StackProps } from "@chakra-ui/react";
 import {
   IconBook2,
@@ -76,6 +77,8 @@ export const MiniProfile = (props: StackProps) => {
     });
   }
 
+  console.debug(pathname);
+
   return (
     <CContainer
       rounded={themeConfig.radii.container}
@@ -84,7 +87,12 @@ export const MiniProfile = (props: StackProps) => {
       {...props}
     >
       <CContainer>
-        <Img src={"/dummy_avatar.jpg"} alt="avatar" aspectRatio={1} />
+        <Img
+          src={imgUrl(user?.photoProfile?.[0]?.filePath)}
+          alt="avatar"
+          aspectRatio={1}
+          fallbackSrc={`${SVGS_PATH}/no-avatar.svg`}
+        />
 
         <CContainer
           bg={"body"}
@@ -100,7 +108,7 @@ export const MiniProfile = (props: StackProps) => {
       <Divider />
 
       <CContainer gap={1} p={"6px"}>
-        <NavLink to={`${PRIVATE_ROUTE_INDEX}/kmis/course`}>
+        <NavLink to={`/related-apps/kmis/course`}>
           <Btn
             clicky={false}
             size={"md"}
@@ -115,11 +123,13 @@ export const MiniProfile = (props: StackProps) => {
 
             {l.my_course}
 
-            {pathname.includes("/profile") && <DotIndicator mr={1} />}
+            {pathname.includes("/related-apps/kmis/course") && (
+              <DotIndicator ml={"auto"} mr={1} />
+            )}
           </Btn>
         </NavLink>
 
-        <NavLink to={`${PRIVATE_ROUTE_INDEX}/kmis/certificate`}>
+        <NavLink to={`/related-apps/kmis/certificate`}>
           <Btn
             clicky={false}
             size={"md"}
@@ -134,11 +144,13 @@ export const MiniProfile = (props: StackProps) => {
 
             {l.certificate}
 
-            {pathname.includes("/profile") && <DotIndicator mr={1} />}
+            {pathname.includes("/related-apps/kmis/certificate") && (
+              <DotIndicator ml={"auto"} mr={1} />
+            )}
           </Btn>
         </NavLink>
 
-        <NavLink to={`${PRIVATE_ROUTE_INDEX}/settings/profile`}>
+        <NavLink to={`/profile`}>
           <Btn
             clicky={false}
             size={"md"}
@@ -153,7 +165,9 @@ export const MiniProfile = (props: StackProps) => {
 
             {l.my_profile}
 
-            {pathname.includes("/profile") && <DotIndicator mr={1} />}
+            {pathname.includes("/profile") && (
+              <DotIndicator ml={"auto"} mr={1} />
+            )}
           </Btn>
         </NavLink>
 

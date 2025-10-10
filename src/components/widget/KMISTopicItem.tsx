@@ -46,7 +46,7 @@ const EnrollButton = (props: any) => {
 
   // Contexts
   const { l } = useLang();
-  const authToken = useAuthMiddleware((s) => s.authToken);
+  const authToken = useAuthMiddleware((s) => s.verifiedAuthToken);
 
   // Hooks
   const { req } = useRequest({

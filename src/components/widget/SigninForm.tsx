@@ -179,7 +179,8 @@ const SigninForm = (props: Props) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-  const setAuthToken = useAuthMiddleware((s) => s.setAuthToken);
+  const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
+  const setRole = useAuthMiddleware((s) => s.setRole);
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
 
   // Hooks
@@ -224,10 +225,14 @@ const SigninForm = (props: Props) => {
         config,
         onResolve: {
           onSuccess: (r: any) => {
+            const user = r.data.data.user;
+
             setStorage("__auth_token", r.data.data?.token);
-            setStorage("__user_data", JSON.stringify(r.data.data?.user));
-            setAuthToken(r.data.data?.token);
-            setPermissions(r.data.data?.permissions);
+            setStorage("__user_data", JSON.stringify(user));
+
+            setVerifiedAuthToken(r.data.data?.token);
+            setRole(user?.role);
+            setPermissions(user?.role?.permissions);
             back();
           },
         },

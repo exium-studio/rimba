@@ -49,7 +49,7 @@ import { Fragment, useEffect, useState } from "react";
 const MobileTopNav = () => {
   // Contexts
   const { l } = useLang();
-  const authToken = useAuthMiddleware((s) => s.authToken);
+  const authToken = useAuthMiddleware((s) => s.verifiedAuthToken);
 
   // Hooks
   const pathname = usePathname();
@@ -302,7 +302,7 @@ const MobileTopNav = () => {
 const DesktopTopNav = () => {
   // Contexts
   const { l } = useLang();
-  const authToken = useAuthMiddleware((s) => s.authToken);
+  const authToken = useAuthMiddleware((s) => s.verifiedAuthToken);
 
   // States
   const user = getUserData();

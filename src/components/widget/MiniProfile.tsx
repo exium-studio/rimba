@@ -106,7 +106,7 @@ export const MiniProfile = (props: StackProps) => {
       <Divider />
 
       <CContainer gap={1} p={"6px"}>
-        <NavLink to={`/related-apps/kmis/course`}>
+        <NavLink to={`/related-apps/kmis/my-course`}>
           <Btn
             clicky={false}
             size={"md"}
@@ -121,13 +121,13 @@ export const MiniProfile = (props: StackProps) => {
 
             {l.my_course}
 
-            {pathname.includes("/related-apps/kmis/course") && (
+            {pathname.includes("/related-apps/kmis/my-course") && (
               <DotIndicator ml={"auto"} mr={1} />
             )}
           </Btn>
         </NavLink>
 
-        <NavLink to={`/related-apps/kmis/certificate`}>
+        <NavLink to={`/related-apps/kmis/my-certificate`}>
           <Btn
             clicky={false}
             size={"md"}
@@ -142,7 +142,7 @@ export const MiniProfile = (props: StackProps) => {
 
             {l.certificate}
 
-            {pathname.includes("/related-apps/kmis/certificate") && (
+            {pathname.includes("/related-apps/kmis/my-certificate") && (
               <DotIndicator ml={"auto"} mr={1} />
             )}
           </Btn>

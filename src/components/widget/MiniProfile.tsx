@@ -16,7 +16,12 @@ import useRequest from "@/hooks/useRequest";
 import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
 import { Icon, StackProps } from "@chakra-ui/react";
-import { IconLogout, IconUser } from "@tabler/icons-react";
+import {
+  IconBook2,
+  IconCertificate2,
+  IconLogout,
+  IconUser,
+} from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 
 export const MiniProfile = (props: StackProps) => {
@@ -88,16 +93,55 @@ export const MiniProfile = (props: StackProps) => {
           borderColor={"border.muted"}
         >
           <P fontWeight={"semibold"}>{user?.name || "Signed out"}</P>
-          <P color={"fg.subtle"}>{user?.email || user?.username || "-"}</P>
+          <P color={"fg.subtle"}>{user?.email || "-"}</P>
         </CContainer>
       </CContainer>
 
       <Divider />
 
       <CContainer gap={1} p={"6px"}>
+        <NavLink to={`${PRIVATE_ROUTE_INDEX}/kmis/course`}>
+          <Btn
+            clicky={false}
+            size={"md"}
+            px={2}
+            variant={"ghost"}
+            justifyContent={"start"}
+            pos={"relative"}
+          >
+            <Icon boxSize={5}>
+              <IconBook2 stroke={1.5} />
+            </Icon>
+
+            {l.my_course}
+
+            {pathname.includes("/profile") && <DotIndicator mr={1} />}
+          </Btn>
+        </NavLink>
+
+        <NavLink to={`${PRIVATE_ROUTE_INDEX}/kmis/certificate`}>
+          <Btn
+            clicky={false}
+            size={"md"}
+            px={2}
+            variant={"ghost"}
+            justifyContent={"start"}
+            pos={"relative"}
+          >
+            <Icon boxSize={5}>
+              <IconCertificate2 stroke={1.5} />
+            </Icon>
+
+            {l.certificate}
+
+            {pathname.includes("/profile") && <DotIndicator mr={1} />}
+          </Btn>
+        </NavLink>
+
         <NavLink to={`${PRIVATE_ROUTE_INDEX}/settings/profile`}>
           <Btn
             clicky={false}
+            size={"md"}
             px={2}
             variant={"ghost"}
             justifyContent={"start"}
@@ -115,6 +159,7 @@ export const MiniProfile = (props: StackProps) => {
 
         <Btn
           clicky={false}
+          size={"md"}
           px={2}
           variant={"ghost"}
           color={"fg.error"}

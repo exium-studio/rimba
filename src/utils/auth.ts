@@ -1,3 +1,4 @@
+import { Interface__User } from "@/constants/interfaces";
 import { getStorage, removeStorage, setStorage } from "@/utils/client";
 
 export function getAuthToken() {
@@ -12,7 +13,7 @@ export function clearAuthToken() {
   removeStorage("__auth_token");
 }
 
-export function getUserData(): Record<string, any> | null {
+export function getUserData(): Interface__User | null {
   const raw = getStorage("__user_data");
   if (!raw) return null;
 

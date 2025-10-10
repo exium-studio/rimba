@@ -6,6 +6,7 @@ import {
   AccordionItemTrigger,
   AccordionRoot,
 } from "@/components/ui/accordion";
+import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { LangMenu } from "@/components/ui/lang-menu";
@@ -19,25 +20,36 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { BottomIndicator, DotIndicator } from "@/components/widget/Indicator";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
+import { MiniProfile } from "@/components/widget/MiniProfile";
 import { PartnersLogo } from "@/components/widget/PartnersLogo";
 import { SigninDisclosureTrigger } from "@/components/widget/SigninDisclosure";
+import SimplePopover from "@/components/widget/SimplePopover";
 import { LP_NAVS } from "@/constants/navs";
 import { MAIN_BUTTON_SIZE } from "@/constants/sizes";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import { useDisableBodyScroll } from "@/hooks/useDisableBodyScroll";
 import useScreen from "@/hooks/useScreen";
+import { getUserData } from "@/utils/auth";
 import { back } from "@/utils/client";
 import { pluckString } from "@/utils/string";
+import { imgUrl } from "@/utils/url";
 import { HStack, Icon, useDisclosure } from "@chakra-ui/react";
-import { IconChevronDown, IconMenu, IconX } from "@tabler/icons-react";
+import {
+  IconChevronDown,
+  IconMenu,
+  IconSelector,
+  IconX,
+} from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
 
 const MobileTopNav = () => {
   // Contexts
   const { l } = useLang();
+  const authToken = useAuthMiddleware((s) => s.authToken);
 
   // Hooks
   const pathname = usePathname();
@@ -49,6 +61,7 @@ const MobileTopNav = () => {
   useDisableBodyScroll(open);
 
   // States
+  const user = getUserData();
   const [showContents, setShowContents] = useState<boolean>(false);
 
   useEffect(() => {
@@ -122,6 +135,33 @@ const MobileTopNav = () => {
             </Btn>
           )}
         </HStack>
+
+        {authToken && (
+          <CContainer
+            p={4}
+            opacity={showContents ? 1 : 0}
+            visibility={showContents ? "visible" : "hidden"}
+            transition={"500ms"}
+          >
+            <SimplePopover content={<MiniProfile />}>
+              <HStack p={4} rounded={"xl"} bg={"d2"} gap={4}>
+                <Avatar
+                  name={user?.name}
+                  src={imgUrl(user?.photoProfile?.[0]?.filePath)}
+                />
+
+                <CContainer>
+                  <P color={"light"}>{user?.name}</P>
+                  <P color={"fg.subtle"}>{user?.email}</P>
+                </CContainer>
+
+                <Icon color={"fg.subtle"}>
+                  <IconSelector stroke={1.5} />
+                </Icon>
+              </HStack>
+            </SimplePopover>
+          </CContainer>
+        )}
 
         <CContainer
           gap={1}
@@ -248,7 +288,9 @@ const MobileTopNav = () => {
               />
 
               <SigninDisclosureTrigger flex={1}>
-                <Btn colorPalette={"p"}>Sign up/Sign in</Btn>
+                <Btn colorPalette={"p"} disabled={!!authToken}>
+                  Sign up/Sign in
+                </Btn>
               </SigninDisclosureTrigger>
             </HStack>
           </CContainer>
@@ -260,8 +302,10 @@ const MobileTopNav = () => {
 const DesktopTopNav = () => {
   // Contexts
   const { l } = useLang();
+  const authToken = useAuthMiddleware((s) => s.authToken);
 
   // States
+  const user = getUserData();
   const pathname = usePathname();
   const [, setScrolled] = useState(false);
 
@@ -413,11 +457,36 @@ const DesktopTopNav = () => {
             }}
           />
 
-          <SigninDisclosureTrigger>
-            <Btn colorPalette={"p"} px={6} color={"p.50"}>
-              Sign in/Sign up
-            </Btn>
-          </SigninDisclosureTrigger>
+          {authToken && (
+            <SimplePopover content={<MiniProfile />} p={"0 !important"} mt={4}>
+              <HStack
+                _hover={{ bg: "d3" }}
+                cursor={"pointer"}
+                p={2}
+                bg={"d2"}
+                rounded={"lg"}
+                h={"40px"}
+              >
+                <Avatar
+                  name={user?.name}
+                  src={user?.photoProfile?.[0]?.filePath}
+                  size={"xs"}
+                />
+
+                <Icon color={"fg.subtle"} boxSize={5}>
+                  <IconSelector stroke={1.5} />
+                </Icon>
+              </HStack>
+            </SimplePopover>
+          )}
+
+          {!authToken && (
+            <SigninDisclosureTrigger>
+              <Btn colorPalette={"p"} px={6} color={"p.50"}>
+                Sign in/Sign up
+              </Btn>
+            </SigninDisclosureTrigger>
+          )}
         </HStack>
       </HStack>
     </LPSectionContainer>

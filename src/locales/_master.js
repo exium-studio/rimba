@@ -559,6 +559,15 @@ export const name = {
   id: "Nama",
   en: "Name",
 };
+export const my_course = {
+  id: "Kursus saya",
+  en: "My course",
+};
+export const certificate = {
+  id: "Sertifikat",
+  en: "Certificate",
+};
+
 // Message
 export const msg_location_test_helper = {
   id: "Klik dapatkan lokasi untuk mendapatkan data lokasi.",

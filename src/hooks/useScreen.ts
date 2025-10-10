@@ -16,6 +16,7 @@ const useScreen = (timeout: number = 200) => {
     let resizeTimeout: any;
 
     const handleResize = () => {
+      window.location.reload();
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
         setScreen({ sw: window.innerWidth, sh: window.innerHeight });

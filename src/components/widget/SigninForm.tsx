@@ -19,6 +19,7 @@ import { P } from "../ui/p";
 import { PasswordInput } from "../ui/password-input";
 import { StringInput } from "../ui/string-input";
 import ResetPasswordDisclosure from "./ResetPasswordDisclosure";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 
 interface Props extends StackProps {}
 
@@ -182,6 +183,7 @@ const SigninForm = (props: Props) => {
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
 
   // Hooks
+  const iss = useIsSmScreenWidth();
   const { req, loading } = useRequest({
     id: "signin",
     loadingMessage: l.loading_signin,
@@ -238,15 +240,16 @@ const SigninForm = (props: Props) => {
       m={"auto"}
       w={"full"}
       maxW={"380px"}
-      minH={"680px"}
+      minH={iss ? "" : "680px"}
       justify={"space-between"}
       px={6}
       py={12}
+      pt={[8, null, 12]}
       gap={8}
       rounded={themeConfig.radii.container}
       {...restProps}
     >
-      <BrandWatermark visibility={"hidden"} />
+      {!iss && <BrandWatermark visibility={"hidden"} />}
 
       {mode === "signin" && (
         <CContainer gap={4}>

@@ -11,7 +11,7 @@ import SigninForm from "@/components/widget/SigninForm";
 import { IMAGES_PATH } from "@/constants/paths";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { back } from "@/utils/client";
-import { SimpleGrid, StackProps, useDisclosure } from "@chakra-ui/react";
+import { SimpleGrid, useDisclosure } from "@chakra-ui/react";
 
 export const SigninDisclosure = (props: any) => {
   // Props
@@ -49,13 +49,13 @@ export const SigninDisclosure = (props: any) => {
   );
 };
 
-export const SigninDisclosureTrigger = (props: StackProps) => {
+export const SigninDisclosureTrigger = (props: any) => {
   // Props
-  const { children, ...restProps } = props;
+  const { id, children, ...restProps } = props;
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`signin`, open, onOpen, onClose);
+  useBackOnClose(id || `signin`, open, onOpen, onClose);
 
   return (
     <>

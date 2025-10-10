@@ -15,10 +15,13 @@ import { P } from "@/components/ui/p";
 import BackButton from "@/components/widget/BackButton";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
+import { SigninDisclosureTrigger } from "@/components/widget/SigninDisclosure";
 import { Interface__KMISTopic } from "@/constants/interfaces";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
+import useRequest from "@/hooks/useRequest";
 import { formatDate } from "@/utils/formatter";
 import { imgUrl } from "@/utils/url";
 import {
@@ -37,6 +40,54 @@ import {
   IconRocket,
 } from "@tabler/icons-react";
 
+const StartLearningButton = (props: any) => {
+  // Props
+  const { topic } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const authToken = useAuthMiddleware((s) => s.authToken);
+
+  // Hooks
+  const { req } = useRequest({
+    id: "subs_course",
+  });
+
+  // Utils
+  function startLearning() {
+    const payload = {
+      topicId: topic?.id,
+    };
+    req({
+      config: {
+        url: `/api/kmis/learning-course/create`,
+        method: "POST",
+        data: payload,
+      },
+    });
+  }
+
+  return (
+    <SigninDisclosureTrigger
+      id={"signin-fallback-start-learning"}
+      w={"full"}
+      ml={["0", null, "auto"]}
+    >
+      <Btn
+        w={["full", null, "fit"]}
+        colorPalette={"p"}
+        ml={"auto"}
+        onClick={authToken ? startLearning : () => {}}
+      >
+        {l.start_learning}
+
+        <Icon>
+          <IconArrowRight stroke={1.5} />
+        </Icon>
+      </Btn>
+    </SigninDisclosureTrigger>
+  );
+};
 const DetailTopic = (props: any) => {
   // Props
   const { topic, idx, ...restProps } = props;
@@ -73,6 +124,7 @@ const DetailTopic = (props: any) => {
 
           <CContainer gap={2}>
             <Badge w={"fit"}>{data?.category.title}</Badge>
+
             <P fontSize={"lg"} fontWeight={"semibold"}>
               {data?.title}
             </P>
@@ -100,7 +152,7 @@ const DetailTopic = (props: any) => {
               mt={"auto"}
               pt={4}
             >
-              <HStack align={"end"}>
+              <HStack align={"end"} flexShrink={0}>
                 <P fontSize={"lg"} fontWeight={"medium"}>
                   123
                 </P>
@@ -110,13 +162,7 @@ const DetailTopic = (props: any) => {
                 </P>
               </HStack>
 
-              <Btn w={["full", null, "fit"]} colorPalette={"p"} ml={"auto"}>
-                {l.start_learning}
-
-                <Icon>
-                  <IconArrowRight stroke={1.5} />
-                </Icon>
-              </Btn>
+              <StartLearningButton topic={topic} />
             </Stack>
           </CContainer>
         </Stack>
@@ -126,7 +172,7 @@ const DetailTopic = (props: any) => {
         <CContainer>
           <P fontWeight={"semibold"}>Terstimonial</P>
 
-          <CContainer>
+          <CContainer overflowX={"auto"}>
             <HStack w={"max"}></HStack>
           </CContainer>
         </CContainer>

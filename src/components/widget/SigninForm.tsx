@@ -95,7 +95,7 @@ const SigninForm = (props: Props) => {
     >
       <CContainer gap={2}>
         <P textAlign={"center"} fontWeight={"bold"} fontSize={"xl"}>
-          KMIS Sign in
+          RIMBA KMIS
         </P>
 
         <P color={"fg.subtle"} textAlign={"center"}>

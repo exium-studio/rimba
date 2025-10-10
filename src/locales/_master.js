@@ -913,6 +913,13 @@ export const error_401_default = {
     en: "You need to Sign in to access this.",
   },
 };
+export const error_401_account_deactivated = {
+  title: { id: "Akun dinonaktifkan", en: "Account deactivated" },
+  description: {
+    id: "Akun kamu telah dinonaktifkan, hubungi admin.",
+    en: "Your account has been deactivated, contact the admin.",
+  },
+};
 export const error_402_default = {
   title: { id: "Payment required", en: "Payment required" },
   description: {

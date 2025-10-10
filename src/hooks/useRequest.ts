@@ -4,8 +4,6 @@ import {
   Interface__RequestState,
 } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
-import { clearAuthToken } from "@/utils/auth";
-import { removeStorage } from "@/utils/client";
 import { request } from "@/utils/request";
 import { useRouter } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
@@ -72,14 +70,22 @@ export default function useRequest<T = any>(props: Props) {
     },
     []
   );
+
   const resolveErrorMessage = (e: any) => {
     const statusCode = e.response?.status;
     const errorCase = e.response?.data?.case;
 
+    // Handle network-level errors first
+    if (e.code === "ERR_NETWORK") {
+      return l.error_network;
+    }
+
+    // Check if a custom error message is provided for this status code and case
     if (statusCode && errorMessage?.[statusCode]) {
       if (errorCase && errorMessage[statusCode][errorCase]) {
         return errorMessage[statusCode][errorCase];
       }
+      // Fallback to default custom message for this status code
       return (
         errorMessage[statusCode].default || {
           title: l.error_default.title,
@@ -88,13 +94,62 @@ export default function useRequest<T = any>(props: Props) {
       );
     }
 
-    switch (e.code) {
-      case "ERR_NETWORK":
-        return l.error_network;
+    // Switch-based handling for known status codes
+    switch (statusCode) {
+      case 400:
+        switch (errorCase) {
+          case "INVALID_CREDENTIALS":
+            return l.error_signin_wrong_credentials;
+          default:
+            return l.error_400_default;
+        }
+
+      case 401:
+        switch (errorCase) {
+          case "ACCOUNT_DEACTIVATED":
+            return l.error_401_account_deactivated;
+          default:
+            return l.error_401_default;
+        }
+
+      case 403:
+        switch (errorCase) {
+          default:
+            return l.error_403_default;
+        }
+
+      case 404:
+        switch (errorCase) {
+          default:
+            return l.error_404_default;
+        }
+
+      case 422:
+        switch (errorCase) {
+          default:
+            return l.error_422_default;
+        }
+
+      case 429:
+        switch (errorCase) {
+          default:
+            return l.error_429_default;
+        }
+
+      case 500:
+        switch (errorCase) {
+          default:
+            return l.error_500_default;
+        }
+
       default:
-        return l.error_default;
+        switch (errorCase) {
+          default:
+            return l.error_default;
+        }
     }
   };
+
   const req = useCallback(
     async ({ config, onResolve }: Interface__Req<T>) => {
       try {
@@ -154,12 +209,11 @@ export default function useRequest<T = any>(props: Props) {
         });
 
         switch (statusCode) {
-          case 401:
-          case 403:
-            removeStorage("__auth_token");
-            clearAuthToken();
-            router?.push(signinPath);
-            break;
+          // case 401:
+          // case 403:
+          //   clearAuthToken();
+          //   router?.push(signinPath);
+          //   break;
           case 503:
             router?.push("/maintenance");
             break;

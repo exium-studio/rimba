@@ -51,6 +51,10 @@ const translations = {
     "title": "Bad request",
     "description": "Periksa kembali data atau langkah yang dilakukan."
   },
+  "error_401_account_deactivated": {
+    "title": "Akun dinonaktifkan",
+    "description": "Akun kamu telah dinonaktifkan, hubungi admin."
+  },
   "error_401_default": {
     "title": "Unauthorized",
     "description": "Kamu harus Sign in untuk mengakses ini."

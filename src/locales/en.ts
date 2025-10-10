@@ -51,6 +51,10 @@ const translations = {
     "title": "Bad request",
     "description": "Please review your data or actions."
   },
+  "error_401_account_deactivated": {
+    "title": "Account deactivated",
+    "description": "Your account has been deactivated, contact the admin."
+  },
   "error_401_default": {
     "title": "Unauthorized",
     "description": "You need to Sign in to access this."

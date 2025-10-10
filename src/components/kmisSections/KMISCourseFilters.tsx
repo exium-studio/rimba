@@ -27,6 +27,7 @@ import { Interface__KMISTopicCategory } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
 import { capitalizeWords } from "@/utils/string";
 import { Skeleton, useDisclosure } from "@chakra-ui/react";
@@ -162,6 +163,9 @@ const CategoryFilter = (props: any) => {
   // Contexts
   const { l } = useLang();
 
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
   // States
   const { error, initialLoading, data, onRetry } = useDataState<
     Interface__KMISTopicCategory[]
@@ -169,7 +173,7 @@ const CategoryFilter = (props: any) => {
     initialData: undefined,
     url: `/api/kmis/public-request/get-all-category`,
     params: {
-      limit: 15,
+      limit: iss ? 5 : 15,
     },
     dependencies: [],
   });

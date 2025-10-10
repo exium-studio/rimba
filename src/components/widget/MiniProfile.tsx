@@ -71,13 +71,11 @@ export const MiniProfile = (props: StackProps) => {
         },
         onError: () => {
           removeAuth();
-          router.push("/");
+          router.push("/related-apps/kmis");
         },
       },
     });
   }
-
-  console.debug(pathname);
 
   return (
     <CContainer

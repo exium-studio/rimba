@@ -68,11 +68,7 @@ const EnrollButton = (props: any) => {
   }
 
   return (
-    <SigninDisclosureTrigger
-      id={"signin-fallback-start-learning"}
-      onClick={authToken ? startLearning : undefined}
-      mt={2}
-    >
+    <SigninDisclosureTrigger id={"signin-fallback-start-learning"} mt={2}>
       <Btn
         w={["full", null, "fit"]}
         colorPalette={"p"}

@@ -322,7 +322,7 @@ const DesktopTopNav = () => {
   return (
     <LPSectionContainer>
       <HStack
-        w={"fit"}
+        w={"full"}
         gap={8}
         p={2}
         mx={"auto"}
@@ -330,8 +330,9 @@ const DesktopTopNav = () => {
         backdropFilter={"blur(5px)"}
         rounded="xl"
         transition="200ms"
+        justify={"space-between"}
       >
-        <NavLink to="/" w={"fit"}>
+        <NavLink to="/" w={"224px"}>
           <PartnersLogo ml={2} />
         </NavLink>
 
@@ -442,7 +443,7 @@ const DesktopTopNav = () => {
           })}
         </HStack>
 
-        <HStack>
+        <HStack w={"224px"} justify={"end"}>
           <LangMenu
             color={"light"}
             size={MAIN_BUTTON_SIZE as any}
@@ -464,7 +465,7 @@ const DesktopTopNav = () => {
                 cursor={"pointer"}
                 p={2}
                 bg={"d2"}
-                rounded={"lg"}
+                rounded={"full"}
                 h={"40px"}
               >
                 <Avatar

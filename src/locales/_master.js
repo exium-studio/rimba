@@ -568,7 +568,7 @@ export const certificate = {
   en: "Certificate",
 };
 export const enroll_now = {
-  id: "Daftar sekarang",
+  id: "Gabung sekarang",
   en: "Enroll now",
 };
 

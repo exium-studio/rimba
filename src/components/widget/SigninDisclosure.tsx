@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/disclosure";
 import SigninForm from "@/components/widget/SigninForm";
 import { IMAGES_PATH } from "@/constants/paths";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { back } from "@/utils/client";
 import { SimpleGrid, useDisclosure } from "@chakra-ui/react";
@@ -53,13 +54,20 @@ export const SigninDisclosureTrigger = (props: any) => {
   // Props
   const { id, children, ...restProps } = props;
 
+  // Contexts
+  const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
+
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
   useBackOnClose(id || `signin`, open, onOpen, onClose);
 
   return (
     <>
-      <CContainer w={"fit"} onClick={onOpen} {...restProps}>
+      <CContainer
+        w={"fit"}
+        onClick={verifiedAuthToken ? undefined : onOpen}
+        {...restProps}
+      >
         {children}
       </CContainer>
 

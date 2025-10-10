@@ -148,7 +148,7 @@ export const MiniProfile = (props: StackProps) => {
           </Btn>
         </NavLink>
 
-        <NavLink to={`/profile`}>
+        <NavLink to={`/related-apps/kmis/profile`}>
           <Btn
             clicky={false}
             size={"md"}

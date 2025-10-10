@@ -20,35 +20,17 @@ import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-conte
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
+import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
-import { KMISTopicItem } from "@/components/widget/KMISTopicItem";
-import { Limitation } from "@/components/widget/Limitation";
-import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
-import { Pagination } from "@/components/widget/Pagination";
-import {
-  Interface__KMISTopic,
-  Interface__KMISTopicCategory,
-} from "@/constants/interfaces";
-import useContents from "@/context/useContents";
+import { Interface__KMISTopicCategory } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
-import { useScrollWithOffset } from "@/hooks/useScrollWithOffset";
 import { isEmptyArray } from "@/utils/array";
 import { capitalizeWords } from "@/utils/string";
-import {
-  HStack,
-  SimpleGrid,
-  Skeleton,
-  Stack,
-  StackProps,
-  useDisclosure,
-} from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
-
-interface Props extends StackProps {}
+import { Skeleton, useDisclosure } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 const AllCategory = (props: any) => {
   // Props
@@ -62,23 +44,42 @@ const AllCategory = (props: any) => {
   useBackOnClose(`all-category-filter`, open, onOpen, onClose);
 
   // States
+  const [search, setSearch] = useState<string>("");
   const { error, initialLoading, data, onRetry } = useDataState<
     Interface__KMISTopicCategory[]
   >({
     initialData: undefined,
     url: `/api/kmis/public-request/get-all-category`,
     params: {
-      limit: Infinity,
+      limit: 999999999,
     },
-    dependencies: [],
+    conditions: open,
+    dependencies: [open],
   });
+  const resolvedData = data?.filter((item) =>
+    item.title.toLowerCase().includes(search.toLowerCase())
+  );
   const render = {
     loading: <Skeleton rounded={"lg"} minH={"176px"} />,
     error: <FeedbackRetry onRetry={onRetry} />,
     empty: <FeedbackNoData />,
     loaded: (
       <CContainer gap={4}>
-        {data?.map((category) => {
+        <SearchInput
+          queryKey="all-category-search"
+          inputProps={{
+            variant: "flushed",
+            rounded: 0,
+          }}
+          inputValue={search}
+          onChange={(inputValue) => {
+            setSearch(inputValue);
+          }}
+        />
+
+        {isEmptyArray(resolvedData) && <FeedbackNotFound />}
+
+        {resolvedData?.map((category) => {
           const isChecked = filter.category.includes(category.id);
 
           return (
@@ -88,7 +89,7 @@ const AllCategory = (props: any) => {
               onCheckedChange={(e) => {
                 setFilter({
                   ...filter,
-                  category: e
+                  category: e.checked
                     ? [...filter.category, category.id]
                     : filter.category.filter(
                         (id: string) => id !== category.id
@@ -122,7 +123,7 @@ const AllCategory = (props: any) => {
             />
           </DisclosureHeader>
 
-          <DisclosureBody>
+          <DisclosureBody pt={2}>
             <CContainer gap={4}>
               {initialLoading && render.loading}
               {!initialLoading && (
@@ -140,8 +141,14 @@ const AllCategory = (props: any) => {
           </DisclosureBody>
 
           <DisclosureFooter>
-            <Btn variant={"outline"}>Reset</Btn>
-            <Btn colorPalette={"p"}>{l.apply}</Btn>
+            <Btn
+              variant={"outline"}
+              onClick={() => {
+                setFilter({ ...filter, category: [] });
+              }}
+            >
+              Reset
+            </Btn>
           </DisclosureFooter>
         </DisclosureContent>
       </DisclosureRoot>
@@ -162,7 +169,7 @@ const CategoryFilter = (props: any) => {
     initialData: undefined,
     url: `/api/kmis/public-request/get-all-category`,
     params: {
-      limit: 5,
+      limit: 15,
     },
     dependencies: [],
   });
@@ -186,7 +193,7 @@ const CategoryFilter = (props: any) => {
               onCheckedChange={(e) => {
                 setFilter({
                   ...filter,
-                  category: e
+                  category: e.checked
                     ? [...filter.category, category.id]
                     : filter.category.filter(
                         (id: string) => id !== category.id
@@ -236,14 +243,19 @@ const CategoryFilter = (props: any) => {
           )}
 
           <CContainer p={2} pt={0}>
-            <AllCategory w={"full"} mt={4} filter={filter} setFilter={filter} />
+            <AllCategory
+              w={"full"}
+              mt={4}
+              filter={filter}
+              setFilter={setFilter}
+            />
           </CContainer>
         </AccordionItemContent>
       </AccordionItem>
     </AccordionRoot>
   );
 };
-const Filters = (props: any) => {
+export const KMISCourseFilters = (props: any) => {
   // Props
   const { filter, setFilter, ...restProps } = props;
 
@@ -258,6 +270,10 @@ const Filters = (props: any) => {
     setFilter(localFilter);
   }
 
+  useEffect(() => {
+    setLocalFilter(filter);
+  }, [filter]);
+
   return (
     <CContainer flex={1} gap={4} {...restProps}>
       <CategoryFilter filter={localFilter} setFilter={setLocalFilter} />
@@ -266,148 +282,5 @@ const Filters = (props: any) => {
         {l.apply} filter
       </Btn>
     </CContainer>
-  );
-};
-
-const Data = (props: any) => {
-  // Props
-  const { filter, ...restProps } = props;
-
-  // Hooks
-  const scrollTo = useScrollWithOffset();
-
-  // Refs
-  const topicListContainerRef = useRef<HTMLDivElement>(null);
-
-  // States
-  const [fr, setFr] = useState<boolean>(true);
-  const {
-    error,
-    initialLoading,
-    data,
-    onRetry,
-    limit,
-    setLimit,
-    page,
-    setPage,
-    pagination,
-  } = useDataState<Interface__KMISTopic[]>({
-    initialData: undefined,
-    url: `/api/kmis/public-request/get-all-topic`,
-    params: {
-      search: filter.search,
-      category: filter.category,
-    },
-    dependencies: [],
-  });
-  const render = {
-    loading: <Skeleton rounded={"lg"} h={"full"} />,
-    error: <FeedbackRetry onRetry={onRetry} />,
-    empty: <FeedbackNoData />,
-    loaded: (
-      <CContainer ref={topicListContainerRef} gap={4}>
-        <SimpleGrid columns={[1, 2, 3, null, 4]} gap={4}>
-          {data?.map((topic, idx) => {
-            return <KMISTopicItem key={idx} topic={topic} idx={idx} />;
-          })}
-        </SimpleGrid>
-
-        <HStack justify={"space-between"}>
-          <Limitation limit={limit} setLimit={setLimit} />
-
-          <Pagination
-            page={page}
-            setPage={setPage}
-            totalPage={pagination?.meta?.last_page}
-          />
-        </HStack>
-      </CContainer>
-    ),
-  };
-
-  useEffect(() => {
-    if (!fr) {
-      if (data) {
-        scrollTo(topicListContainerRef, 122);
-      }
-    } else {
-      if (data) {
-        setFr(false);
-      }
-    }
-  }, [data]);
-
-  return (
-    <CContainer flex={3} {...restProps}>
-      {initialLoading && render.loading}
-      {!initialLoading && (
-        <>
-          {error && render.error}
-          {!error && (
-            <>
-              {data && render.loaded}
-              {(!data || isEmptyArray(data)) && render.empty}
-            </>
-          )}
-        </>
-      )}
-    </CContainer>
-  );
-};
-
-export const KMISAllTopics = (props: Props) => {
-  // Props
-  const { ...restProps } = props;
-
-  // Contexts
-  const { lang } = useLang();
-  const staticContents = useContents((s) => s.staticContents);
-
-  // States
-  const DEFAULT_FILTER = {
-    search: "",
-    category: [],
-  };
-  const [filter, setFilter] = useState(DEFAULT_FILTER);
-
-  return (
-    <LPSectionContainer
-      outerContainerProps={{
-        flex: 1,
-      }}
-      flex={1}
-      pb={[4, null, 12]}
-      {...restProps}
-    >
-      {/* Filters */}
-      <HStack wrap={"wrap"} gap={4}>
-        <CContainer flex={"2 0 300px"} gap={1}>
-          <EditableContentContainer content={staticContents[118]} w={"fit"}>
-            <P fontSize={"lg"} fontWeight={"semibold"}>
-              {staticContents[118]?.content[lang]}
-            </P>
-          </EditableContentContainer>
-
-          <EditableContentContainer content={staticContents[119]} w={"fit"}>
-            <P color={"fg.subtle"}>{staticContents[119]?.content[lang]}</P>
-          </EditableContentContainer>
-        </CContainer>
-
-        <SearchInput flex={"1 1 200px"} />
-      </HStack>
-
-      {/* Content */}
-      <Stack
-        flexDir={["column", null, "row"]}
-        mt={4}
-        align={"stretch"}
-        gapX={8}
-        gapY={4}
-      >
-        <Filters filter={filter} setFilter={setFilter} />
-
-        <Data filter={filter} />
-      </Stack>
-    </LPSectionContainer>
   );
 };

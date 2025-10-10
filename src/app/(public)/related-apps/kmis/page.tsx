@@ -1,6 +1,6 @@
 "use client";
 
-import { KMISAllTopics } from "@/components/kmisSections/KMISAllTopics";
+import { KMISAllCourses } from "@/components/kmisSections/KMISAllCourses";
 import { KMISHero } from "@/components/kmisSections/KMISHero";
 import { LPFooter } from "@/components/lpSections/LPFooter";
 import { CContainer } from "@/components/ui/c-container";
@@ -20,7 +20,7 @@ export default function Page() {
       >
         <KMISHero />
 
-        <KMISAllTopics />
+        <KMISAllCourses />
       </CContainer>
 
       <LPFooter />

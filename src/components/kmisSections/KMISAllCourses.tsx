@@ -138,7 +138,6 @@ export const KMISAllCourses = (props: Props) => {
       pb={[4, null, 12]}
       {...restProps}
     >
-      {/* Filters */}
       <HStack wrap={"wrap"} gap={4}>
         <CContainer flex={"2 0 300px"} gap={1}>
           <EditableContentContainer content={staticContents[118]} w={"fit"}>

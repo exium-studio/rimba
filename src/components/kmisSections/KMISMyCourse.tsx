@@ -4,7 +4,6 @@ import { KMISCourseFilters } from "@/components/kmisSections/KMISCourseFilters";
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
-import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { KMISTopicItem } from "@/components/widget/KMISTopicItem";
@@ -12,7 +11,6 @@ import { Limitation } from "@/components/widget/Limitation";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Pagination } from "@/components/widget/Pagination";
 import { Interface__KMISQuizAssessment } from "@/constants/interfaces";
-import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import { useScrollWithOffset } from "@/hooks/useScrollWithOffset";
@@ -119,8 +117,7 @@ export const KMISMyCourses = (props: Props) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { lang } = useLang();
-  const staticContents = useContents((s) => s.staticContents);
+  const { l } = useLang();
 
   // States
   const DEFAULT_FILTER = {
@@ -138,29 +135,6 @@ export const KMISMyCourses = (props: Props) => {
       pb={[4, null, 12]}
       {...restProps}
     >
-      {/* Filters */}
-      <HStack wrap={"wrap"} gap={4}>
-        <CContainer flex={"2 0 300px"} gap={1}>
-          <EditableContentContainer content={staticContents[118]} w={"fit"}>
-            <P fontSize={"lg"} fontWeight={"semibold"}>
-              {staticContents[118]?.content[lang]}
-            </P>
-          </EditableContentContainer>
-
-          <EditableContentContainer content={staticContents[119]} w={"fit"}>
-            <P color={"fg.subtle"}>{staticContents[119]?.content[lang]}</P>
-          </EditableContentContainer>
-        </CContainer>
-
-        <SearchInput
-          flex={"1 1 200px"}
-          inputValue={filter.search}
-          onChange={(inputValue) => {
-            setFilter({ ...filter, search: inputValue });
-          }}
-        />
-      </HStack>
-
       {/* Content */}
       <Stack
         flexDir={["column", null, "row"]}
@@ -171,7 +145,25 @@ export const KMISMyCourses = (props: Props) => {
       >
         <KMISCourseFilters filter={filter} setFilter={setFilter} />
 
-        <Data filter={filter} />
+        <CContainer flex={3}>
+          <HStack wrap={"wrap"} gap={4}>
+            <CContainer flex={"2 0 300px"} gap={1}>
+              <P fontSize={"lg"} fontWeight={"semibold"}>
+                {l.my_course}
+              </P>
+            </CContainer>
+
+            <SearchInput
+              flex={"1 1 200px"}
+              inputValue={filter.search}
+              onChange={(inputValue) => {
+                setFilter({ ...filter, search: inputValue });
+              }}
+            />
+          </HStack>
+
+          <Data filter={filter} />
+        </CContainer>
       </Stack>
     </LPSectionContainer>
   );

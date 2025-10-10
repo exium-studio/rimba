@@ -465,7 +465,7 @@ const DesktopTopNav = () => {
                 cursor={"pointer"}
                 p={2}
                 bg={"d2"}
-                rounded={"full"}
+                rounded={"lg"}
                 h={"40px"}
               >
                 <Avatar

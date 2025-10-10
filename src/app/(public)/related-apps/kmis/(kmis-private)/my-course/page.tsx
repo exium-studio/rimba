@@ -24,7 +24,7 @@ export default function Page() {
         zIndex={2}
         pt={"138px"}
       >
-        <LPSectionContainer mb={4}>
+        <LPSectionContainer mb={0}>
           <Breadcrumbs
             links={[
               {

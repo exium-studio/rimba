@@ -505,7 +505,15 @@ export const TopNav = () => {
   const ciss = sw < 1200;
 
   return (
-    <CContainer w="full" p={4} pos={"fixed"} left={0} top={0} zIndex={10}>
+    <CContainer
+      w="full"
+      p={4}
+      px={ciss ? 4 : 0}
+      pos={"fixed"}
+      left={0}
+      top={0}
+      zIndex={10}
+    >
       {ciss && <MobileTopNav />}
 
       {!ciss && <DesktopTopNav />}

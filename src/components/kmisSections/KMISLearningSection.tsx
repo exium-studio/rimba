@@ -10,7 +10,6 @@ import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import FeedbackState from "@/components/widget/FeedbackState";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
-import { MiniProfile } from "@/components/widget/MiniProfile";
 import VideoPlayer from "@/components/widget/VideoPlayer";
 import {
   Interface__KMISMaterial,
@@ -141,6 +140,7 @@ const MaterialList = (props: any) => {
   const { l } = useLang();
 
   // States
+  const completedMaterialIds = topicDetail.completedMaterialIds || [];
   const materials = topicDetail.material;
 
   return (
@@ -167,6 +167,7 @@ const MaterialList = (props: any) => {
               onClick={() => {
                 setActiveMaterialId(material.id);
               }}
+              disabled={!completedMaterialIds?.includes(material.id)}
             >
               <Icon>{materialProps.icon}</Icon>
 
@@ -184,7 +185,12 @@ const MaterialList = (props: any) => {
           );
         })}
 
-        <ListItemContainer>
+        <ListItemContainer
+          disabled={
+            completedMaterialIds.length === topicDetail?.totalMaterial ||
+            topicDetail?.topic?.totalQuiz === 0
+          }
+        >
           <Icon>
             <IconHelpHexagon stroke={1.5} />
           </Icon>
@@ -276,7 +282,7 @@ export const KMISLearningSection = (props: Props) => {
     >
       <Stack flexDir={["column", null, "row"]} gap={4}>
         <CContainer flex={1} gap={4}>
-          <MiniProfile />
+          {/* <MiniProfile /> */}
 
           <MaterialList
             topicDetail={topicDetail}

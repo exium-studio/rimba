@@ -16,7 +16,6 @@ import { Breadcrumbs } from "@/components/widget/Breadcrumbs";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
-import { MiniProfile } from "@/components/widget/MiniProfile";
 import { TopNav } from "@/components/widget/TopNav";
 import {
   Interface__SelectOption,
@@ -350,9 +349,9 @@ export default function Page() {
           />
 
           <Stack flexDir={["column", null, "row"]} gap={4}>
-            <CContainer flex={1}>
+            {/* <CContainer flex={1}>
               <MiniProfile />
-            </CContainer>
+            </CContainer> */}
 
             <EditProfile />
           </Stack>

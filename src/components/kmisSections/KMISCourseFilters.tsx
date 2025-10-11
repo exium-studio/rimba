@@ -244,7 +244,7 @@ const CategoryFilter = (props: any) => {
           <P>{l.category}</P>
         </AccordionItemTrigger>
 
-        <AccordionItemContent p={0} pt={4}>
+        <AccordionItemContent p={0} pt={2}>
           {initialLoading && render.loading}
           {!initialLoading && (
             <>

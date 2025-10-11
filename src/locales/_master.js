@@ -619,7 +619,20 @@ export const learning_material = {
   id: "Materi pembelajaran",
   en: "Learning material",
 };
+export const question = {
+  id: "Pertanyaan",
+  en: "Question",
+};
+export const answer = {
+  id: "Jawaban",
+  en: "Answer",
+};
+
 // Message
+export const msg_select_material_first = {
+  id: "Pilih materi terlebih dahulu",
+  en: "Please select material first",
+};
 export const msg_location_test_helper = {
   id: "Klik dapatkan lokasi untuk mendapatkan data lokasi.",
   en: "Click get location to get location data.",

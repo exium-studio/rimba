@@ -160,13 +160,7 @@ export const KMISAllCourses = (props: Props) => {
       </HStack>
 
       {/* Content */}
-      <Stack
-        flexDir={["column", null, "row"]}
-        mt={4}
-        align={"stretch"}
-        gapX={8}
-        gapY={4}
-      >
+      <Stack flexDir={["column", null, "row"]} mt={4} align={"stretch"} gap={4}>
         <KMISCourseFilters filter={filter} setFilter={setFilter} />
 
         <Data filter={filter} />

@@ -4,10 +4,13 @@ import { KMISLearningSection } from "@/components/kmisSections/KMISLearningSecti
 import { LPFooter } from "@/components/lpSections/LPFooter";
 import { CContainer } from "@/components/ui/c-container";
 import { Breadcrumbs } from "@/components/widget/Breadcrumbs";
+import FeedbackNoData from "@/components/widget/FeedbackNoData";
+import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { TopNav } from "@/components/widget/TopNav";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
+import { HStack, Skeleton } from "@chakra-ui/react";
 import React from "react";
 
 interface Props {
@@ -30,21 +33,19 @@ export default function Page(props: Props) {
     dependencies: [],
     dataResource: false,
   });
-
-  console.debug(data);
-
-  return (
-    <CContainer>
-      <TopNav />
-
-      <CContainer
-        bg={"bgContent"}
-        rounded={"3xl"}
-        overflow={"clip"}
-        zIndex={2}
-        pt={"120px"}
-        pb={[4, null, 12]}
-      >
+  const render = {
+    loading: (
+      <LPSectionContainer minH={"500px"}>
+        <HStack flex={1} gap={8} w={"full"} align={"stretch"}>
+          <Skeleton flex={1} />
+          <Skeleton flex={3.5} />
+        </HStack>
+      </LPSectionContainer>
+    ),
+    error: <FeedbackRetry onRetry={onRetry} />,
+    empty: <FeedbackNoData />,
+    loaded: (
+      <>
         <LPSectionContainer mb={4}>
           <Breadcrumbs
             links={[
@@ -64,7 +65,35 @@ export default function Page(props: Props) {
           />
         </LPSectionContainer>
 
-        <KMISLearningSection topicId={topicId} />
+        <KMISLearningSection topicDetail={data} />
+      </>
+    ),
+  };
+
+  return (
+    <CContainer>
+      <TopNav />
+
+      <CContainer
+        bg={"bgContent"}
+        rounded={"3xl"}
+        overflow={"clip"}
+        zIndex={2}
+        pt={"120px"}
+        pb={[4, null, 12]}
+      >
+        {initialLoading && render.loading}
+        {!initialLoading && (
+          <>
+            {error && render.error}
+            {!error && (
+              <>
+                {data && render.loaded}
+                {!data && render.empty}
+              </>
+            )}
+          </>
+        )}
       </CContainer>
 
       <LPFooter />

@@ -14,6 +14,7 @@ import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import BackButton from "@/components/widget/BackButton";
+import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { Interface__KMISTopic } from "@/constants/interfaces";
@@ -328,13 +329,13 @@ export const KMISCourseItem = (props: Props) => {
           </P>
         </Badge>
 
-        <P fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
+        <ClampText fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
           {topic.title}
-        </P>
+        </ClampText>
 
-        <P color={"fg.subtle"} lineClamp={1}>
+        <ClampText color={"fg.subtle"} lineClamp={1}>
           {topic.description}
-        </P>
+        </ClampText>
       </CContainer>
 
       <CContainer gap={2} p={2} pt={0}>

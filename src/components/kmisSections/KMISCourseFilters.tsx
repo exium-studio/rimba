@@ -31,7 +31,8 @@ import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
 import { capitalizeWords } from "@/utils/string";
-import { Skeleton, useDisclosure } from "@chakra-ui/react";
+import { Icon, Skeleton, useDisclosure } from "@chakra-ui/react";
+import { IconCaretDownFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 const AllCategory = (props: any) => {
@@ -111,8 +112,17 @@ const AllCategory = (props: any) => {
 
   return (
     <>
-      <Btn variant={"outline"} onClick={onOpen} {...restProps}>
+      <Btn
+        variant={"outline"}
+        onClick={onOpen}
+        justifyContent={"space-between"}
+        {...restProps}
+      >
         {l.all_categories}
+
+        <Icon color={"fg.subtle"} boxSize={4} mr={"-2px"}>
+          <IconCaretDownFilled stroke={1.5} />
+        </Icon>
       </Btn>
 
       <DisclosureRoot open={open} lazyLoad size={"xs"}>

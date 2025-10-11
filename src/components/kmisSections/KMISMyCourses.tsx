@@ -54,7 +54,7 @@ const Data = (props: any) => {
     url: `/api/kmis/learning-course/get-all-learning-attempt`,
     params: {
       search: filter.search,
-      category: filter.category,
+      categoryId: filter.category,
     },
     dependencies: [filter],
   });

@@ -17,12 +17,7 @@ import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
 import { imgUrl } from "@/utils/url";
 import { Icon, StackProps } from "@chakra-ui/react";
-import {
-  IconBook2,
-  IconCertificate2,
-  IconLogout,
-  IconUser,
-} from "@tabler/icons-react";
+import { IconBook2, IconLogout, IconUser } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 
 export const MiniProfile = (props: StackProps) => {
@@ -123,27 +118,6 @@ export const MiniProfile = (props: StackProps) => {
             {l.my_course}
 
             {pathname.includes("/related-apps/kmis/my-course") && (
-              <DotIndicator ml={"auto"} mr={1} />
-            )}
-          </Btn>
-        </NavLink>
-
-        <NavLink to={`/related-apps/kmis/my-certificate`}>
-          <Btn
-            clicky={false}
-            size={"md"}
-            px={2}
-            variant={"ghost"}
-            justifyContent={"start"}
-            pos={"relative"}
-          >
-            <Icon boxSize={5}>
-              <IconCertificate2 stroke={1.5} />
-            </Icon>
-
-            {l.certificate}
-
-            {pathname.includes("/related-apps/kmis/my-certificate") && (
               <DotIndicator ml={"auto"} mr={1} />
             )}
           </Btn>

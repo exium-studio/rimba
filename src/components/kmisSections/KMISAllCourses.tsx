@@ -55,7 +55,7 @@ const Data = (props: any) => {
     url: `/api/kmis/public-request/get-all-topic`,
     params: {
       search: filter.search,
-      category: filter.category,
+      categoryId: filter.category,
     },
     dependencies: [filter],
   });

@@ -4,6 +4,7 @@ import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useRequest from "@/hooks/useRequest";
 import { getAuthToken } from "@/utils/auth";
+import { setStorage } from "@/utils/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -46,6 +47,7 @@ export default function PrivateRoutesLayout({ children }: Props) {
         onResolve: {
           onSuccess: (r) => {
             const user = r.data.data;
+            setStorage("__user_data", JSON.stringify(user));
             setVerifiedAuthToken(authToken);
             setRole(user.role);
             setPermissions(user.role.permissions);

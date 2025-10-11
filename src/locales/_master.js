@@ -649,6 +649,10 @@ export const successful = {
 };
 
 // Message
+export const msg_reload_after_submit = {
+  id: "Halaman akan reload setelah submit",
+  en: "Page will reload after submit",
+};
 export const msg_select_material_first = {
   id: "Pilih materi terlebih dahulu",
   en: "Please select material first",

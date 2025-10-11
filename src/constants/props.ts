@@ -229,10 +229,12 @@ export interface Props__TextareaInput extends Omit<TextareaProps, "onChange"> {
 
 export interface Props__FileInput
   extends Omit<FileUploadRootProps, "onChange"> {
+  id?: string;
   fRef?: any;
   inputValue?: File[];
   onChange?: (inputValue: Props__FileInput["inputValue"]) => void;
   accept?: string;
+  acceptPlaceholder?: string;
   invalid?: boolean;
   placeholder?: string;
   label?: string;
@@ -248,9 +250,15 @@ export interface Props__FileInput
 export interface Props__FileInputInputComponent
   extends Omit<Props__FileInput, "removed"> {
   existing: Interface__StorageFile[];
+  showDropzoneIcon?: boolean;
+  showDropzoneLabel?: boolean;
+  showDropzoneDescription?: boolean;
+  acceptPlaceholder?: string;
+  imgInput?: boolean;
 }
-export interface Props__FileItem {
+export interface Props__FileItem extends StackProps {
   fileData: any;
+  idx?: number;
   actions?: {
     type: "remove" | "delete" | "undo_delete";
     onClick: () => void;

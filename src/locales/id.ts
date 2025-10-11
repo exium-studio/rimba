@@ -257,6 +257,7 @@ const translations = {
   "msg_password_confirmation_not_match": "Konfirmasi kata sandi tidak cocok",
   "msg_permissions_denied_helper": "Jika ingin memberi akses kembali, buka",
   "msg_permissions_granted_helper": "Jika ingin menonaktifkan, buka",
+  "msg_reload_after_submit": "Halaman akan reload setelah submit",
   "msg_required_form": "Tidak boleh kosong",
   "msg_reset_password_step_1": "Langkah pertama, masukkan email Anda dan kami akan mengirimkan OTP untuk mengatur ulang kata sandi Anda.",
   "msg_reset_password_step_2": "Langkah kedua, verifikasi OTP",

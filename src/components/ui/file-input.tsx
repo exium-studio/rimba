@@ -16,8 +16,9 @@ import {
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";
-import { formatBytes } from "@/utils/formatter";
-import { Icon, useFieldContext } from "@chakra-ui/react";
+import { makeFileUrl } from "@/utils/file";
+import { formatBytes, formatNumber } from "@/utils/formatter";
+import { Center, Icon, useFieldContext } from "@chakra-ui/react";
 import { IconTrash, IconUpload, IconX } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import {
@@ -25,11 +26,10 @@ import {
   FileUploadRoot,
   FileUploadTrigger,
 } from "../ui/file-button";
-import { makeFileUrl } from "@/utils/file";
 
 const FileList = (props: any) => {
   // Props
-  const { inputValue, onChange, ...restProps } = props;
+  const { inputValue, onChange, existing, ...restProps } = props;
 
   return (
     <CContainer gap={2} {...restProps}>
@@ -44,11 +44,12 @@ const FileList = (props: any) => {
         return (
           <FileItem
             key={idx}
+            idx={existing.length + idx}
             fileData={fileData}
             actions={[
               {
                 type: "remove",
-                icon: <IconX stroke={1.5} />,
+                icon: <IconX />,
                 onClick: () => {
                   const next = inputValue.filter(
                     (_file: File, i: number) => i !== idx
@@ -63,13 +64,15 @@ const FileList = (props: any) => {
     </CContainer>
   );
 };
-const InputComponent = (props: Props__FileInputInputComponent) => {
+export const InputComponent = (props: Props__FileInputInputComponent) => {
   // Props
   const {
     fRef,
+    children,
     onChange,
     inputValue,
     accept,
+    acceptPlaceholder,
     invalid,
     placeholder,
     label,
@@ -79,6 +82,10 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
     description,
     disabled,
     existing,
+    showDropzoneIcon = true,
+    showDropzoneLabel = true,
+    showDropzoneDescription = true,
+    imgInput,
     // removed,
     ...restProps
   } = props;
@@ -108,12 +115,12 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
   const resolvedDescription = singleFileInputted
     ? formatBytes(singleFile?.size)
     : description ||
-      `up to ${maxFileSize} mB, max ${maxFiles - existingCount || 1} file${
+      `up to ${maxFileSize} mB, max ${maxFiles || 1} file${
         maxFiles! > 1 ? "s" : ""
-      } ${accept ? `(${accept})` : ""}`;
+      } ${acceptPlaceholder ? `(${acceptPlaceholder})` : ""}`;
 
   // disable if disabled prop true or already have maxFiles existing
-  const resolvedDisabled = disabled || existingCount >= maxFiles;
+  const resolvedDisabled = fc.disabled || disabled || existingCount >= maxFiles;
 
   // Utils
   function handleFileChange(details: any) {
@@ -183,8 +190,8 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
             <Tooltip content={"Reset"}>
               <CloseButton
                 pos={"absolute"}
-                top={3}
-                right={3}
+                top={"6px"}
+                right={"6px"}
                 size={"xs"}
                 variant={"plain"}
                 color={"fg.subtle"}
@@ -205,9 +212,24 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
               borderColor={
                 invalid ?? fc?.invalid ? "border.error" : "border.muted"
               }
-              opacity={resolvedDisabled ? 0.5 : 1}
+              disabled={resolvedDisabled}
               cursor={resolvedDisabled ? "disabled" : "pointer"}
-            />
+              showIcon={showDropzoneIcon}
+              showLabel={showDropzoneLabel}
+              showDescription={showDropzoneDescription}
+              imgInput={imgInput}
+            >
+              <Center
+                mt={
+                  imgInput &&
+                  (!isEmptyArray(inputValue) || !isEmptyArray(existing))
+                    ? 7
+                    : -4
+                }
+              >
+                {children}
+              </Center>
+            </FileUploadDropzone>
           ) : (
             <FileUploadTrigger asChild borderColor={invalid ? "fg.error" : ""}>
               <Btn
@@ -224,12 +246,21 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
             </FileUploadTrigger>
           )}
 
-          {!singleFileInputted && inputValue && (
-            <FileList
-              inputValue={inputValue}
-              onChange={onChange}
-              setKey={setKey}
-            />
+          {!singleFileInputted && inputValue && !isEmptyArray(inputValue) && (
+            <CContainer gap={2}>
+              {(!isEmptyArray(existing) || !isEmptyArray(inputValue)) && (
+                <P fontSize={"sm"} color={"fg.subtle"}>{`Total : ${formatNumber(
+                  inputValue.length + existing.length
+                )}`}</P>
+              )}
+
+              <FileList
+                inputValue={inputValue}
+                onChange={onChange}
+                setKey={setKey}
+                existing={existing}
+              />
+            </CContainer>
           )}
         </>
       </FileUploadRoot>
@@ -244,8 +275,10 @@ export const FileInput = (props: Props__FileInput) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
+  const fc = useFieldContext();
 
   // States
+  const resolvedDisabled = fc.disabled;
   const [existing, setExisting] = useState<Interface__StorageFile[]>(
     existingFiles || []
   );
@@ -261,7 +294,11 @@ export const FileInput = (props: Props__FileInput) => {
           borderColor={"border.muted"}
           rounded={themeConfig.radii.container}
         >
-          <CContainer gap={2}>
+          <CContainer
+            gap={2}
+            opacity={resolvedDisabled ? 0.5 : 1}
+            cursor={resolvedDisabled ? "disabled" : "auto"}
+          >
             <P fontWeight={"medium"} pl={1}>
               {l.uploaded_file}
             </P>
@@ -270,6 +307,7 @@ export const FileInput = (props: Props__FileInput) => {
               return (
                 <FileItem
                   key={idx}
+                  idx={idx}
                   fileData={fileData}
                   actions={[
                     {
@@ -299,7 +337,11 @@ export const FileInput = (props: Props__FileInput) => {
           borderColor={"border.muted"}
           rounded={themeConfig.radii.container}
         >
-          <CContainer gap={2}>
+          <CContainer
+            gap={2}
+            opacity={resolvedDisabled ? 0.5 : 1}
+            cursor={resolvedDisabled ? "disabled" : "auto"}
+          >
             <P fontWeight={"medium"} pl={1}>
               {l.deleted_file}
             </P>

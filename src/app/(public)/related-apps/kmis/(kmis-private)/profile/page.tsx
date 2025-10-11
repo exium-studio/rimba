@@ -5,6 +5,8 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { Field } from "@/components/ui/field";
+import { HelperText } from "@/components/ui/helper-text";
+import { ImgInput } from "@/components/ui/img-input";
 import { P } from "@/components/ui/p";
 import PhoneNumberInput from "@/components/ui/phone-number-input";
 import { SelectInput } from "@/components/ui/select-input";
@@ -24,6 +26,7 @@ import { OPTIONS_GENDER } from "@/constants/selectOptions";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
+import { isEmptyArray } from "@/utils/array";
 import { toLocalISODate } from "@/utils/date";
 import { fileValidation } from "@/utils/validationSchema";
 import {
@@ -76,20 +79,24 @@ const ProfileForm = (props: any) => {
       address: yup.string(),
       files: fileValidation({
         maxSizeMB: 10,
-        allowedExtensions: [".png", ".jpg", ".jpeg"],
+        allowedExtensions: ["png", "jpg", "jpeg"],
       }),
     }),
     onSubmit: (values) => {
-      const payload = {
-        name: values.name,
-        email: values.email,
-        birthDate: toLocalISODate(values.birthDate?.[0]),
-        gender: values.gender?.[0]?.id,
-        phoneNumber: values.phoneNumber,
-        profession: values.profession,
-        address: values.address,
-        files: values.files,
-      };
+      const payload = new FormData();
+      payload.append("name", values.name);
+      payload.append("email", values.email);
+      payload.append(
+        "birthDate",
+        toLocalISODate(values.birthDate?.[0]) as string
+      );
+      payload.append("gender", values.gender?.[0]?.id);
+      payload.append("phoneNumber", values.phoneNumber);
+      payload.append("profession", values.profession);
+      payload.append("address", values.address);
+      if (!isEmptyArray(values.files)) {
+        payload.append("files", values.files[0]);
+      }
       const config = {
         url: `/api/profile/update-profile`,
         method: "PATCH",
@@ -98,6 +105,11 @@ const ProfileForm = (props: any) => {
 
       req({
         config,
+        onResolve: {
+          onSuccess: () => {
+            window.location.reload();
+          },
+        },
       });
     },
   });
@@ -124,6 +136,22 @@ const ProfileForm = (props: any) => {
     <CContainer p={4} rounded={"xl"} bg={"body"} flex={1} {...restProps}>
       <form id={"edit_profile"} onSubmit={formik.handleSubmit}>
         <FieldRoot gap={4}>
+          <Field
+            label={"Avatar"}
+            invalid={!!formik.errors.files}
+            errorText={formik.errors.files as string}
+          >
+            <ImgInput
+              inputValue={formik.values.files}
+              onChange={(inputValue) => {
+                formik.setFieldValue("files", inputValue);
+              }}
+              accept="image/png, image/jpg, image/jpeg"
+              acceptPlaceholder=".png, .jpg, .jpeg"
+              existingFiles={user?.photoProfile}
+            />
+          </Field>
+
           <SimpleGrid w={"full"} columns={[1, null, 2]} gapX={8} gapY={4}>
             <Field
               label={l.name}
@@ -221,6 +249,8 @@ const ProfileForm = (props: any) => {
           </Field>
         </FieldRoot>
       </form>
+
+      <HelperText mt={4}>{l.msg_reload_after_submit}</HelperText>
 
       <Btn
         w={"fit"}

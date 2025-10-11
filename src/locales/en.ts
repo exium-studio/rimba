@@ -257,6 +257,7 @@ const translations = {
   "msg_password_confirmation_not_match": "Password confirmation does not match",
   "msg_permissions_denied_helper": "If you want to grant access again, go to",
   "msg_permissions_granted_helper": "If you want to disable it, go to",
+  "msg_reload_after_submit": "Page will reload after submit",
   "msg_required_form": "Cannot be empty",
   "msg_reset_password_step_1": "First step, enter your email and we will send you an OTP to reset your password.",
   "msg_reset_password_step_2": "Second step, verify OTP",

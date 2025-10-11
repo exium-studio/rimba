@@ -1,5 +1,8 @@
 "use client";
 
+import { FileIcon } from "@/components/ui/file-icon";
+import { P } from "@/components/ui/p";
+import { useThemeConfig } from "@/context/useThemeConfig";
 import type { ButtonProps, RecipeProps } from "@chakra-ui/react";
 import {
   Button,
@@ -7,15 +10,11 @@ import {
   Icon,
   IconButton,
   Span,
-  Text,
   useFileUploadContext,
   useRecipe,
 } from "@chakra-ui/react";
 import { IconUpload, IconX } from "@tabler/icons-react";
 import { forwardRef } from "react";
-import { useThemeConfig } from "@/context/useThemeConfig";
-import { FileIcon } from "@/components/ui/file-icon";
-import { P } from "@/components/ui/p";
 
 export interface FileUploadRootProps extends ChakraFileUpload.RootProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
@@ -36,34 +35,62 @@ export const FileUploadRoot = forwardRef<HTMLInputElement, FileUploadRootProps>(
 export interface FileUploadDropzoneProps
   extends ChakraFileUpload.DropzoneProps {
   icon: any;
-  label?: React.ReactNode;
-  description?: React.ReactNode;
+  label?: string;
+  description?: string;
+  showIcon?: boolean;
+  showLabel?: boolean;
+  showDescription?: boolean;
+  imgInput?: boolean;
+  disabled?: boolean;
 }
 
 export const FileUploadDropzone = forwardRef<
   HTMLInputElement,
   FileUploadDropzoneProps
 >(function FileUploadDropzone(props, ref) {
-  const { children, icon, label, description, ...rest } = props;
+  const {
+    children,
+    icon,
+    label,
+    description,
+    showIcon = true,
+    showLabel = true,
+    showDescription = true,
+    disabled,
+    imgInput,
+    ...rest
+  } = props;
 
   return (
     <ChakraFileUpload.Dropzone
       ref={ref}
       cursor={"pointer"}
       bg={"body"}
+      overflow={"auto"}
+      p={imgInput ? 0 : 4}
       {...rest}
       _hover={{ bg: "gray.subtle" }}
     >
-      <Icon fontSize="2xl" color="fg.muted">
-        {icon || <IconUpload />}
-      </Icon>
-      <ChakraFileUpload.DropzoneContent>
-        <P>{label}</P>
-        {description && (
-          <Text color="fg.muted">{description || ".* up to 5MB"}</Text>
-        )}
-      </ChakraFileUpload.DropzoneContent>
+      {showIcon && (
+        <Icon fontSize="2xl" color="fg.muted" opacity={disabled ? 0.4 : 1}>
+          {icon || <IconUpload />}
+        </Icon>
+      )}
+
       {children}
+
+      {(showLabel || showDescription) && (
+        <ChakraFileUpload.DropzoneContent
+          opacity={disabled ? 0.4 : 1}
+          mb={imgInput ? "28px" : ""}
+        >
+          {showLabel && <P>{label}</P>}
+
+          {showDescription && description && (
+            <P color="fg.muted">{description || ".* up to 5MB"}</P>
+          )}
+        </ChakraFileUpload.DropzoneContent>
+      )}
     </ChakraFileUpload.Dropzone>
   );
 });

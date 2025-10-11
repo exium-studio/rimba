@@ -313,8 +313,6 @@ const DesktopTopNav = () => {
   const pathname = usePathname();
   const [, setScrolled] = useState(false);
 
-  console.debug("Jancok");
-
   // handle scroll
   useEffect(() => {
     const handleScroll = () => {

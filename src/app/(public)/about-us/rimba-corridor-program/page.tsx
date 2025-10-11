@@ -595,7 +595,7 @@ const TargetIndicatorSection = () => {
         </H2>
       </EditableContentContainer>
 
-      <SimpleGrid ref={mainContentRef} columns={[1, 2, 4]} gap={6} mt={"80px"}>
+      <SimpleGrid ref={mainContentRef} columns={[1, 2, 4]} gap={4} mt={"80px"}>
         {indicators.map((indicator, idx) => {
           const oddIdx = idx % 2 === 1;
 

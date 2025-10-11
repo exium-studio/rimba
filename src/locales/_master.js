@@ -839,6 +839,13 @@ export const loading_reset_password = {
 };
 
 // Success Toast
+export const success_enroll_course = {
+  title: { id: "Enroll course", en: "Enroll course" },
+  description: {
+    id: "Anda berhasil bergabung di kursus ini.",
+    en: "You have successfully enrolled in this course.",
+  },
+};
 export const success_online = {
   title: {
     id: "Koneksi Pulih",

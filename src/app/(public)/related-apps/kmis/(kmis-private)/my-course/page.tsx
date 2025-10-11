@@ -19,10 +19,10 @@ export default function Page() {
       <CContainer
         bg={"bgContent"}
         rounded={"3xl"}
-        mt={"-24px"}
         overflow={"clip"}
         zIndex={2}
-        pt={"138px"}
+        pt={"120px"}
+        pb={[4, null, 12]}
       >
         <LPSectionContainer mb={0}>
           <Breadcrumbs

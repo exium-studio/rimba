@@ -16,9 +16,7 @@ import { P } from "@/components/ui/p";
 import BackButton from "@/components/widget/BackButton";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
-import { SigninDisclosureTrigger } from "@/components/widget/SigninDisclosure";
 import { Interface__KMISTopic } from "@/constants/interfaces";
-import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
@@ -43,19 +41,19 @@ import {
 
 const EnrollButton = (props: any) => {
   // Props
-  const { topic } = props;
+  const { topic, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
-  const authToken = useAuthMiddleware((s) => s.verifiedAuthToken);
 
   // Hooks
   const { req } = useRequest({
     id: "subs_course",
+    successMessage: { ...l.success_enroll_course },
   });
 
   // Utils
-  function startLearning() {
+  function onEnroll() {
     const payload = {
       topicId: topic?.id,
     };
@@ -69,20 +67,13 @@ const EnrollButton = (props: any) => {
   }
 
   return (
-    <SigninDisclosureTrigger id={"signin-fallback-start-learning"} mt={2}>
-      <Btn
-        w={["full", null, "fit"]}
-        colorPalette={"p"}
-        ml={"auto"}
-        onClick={authToken ? startLearning : () => {}}
-      >
-        {l.enroll_now}
+    <Btn w={"fit"} colorPalette={"p"} onClick={onEnroll} {...restProps}>
+      {l.enroll_now}
 
-        <Icon>
-          <IconArrowRight stroke={1.5} />
-        </Icon>
-      </Btn>
-    </SigninDisclosureTrigger>
+      <Icon>
+        <IconArrowRight stroke={1.5} />
+      </Icon>
+    </Btn>
   );
 };
 const DetailCourse = (props: any) => {
@@ -188,7 +179,7 @@ const DetailCourse = (props: any) => {
               </HStack>
             </HStack>
 
-            <EnrollButton topic={topic} />
+            <EnrollButton topic={topic} mt={2} />
           </CContainer>
         </Stack>
 

@@ -135,7 +135,6 @@ export const KMISAllCourses = (props: Props) => {
         flex: 1,
       }}
       flex={1}
-      pb={[4, null, 12]}
       {...restProps}
     >
       <HStack wrap={"wrap"} gap={4}>

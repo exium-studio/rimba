@@ -391,6 +391,10 @@ const translations = {
     "title": "Request successful",
     "description": "Proses berjalan tanpa kendala."
   },
+  "success_enroll_course": {
+    "title": "Enroll course",
+    "description": "Anda berhasil bergabung di kursus ini."
+  },
   "success_online": {
     "title": "Koneksi Pulih",
     "description": "Anda kembali online."

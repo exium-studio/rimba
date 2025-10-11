@@ -13,6 +13,7 @@ export default function Page() {
 
       <CContainer
         bg={"bgContent"}
+        pb={[4, null, 12]}
         rounded={"3xl"}
         mt={"-24px"}
         overflow={"clip"}

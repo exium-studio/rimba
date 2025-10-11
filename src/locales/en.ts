@@ -391,6 +391,10 @@ const translations = {
     "title": "Request successful",
     "description": "Process completed without issues."
   },
+  "success_enroll_course": {
+    "title": "Enroll course",
+    "description": "You have successfully enrolled in this course."
+  },
   "success_online": {
     "title": "Connection Recovered",
     "description": "You are back online."

@@ -134,7 +134,6 @@ export const KMISMyCourses = (props: Props) => {
         flex: 1,
       }}
       flex={1}
-      pb={[4, null, 12]}
       {...restProps}
     >
       {/* Content */}

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/disclosure";
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
 import { Img } from "@/components/ui/img";
+import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import BackButton from "@/components/widget/BackButton";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
@@ -84,7 +85,7 @@ const EnrollButton = (props: any) => {
     </SigninDisclosureTrigger>
   );
 };
-const DetailTopic = (props: any) => {
+const DetailCourse = (props: any) => {
   // Props
   const { topic, idx, ...restProps } = props;
   const resolvedTopic: Interface__KMISTopic = topic;
@@ -99,7 +100,7 @@ const DetailTopic = (props: any) => {
   // States
   const { error, loading, data, onRetry } = useDataState<any>({
     initialData: undefined,
-    url: `/api/kmis/public-request/get-topic/${resolvedTopic.id}`,
+    url: `/api/kmis/learning-course/show/${resolvedTopic.id}`,
     conditions: open,
     dependencies: [open],
     dataResource: false,
@@ -119,30 +120,38 @@ const DetailTopic = (props: any) => {
           />
 
           <CContainer gap={2} py={2}>
-            <Badge w={"fit"}>{data?.category.title}</Badge>
+            <Badge w={"fit"}>{data?.topic?.category?.title}</Badge>
 
-            <P fontSize={"lg"} fontWeight={"semibold"}>
-              {data?.title}
+            <P fontSize={"xl"} fontWeight={"semibold"} mb={2}>
+              {data?.topic?.title}
             </P>
 
-            <HStack color={"fg.subtle"}>
-              <Icon>
-                <IconRocket stroke={1.5} />
-              </Icon>
+            <HStack wrap={"wrap"} gap={4}>
+              <HStack color={"fg.subtle"}>
+                <Icon boxSize={4}>
+                  <IconRocket stroke={1.5} />
+                </Icon>
 
-              <P>{formatDate(data?.createdAt)}</P>
+                <P fontSize={"sm"}>{`${formatDate(
+                  data?.topic?.createdAt
+                )} (${l.release_date.toLowerCase()})`}</P>
+              </HStack>
+
+              <HStack color={"fg.subtle"}>
+                <Icon boxSize={4}>
+                  <IconRefresh stroke={1.5} />
+                </Icon>
+
+                <P fontSize={"sm"}>
+                  {`${formatDate(
+                    data?.topic?.updatedAt as string
+                  )}  (${l.last_updated.toLowerCase()})`}
+                </P>
+              </HStack>
             </HStack>
 
-            <HStack color={"fg.subtle"}>
-              <Icon>
-                <IconRefresh stroke={1.5} />
-              </Icon>
-
-              <P>{formatDate(data?.updatedAt as string)}</P>
-            </HStack>
-
-            <Stack
-              flexDir={["column", null, "row"]}
+            <HStack
+              wrap={"wrap"}
               gap={4}
               align={["", null, "end"]}
               mt={"auto"}
@@ -150,22 +159,46 @@ const DetailTopic = (props: any) => {
             >
               <HStack align={"end"} flexShrink={0}>
                 <P fontSize={"lg"} fontWeight={"medium"}>
-                  123
+                  {`${data?.material?.length}`}
                 </P>
 
                 <P fontSize={"sm"} transform={"translateY(1px)"}>
-                  {l.student}
+                  {l.total_material}
                 </P>
               </HStack>
-            </Stack>
+
+              <HStack align={"end"} flexShrink={0}>
+                <P fontSize={"lg"} fontWeight={"medium"}>
+                  {`${data?.topic?.totalQuiz}`}
+                </P>
+
+                <P fontSize={"sm"} transform={"translateY(1px)"}>
+                  {l.total_quiz}
+                </P>
+              </HStack>
+
+              <HStack align={"end"} flexShrink={0}>
+                <P fontSize={"lg"} fontWeight={"medium"}>
+                  {`${data?.topic?.quiz_duration || 0 * 60}`}
+                </P>
+
+                <P fontSize={"sm"} transform={"translateY(1px)"}>
+                  {`${l.quiz_duration} (${l.minutes.toLowerCase()})`}
+                </P>
+              </HStack>
+            </HStack>
 
             <EnrollButton topic={topic} />
           </CContainer>
         </Stack>
 
-        <P>{data?.description}</P>
+        <CContainer gap={1}>
+          <P fontWeight={"semibold"}>{l.description}</P>
 
-        <CContainer>
+          <P>{data?.topic?.description || "-"}</P>
+        </CContainer>
+
+        <CContainer gap={1}>
           <P fontWeight={"semibold"}>Terstimonial</P>
 
           <CContainer overflowX={"auto"}>
@@ -187,6 +220,7 @@ const DetailTopic = (props: any) => {
         <Icon>
           <IconEye stroke={1.5} />
         </Icon>
+
         {l.view}
       </Btn>
 
@@ -223,10 +257,14 @@ const DetailTopic = (props: any) => {
 interface Props extends StackProps {
   topic: Interface__KMISTopic;
   idx: number;
+  myCourse?: boolean;
 }
-export const KMISTopicItem = (props: Props) => {
+export const KMISCourseItem = (props: Props) => {
   // Props
-  const { topic, idx, ...restProps } = props;
+  const { myCourse = false, topic, idx, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
 
   return (
     <CContainer
@@ -248,7 +286,7 @@ export const KMISTopicItem = (props: Props) => {
       <CContainer p={4} gap={2} pos={"relative"}>
         <Badge pos={"absolute"} top={"-28px"} left={2}>
           <P fontSize={"xs"} lineClamp={1} maxW={"100px"}>
-            {topic.category.title}
+            {topic?.category?.title}
           </P>
         </Badge>
 
@@ -261,8 +299,20 @@ export const KMISTopicItem = (props: Props) => {
         </P>
       </CContainer>
 
-      <CContainer p={2} pt={0}>
-        <DetailTopic topic={topic} idx={idx} />
+      <CContainer gap={2} p={2} pt={0}>
+        <DetailCourse topic={topic} idx={idx} pl={[5, null, 3]} />
+
+        {myCourse && (
+          <NavLink to={`/related-apps/kmis/my-course/${topic?.id}`}>
+            <Btn colorPalette={"p"}>
+              {l.start_learning}
+
+              <Icon>
+                <IconArrowRight stroke={1.5} />
+              </Icon>
+            </Btn>
+          </NavLink>
+        )}
       </CContainer>
     </CContainer>
   );

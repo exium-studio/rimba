@@ -47,6 +47,7 @@ const translations = {
   "december": "Desember",
   "delete_": "Hapus",
   "deleted_file": "File dihapus",
+  "description": "Deskripsi",
   "educator": "Pengajar",
   "enroll_now": "Gabung sekarang",
   "error_400_default": {
@@ -159,6 +160,7 @@ const translations = {
   "july": "Juli",
   "june": "Juni",
   "language": "Bahasa",
+  "last_updated": "Terakhir diperbarui",
   "learn_more": "Pelajari lebih lanjut",
   "loading_default": {
     "title": "Memuat",
@@ -232,6 +234,7 @@ const translations = {
   "may": "Mei",
   "mic": "Mic",
   "minimize": "Minimalkan",
+  "minutes": "Menit",
   "missing_route": {
     "description": "Halaman yang Anda cari tidak tersedia. Kemungkinan ada URL yang keliru atau halaman ini sudah tidak tersedia."
   },
@@ -292,9 +295,11 @@ const translations = {
   "profile": "Profil",
   "published_at": "Diterbitkan pada",
   "purpose": "Tujuan",
+  "quiz_duration": "Durasi quiz",
   "read_more": "Baca selengkapnya",
   "recieve": "Terima",
   "related_apps": "Aplikasi Terkait",
+  "release_date": "Tanggal rilis",
   "reset": "Reset",
   "retry": "Coba lagi",
   "rounded": "Rounded",
@@ -403,6 +408,8 @@ const translations = {
   "thursday": "Kamis",
   "time_format": "Format waktu",
   "timezone": "Zona waktu",
+  "total_material": "Total materi",
+  "total_quiz": "Total quiz",
   "try_camera": "Coba Kamera",
   "try_location": "Coba Lokasi",
   "try_mic": "Coba Mic",

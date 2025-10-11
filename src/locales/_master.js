@@ -571,6 +571,34 @@ export const enroll_now = {
   id: "Gabung sekarang",
   en: "Enroll now",
 };
+export const release_date = {
+  id: "Tanggal rilis",
+  en: "Release date",
+};
+export const last_updated = {
+  id: "Terakhir diperbarui",
+  en: "Last updated",
+};
+export const total_material = {
+  id: "Total materi",
+  en: "Total material",
+};
+export const total_quiz = {
+  id: "Total quiz",
+  en: "Total quiz",
+};
+export const quiz_duration = {
+  id: "Durasi quiz",
+  en: "Quiz duration",
+};
+export const minutes = {
+  id: "Menit",
+  en: "Minutes",
+};
+export const description = {
+  id: "Deskripsi",
+  en: "Description",
+};
 
 // Message
 export const msg_location_test_helper = {

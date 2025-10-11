@@ -47,6 +47,7 @@ const translations = {
   "december": "December",
   "delete_": "Delete",
   "deleted_file": "Removed file",
+  "description": "Description",
   "educator": "Educator",
   "enroll_now": "Enroll now",
   "error_400_default": {
@@ -159,6 +160,7 @@ const translations = {
   "july": "July",
   "june": "June",
   "language": "Language",
+  "last_updated": "Last updated",
   "learn_more": "Learn more",
   "loading_default": {
     "title": "Loading",
@@ -232,6 +234,7 @@ const translations = {
   "may": "May",
   "mic": "Mic",
   "minimize": "Minimize",
+  "minutes": "Minutes",
   "missing_route": {
     "description": "The page you are looking for is not available. There may be an incorrect URL or the page is no longer available."
   },
@@ -292,9 +295,11 @@ const translations = {
   "profile": "Profile",
   "published_at": "Published at",
   "purpose": "Purpose",
+  "quiz_duration": "Quiz duration",
   "read_more": "Read more",
   "recieve": "Recieve",
   "related_apps": "Related Apps",
+  "release_date": "Release date",
   "reset": "Reset",
   "retry": "Retry",
   "rounded": "Rounded",
@@ -403,6 +408,8 @@ const translations = {
   "thursday": "Thursday",
   "time_format": "Time format",
   "timezone": "Timezone",
+  "total_material": "Total material",
+  "total_quiz": "Total quiz",
   "try_camera": "Try Camera",
   "try_location": "Try Location",
   "try_mic": "Try Mic",

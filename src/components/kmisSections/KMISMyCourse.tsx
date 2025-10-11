@@ -6,7 +6,7 @@ import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
-import { KMISTopicItem } from "@/components/widget/KMISTopicItem";
+import { KMISCourseItem } from "@/components/widget/KMISCourseItem";
 import { Limitation } from "@/components/widget/Limitation";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Pagination } from "@/components/widget/Pagination";
@@ -63,9 +63,11 @@ const Data = (props: any) => {
     empty: <FeedbackNoData />,
     loaded: (
       <CContainer ref={topicListContainerRef} gap={4}>
-        <SimpleGrid columns={[1, 2, 3, null, 4]} gap={4}>
+        <SimpleGrid columns={[1, null, 2, 3, 4]} gap={4}>
           {data?.map((item, idx) => {
-            return <KMISTopicItem key={idx} topic={item.topic} idx={idx} />;
+            return (
+              <KMISCourseItem key={idx} myCourse topic={item.topic} idx={idx} />
+            );
           })}
         </SimpleGrid>
 
@@ -145,7 +147,7 @@ export const KMISMyCourses = (props: Props) => {
       >
         <KMISCourseFilters filter={filter} setFilter={setFilter} />
 
-        <CContainer flex={3}>
+        <CContainer flex={3} gap={4}>
           <HStack wrap={"wrap"} gap={4}>
             <CContainer flex={"2 0 300px"} gap={1}>
               <P fontSize={"lg"} fontWeight={"semibold"}>

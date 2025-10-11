@@ -49,7 +49,8 @@ import { Fragment, useEffect, useState } from "react";
 const MobileTopNav = () => {
   // Contexts
   const { l } = useLang();
-  const authToken = getAuthToken();
+  const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
+  const authToken = verifiedAuthToken || getAuthToken();
 
   // Hooks
   const pathname = usePathname();

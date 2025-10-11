@@ -7,7 +7,7 @@ import SearchInput from "@/components/ui/search-input";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
-import { KMISTopicItem } from "@/components/widget/KMISTopicItem";
+import { KMISCourseItem } from "@/components/widget/KMISCourseItem";
 import { Limitation } from "@/components/widget/Limitation";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Pagination } from "@/components/widget/Pagination";
@@ -65,9 +65,9 @@ const Data = (props: any) => {
     empty: <FeedbackNoData />,
     loaded: (
       <CContainer ref={topicListContainerRef} gap={4}>
-        <SimpleGrid columns={[1, 2, 3, null, 4]} gap={4}>
+        <SimpleGrid columns={[1, null, 2, 3, 4]} gap={4}>
           {data?.map((topic, idx) => {
-            return <KMISTopicItem key={idx} topic={topic} idx={idx} />;
+            return <KMISCourseItem key={idx} topic={topic} idx={idx} />;
           })}
         </SimpleGrid>
 

@@ -21,7 +21,7 @@ export const Breadcrumbs = (props: Props) => {
 
         return (
           <Fragment key={idx}>
-            <NavLink key={link.path} to={last ? link.path : ""} w={"fit"}>
+            <NavLink key={link.path} to={!last ? link.path : ""} w={"fit"}>
               <P lineClamp={1} opacity={last ? 0.6 : 1}>
                 {link.label}
               </P>

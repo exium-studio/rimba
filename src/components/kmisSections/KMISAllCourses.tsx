@@ -97,7 +97,7 @@ const Data = (props: any) => {
   }, [data]);
 
   return (
-    <CContainer flex={3} {...restProps}>
+    <CContainer flex={3.5} {...restProps}>
       {initialLoading && render.loading}
       {!initialLoading && (
         <>

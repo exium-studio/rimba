@@ -1,6 +1,6 @@
 "use client";
 
-import { KMISMyCourses } from "@/components/kmisSections/KMISMyCourse";
+import { KMISMyCourses } from "@/components/kmisSections/KMISMyCourses";
 import { LPFooter } from "@/components/lpSections/LPFooter";
 import { CContainer } from "@/components/ui/c-container";
 import { Breadcrumbs } from "@/components/widget/Breadcrumbs";
@@ -24,7 +24,7 @@ export default function Page() {
         pt={"120px"}
         pb={[4, null, 12]}
       >
-        <LPSectionContainer mb={0}>
+        <LPSectionContainer mb={4}>
           <Breadcrumbs
             links={[
               {

@@ -9,6 +9,7 @@ import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { KMISCourseItem } from "@/components/widget/KMISCourseItem";
 import { Limitation } from "@/components/widget/Limitation";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
+import { MiniProfile } from "@/components/widget/MiniProfile";
 import { Pagination } from "@/components/widget/Pagination";
 import { Interface__KMISQuizAssessment } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
@@ -139,14 +140,17 @@ export const KMISMyCourses = (props: Props) => {
       {/* Content */}
       <Stack
         flexDir={["column", null, "row"]}
-        mt={4}
         align={"stretch"}
         gapX={8}
         gapY={4}
       >
-        <KMISCourseFilters filter={filter} setFilter={setFilter} />
+        <CContainer flex={1} gap={4}>
+          <MiniProfile />
 
-        <CContainer flex={3} gap={4}>
+          <KMISCourseFilters filter={filter} setFilter={setFilter} />
+        </CContainer>
+
+        <CContainer flex={3.5} gap={4}>
           <HStack wrap={"wrap"} gap={4}>
             <CContainer flex={"2 0 300px"} gap={1}>
               <P fontSize={"lg"} fontWeight={"semibold"}>

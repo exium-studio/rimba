@@ -144,7 +144,7 @@ const MobileTopNav = () => {
             visibility={showContents ? "visible" : "hidden"}
             transition={"500ms"}
           >
-            <SimplePopover content={<MiniProfile />}>
+            <SimplePopover content={<MiniProfile />} p={"0 !important"}>
               <HStack p={4} rounded={"xl"} bg={"d2"} gap={4}>
                 <Avatar
                   name={user?.name}

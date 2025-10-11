@@ -77,9 +77,32 @@ const EnrollButton = (props: any) => {
     </Btn>
   );
 };
+const StartLearningButton = (props: any) => {
+  // Props
+  const { topic, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+
+  return (
+    <NavLink
+      to={`/related-apps/kmis/my-course/${topic?.id}`}
+      w={restProps.w || "fit"}
+    >
+      <Btn colorPalette={"p"} variant={"subtle"} {...restProps}>
+        {l.start_learning}
+
+        <Icon>
+          <IconArrowRight stroke={1.5} />
+        </Icon>
+      </Btn>
+    </NavLink>
+  );
+};
+
 const DetailCourse = (props: any) => {
   // Props
-  const { topic, idx, ...restProps } = props;
+  const { myCourse, topic, idx, ...restProps } = props;
   const resolvedTopic: Interface__KMISTopic = topic;
 
   // Contexts
@@ -181,7 +204,11 @@ const DetailCourse = (props: any) => {
               </HStack>
             </HStack>
 
-            <EnrollButton topic={topic} mt={2} />
+            {!myCourse && <EnrollButton topic={topic} mt={2} />}
+
+            {myCourse && (
+              <StartLearningButton topic={topic} mt={2} variant={"solid"} />
+            )}
           </CContainer>
         </Stack>
 
@@ -192,6 +219,7 @@ const DetailCourse = (props: any) => {
           <P>{data?.topic?.description || "-"}</P>
         </CContainer>
 
+        {/* Material list */}
         <CContainer gap={2}>
           <P fontWeight={"semibold"}>{l.learning_material}</P>
 
@@ -276,9 +304,6 @@ export const KMISCourseItem = (props: Props) => {
   // Props
   const { myCourse = false, topic, idx, ...restProps } = props;
 
-  // Contexts
-  const { l } = useLang();
-
   return (
     <CContainer
       className="ss"
@@ -314,23 +339,14 @@ export const KMISCourseItem = (props: Props) => {
 
       <CContainer gap={2} p={2} pt={0}>
         <DetailCourse
+          myCourse={myCourse}
           topic={topic}
           idx={idx}
           pl={[5, null, 3]}
           colorPalette={"p"}
         />
 
-        {myCourse && (
-          <NavLink to={`/related-apps/kmis/my-course/${topic?.id}`}>
-            <Btn colorPalette={"p"} variant={"subtle"}>
-              {l.start_learning}
-
-              <Icon>
-                <IconArrowRight stroke={1.5} />
-              </Icon>
-            </Btn>
-          </NavLink>
-        )}
+        {myCourse && <StartLearningButton topic={topic} w={"full"} />}
       </CContainer>
     </CContainer>
   );

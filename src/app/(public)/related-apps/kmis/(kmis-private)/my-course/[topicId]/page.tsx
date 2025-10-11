@@ -45,7 +45,7 @@ export default function Page(props: Props) {
         pt={"120px"}
         pb={[4, null, 12]}
       >
-        <LPSectionContainer mb={0}>
+        <LPSectionContainer mb={4}>
           <Breadcrumbs
             links={[
               {

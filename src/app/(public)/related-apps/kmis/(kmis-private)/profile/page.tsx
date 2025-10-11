@@ -24,6 +24,7 @@ import { OPTIONS_GENDER } from "@/constants/selectOptions";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
+import { toLocalISODate } from "@/utils/date";
 import { fileValidation } from "@/utils/validationSchema";
 import {
   FieldRoot,
@@ -44,7 +45,7 @@ const ProfileForm = (props: any) => {
   const { l } = useLang();
 
   // Hooks
-  const { req } = useRequest({
+  const { req, loading } = useRequest({
     id: "update-profile",
     successMessage: {
       title: `Edit ${l.profile} ${l.successful}`,
@@ -82,14 +83,13 @@ const ProfileForm = (props: any) => {
       const payload = {
         name: values.name,
         email: values.email,
-        birthDate: values.birthDate?.[0],
+        birthDate: toLocalISODate(values.birthDate?.[0]),
         gender: values.gender?.[0]?.id,
         phoneNumber: values.phoneNumber,
         profession: values.profession,
         address: values.address,
         files: values.files,
       };
-      console.debug(payload);
       const config = {
         url: `/api/profile/update-profile`,
         method: "PATCH",
@@ -106,8 +106,13 @@ const ProfileForm = (props: any) => {
     formik.setValues({
       name: user?.name || "",
       email: user?.email || "",
-      birthDate: user?.birthDate || null,
-      gender: user?.gender || null,
+      birthDate: [user?.birthDate],
+      gender: [
+        {
+          id: user?.gender,
+          label: user?.gender === "1" ? "Male" : "Female",
+        },
+      ],
       phoneNumber: user?.phoneNumber || "",
       profession: user?.profession || "",
       address: user?.address || "",
@@ -224,6 +229,7 @@ const ProfileForm = (props: any) => {
         ml={[0, null, "auto"]}
         type="submit"
         form="edit_profile"
+        loading={loading}
       >
         {l.save}
       </Btn>

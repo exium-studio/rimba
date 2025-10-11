@@ -35,3 +35,17 @@ export const dateInRange = (
     (includeEndDate ? dateObj <= endDate : dateObj < endDate)
   );
 };
+
+export function toLocalISODate(date?: string | null): string | null {
+  if (!date) return null;
+
+  const d = new Date(date);
+  const tz = -d.getTimezoneOffset();
+  const sign = tz >= 0 ? "+" : "-";
+  const pad = (n: number) => String(Math.floor(Math.abs(n))).padStart(2, "0");
+  const offset = `${sign}${pad(tz / 60)}:${pad(tz % 60)}`;
+
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(
+    d.getHours()
+  )}:${pad(d.getMinutes())}:${pad(d.getSeconds())}${offset}`;
+}

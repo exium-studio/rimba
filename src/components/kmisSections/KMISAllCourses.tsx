@@ -13,11 +13,13 @@ import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { MiniProfile } from "@/components/widget/MiniProfile";
 import { Pagination } from "@/components/widget/Pagination";
 import { Interface__KMISTopic } from "@/constants/interfaces";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import { useScrollWithOffset } from "@/hooks/useScrollWithOffset";
 import { isEmptyArray } from "@/utils/array";
+import { getAuthToken } from "@/utils/auth";
 import {
   HStack,
   SimpleGrid,
@@ -122,6 +124,8 @@ export const KMISAllCourses = (props: Props) => {
   // Contexts
   const { lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
+  const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
+  const authToken = verifiedAuthToken || getAuthToken();
 
   // States
   const DEFAULT_FILTER = {
@@ -163,7 +167,7 @@ export const KMISAllCourses = (props: Props) => {
       {/* Content */}
       <Stack flexDir={["column", null, "row"]} mt={4} align={"stretch"} gap={4}>
         <CContainer flex={1} gap={4}>
-          <MiniProfile />
+          {authToken && <MiniProfile />}
 
           <KMISCourseFilters filter={filter} setFilter={setFilter} />
         </CContainer>

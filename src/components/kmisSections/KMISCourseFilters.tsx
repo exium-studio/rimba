@@ -173,7 +173,7 @@ const CategoryFilter = (props: any) => {
     initialData: undefined,
     url: `/api/kmis/public-request/get-all-category`,
     params: {
-      limit: iss ? 5 : 15,
+      limit: iss ? 5 : 5,
     },
     dependencies: [],
   });

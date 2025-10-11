@@ -627,6 +627,10 @@ export const answer = {
   id: "Jawaban",
   en: "Answer",
 };
+export const my_cerficate = {
+  id: "Sertifikat saya",
+  en: "My certificate",
+};
 
 // Message
 export const msg_select_material_first = {

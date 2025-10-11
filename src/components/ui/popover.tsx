@@ -36,7 +36,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
         <ChakraPopover.Positioner>
           <ChakraPopover.Content
             ref={ref}
-            p={0}
+            p={"0!important"}
             bg={"d1"}
             border={"1px solid"}
             borderColor={"d1"}
@@ -47,6 +47,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
           >
             <CContainer
               flex={1}
+              p={4}
               bg={"body"}
               rounded={themeConfig.radii.container}
             >

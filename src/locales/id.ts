@@ -267,6 +267,7 @@ const translations = {
   "msg_signout": "Anda yakin ingin keluar?",
   "msg_soft_delete": "Data akan disembunyikan dan bisa dikembalikan nanti.",
   "msg_toggle_dark_mode": "Toggle mode gelap",
+  "my_cerficate": "Sertifikat saya",
   "my_course": "Kursus saya",
   "my_profile": "Profil saya",
   "name": "Nama",

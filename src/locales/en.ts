@@ -267,6 +267,7 @@ const translations = {
   "msg_signout": "Are you sure you want to sign out?",
   "msg_soft_delete": "Data will be hidden but can be restored later.",
   "msg_toggle_dark_mode": "Toggle dark mode",
+  "my_cerficate": "My certificate",
   "my_course": "My course",
   "my_profile": "My profile",
   "name": "Name",

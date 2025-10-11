@@ -329,11 +329,16 @@ export const KMISCourseItem = (props: Props) => {
           </P>
         </Badge>
 
-        <ClampText fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
+        <ClampText
+          w={"full"}
+          fontSize={"lg"}
+          fontWeight={"semibold"}
+          lineClamp={1}
+        >
           {topic.title}
         </ClampText>
 
-        <ClampText color={"fg.subtle"} lineClamp={1}>
+        <ClampText w={"full"} color={"fg.subtle"} lineClamp={1}>
           {topic.description}
         </ClampText>
       </CContainer>

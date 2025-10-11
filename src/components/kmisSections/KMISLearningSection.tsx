@@ -10,6 +10,7 @@ import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import FeedbackState from "@/components/widget/FeedbackState";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
+import { MiniProfile } from "@/components/widget/MiniProfile";
 import VideoPlayer from "@/components/widget/VideoPlayer";
 import {
   Interface__KMISMaterial,
@@ -276,6 +277,8 @@ export const KMISLearningSection = (props: Props) => {
     >
       <Stack flexDir={["column", null, "row"]} gap={4}>
         <CContainer flex={1} gap={4}>
+          <MiniProfile />
+
           <MaterialList
             topicDetail={topicDetail}
             activeMaterialId={activeMaterialId}

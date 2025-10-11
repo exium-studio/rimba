@@ -468,7 +468,7 @@ const DesktopTopNav = () => {
             <MenuRoot>
               <MenuTrigger asChild>
                 <HStack
-                  _hover={{ bg: "d3" }}
+                  _hover={{ bg: "d1" }}
                   cursor={"pointer"}
                   p={2}
                   // bg={"d2"}

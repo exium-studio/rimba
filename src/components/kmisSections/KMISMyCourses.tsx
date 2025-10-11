@@ -125,6 +125,7 @@ export const KMISMyCourses = (props: Props) => {
   // States
   const DEFAULT_FILTER = {
     search: "",
+    isCompleted: null,
     category: [],
   };
   const [filter, setFilter] = useState(DEFAULT_FILTER);

@@ -117,7 +117,7 @@ export const MiniProfile = (props: StackProps) => {
 
             {l.my_course}
 
-            {pathname.includes("/related-apps/kmis/my-course") && (
+            {pathname === "/related-apps/kmis/my-course" && (
               <DotIndicator ml={"auto"} mr={1} />
             )}
           </Btn>
@@ -138,7 +138,7 @@ export const MiniProfile = (props: StackProps) => {
 
             {l.my_profile}
 
-            {pathname.includes("/profile") && (
+            {pathname === "/related-apps/kmis/profile" && (
               <DotIndicator ml={"auto"} mr={1} />
             )}
           </Btn>

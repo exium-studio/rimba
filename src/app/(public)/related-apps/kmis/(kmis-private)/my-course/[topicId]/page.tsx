@@ -7,6 +7,7 @@ import { Breadcrumbs } from "@/components/widget/Breadcrumbs";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
+import { MiniProfile } from "@/components/widget/MiniProfile";
 import { TopNav } from "@/components/widget/TopNav";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
@@ -36,9 +37,32 @@ export default function Page(props: Props) {
   const render = {
     loading: (
       <LPSectionContainer minH={"500px"}>
-        <HStack flex={1} gap={8} w={"full"} align={"stretch"}>
-          <Skeleton flex={1} />
-          <Skeleton flex={3.5} />
+        <Breadcrumbs
+          links={[
+            {
+              label: "KMIS",
+              path: "/related-apps/kmis",
+            },
+            {
+              label: l.my_course,
+              path: "/related-apps/kmis/my-course",
+            },
+            {
+              label: "Loading...",
+              path: "",
+            },
+          ]}
+          mb={4}
+        />
+
+        <HStack flex={1} gap={4} w={"full"} align={"stretch"}>
+          <CContainer flex={1} gap={4}>
+            <MiniProfile />
+
+            <Skeleton minH={"200px"} rounded={"xl"} />
+          </CContainer>
+
+          <Skeleton flex={3.5} rounded={"xl"} />
         </HStack>
       </LPSectionContainer>
     ),

@@ -62,6 +62,20 @@ export const LPHomeActivities = (props: StackProps) => {
   const mainContentsRef = useRef<HTMLDivElement>(null);
   const carouselContainerRef = useRef<HTMLDivElement>(null);
 
+  // Utils
+  function prev(): void {
+    const el = carouselContainerRef.current;
+    if (!el) return;
+    const step = el.clientWidth;
+    el.scrollBy({ left: -step, behavior: "smooth" });
+  }
+  function next(): void {
+    const el = carouselContainerRef.current;
+    if (!el) return;
+    const step = el.clientWidth;
+    el.scrollBy({ left: step, behavior: "smooth" });
+  }
+
   // Animation
   useGSAP(
     () => {
@@ -179,12 +193,7 @@ export const LPHomeActivities = (props: StackProps) => {
               variant={"ghost"}
               colorPalette={"light"}
               size={"md"}
-              onClick={() =>
-                carouselContainerRef.current!.scrollBy({
-                  left: -400,
-                  behavior: "smooth",
-                })
-              }
+              onClick={prev}
             >
               <Icon>
                 <IconArrowLeft stroke={1.5} />
@@ -197,12 +206,7 @@ export const LPHomeActivities = (props: StackProps) => {
               variant={"ghost"}
               colorPalette={"light"}
               size={"md"}
-              onClick={() =>
-                carouselContainerRef.current!.scrollBy({
-                  left: 400,
-                  behavior: "smooth",
-                })
-              }
+              onClick={next}
             >
               {l.next}
 

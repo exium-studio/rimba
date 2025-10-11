@@ -26,6 +26,7 @@ import { SigninDisclosureTrigger } from "@/components/widget/SigninDisclosure";
 import SimplePopover from "@/components/widget/SimplePopover";
 import { LP_NAVS } from "@/constants/navs";
 import { MAIN_BUTTON_SIZE } from "@/constants/sizes";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
@@ -301,7 +302,8 @@ const MobileTopNav = () => {
 const DesktopTopNav = () => {
   // Contexts
   const { l } = useLang();
-  const authToken = getAuthToken();
+  const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
+  const authToken = verifiedAuthToken || getAuthToken();
 
   // States
   const user = getUserData();

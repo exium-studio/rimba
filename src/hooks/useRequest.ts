@@ -134,6 +134,8 @@ export default function useRequest<T = any>(props: Props) {
 
       case 422:
         switch (errorCase) {
+          case "INVALID_CREDENTIALS":
+            return l.error_signin_wrong_credentials;
           default:
             return l.error_422_default;
         }

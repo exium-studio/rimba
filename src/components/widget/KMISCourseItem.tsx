@@ -122,7 +122,7 @@ const DetailCourse = (props: any) => {
     dataResource: false,
   });
   const render = {
-    loading: <Skeleton minH={"400px"} />,
+    loading: <Skeleton minH={"400px"} rounded={"lg"} />,
     error: <FeedbackRetry onRetry={onRetry} minH={"400px"} />,
     empty: <FeedbackNoData minH={"400px"} />,
     loaded: (

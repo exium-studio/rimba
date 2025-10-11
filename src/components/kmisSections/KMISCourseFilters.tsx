@@ -29,6 +29,7 @@ import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
+import { back } from "@/utils/client";
 import { capitalizeWords } from "@/utils/string";
 import { Skeleton, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -49,13 +50,11 @@ const AllCategory = (props: any) => {
   const { error, initialLoading, data, onRetry } = useDataState<
     Interface__KMISTopicCategory[]
   >({
-    initialData: undefined,
     url: `/api/kmis/public-request/get-all-category`,
     params: {
       limit: 999999999,
     },
-    conditions: open,
-    dependencies: [open],
+    dependencies: [],
   });
   const resolvedData = data?.filter((item) =>
     item.title.toLowerCase().includes(search.toLowerCase())
@@ -87,10 +86,10 @@ const AllCategory = (props: any) => {
             <Checkbox
               key={category.id}
               checked={isChecked}
-              onCheckedChange={(e) => {
+              onCheckedChange={() => {
                 setFilter({
                   ...filter,
-                  category: e.checked
+                  category: !isChecked
                     ? [...filter.category, category.id]
                     : filter.category.filter(
                         (id: string) => id !== category.id
@@ -150,6 +149,9 @@ const AllCategory = (props: any) => {
             >
               Reset
             </Btn>
+            <Btn colorPalette={"p"} onClick={back}>
+              {l.confirm}
+            </Btn>
           </DisclosureFooter>
         </DisclosureContent>
       </DisclosureRoot>
@@ -194,10 +196,10 @@ const CategoryFilter = (props: any) => {
             <Checkbox
               key={category.id}
               checked={isChecked}
-              onCheckedChange={(e) => {
+              onCheckedChange={() => {
                 setFilter({
                   ...filter,
-                  category: e.checked
+                  category: !isChecked
                     ? [...filter.category, category.id]
                     : filter.category.filter(
                         (id: string) => id !== category.id

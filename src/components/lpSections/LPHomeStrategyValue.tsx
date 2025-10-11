@@ -279,16 +279,17 @@ export const LPHomeStrategyValue = (props: StackProps) => {
         </Stack>
 
         <Img
-          className="compass"
+          className={"compass"}
           src={`${IMAGES_PATH}/compass.png`}
-          alt="compass"
-          aspectRatio={1}
-          h={"500px"}
-          objectFit="contain"
-          opacity={0.2}
           pos={"absolute"}
+          alt={"compass"}
+          aspectRatio={1}
+          w={["100%", null, "40%"]}
+          objectFit={"contain"}
+          opacity={0.2}
           bottom={"-250px"}
-          right={0}
+          left={"50%"}
+          transform={"translateX(-50%)"}
           zIndex={1}
         />
       </CContainer>

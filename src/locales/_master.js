@@ -631,6 +631,22 @@ export const my_cerficate = {
   id: "Sertifikat saya",
   en: "My certificate",
 };
+export const birth_date = {
+  id: "Tanggal lahir",
+  en: "Birth date",
+};
+export const phone_number = {
+  id: "Nomor telepon",
+  en: "Phone number",
+};
+export const profession = {
+  id: "Profesi",
+  en: "Profession",
+};
+export const successful = {
+  id: "Berhasil",
+  en: "Successful",
+};
 
 // Message
 export const msg_select_material_first = {

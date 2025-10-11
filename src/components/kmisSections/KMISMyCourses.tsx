@@ -139,12 +139,7 @@ export const KMISMyCourses = (props: Props) => {
       {...restProps}
     >
       {/* Content */}
-      <Stack
-        flexDir={["column", null, "row"]}
-        align={"stretch"}
-        gapX={8}
-        gapY={4}
-      >
+      <Stack flexDir={["column", null, "row"]} align={"stretch"} gap={4}>
         <CContainer flex={1} gap={4}>
           <MiniProfile />
 

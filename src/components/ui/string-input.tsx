@@ -84,6 +84,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
             name={name}
             onChange={handleChange}
             value={inputValue}
+            fontSize={"md"}
             _placeholder={{ fontSize: "md" }}
             placeholder={placeholder}
             borderColor={

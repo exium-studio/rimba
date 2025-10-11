@@ -307,9 +307,9 @@ export const KMISCourseItem = (props: Props) => {
 
   return (
     <CContainer
-      className="ss"
       key={topic.id}
-      rounded={"lg"}
+      rounded={"xl"}
+      bg={"body"}
       overflow={"clip"}
       border={"1px solid"}
       borderColor={"d1"}
@@ -319,7 +319,7 @@ export const KMISCourseItem = (props: Props) => {
         key={topic?.topicCover?.[0]?.filePath}
         src={imgUrl(topic?.topicCover?.[0]?.filePath)}
         aspectRatio={1.1}
-        rounded={"lg"}
+        rounded={"xl"}
       />
 
       <CContainer p={4} gap={2} pos={"relative"}>

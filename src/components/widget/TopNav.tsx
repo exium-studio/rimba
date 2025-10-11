@@ -73,6 +73,8 @@ const MobileTopNav = () => {
     }
   }, [open]);
 
+  console.log(user);
+
   return (
     <CContainer
       h={"fit"}
@@ -311,6 +313,8 @@ const DesktopTopNav = () => {
   const pathname = usePathname();
   const [, setScrolled] = useState(false);
 
+  console.debug("Jancok");
+
   // handle scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -473,7 +477,7 @@ const DesktopTopNav = () => {
                 >
                   <Avatar
                     name={user?.name}
-                    src={user?.photoProfile?.[0]?.filePath}
+                    src={imgUrl(user?.photoProfile?.[0]?.filePath)}
                     size={"xs"}
                   />
 

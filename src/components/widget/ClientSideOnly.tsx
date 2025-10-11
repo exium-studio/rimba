@@ -11,6 +11,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
 import { LoadingBar } from "@/components/widget/LoadingBar";
+import { getAuthToken } from "@/utils/auth";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
+import useRequest from "@/hooks/useRequest";
+import { setStorage } from "@/utils/client";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,9 +50,20 @@ export default function ClientSideOnly(props: Props) {
   // Contexts
   const { setColorMode } = useColorMode();
   const ADM = useADM((s) => s.ADM);
+  const authToken = getAuthToken();
+  const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
+  const setRole = useAuthMiddleware((s) => s.setRole);
+  const setPermissions = useAuthMiddleware((s) => s.setPermissions);
+  const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
 
   // Hooks
   useFirefoxPaddingY();
+  const { req } = useRequest({
+    id: "user-profile",
+    showLoadingToast: false,
+    showSuccessToast: false,
+    showErrorToast: false,
+  });
 
   // States
   const [mounted, setMounted] = useState(mountedGlobal);
@@ -91,6 +106,31 @@ export default function ClientSideOnly(props: Props) {
       updateDarkMode();
     }
   }, [ADM]);
+
+  useEffect(() => {
+    // If there's no local token → redirect after first render
+    if (!authToken) {
+      return;
+    }
+
+    // If token exists but not verified yet → verify
+    if (authToken && !verifiedAuthToken) {
+      const config = { method: "GET", url: "/api/profile/get-user-profile" };
+      req({
+        config,
+        onResolve: {
+          onSuccess: (r) => {
+            const user = r.data.data;
+            setStorage("__user_data", JSON.stringify(user));
+            setVerifiedAuthToken(authToken);
+            setRole(user.role);
+            setPermissions(user.role.permissions);
+          },
+          onError: () => {},
+        },
+      });
+    }
+  }, [authToken, verifiedAuthToken]);
 
   if (!mounted) return <>{fallback || <DefaultFallback />}</>;
 

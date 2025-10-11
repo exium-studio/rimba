@@ -2,7 +2,7 @@
 
 import type { GroupProps, SlotRecipeProps } from "@chakra-ui/react";
 import { Avatar as ChakraAvatar, Group } from "@chakra-ui/react";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 
 type ImageProps = React.ImgHTMLAttributes<HTMLImageElement>;
 
@@ -21,12 +21,29 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
 ) {
   const { name, src, srcSet, loading, icon, fallback, children, ...rest } =
     props;
+
+  const [resolvedSrc, setResolvedSrc] = useState<string | undefined>(src);
+
+  const handleError = () => {
+    setResolvedSrc(undefined);
+  };
+
   return (
-    <ChakraAvatar.Root ref={ref} {...rest}>
+    <ChakraAvatar.Root
+      ref={ref}
+      bg={resolvedSrc ? "transparent" : ""}
+      {...rest}
+    >
       <AvatarFallback name={name} icon={icon}>
         {fallback}
       </AvatarFallback>
-      <ChakraAvatar.Image src={src} srcSet={srcSet} loading={loading} />
+
+      <ChakraAvatar.Image
+        src={src}
+        onError={handleError}
+        srcSet={srcSet}
+        loading={loading}
+      />
       {children}
     </ChakraAvatar.Root>
   );

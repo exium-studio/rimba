@@ -251,7 +251,7 @@ const ActiveMaterial = (props: any) => {
       {!activeMaterialId && (
         <Center flex={1} bg={"body"} p={4} rounded={"xl"}>
           <FeedbackState
-            icon={<IconBooks />}
+            icon={<IconBooks stroke={1.5} />}
             title={l.learning_material}
             description={l.msg_select_material_first}
             m={"auto"}

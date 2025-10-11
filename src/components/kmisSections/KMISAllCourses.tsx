@@ -65,7 +65,7 @@ const Data = (props: any) => {
     empty: <FeedbackNoData />,
     loaded: (
       <CContainer ref={topicListContainerRef} gap={4}>
-        <SimpleGrid columns={[1, null, 2, 3, 4]} gap={4}>
+        <SimpleGrid columns={[1, null, 2, 3, null, 4]} gap={4}>
           {data?.map((topic, idx) => {
             return <KMISCourseItem key={idx} topic={topic} idx={idx} />;
           })}

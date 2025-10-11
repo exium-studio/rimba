@@ -162,6 +162,7 @@ const translations = {
   "language": "Language",
   "last_updated": "Last updated",
   "learn_more": "Learn more",
+  "learning_material": "Learning material",
   "loading_default": {
     "title": "Loading",
     "description": "The request is being processed..."
@@ -240,6 +241,7 @@ const translations = {
   },
   "monday": "Monday",
   "month": "Month",
+  "more_info": "More info",
   "msg_ADM_active": "Adaptive dark mode is active",
   "msg_already_have_account": "Already have an account?",
   "msg_cannot_be_undone": "This action cannot be undone, please be careful.",
@@ -351,6 +353,7 @@ const translations = {
     }
   },
   "show": "Show",
+  "show_more": "Show more",
   "showing": "Showing",
   "start_learning": "Start learning",
   "student": "Student",
@@ -423,6 +426,8 @@ const translations = {
   "uploaded_file": "Uploaded file",
   "verify": "Verify",
   "view": "View",
+  "view_detail": "View detail",
+  "view_more": "View more",
   "wednesday": "Wednesday",
   "week": "Week",
   "will_be_deleted": "Will be deleted",

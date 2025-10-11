@@ -499,6 +499,22 @@ export const learn_more = {
   id: "Pelajari lebih lanjut",
   en: "Learn more",
 };
+export const view_more = {
+  id: "Lihat lebih",
+  en: "View more",
+};
+export const view_detail = {
+  id: "Lihat detail",
+  en: "View detail",
+};
+export const show_more = {
+  id: "Tampilkan lebih",
+  en: "Show more",
+};
+export const more_info = {
+  id: "Info lebih",
+  en: "More info",
+};
 export const published_at = {
   id: "Diterbitkan pada",
   en: "Published at",
@@ -599,7 +615,10 @@ export const description = {
   id: "Deskripsi",
   en: "Description",
 };
-
+export const learning_material = {
+  id: "Materi pembelajaran",
+  en: "Learning material",
+};
 // Message
 export const msg_location_test_helper = {
   id: "Klik dapatkan lokasi untuk mendapatkan data lokasi.",

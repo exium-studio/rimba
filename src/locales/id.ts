@@ -162,6 +162,7 @@ const translations = {
   "language": "Bahasa",
   "last_updated": "Terakhir diperbarui",
   "learn_more": "Pelajari lebih lanjut",
+  "learning_material": "Materi pembelajaran",
   "loading_default": {
     "title": "Memuat",
     "description": "Permintaan sedang diproses..."
@@ -240,6 +241,7 @@ const translations = {
   },
   "monday": "Senin",
   "month": "Bulan",
+  "more_info": "Info lebih",
   "msg_ADM_active": "Mode gelap adaptif aktif",
   "msg_already_have_account": "Sudah punya akun?",
   "msg_cannot_be_undone": "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
@@ -351,6 +353,7 @@ const translations = {
     }
   },
   "show": "Tampilkan",
+  "show_more": "Tampilkan lebih",
   "showing": "Menampilkan",
   "start_learning": "Mulai belajar",
   "student": "Pelajar",
@@ -423,6 +426,8 @@ const translations = {
   "uploaded_file": "File yang sudah diunggah",
   "verify": "Verifikasi",
   "view": "Lihat",
+  "view_detail": "Lihat detail",
+  "view_more": "Lihat lebih",
   "wednesday": "Rabu",
   "week": "Minggu",
   "will_be_deleted": "Akan dihapus",

@@ -34,6 +34,7 @@ import {
 } from "@chakra-ui/react";
 import {
   IconArrowRight,
+  IconCircleFilled,
   IconEye,
   IconRefresh,
   IconRocket,
@@ -102,6 +103,7 @@ const DetailCourse = (props: any) => {
     empty: <FeedbackNoData minH={"400px"} />,
     loaded: (
       <CContainer gap={8}>
+        {/* Overview */}
         <Stack flexDir={["column", null, "row"]} gapX={8} gapY={4}>
           <Img
             src={imgUrl(data?.topicCover?.[0]?.filePath)}
@@ -183,13 +185,33 @@ const DetailCourse = (props: any) => {
           </CContainer>
         </Stack>
 
-        <CContainer gap={1}>
+        {/* Description */}
+        <CContainer gap={2}>
           <P fontWeight={"semibold"}>{l.description}</P>
 
           <P>{data?.topic?.description || "-"}</P>
         </CContainer>
 
-        <CContainer gap={1}>
+        <CContainer gap={2}>
+          <P fontWeight={"semibold"}>{l.learning_material}</P>
+
+          <CContainer gap={1}>
+            {data?.material?.map((material: any) => {
+              return (
+                <HStack key={material?.id}>
+                  <Icon boxSize={2} color={"fg.subtle"}>
+                    <IconCircleFilled />
+                  </Icon>
+
+                  <P>{material?.title}</P>
+                </HStack>
+              );
+            })}
+          </CContainer>
+        </CContainer>
+
+        {/* Testimonials */}
+        <CContainer gap={2}>
           <P fontWeight={"semibold"}>Terstimonial</P>
 
           <CContainer overflowX={"auto"}>
@@ -212,7 +234,7 @@ const DetailCourse = (props: any) => {
           <IconEye stroke={1.5} />
         </Icon>
 
-        {l.view}
+        {l.view_detail}
       </Btn>
 
       <DisclosureRoot open={open} lazyLoad size={"xl"}>
@@ -291,11 +313,16 @@ export const KMISCourseItem = (props: Props) => {
       </CContainer>
 
       <CContainer gap={2} p={2} pt={0}>
-        <DetailCourse topic={topic} idx={idx} pl={[5, null, 3]} />
+        <DetailCourse
+          topic={topic}
+          idx={idx}
+          pl={[5, null, 3]}
+          colorPalette={"p"}
+        />
 
         {myCourse && (
           <NavLink to={`/related-apps/kmis/my-course/${topic?.id}`}>
-            <Btn colorPalette={"p"}>
+            <Btn colorPalette={"p"} variant={"subtle"}>
               {l.start_learning}
 
               <Icon>

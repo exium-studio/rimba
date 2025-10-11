@@ -264,6 +264,7 @@ export const KMISLearningSection = (props: Props) => {
 
   // States
   const [activeMaterialId, setActiveMaterialId] = useState<string>("");
+  console.debug("activeMaterialId", activeMaterialId);
 
   return (
     <LPSectionContainer

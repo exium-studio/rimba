@@ -131,7 +131,7 @@ const DetailCourse = (props: any) => {
         <Stack flexDir={["column", null, "row"]} gapX={8} gapY={4}>
           <Img
             src={imgUrl(data?.topicCover?.[0]?.filePath)}
-            aspectRatio={1.1}
+            aspectRatio={1}
             fluid
             rounded={"lg"}
           />
@@ -318,12 +318,12 @@ export const KMISCourseItem = (props: Props) => {
       <Img
         key={topic?.topicCover?.[0]?.filePath}
         src={imgUrl(topic?.topicCover?.[0]?.filePath)}
-        aspectRatio={1.1}
+        aspectRatio={1}
         rounded={"xl"}
       />
 
       <CContainer p={4} gap={2} pos={"relative"}>
-        <Badge pos={"absolute"} top={"-28px"} left={2}>
+        <Badge pos={"absolute"} top={"-36px"} left={4}>
           <P fontSize={"xs"} lineClamp={1} maxW={"100px"}>
             {topic?.category?.title}
           </P>

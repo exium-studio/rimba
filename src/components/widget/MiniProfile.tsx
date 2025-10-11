@@ -16,7 +16,7 @@ import useRequest from "@/hooks/useRequest";
 import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
 import { imgUrl } from "@/utils/url";
-import { Icon, StackProps } from "@chakra-ui/react";
+import { Center, Icon, StackProps } from "@chakra-ui/react";
 import { IconBook2, IconLogout, IconUser } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -81,12 +81,16 @@ export const MiniProfile = (props: StackProps) => {
       {...props}
     >
       <CContainer>
-        <Img
-          src={imgUrl(user?.photoProfile?.[0]?.filePath)}
-          alt="avatar"
-          aspectRatio={1}
-          fallbackSrc={`${SVGS_PATH}/no-avatar.svg`}
-        />
+        <Center w={"full"} p={1} aspectRatio={1}>
+          <Img
+            flex={1}
+            src={imgUrl(user?.photoProfile?.[0]?.filePath)}
+            alt="avatar"
+            aspectRatio={1}
+            fallbackSrc={`${SVGS_PATH}/no-avatar.svg`}
+            rounded={"lg"}
+          />
+        </Center>
 
         <CContainer
           bg={"body"}

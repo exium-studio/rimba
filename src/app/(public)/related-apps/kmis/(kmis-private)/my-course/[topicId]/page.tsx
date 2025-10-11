@@ -7,7 +7,6 @@ import { Breadcrumbs } from "@/components/widget/Breadcrumbs";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
-import { MiniProfile } from "@/components/widget/MiniProfile";
 import { TopNav } from "@/components/widget/TopNav";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
@@ -57,8 +56,6 @@ export default function Page(props: Props) {
 
         <HStack flex={1} gap={4} w={"full"} align={"stretch"}>
           <CContainer flex={1} gap={4}>
-            <MiniProfile />
-
             <Skeleton minH={"200px"} rounded={"xl"} />
           </CContainer>
 

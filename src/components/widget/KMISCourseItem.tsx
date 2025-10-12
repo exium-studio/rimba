@@ -22,6 +22,7 @@ import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
+import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
 import { imgUrl } from "@/utils/url";
 import {
@@ -225,6 +226,8 @@ const DetailCourse = (props: any) => {
           <P fontWeight={"semibold"}>{l.learning_material}</P>
 
           <CContainer gap={1}>
+            {isEmptyArray(data?.material) && <P>-</P>}
+
             {data?.material?.map((material: any) => {
               return (
                 <HStack key={material?.id}>
@@ -243,8 +246,24 @@ const DetailCourse = (props: any) => {
         <CContainer gap={2}>
           <P fontWeight={"semibold"}>Terstimonial</P>
 
+          {isEmptyArray(data?.feedback) && <P>-</P>}
+
           <CContainer overflowX={"auto"}>
-            <HStack w={"max"}></HStack>
+            <HStack w={"max"}>
+              {data?.feedback?.map((feedback: any) => {
+                return (
+                  <CContainer
+                    key={feedback?.id}
+                    p={4}
+                    rounded={"lg"}
+                    border={"1px solid"}
+                    borderColor={"border.muted"}
+                  >
+                    <P>{`"${feedback?.coment}"`}</P>
+                  </CContainer>
+                );
+              })}
+            </HStack>
           </CContainer>
         </CContainer>
       </CContainer>

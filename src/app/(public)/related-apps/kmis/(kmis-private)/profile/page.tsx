@@ -61,8 +61,8 @@ const ProfileForm = (props: any) => {
     initialValues: {
       name: "",
       email: "",
-      birthDate: null as unknown as any[],
-      gender: null as unknown as Interface__SelectOption[],
+      birthDate: null as string[] | null,
+      gender: null as Interface__SelectOption[] | null,
       phoneNumber: "",
       profession: "",
       address: "",
@@ -117,13 +117,16 @@ const ProfileForm = (props: any) => {
     formik.setValues({
       name: user?.name || "",
       email: user?.email || "",
-      birthDate: [user?.birthDate],
-      gender: [
-        {
-          id: user?.gender,
-          label: user?.gender === "1" ? "Male" : "Female",
-        },
-      ],
+      birthDate: user?.birthDate ? [user?.birthDate] : null,
+      gender:
+        user?.gender !== null
+          ? [
+              {
+                id: user?.gender,
+                label: user?.gender === "1" ? "Male" : "Female",
+              },
+            ]
+          : null,
       phoneNumber: user?.phoneNumber || "",
       profession: user?.profession || "",
       address: user?.address || "",

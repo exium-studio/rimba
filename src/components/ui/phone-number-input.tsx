@@ -6,10 +6,10 @@ import { HStack, StackProps, useFieldContext } from "@chakra-ui/react";
 import { getCountries, getCountryCallingCode } from "libphonenumber-js";
 import { useEffect, useState } from "react";
 
-interface Props extends StackProps {
+interface Props extends Omit<StackProps, "onChange"> {
   id?: string;
   inputValue?: string;
-  onChangeSetter?: (inputValue: string) => void;
+  onChange?: (inputValue: string) => void;
   placeholder?: string;
   invalid?: boolean;
 }
@@ -47,7 +47,7 @@ const SelectCountry = ({
 
 const PhoneNumberInput = (props: Props) => {
   // Props
-  const { id, inputValue, onChangeSetter, placeholder, invalid, ...restProps } =
+  const { id, inputValue, onChange, placeholder, invalid, ...restProps } =
     props;
 
   // Contexts
@@ -71,7 +71,7 @@ const PhoneNumberInput = (props: Props) => {
   );
 
   useEffect(() => {
-    onChangeSetter?.(`${country?.[0]?.id} ${phone}`);
+    onChange?.(`${country?.[0]?.id} ${phone}`);
   }, [phone]);
 
   return (

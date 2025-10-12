@@ -106,12 +106,12 @@ const SelectOptions = (props: Props__SelectOptions) => {
           )}
 
           <CContainer p={4} gap={2}>
-            {resolvedSelectOptions?.map((o) => {
+            {resolvedSelectOptions?.map((o, idx) => {
               const isActive = selected?.some((s) => s.id === o.id);
 
               return (
                 <Btn
-                  key={o.id}
+                  key={`${o.id}-${idx}`}
                   clicky={false}
                   variant={"ghost"}
                   justifyContent={"start"}

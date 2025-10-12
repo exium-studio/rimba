@@ -17,8 +17,8 @@ interface Props {
   successMessage?: { title?: string; description?: string };
   errorMessage?: Record<
     number,
-    Record<string, { title: string; description: string }> & {
-      default?: { title: string; description: string };
+    Record<string, { type: string; title: string; description: string }> & {
+      default?: { type: "error"; title: string; description: string };
     }
   >;
   signinPath?: string;
@@ -71,7 +71,7 @@ export default function useRequest<T = any>(props: Props) {
     []
   );
 
-  const resolveErrorMessage = (e: any) => {
+  const resolvedToastProps = (e: any) => {
     const statusCode = e.response?.status;
     const errorCase = e.response?.data?.case;
 
@@ -229,18 +229,19 @@ export default function useRequest<T = any>(props: Props) {
             break;
         }
 
-        const msg = resolveErrorMessage(e);
+        const toastProps = resolvedToastProps(e);
 
         if (showErrorToast) {
           if (showLoadingToast) {
             toaster.update(id, {
               type: "error",
-              ...msg,
+              ...toastProps,
               action: { label: "Close", onClick: () => {} },
             });
           } else {
-            toaster.error({
-              ...msg,
+            toaster.create({
+              type: "error",
+              ...toastProps,
               action: { label: "Close", onClick: () => {} },
             });
           }

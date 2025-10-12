@@ -274,7 +274,7 @@ const MaterialList = (props: any) => {
   );
 };
 
-const NextMaterialButton = (props: any) => {
+const NextStepButton = (props: any) => {
   // Props
   const {
     activeMaterial,
@@ -290,12 +290,13 @@ const NextMaterialButton = (props: any) => {
 
   // Hooks
   const { req, loading } = useRequest({
-    id: "next-material",
+    id: "next-step",
     showLoadingToast: false,
     showSuccessToast: false,
     errorMessage: {
       422: {
         TIME_NOT_ELAPSED: {
+          type: "info",
           title: l.error_material_time_not_elapsed.title,
           description: interpolateString(
             l.error_material_time_not_elapsed.description,
@@ -428,7 +429,7 @@ const ActiveMaterial = (props: any) => {
           data?.materialType as keyof typeof MATERIAL_REGISTRY
         ]?.render({ material: data })}
 
-        <NextMaterialButton
+        <NextStepButton
           activeMaterial={data}
           courseDetail={courseDetail}
           setCourseDetail={setCourseDetail}

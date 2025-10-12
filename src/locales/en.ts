@@ -160,6 +160,10 @@ const translations = {
   "friday": "Friday",
   "get": "Get",
   "hide": "Hide",
+  "info_quiz_not_ready": {
+    "title": "Quiz is not ready",
+    "description": "Please try again later."
+  },
   "info_timezone_auto": {
     "title": "Timezone automatically set",
     "description": "${timezone}"

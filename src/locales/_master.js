@@ -1228,6 +1228,16 @@ export const info_timezone_auto = {
     en: "${timezone}",
   },
 };
+export const info_quiz_not_ready = {
+  title: {
+    id: "Quiz belum siap",
+    en: "Quiz is not ready",
+  },
+  description: {
+    id: "Silakan coba lagi nanti.",
+    en: "Please try again later.",
+  },
+};
 
 // Error Route
 export const missing_route = {

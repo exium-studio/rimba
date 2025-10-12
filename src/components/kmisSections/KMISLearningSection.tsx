@@ -6,6 +6,7 @@ import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import SafeHtml from "@/components/ui/safe-html";
+import { toaster } from "@/components/ui/toaster";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import FeedbackState from "@/components/widget/FeedbackState";
@@ -313,9 +314,11 @@ const NextMaterialButton = (props: any) => {
   const router = useRouter();
 
   // States
+  const completedMaterials = courseDetail?.learningAttempt?.completedMaterial;
   const materials = courseDetail?.material;
-
-  console.debug(lastIdx);
+  const quizDisabled =
+    completedMaterials.length !== materials.length ||
+    courseDetail?.learningAttempt?.topic?.totalQuiz === 0;
 
   // Utils
   function updateCurrentActiveMaterialToCompleted() {
@@ -364,7 +367,15 @@ const NextMaterialButton = (props: any) => {
           onSuccess: () => {
             updateCurrentActiveMaterialToCompleted();
             if (lastIdx) {
-              startQuiz();
+              if (quizDisabled) {
+                toaster.create({
+                  title: l.info_quiz_not_ready.title,
+                  description: l.info_quiz_not_ready.description,
+                  action: { label: "Close", onClick: () => {} },
+                });
+              } else {
+                startQuiz();
+              }
             } else {
               nextActiveMaterial();
             }

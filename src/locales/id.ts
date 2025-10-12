@@ -160,6 +160,10 @@ const translations = {
   "friday": "Jumat",
   "get": "Dapatkan",
   "hide": "Sembunyikan",
+  "info_quiz_not_ready": {
+    "title": "Quiz belum siap",
+    "description": "Silakan coba lagi nanti."
+  },
   "info_timezone_auto": {
     "title": "Zona waktu otomatis diset",
     "description": "${timezone}"

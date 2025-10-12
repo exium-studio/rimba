@@ -49,7 +49,7 @@ const AnswerOption = (props: any) => {
 
   // Hooks
   const { req } = useRequest({
-    id: `update-answer-${quiz.id}`,
+    id: `update-answer-${quiz?.id}`,
     loadingMessage: {
       title: interpolateString(l.loading_answer.title, {
         quizNumber: quizNumber,
@@ -91,6 +91,11 @@ const AnswerOption = (props: any) => {
 
     req({
       config,
+      onResolve: {
+        onError: () => {
+          setSelected("");
+        },
+      },
     });
   }
 
@@ -141,8 +146,9 @@ const ActiveQuiz = (props: any) => {
       optionKey: "answerD",
     },
   ];
-  const quizes = courseDetail?.learningAttempt?.quiz as Interface__KMISQuiz[];
-  const lastIdx = activeQuizIdx === quizes.length - 1;
+  const quiz = activeQuiz?.quiz;
+  const quizes = courseDetail?.exam as Interface__KMISQuiz[];
+  const lastIdx = activeQuizIdx === quizes?.length - 1;
   const [selected, setSelected] = useState<string>("");
 
   // Utils
@@ -164,16 +170,10 @@ const ActiveQuiz = (props: any) => {
   }
 
   return (
-    <ItemContainer
-      flex={4}
-      gap={2}
-      p={4}
-      border={"1px solid"}
-      borderColor={"border.muted"}
-    >
+    <ItemContainer flex={4} gap={2} p={4}>
       <P fontWeight={"semibold"}>{`No. ${activeQuizIdx + 1}`}</P>
 
-      <P fontWeight={"medium"}>{activeQuiz?.question}</P>
+      <P fontWeight={"medium"}>{quiz?.question}</P>
 
       {/* options abcd */}
       <CContainer gap={2} mt={2}>
@@ -185,7 +185,7 @@ const ActiveQuiz = (props: any) => {
               courseDetail={courseDetail}
               optionLetter={optionLetter}
               optionKey={optionKey}
-              quiz={activeQuiz}
+              quiz={quiz}
               selected={selected}
               setSelected={setSelected}
             />
@@ -252,14 +252,15 @@ export const QuizWorkspace = (props: Props) => {
   // States
   const [activeQuizIdx, setActiveQuizIdx] = useState<number>(0);
   const { error, initialLoading, data, onRetry } = useDataState<{
-    quiz: Interface__KMISQuiz[];
+    learningParticipant: Interface__KMISLearningAttempt;
+    exam: Interface__KMISQuiz[];
   }>({
-    url: `/api/kmis/learning-course/get-quiz-with-answer/${courseDetail?.learningAttempt?.topic?.id}`,
+    url: `/api/kmis/learning-course/get-quiz-with-answer/${courseDetail?.learningAttempt?.id}`,
     dependencies: [],
     dataResource: false,
   });
-  const quizes = data?.quiz;
-  const activeQuiz = data?.quiz?.[activeQuizIdx];
+  const quizes = data?.exam;
+  const activeQuiz = quizes?.[activeQuizIdx];
 
   const render = {
     loading: <Skeleton flex={1} rounded={"xl"} />,
@@ -271,16 +272,10 @@ export const QuizWorkspace = (props: Props) => {
           courseDetail={courseDetail}
           activeQuiz={activeQuiz}
           activeQuizIdx={activeQuizIdx}
+          setActiveQuizIdx={setActiveQuizIdx}
         />
 
-        <ItemContainer
-          flex={1}
-          h={"fit"}
-          gap={4}
-          p={4}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+        <ItemContainer flex={1} h={"fit"} gap={4} p={4}>
           <P fontWeight={"semibold"}>{l.list_of_questions}</P>
 
           <SimpleGrid columns={5} gap={2} w={"max"}>
@@ -293,8 +288,8 @@ export const QuizWorkspace = (props: Props) => {
                   iconButton
                   size={"xs"}
                   variant={"outline"}
-                  border={isActive ? "1px solid" : "none"}
-                  borderColor={"border.muted"}
+                  border={"1px solid"}
+                  borderColor={isActive ? "p.500" : "border.muted"}
                   onClick={() => setActiveQuizIdx(idx)}
                 >
                   {idx + 1}

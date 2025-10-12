@@ -35,7 +35,7 @@ const VideoElement = chakra("video");
 
 export default function VideoPlayer(props: Props__VideoPlayer) {
   // Props
-  const { id, thumbnail, src, ...restProps } = props;
+  const { id, thumbnail, src, embedYt, ...restProps } = props;
 
   // Refs
   const videoContainerRef = useRef<HTMLDivElement>(null);
@@ -250,6 +250,19 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
   }, []);
+
+  if (embedYt)
+    return (
+      <CContainer w={"full"} h={"auto"} aspectRatio={16 / 10}>
+        <iframe
+          src={src}
+          width="100%"
+          height="100%"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </CContainer>
+    );
 
   return (
     <CContainer

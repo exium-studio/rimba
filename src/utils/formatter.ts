@@ -290,7 +290,7 @@ export const formatDuration = (
   seconds: number | undefined,
   format: "long" | "short" | "digital" = "long"
 ): string => {
-  if (!seconds) return "0 detik";
+  if (!seconds) return "0 s";
 
   switch (format) {
     case "long": {
@@ -299,9 +299,9 @@ export const formatDuration = (
       const detik = seconds % 60;
 
       let result = "";
-      if (jam > 0) result += `${jam} jam`;
-      if (menit > 0) result += ` ${menit} menit`;
-      if (detik > 0) result += ` ${detik} detik`;
+      if (jam > 0) result += `${jam} h`;
+      if (menit > 0) result += ` ${menit} m`;
+      if (detik > 0) result += ` ${detik} s`;
 
       return result.trim();
     }

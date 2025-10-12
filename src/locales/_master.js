@@ -1026,16 +1026,6 @@ export const success_226_default = {
 };
 
 // Error Toast
-export const error_material_time_not_elapsed = {
-  title: {
-    id: "Waktu Belajar Belum Cukup",
-    en: "Minimum Study Time Not Reached",
-  },
-  description: {
-    id: "Kamu perlu menyelesaikan waktu belajar minimal sebelum lanjut ke materi berikutnya. Min. ${minTime}.",
-    en: "You need to complete the minimum study time before proceeding to the next material. Min. ${minTime}.",
-  },
-};
 export const error_default = {
   title: { id: "Terjadi kesalahan", en: "An error occurred" },
   description: {
@@ -1236,6 +1226,16 @@ export const info_quiz_not_ready = {
   description: {
     id: "Silakan coba lagi nanti.",
     en: "Please try again later.",
+  },
+};
+export const info_material_time_not_elapsed = {
+  title: {
+    id: "Waktu Belajar Belum Cukup",
+    en: "Minimum Study Time Not Reached",
+  },
+  description: {
+    id: "Kamu perlu menyelesaikan waktu belajar minimal ${minTime} sebelum lanjut ke materi berikutnya, tersisa ${remainingTime} sampai ${endTime}.",
+    en: "You need to complete the minimum ${minTime} study time before proceeding to the next material, remaining ${remainingTime} until ${endTime}.",
   },
 };
 

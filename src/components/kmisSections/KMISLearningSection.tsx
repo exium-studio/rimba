@@ -22,7 +22,13 @@ import {
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
+import { formatDuration } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
+import {
+  addSecondsToTime,
+  getRemainingSecondsUntil,
+  makeTime,
+} from "@/utils/time";
 import { imgUrl } from "@/utils/url";
 import {
   Center,
@@ -68,7 +74,7 @@ const MATERIAL_REGISTRY = {
   },
   video: {
     icon: <IconVideo stroke={1.5} />,
-    minimalStudyTime: 30,
+    minimalStudyTime: 15,
     render: (props: any) => {
       // Props
       const { material, ...restProps } = props;
@@ -81,7 +87,7 @@ const MATERIAL_REGISTRY = {
           </P>
 
           <CContainer gap={4} p={4} rounded={"xl"} bg={"body"}>
-            <VideoPlayer src={`https://www.youtube.com/embed/45I4Eu9zSb8`} />
+            <VideoPlayer embedYt src={resolvedMaterial?.materialUrl} />
 
             <SafeHtml html={resolvedMaterial?.description} />
           </CContainer>
@@ -91,7 +97,7 @@ const MATERIAL_REGISTRY = {
   },
   dokumen: {
     icon: <IconFiles stroke={1.5} />,
-    minimalStudyTime: 10,
+    minimalStudyTime: 7,
     render: (props: any) => {
       // Props
       const { material, ...restProps } = props;
@@ -257,7 +263,7 @@ const MaterialList = (props: any) => {
               courseDetail?.learningAttempt?.topic?.totalQuiz === 0
             }
           >
-            <Icon>
+            <Icon boxSize={6}>
               <IconHelpHexagon stroke={1.5} />
             </Icon>
 
@@ -273,7 +279,6 @@ const MaterialList = (props: any) => {
     </CContainer>
   );
 };
-
 const NextStepButton = (props: any) => {
   // Props
   const {
@@ -287,6 +292,14 @@ const NextStepButton = (props: any) => {
 
   // Contexts
   const { l } = useLang();
+  const minimalStudyTime =
+    MATERIAL_REGISTRY?.[
+      activeMaterial?.materialType as keyof typeof MATERIAL_REGISTRY
+    ]?.minimalStudyTime;
+  const estimatedEndTime = getRemainingSecondsUntil(
+    addSecondsToTime(makeTime(activeMaterial?.updatedAt), minimalStudyTime * 60)
+  );
+  const remainingTime = formatDuration(estimatedEndTime);
 
   // Hooks
   const { req, loading } = useRequest({
@@ -297,15 +310,13 @@ const NextStepButton = (props: any) => {
       422: {
         TIME_NOT_ELAPSED: {
           type: "info",
-          title: l.error_material_time_not_elapsed.title,
+          title: l.info_material_time_not_elapsed.title,
           description: interpolateString(
-            l.error_material_time_not_elapsed.description,
+            l.info_material_time_not_elapsed.description,
             {
-              minTime: `${
-                MATERIAL_REGISTRY?.[
-                  activeMaterial?.materialType as keyof typeof MATERIAL_REGISTRY
-                ]?.minimalStudyTime
-              } ${l.minutes.toLowerCase()}`,
+              minTime: `${minimalStudyTime} ${l.minutes.toLowerCase()}`,
+              remainingTime: `${remainingTime}`,
+              endTime: `${estimatedEndTime}`,
             }
           ),
         },
@@ -339,6 +350,21 @@ const NextStepButton = (props: any) => {
       };
     });
   }
+  function updateCompletedMaterials() {
+    setCourseDetail((ps: any) => {
+      const newMaterials = [
+        ...ps.learningAttempt.completedMaterial,
+        activeMaterial,
+      ];
+      return {
+        ...ps,
+        learningAttempt: {
+          ...ps.learningAttempt,
+          completedMaterial: newMaterials,
+        },
+      };
+    });
+  }
   function nextActiveMaterial() {
     router.push(
       `/related-apps/kmis/my-course/${
@@ -359,13 +385,14 @@ const NextStepButton = (props: any) => {
     } else {
       const config = {
         url: `/api/kmis/learning-course/update/${courseDetail?.learningAttempt?.id}`,
-        method: "PATCH",
+        method: "GET",
       };
 
       req({
         config,
         onResolve: {
           onSuccess: () => {
+            updateCompletedMaterials();
             updateCurrentActiveMaterialToCompleted();
             if (lastIdx) {
               if (quizDisabled) {

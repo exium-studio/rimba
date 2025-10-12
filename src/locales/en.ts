@@ -133,10 +133,6 @@ const translations = {
     "title": "Failed to get location",
     "description": "Check location permission or ensure GPS is enabled."
   },
-  "error_material_time_not_elapsed": {
-    "title": "Minimum Study Time Not Reached",
-    "description": "You need to complete the minimum study time before proceeding to the next material. Min. ${minTime}."
-  },
   "error_mic": {
     "title": "Failed to access microphone",
     "description": "Check microphone permission or ensure it's not in use by another app."
@@ -160,6 +156,10 @@ const translations = {
   "friday": "Friday",
   "get": "Get",
   "hide": "Hide",
+  "info_material_time_not_elapsed": {
+    "title": "Minimum Study Time Not Reached",
+    "description": "You need to complete the minimum ${minTime} study time before proceeding to the next material, remaining ${remainingTime} until ${endTime}."
+  },
   "info_quiz_not_ready": {
     "title": "Quiz is not ready",
     "description": "Please try again later."

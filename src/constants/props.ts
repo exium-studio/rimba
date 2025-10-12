@@ -145,6 +145,7 @@ export interface Props__Logo {
 export interface Props__VideoPlayer extends StackProps {
   id?: string;
   thumbnail?: string;
+  embedYt?: boolean;
   src?: string;
   width?: number | string;
   height?: number | string;

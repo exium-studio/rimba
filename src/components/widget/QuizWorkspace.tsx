@@ -117,7 +117,8 @@ const AnswerOption = (props: any) => {
 };
 const ActiveQuiz = (props: any) => {
   // Props
-  const { courseDetail, activeQuiz, activeQuizIdx, setActiveQuizIdx } = props;
+  const { courseDetail, quizes, activeQuiz, activeQuizIdx, setActiveQuizIdx } =
+    props;
 
   // Contexts
   const { l } = useLang();
@@ -147,7 +148,6 @@ const ActiveQuiz = (props: any) => {
     },
   ];
   const quiz = activeQuiz?.quiz;
-  const quizes = courseDetail?.exam as Interface__KMISQuiz[];
   const lastIdx = activeQuizIdx === quizes?.length - 1;
   const [selected, setSelected] = useState<string>("");
 
@@ -199,6 +199,7 @@ const ActiveQuiz = (props: any) => {
 
         <HStack>
           <Btn
+            w={"150px"}
             variant={"ghost"}
             disabled={activeQuizIdx === 0}
             onClick={() => {
@@ -213,7 +214,9 @@ const ActiveQuiz = (props: any) => {
           </Btn>
 
           <Btn
-            variant={"ghost"}
+            w={"150px"}
+            variant={lastIdx ? "outline" : "ghost"}
+            colorPalette={lastIdx ? "p" : ""}
             onClick={() => {
               if (lastIdx) {
                 onSubmitQuiz();
@@ -270,6 +273,7 @@ export const QuizWorkspace = (props: Props) => {
       <Stack flexDir={["column", null, "row"]} gap={4} {...restProps}>
         <ActiveQuiz
           courseDetail={courseDetail}
+          quizes={quizes}
           activeQuiz={activeQuiz}
           activeQuizIdx={activeQuizIdx}
           setActiveQuizIdx={setActiveQuizIdx}

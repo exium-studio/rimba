@@ -212,16 +212,18 @@ const MaterialList = (props: any) => {
                 }
               >
                 <Center pos={"relative"}>
-                  <Circle
-                    bg={"fg.success"}
-                    pos={"absolute"}
-                    top={"-4px"}
-                    right={"-4px"}
-                  >
-                    <Icon color={"light"} boxSize={4}>
-                      <IconCheck />
-                    </Icon>
-                  </Circle>
+                  {material?.isCompleted && (
+                    <Circle
+                      bg={"fg.success"}
+                      pos={"absolute"}
+                      top={"-4px"}
+                      right={"-4px"}
+                    >
+                      <Icon color={"light"} boxSize={4}>
+                        <IconCheck />
+                      </Icon>
+                    </Circle>
+                  )}
 
                   {materialProps?.icon && (
                     <Icon boxSize={6}>

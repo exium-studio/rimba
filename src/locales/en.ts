@@ -135,7 +135,7 @@ const translations = {
   },
   "error_material_time_not_elapsed": {
     "title": "Minimum Study Time Not Reached",
-    "description": "You need to complete the minimum study time before proceeding to the next material. ${timeRemaining} remaining."
+    "description": "You need to complete the minimum study time before proceeding to the next material."
   },
   "error_mic": {
     "title": "Failed to access microphone",

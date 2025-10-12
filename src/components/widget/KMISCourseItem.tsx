@@ -197,7 +197,7 @@ const DetailCourse = (props: any) => {
 
               <HStack align={"end"} flexShrink={0}>
                 <P fontSize={"lg"} fontWeight={"medium"}>
-                  {`${data?.topic?.quiz_duration || 0 * 60}`}
+                  {`${(data?.topic?.quizDuration || 0) / 60}`}
                 </P>
 
                 <P fontSize={"sm"} transform={"translateY(1px)"}>

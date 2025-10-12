@@ -117,6 +117,11 @@ const ActiveQuiz = (props: any) => {
   // Contexts
   const { l } = useLang();
 
+  // Hooks
+  const { req, loading } = useRequest({
+    id: "submit-quiz",
+  });
+
   // States
   const OPTIONS_REGISTRY = [
     {
@@ -136,7 +141,27 @@ const ActiveQuiz = (props: any) => {
       optionKey: "answerD",
     },
   ];
+  const quizes = courseDetail?.learningAttempt?.quiz as Interface__KMISQuiz[];
+  const lastIdx = activeQuizIdx === quizes.length - 1;
   const [selected, setSelected] = useState<string>("");
+
+  // Utils
+  function onSubmitQuiz() {
+    const payload = {
+      learningAttemptId: courseDetail?.learningAttempt?.id,
+      quizId: activeQuiz?.id,
+    };
+
+    const config = {
+      url: `/api/kmis/exam/submit-answer`,
+      method: "POST",
+      data: payload,
+    };
+
+    req({
+      config,
+    });
+  }
 
   return (
     <ItemContainer
@@ -190,10 +215,15 @@ const ActiveQuiz = (props: any) => {
           <Btn
             variant={"ghost"}
             onClick={() => {
-              setActiveQuizIdx((ps: any) => ps + 1);
+              if (lastIdx) {
+                onSubmitQuiz();
+              } else {
+                setActiveQuizIdx((ps: any) => ps + 1);
+              }
             }}
+            loading={loading}
           >
-            {l.next}
+            {lastIdx ? l.submit : l.next}
 
             <Icon>
               <IconArrowRight stroke={1.5} />

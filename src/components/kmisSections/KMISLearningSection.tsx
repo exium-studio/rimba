@@ -224,9 +224,9 @@ const MaterialList = (props: any) => {
                       bg={"fg.success"}
                       pos={"absolute"}
                       top={"-4px"}
-                      right={"-4px"}
+                      left={"-4px"}
                     >
-                      <Icon color={"light"} boxSize={4}>
+                      <Icon color={"light"} boxSize={3.5}>
                         <IconCheck />
                       </Icon>
                     </Circle>
@@ -383,6 +383,7 @@ const NextStepButton = (props: any) => {
     if (nextMaterialIsCompleted) {
       nextActiveMaterial();
     } else {
+      console.debug("jancok");
       const config = {
         url: `/api/kmis/learning-course/update/${courseDetail?.learningAttempt?.id}`,
         method: "GET",

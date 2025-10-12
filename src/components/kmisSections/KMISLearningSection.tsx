@@ -315,6 +315,8 @@ const NextMaterialButton = (props: any) => {
   // States
   const materials = courseDetail?.material;
 
+  console.debug(lastIdx);
+
   // Utils
   function updateCurrentActiveMaterialToCompleted() {
     setCourseDetail((ps: any) => {
@@ -346,9 +348,9 @@ const NextMaterialButton = (props: any) => {
     );
   }
   function onNextMaterial() {
-    const nextMaterialIsComppleted = materials[idx + 1]?.isCompleted;
+    const nextMaterialIsCompleted = materials[idx + 1]?.isCompleted;
 
-    if (nextMaterialIsComppleted) {
+    if (nextMaterialIsCompleted) {
       nextActiveMaterial();
     } else {
       const config = {
@@ -361,10 +363,10 @@ const NextMaterialButton = (props: any) => {
         onResolve: {
           onSuccess: () => {
             updateCurrentActiveMaterialToCompleted();
-            if (!lastIdx) {
-              nextActiveMaterial();
-            } else {
+            if (lastIdx) {
               startQuiz();
+            } else {
+              nextActiveMaterial();
             }
           },
         },
@@ -420,7 +422,10 @@ const ActiveMaterial = (props: any) => {
           courseDetail={courseDetail}
           setCourseDetail={setCourseDetail}
           idx={courseDetail?.material?.findIndex((m: any) => m.id === data?.id)}
-          lastIdx={courseDetail?.material?.length - 1}
+          lastIdx={
+            courseDetail?.material?.findIndex((m: any) => m.id === data?.id) ===
+            courseDetail?.material?.length - 1
+          }
         />
       </CContainer>
     ),

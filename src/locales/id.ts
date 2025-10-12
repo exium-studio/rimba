@@ -158,7 +158,7 @@ const translations = {
   "hide": "Sembunyikan",
   "info_material_time_not_elapsed": {
     "title": "Waktu Belajar Belum Cukup",
-    "description": "Kamu perlu menyelesaikan waktu belajar minimal ${minTime} sebelum lanjut ke materi berikutnya, tersisa ${remainingTime} sampai ${endTime}."
+    "description": "Kamu perlu menyelesaikan waktu belajar minimal ${minTime} sebelum lanjut ke materi berikutnya, tersisa ${remainingTime} hingga ${endTime}."
   },
   "info_quiz_not_ready": {
     "title": "Quiz belum siap",

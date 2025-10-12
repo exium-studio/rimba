@@ -144,37 +144,7 @@ const DetailCourse = (props: any) => {
               {data?.topic?.title}
             </P>
 
-            <HStack wrap={"wrap"} gap={4}>
-              <HStack color={"fg.subtle"}>
-                <Icon boxSize={4}>
-                  <IconRocket stroke={1.5} />
-                </Icon>
-
-                <P fontSize={"sm"}>{`${formatDate(
-                  data?.topic?.createdAt
-                )} (${l.release_date.toLowerCase()})`}</P>
-              </HStack>
-
-              <HStack color={"fg.subtle"}>
-                <Icon boxSize={4}>
-                  <IconRefresh stroke={1.5} />
-                </Icon>
-
-                <P fontSize={"sm"}>
-                  {`${formatDate(
-                    data?.topic?.updatedAt as string
-                  )}  (${l.last_updated.toLowerCase()})`}
-                </P>
-              </HStack>
-            </HStack>
-
-            <HStack
-              wrap={"wrap"}
-              gap={4}
-              align={["", null, "end"]}
-              mt={"auto"}
-              pt={4}
-            >
+            <HStack wrap={"wrap"} gap={4} align={["", null, "end"]}>
               <HStack align={"end"} flexShrink={0}>
                 <P fontSize={"lg"} fontWeight={"medium"}>
                   {`${data?.material?.length}`}
@@ -206,11 +176,37 @@ const DetailCourse = (props: any) => {
               </HStack>
             </HStack>
 
-            {!myCourse && <EnrollButton topic={topic} mt={2} />}
+            <CContainer gap={1} pt={4}>
+              <HStack color={"fg.subtle"}>
+                <Icon boxSize={4}>
+                  <IconRocket stroke={1.5} />
+                </Icon>
 
-            {myCourse && (
-              <StartLearningButton topic={topic} mt={2} variant={"solid"} />
-            )}
+                <P fontSize={"sm"}>{`${formatDate(
+                  data?.topic?.createdAt
+                )} (${l.release_date.toLowerCase()})`}</P>
+              </HStack>
+
+              <HStack color={"fg.subtle"}>
+                <Icon boxSize={4}>
+                  <IconRefresh stroke={1.5} />
+                </Icon>
+
+                <P fontSize={"sm"}>
+                  {`${formatDate(
+                    data?.topic?.updatedAt as string
+                  )}  (${l.last_updated.toLowerCase()})`}
+                </P>
+              </HStack>
+            </CContainer>
+
+            <CContainer mt={"auto"}>
+              {!myCourse && <EnrollButton topic={topic} mt={2} />}
+
+              {myCourse && (
+                <StartLearningButton topic={topic} mt={2} variant={"solid"} />
+              )}
+            </CContainer>
           </CContainer>
         </Stack>
 

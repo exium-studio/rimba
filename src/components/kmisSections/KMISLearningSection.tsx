@@ -296,10 +296,13 @@ const NextStepButton = (props: any) => {
     MATERIAL_REGISTRY?.[
       activeMaterial?.materialType as keyof typeof MATERIAL_REGISTRY
     ]?.minimalStudyTime;
-  const estimatedEndTime = getRemainingSecondsUntil(
-    addSecondsToTime(makeTime(activeMaterial?.updatedAt), minimalStudyTime * 60)
+  const estimatedEndTime = addSecondsToTime(
+    makeTime(courseDetail?.learningAttempt?.updatedAt),
+    minimalStudyTime * 60
   );
-  const remainingTime = formatDuration(estimatedEndTime);
+  const remainingTime = formatDuration(
+    getRemainingSecondsUntil(estimatedEndTime)
+  );
 
   // Hooks
   const { req, loading } = useRequest({
@@ -352,15 +355,19 @@ const NextStepButton = (props: any) => {
   }
   function updateCompletedMaterials() {
     setCourseDetail((ps: any) => {
-      const newMaterials = [
-        ...ps.learningAttempt.completedMaterial,
-        activeMaterial,
-      ];
+      const materials = [...ps.learningAttempt.completedMaterial];
+      const isExist = materials.some((m: any) => m.id === activeMaterial?.id);
+
+      // Add only if not exist
+      const updatedMaterials = isExist
+        ? materials
+        : [...materials, activeMaterial];
+
       return {
         ...ps,
         learningAttempt: {
           ...ps.learningAttempt,
-          completedMaterial: newMaterials,
+          completedMaterial: updatedMaterials,
         },
       };
     });
@@ -383,10 +390,9 @@ const NextStepButton = (props: any) => {
     if (nextMaterialIsCompleted) {
       nextActiveMaterial();
     } else {
-      console.debug("jancok");
       const config = {
         url: `/api/kmis/learning-course/update/${courseDetail?.learningAttempt?.id}`,
-        method: "GET",
+        method: "PATCH",
       };
 
       req({

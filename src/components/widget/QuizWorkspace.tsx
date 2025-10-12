@@ -2,8 +2,8 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { Checkbox } from "@/components/ui/checkbox";
 import { P } from "@/components/ui/p";
-import { Switch } from "@/components/ui/switch";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { DotIndicator } from "@/components/widget/Indicator";
@@ -15,6 +15,7 @@ import {
   Interface__KMISQuizResponse,
 } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
+import useRenderTrigger from "@/context/useRenderTrigger";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";
@@ -35,21 +36,20 @@ const AnswerOption = (props: any) => {
   // Props
   const {
     quizNumber,
+    activeQuiz,
     courseDetail,
     optionLetter,
     optionKey,
-    quiz,
-    selected,
-    setSelected,
     ...restProps
   } = props;
 
   // Contexts
   const { l } = useLang();
+  const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
   const { req } = useRequest({
-    id: `update-answer-${quiz?.id}`,
+    id: `update-answer-${activeQuiz.quiz?.id}`,
     loadingMessage: {
       title: interpolateString(l.loading_answer.title, {
         quizNumber: quizNumber,
@@ -69,18 +69,16 @@ const AnswerOption = (props: any) => {
   });
 
   // States
-  const resolvedQuiz: Interface__KMISQuiz = quiz;
-  const isActive = selected === optionLetter;
+  const resolvedQuiz: Interface__KMISQuiz = activeQuiz.quiz;
+  const isActive = activeQuiz?.selectedOption === optionLetter;
 
   // Utils
-  function onUpdate() {
-    setSelected(optionLetter);
-
+  function onAnswerSelect() {
     const payload = {
       learningAttemptId: courseDetail?.learningAttempt?.id,
       quizId: resolvedQuiz?.id,
       selectedOption: optionLetter || "",
-      isMarker: false,
+      isMarker: activeQuiz.isMarker,
     };
 
     const config = {
@@ -92,9 +90,10 @@ const AnswerOption = (props: any) => {
     req({
       config,
       onResolve: {
-        onError: () => {
-          setSelected("");
+        onSuccess: () => {
+          setRt((ps) => !ps);
         },
+        onError: () => {},
       },
     });
   }
@@ -105,7 +104,7 @@ const AnswerOption = (props: any) => {
       justifyContent={"start"}
       variant={"outline"}
       borderColor={isActive ? "p.500" : "border.muted"}
-      onClick={onUpdate}
+      onClick={onAnswerSelect}
       {...restProps}
     >
       <P>{optionLetter}</P>
@@ -115,11 +114,59 @@ const AnswerOption = (props: any) => {
     </Btn>
   );
 };
+const MarkingOption = (props: any) => {
+  // Props
+  const { courseDetail, activeQuiz } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const setRt = useRenderTrigger((s) => s.setRt);
+
+  // Hooks
+  const { req } = useRequest({
+    id: "marking-question",
+  });
+
+  // Utils
+  function onToggleMark() {
+    const payload = {
+      learningAttemptId: courseDetail?.learningAttempt?.id,
+      quizId: activeQuiz?.quiz?.id,
+      selectedOption: activeQuiz?.selectedOption || "",
+      isMarker: !activeQuiz?.isMarker,
+    };
+
+    const config = {
+      url: `/api/kmis/exam/create`,
+      method: "POST",
+      data: payload,
+    };
+
+    req({
+      config,
+      onResolve: {
+        onSuccess: () => {
+          setRt((ps) => !ps);
+        },
+        onError: () => {},
+      },
+    });
+  }
+
+  return (
+    <Checkbox
+      colorPalette={"p"}
+      checked={activeQuiz?.isMarker}
+      onCheckedChange={onToggleMark}
+    >
+      {l.marked}
+    </Checkbox>
+  );
+};
 const ActiveQuiz = (props: any) => {
   // Props
-  const { courseDetail, quizes, activeQuiz, activeQuizIdx, setActiveQuizIdx } =
+  const { courseDetail, exams, activeQuiz, activeQuizIdx, setActiveQuizIdx } =
     props;
-
   // Contexts
   const { l } = useLang();
 
@@ -148,8 +195,7 @@ const ActiveQuiz = (props: any) => {
     },
   ];
   const quiz = activeQuiz?.quiz;
-  const lastIdx = activeQuizIdx === quizes?.length - 1;
-  const [selected, setSelected] = useState<string>("");
+  const lastIdx = activeQuizIdx === exams?.length - 1;
 
   // Utils
   function onSubmitQuiz() {
@@ -166,12 +212,17 @@ const ActiveQuiz = (props: any) => {
 
     req({
       config,
+      onResolve: {
+        onSuccess: () => {},
+      },
     });
   }
 
   return (
     <ItemContainer flex={4} gap={2} p={4}>
-      <P fontWeight={"semibold"}>{`No. ${activeQuizIdx + 1}`}</P>
+      <P fontWeight={"semibold"} color={"fg.subtle"}>{`No. ${
+        activeQuizIdx + 1
+      }`}</P>
 
       <P fontWeight={"medium"}>{quiz?.question}</P>
 
@@ -185,17 +236,14 @@ const ActiveQuiz = (props: any) => {
               courseDetail={courseDetail}
               optionLetter={optionLetter}
               optionKey={optionKey}
-              quiz={quiz}
-              selected={selected}
-              setSelected={setSelected}
+              activeQuiz={activeQuiz}
             />
           );
         })}
       </CContainer>
 
       <HStack mt={4} justify={"space-between"}>
-        {/* TODO handle marked question */}
-        <Switch colorPalette={"p"}>{l.marked}</Switch>
+        <MarkingOption courseDetail={courseDetail} activeQuiz={activeQuiz} />
 
         <HStack>
           <Btn
@@ -237,6 +285,55 @@ const ActiveQuiz = (props: any) => {
     </ItemContainer>
   );
 };
+const QuestionList = (props: any) => {
+  // Props
+  const { exams, activeQuizIdx, setActiveQuizIdx, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+
+  return (
+    <ItemContainer flex={1} h={"fit"} gap={4} p={4} {...restProps}>
+      <P fontWeight={"semibold"}>{l.list_of_questions}</P>
+
+      <SimpleGrid columns={5} gap={2} w={"max"}>
+        {exams?.map((exam: Interface__KMISQuizResponse, idx: number) => {
+          const isActive = activeQuizIdx === idx;
+          const isAnswered = !!exam?.selectedOption;
+          const isMarked = !!exam?.isMarker;
+
+          return (
+            <Btn
+              key={idx}
+              iconButton
+              size={"xs"}
+              variant={"outline"}
+              border={"1px solid"}
+              borderColor={isActive ? "p.500" : "border.muted"}
+              bg={isMarked ? "fg.warning" : isAnswered ? "fg.success" : ""}
+              color={isMarked || isAnswered ? "light" : ""}
+              onClick={() => setActiveQuizIdx(idx)}
+            >
+              {idx + 1}
+            </Btn>
+          );
+        })}
+      </SimpleGrid>
+
+      <CContainer gap={2} px={"2px"}>
+        <HStack>
+          <Box w={"12px"} aspectRatio={1} bg={"fg.success"} rounded={"xs"} />
+          <P>{l.answered}</P>
+        </HStack>
+
+        <HStack>
+          <Box w={"12px"} aspectRatio={1} bg={"fg.warning"} rounded={"xs"} />
+          <P>{l.marked}</P>
+        </HStack>
+      </CContainer>
+    </ItemContainer>
+  );
+};
 
 interface Props extends StackProps {
   courseDetail?: {
@@ -249,9 +346,6 @@ export const QuizWorkspace = (props: Props) => {
   // Props
   const { courseDetail, ...restProps } = props;
 
-  // Contexts
-  const { l } = useLang();
-
   // States
   const [activeQuizIdx, setActiveQuizIdx] = useState<number>(0);
   const { error, initialLoading, data, onRetry } = useDataState<{
@@ -262,8 +356,8 @@ export const QuizWorkspace = (props: Props) => {
     dependencies: [],
     dataResource: false,
   });
-  const quizes = data?.exam;
-  const activeQuiz = quizes?.[activeQuizIdx];
+  const exams = data?.exam;
+  const activeQuiz = exams?.[activeQuizIdx];
 
   const render = {
     loading: <Skeleton flex={1} rounded={"xl"} />,
@@ -273,57 +367,17 @@ export const QuizWorkspace = (props: Props) => {
       <Stack flexDir={["column", null, "row"]} gap={4} {...restProps}>
         <ActiveQuiz
           courseDetail={courseDetail}
-          quizes={quizes}
+          exams={exams}
           activeQuiz={activeQuiz}
           activeQuizIdx={activeQuizIdx}
           setActiveQuizIdx={setActiveQuizIdx}
         />
 
-        <ItemContainer flex={1} h={"fit"} gap={4} p={4}>
-          <P fontWeight={"semibold"}>{l.list_of_questions}</P>
-
-          <SimpleGrid columns={5} gap={2} w={"max"}>
-            {quizes?.map((_, idx) => {
-              const isActive = activeQuizIdx === idx;
-
-              return (
-                <Btn
-                  key={idx}
-                  iconButton
-                  size={"xs"}
-                  variant={"outline"}
-                  border={"1px solid"}
-                  borderColor={isActive ? "p.500" : "border.muted"}
-                  onClick={() => setActiveQuizIdx(idx)}
-                >
-                  {idx + 1}
-                </Btn>
-              );
-            })}
-          </SimpleGrid>
-
-          <CContainer gap={2} px={"2px"}>
-            <HStack>
-              <Box
-                w={"12px"}
-                aspectRatio={1}
-                bg={"fg.success"}
-                rounded={"xs"}
-              />
-              <P>{l.answered}</P>
-            </HStack>
-
-            <HStack>
-              <Box
-                w={"12px"}
-                aspectRatio={1}
-                bg={"fg.warning"}
-                rounded={"xs"}
-              />
-              <P>{l.marked}</P>
-            </HStack>
-          </CContainer>
-        </ItemContainer>
+        <QuestionList
+          exams={exams}
+          activeQuizIdx={activeQuizIdx}
+          setActiveQuizIdx={setActiveQuizIdx}
+        />
       </Stack>
     ),
   };
@@ -337,7 +391,7 @@ export const QuizWorkspace = (props: Props) => {
           {!error && (
             <>
               {data && render.loaded}
-              {(!data || isEmptyArray(quizes)) && render.empty}
+              {(!data || isEmptyArray(exams)) && render.empty}
             </>
           )}
         </>

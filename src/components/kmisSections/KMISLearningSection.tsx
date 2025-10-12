@@ -179,6 +179,7 @@ const MaterialList = (props: any) => {
 
   // States
   const activeMaterialId = searchParams.get("activeMaterialId") || "";
+  const quizStarted = searchParams.get("quizStarted") || "";
   const completedMaterials =
     courseDetail?.learningAttempt?.completedMaterial || [];
   const materials = courseDetail?.material;
@@ -273,6 +274,8 @@ const MaterialList = (props: any) => {
                 {`${courseDetail?.learningAttempt?.topic?.totalQuiz} ${l.question}`}
               </P>
             </CContainer>
+
+            {quizStarted && <DotIndicator ml={"auto"} mr={1} />}
           </ListItemContainer>
         </NavLink>
       </CContainer>

@@ -855,6 +855,10 @@ export const loading_default = {
     en: "The request is being processed...",
   },
 };
+export const loading_signup = {
+  title: { id: "Sign up", en: "Sign up" },
+  description: { id: "Membuat akun...", en: "Creating account..." },
+};
 export const loading_signin = {
   title: { id: "Sign in", en: "Sign in" },
   description: { id: "Memverifikasi akun...", en: "Verifying account..." },
@@ -917,6 +921,13 @@ export const success_default = {
   description: {
     id: "Proses berjalan tanpa kendala.",
     en: "Process completed without issues.",
+  },
+};
+export const success_signup = {
+  title: { id: "Sign up berhasil", en: "Sign up successful" },
+  description: {
+    id: "Akun Anda telah dibuat.",
+    en: "Your account has been created.",
   },
 };
 export const success_signin = {

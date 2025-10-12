@@ -33,6 +33,8 @@ const SignupForm = (props: any) => {
   // Hooks
   const { req, loading } = useRequest({
     id: "signup",
+    loadingMessage: l.loading_signup,
+    successMessage: l.success_signup,
   });
 
   // States

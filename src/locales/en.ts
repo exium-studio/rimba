@@ -189,6 +189,10 @@ const translations = {
     "title": "Sign out",
     "description": "Ending session..."
   },
+  "loading_signup": {
+    "title": "Sign up",
+    "description": "Creating account..."
+  },
   "loading_submit_form": {
     "title": "Submit form",
     "description": "Submitting data..."
@@ -417,6 +421,10 @@ const translations = {
   "success_signout": {
     "title": "Sign out successful",
     "description": "You are now signed out."
+  },
+  "success_signup": {
+    "title": "Sign up successful",
+    "description": "Your account has been created."
   },
   "successful": "Successful",
   "sunday": "Sunday",

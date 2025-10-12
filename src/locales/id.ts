@@ -189,6 +189,10 @@ const translations = {
     "title": "Sign out",
     "description": "Mengakhiri sesi..."
   },
+  "loading_signup": {
+    "title": "Sign up",
+    "description": "Membuat akun..."
+  },
   "loading_submit_form": {
     "title": "Submit form",
     "description": "Sedang mengirim data..."
@@ -417,6 +421,10 @@ const translations = {
   "success_signout": {
     "title": "Sign out berhasil",
     "description": "Anda telah keluar."
+  },
+  "success_signup": {
+    "title": "Sign up berhasil",
+    "description": "Akun Anda telah dibuat."
   },
   "successful": "Berhasil",
   "sunday": "Minggu",

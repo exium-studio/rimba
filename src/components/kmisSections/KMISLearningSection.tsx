@@ -276,7 +276,7 @@ const MaterialList = (props: any) => {
 const NextMaterialButton = (props: any) => {
   // Props
   const {
-    activeMaterialId,
+    activeMaterial,
     courseDetail,
     setCourseDetail,
     idx,
@@ -299,7 +299,11 @@ const NextMaterialButton = (props: any) => {
           description: interpolateString(
             l.error_material_time_not_elapsed.description,
             {
-              timeRemaining: "00:20",
+              minTime: `${
+                MATERIAL_REGISTRY?.[
+                  activeMaterial?.materialType as keyof typeof MATERIAL_REGISTRY
+                ]?.minimalStudyTime
+              } ${l.minutes.toLowerCase()}`,
             }
           ),
         },
@@ -315,7 +319,7 @@ const NextMaterialButton = (props: any) => {
   function updateCurrentActiveMaterialToCompleted() {
     setCourseDetail((ps: any) => {
       const newMaterials = ps.material.map((material: any) => {
-        if (material.id === activeMaterialId) {
+        if (material.id === activeMaterial?.id) {
           return {
             ...material,
             isCompleted: true,
@@ -412,7 +416,7 @@ const ActiveMaterial = (props: any) => {
         ]?.render({ material: data })}
 
         <NextMaterialButton
-          activeMaterialId={activeMaterialId}
+          activeMaterial={data}
           courseDetail={courseDetail}
           setCourseDetail={setCourseDetail}
           idx={courseDetail?.material?.findIndex((m: any) => m.id === data?.id)}

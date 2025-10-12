@@ -1032,8 +1032,8 @@ export const error_material_time_not_elapsed = {
     en: "Minimum Study Time Not Reached",
   },
   description: {
-    id: "Kamu perlu menyelesaikan waktu belajar minimal sebelum lanjut ke materi berikutnya.",
-    en: "You need to complete the minimum study time before proceeding to the next material.",
+    id: "Kamu perlu menyelesaikan waktu belajar minimal sebelum lanjut ke materi berikutnya. Min. ${minTime}.",
+    en: "You need to complete the minimum study time before proceeding to the next material. Min. ${minTime}.",
   },
 };
 export const error_default = {

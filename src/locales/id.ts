@@ -135,7 +135,7 @@ const translations = {
   },
   "error_material_time_not_elapsed": {
     "title": "Waktu Belajar Belum Cukup",
-    "description": "Kamu perlu menyelesaikan waktu belajar minimal sebelum lanjut ke materi berikutnya."
+    "description": "Kamu perlu menyelesaikan waktu belajar minimal sebelum lanjut ke materi berikutnya. Min. ${minTime}."
   },
   "error_mic": {
     "title": "Gagal mengakses mikrofon",

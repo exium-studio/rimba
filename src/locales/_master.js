@@ -663,8 +663,20 @@ export const marked = {
   id: "Ditandai",
   en: "Marked",
 };
+export const started_at = {
+  id: "Dimulai pada",
+  en: "Started at",
+};
+export const ended_at = {
+  id: "Selesai pada",
+  en: "Ended at",
+};
 
 // Message
+export const msg_cross_check_before_submit = {
+  id: "Periksa kembali sebelum submit",
+  en: "Please check again before submit",
+};
 export const msg_reload_after_submit = {
   id: "Halaman akan reload setelah submit",
   en: "Page will reload after submit",

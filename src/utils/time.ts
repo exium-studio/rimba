@@ -229,19 +229,32 @@ export const addSecondsToTime = (
 };
 
 export const getRemainingSecondsUntil = (targetTime: string): number => {
-  // Parse target time
-  const [h, m, s] = targetTime.split(":").map(Number);
+  // Parse "HH:mm:ss"
+  const parts = targetTime.split(":").map(Number);
+  if (parts.length !== 3 || parts.some((n) => Number.isNaN(n))) {
+    throw new Error(
+      `Invalid time format. Expected "HH:mm:ss", got "${targetTime}"`
+    );
+  }
+  const [h, m, s] = parts;
 
-  // Get current time
+  // Validate ranges loosely (0-23 for hours, 0-59 for minutes/seconds)
+  if (h < 0 || h > 23 || m < 0 || m > 59 || s < 0 || s > 59) {
+    throw new Error(`Invalid time values in "${targetTime}"`);
+  }
+
   const now = new Date();
-  const target = new Date();
+  const target = new Date(now); // clone today's date
 
-  // Set target time on today's date
   target.setHours(h, m, s, 0);
 
-  // Calculate difference in milliseconds
-  const diffMs = target.getTime() - now.getTime();
+  let diffMs = target.getTime() - now.getTime();
 
-  // Convert to seconds
+  // If target is in the past or exactly now, and we want always-forward behavior,
+  // treat it as tomorrow (add 24 hours) when diffMs <= 0
+  if (diffMs <= 0) {
+    diffMs += 24 * 60 * 60 * 1000; // add 24 hours in ms
+  }
+
   return Math.floor(diffMs / 1000);
 };

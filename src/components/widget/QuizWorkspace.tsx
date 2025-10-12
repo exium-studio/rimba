@@ -14,12 +14,20 @@ import {
   Interface__KMISQuiz,
   Interface__KMISQuizResponse,
 } from "@/constants/interfaces";
+import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useLang from "@/context/useLang";
 import useRenderTrigger from "@/context/useRenderTrigger";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";
+import { back } from "@/utils/client";
+import { formatDuration } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
+import {
+  addSecondsToTime,
+  getRemainingSecondsUntil,
+  makeTime,
+} from "@/utils/time";
 import {
   Box,
   HStack,
@@ -29,8 +37,12 @@ import {
   Stack,
   StackProps,
 } from "@chakra-ui/react";
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { useState } from "react";
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  IconStopwatch,
+} from "@tabler/icons-react";
+import { useEffect, useState } from "react";
 
 const AnswerOption = (props: any) => {
   // Props
@@ -163,17 +175,71 @@ const MarkingOption = (props: any) => {
     </Checkbox>
   );
 };
+const ManualSubmitButton = (props: any) => {
+  // Props
+  const { courseDetail, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const { setConfirmationData, confirmationOnOpen } =
+    useConfirmationDisclosure();
+
+  // Hooks
+  const { req } = useRequest({
+    id: "submit-quiz",
+  });
+
+  // Utils
+  function onSubmitQuiz() {
+    back();
+
+    const payload = {
+      learningAttemptId: courseDetail?.learningAttempt?.id,
+    };
+
+    const config = {
+      url: `/api/kmis/exam/submit-answer`,
+      method: "POST",
+      data: payload,
+    };
+
+    req({
+      config,
+      onResolve: {
+        onSuccess: () => {},
+      },
+    });
+  }
+
+  return (
+    <Btn
+      w={"150px"}
+      variant={"outline"}
+      colorPalette={"p"}
+      onClick={() => {
+        setConfirmationData({
+          title: "Submit",
+          description: l.msg_cross_check_before_submit,
+          confirmLabel: "Submit",
+          onConfirm: onSubmitQuiz,
+        });
+        confirmationOnOpen();
+      }}
+      {...restProps}
+    >
+      Submit
+      <Icon>
+        <IconArrowRight stroke={1.5} />
+      </Icon>
+    </Btn>
+  );
+};
 const ActiveQuiz = (props: any) => {
   // Props
   const { courseDetail, exams, activeQuiz, activeQuizIdx, setActiveQuizIdx } =
     props;
   // Contexts
   const { l } = useLang();
-
-  // Hooks
-  const { req, loading } = useRequest({
-    id: "submit-quiz",
-  });
 
   // States
   const OPTIONS_REGISTRY = [
@@ -196,27 +262,6 @@ const ActiveQuiz = (props: any) => {
   ];
   const quiz = activeQuiz?.quiz;
   const lastIdx = activeQuizIdx === exams?.length - 1;
-
-  // Utils
-  function onSubmitQuiz() {
-    const payload = {
-      learningAttemptId: courseDetail?.learningAttempt?.id,
-      quizId: activeQuiz?.id,
-    };
-
-    const config = {
-      url: `/api/kmis/exam/submit-answer`,
-      method: "POST",
-      data: payload,
-    };
-
-    req({
-      config,
-      onResolve: {
-        onSuccess: () => {},
-      },
-    });
-  }
 
   return (
     <ItemContainer flex={4} gap={2} p={4}>
@@ -261,77 +306,175 @@ const ActiveQuiz = (props: any) => {
             {l.previous}
           </Btn>
 
-          <Btn
-            w={"150px"}
-            variant={lastIdx ? "outline" : "ghost"}
-            colorPalette={lastIdx ? "p" : ""}
-            onClick={() => {
-              if (lastIdx) {
-                onSubmitQuiz();
-              } else {
-                setActiveQuizIdx((ps: any) => ps + 1);
-              }
-            }}
-            loading={loading}
-          >
-            {lastIdx ? l.submit : l.next}
+          {lastIdx && <ManualSubmitButton courseDetail={courseDetail} />}
 
-            <Icon>
-              <IconArrowRight stroke={1.5} />
-            </Icon>
-          </Btn>
+          {!lastIdx && (
+            <Btn
+              w={"150px"}
+              variant={"ghost"}
+              colorPalette={""}
+              onClick={() => {
+                setActiveQuizIdx((ps: any) => ps + 1);
+              }}
+            >
+              {l.next}
+
+              <Icon>
+                <IconArrowRight stroke={1.5} />
+              </Icon>
+            </Btn>
+          )}
         </HStack>
       </HStack>
     </ItemContainer>
   );
 };
+const CountDownDuration = (props: any) => {
+  // Props
+  const { quizEndedAt, courseDetail, ...restProps } = props;
+
+  // Hooks
+  const { req } = useRequest({
+    id: "running-out-of-time-auto-submit",
+  });
+
+  // States
+  const [remainingSeconds, setRemainingSeconds] = useState(
+    getRemainingSecondsUntil(quizEndedAt)
+  );
+  const formattedTime = formatDuration(remainingSeconds, "digital");
+
+  // Utils
+  function onSubmitQuiz() {
+    const payload = {
+      learningAttemptId: courseDetail?.learningAttempt?.id,
+    };
+
+    const config = {
+      url: `/api/kmis/exam/submit-answer`,
+      method: "POST",
+      data: payload,
+    };
+
+    req({
+      config,
+      onResolve: {
+        onSuccess: () => {},
+      },
+    });
+  }
+
+  useEffect(() => {
+    // Recalculate every second
+    const interval = setInterval(() => {
+      setRemainingSeconds((prev) => {
+        const next = prev - 1;
+        if (next <= 0) {
+          clearInterval(interval);
+          onSubmitQuiz(); // call custom handler
+          return 0;
+        }
+        return next;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [quizEndedAt]);
+
+  return (
+    <HStack
+      gap={1}
+      p={4}
+      pl={3}
+      bg={"blue.100"}
+      rounded={"xl"}
+      justify={"center"}
+      color={"blue.500"}
+      {...restProps}
+    >
+      <Icon boxSize={8}>
+        <IconStopwatch />
+      </Icon>
+
+      <P fontSize={"2xl"} fontWeight={"semibold"}>
+        {formattedTime}
+      </P>
+    </HStack>
+  );
+};
 const QuestionList = (props: any) => {
   // Props
-  const { exams, activeQuizIdx, setActiveQuizIdx, ...restProps } = props;
+  const { exams, courseDetail, activeQuizIdx, setActiveQuizIdx, ...restProps } =
+    props;
 
   // Contexts
   const { l } = useLang();
 
+  // States
+  const quizDurationSeconds =
+    courseDetail?.learningAttempt?.topic?.quizDuration;
+  const quizStartedAt = makeTime(courseDetail?.learningAttempt?.quizStarted);
+  const quizEndedAt = addSecondsToTime(quizStartedAt, quizDurationSeconds);
+
   return (
-    <ItemContainer flex={1} h={"fit"} gap={4} p={4} {...restProps}>
-      <P fontWeight={"semibold"}>{l.list_of_questions}</P>
+    <CContainer flex={1} gap={4} {...restProps}>
+      <CountDownDuration
+        quizEndedAt={quizEndedAt}
+        courseDetail={courseDetail}
+      />
 
-      <SimpleGrid columns={5} gap={2} w={"max"}>
-        {exams?.map((exam: Interface__KMISQuizResponse, idx: number) => {
-          const isActive = activeQuizIdx === idx;
-          const isAnswered = !!exam?.selectedOption;
-          const isMarked = !!exam?.isMarker;
-
-          return (
-            <Btn
-              key={idx}
-              iconButton
-              size={"xs"}
-              variant={"outline"}
-              border={"1px solid"}
-              borderColor={isActive ? "p.500" : "border.muted"}
-              bg={isMarked ? "fg.warning" : isAnswered ? "fg.success" : ""}
-              color={isMarked || isAnswered ? "light" : ""}
-              onClick={() => setActiveQuizIdx(idx)}
-            >
-              {idx + 1}
-            </Btn>
-          );
-        })}
-      </SimpleGrid>
-
-      <CContainer gap={2} px={"2px"}>
-        <HStack>
-          <Box w={"12px"} aspectRatio={1} bg={"fg.success"} rounded={"xs"} />
-          <P>{l.answered}</P>
+      <ItemContainer gap={1} p={4}>
+        <HStack justify={"space-between"}>
+          <P>{l.started_at}</P>
+          <P fontWeight={"medium"}>{quizStartedAt}</P>
         </HStack>
 
-        <HStack>
-          <Box w={"12px"} aspectRatio={1} bg={"fg.warning"} rounded={"xs"} />
-          <P>{l.marked}</P>
+        <HStack justify={"space-between"}>
+          <P>{l.ended_at}</P>
+          <P fontWeight={"medium"}>{quizEndedAt}</P>
         </HStack>
-      </CContainer>
-    </ItemContainer>
+      </ItemContainer>
+
+      <ItemContainer h={"fit"} gap={4} p={4}>
+        <P fontWeight={"semibold"}>{l.list_of_questions}</P>
+
+        <SimpleGrid columns={5} gap={2} w={"max"}>
+          {exams?.map((exam: Interface__KMISQuizResponse, idx: number) => {
+            const isActive = activeQuizIdx === idx;
+            const isAnswered = !!exam?.selectedOption;
+            const isMarked = !!exam?.isMarker;
+
+            return (
+              <Btn
+                key={idx}
+                iconButton
+                size={"xs"}
+                variant={"outline"}
+                border={"1px solid"}
+                borderColor={isActive ? "p.500" : "border.muted"}
+                bg={isMarked ? "fg.warning" : isAnswered ? "fg.success" : ""}
+                color={isMarked || isAnswered ? "light" : ""}
+                onClick={() => setActiveQuizIdx(idx)}
+              >
+                {idx + 1}
+              </Btn>
+            );
+          })}
+        </SimpleGrid>
+
+        <CContainer gap={2} px={"2px"}>
+          <HStack>
+            <Box w={"12px"} aspectRatio={1} bg={"fg.success"} rounded={"xs"} />
+            <P>{l.answered}</P>
+          </HStack>
+
+          <HStack>
+            <Box w={"12px"} aspectRatio={1} bg={"fg.warning"} rounded={"xs"} />
+            <P>{l.marked}</P>
+          </HStack>
+        </CContainer>
+      </ItemContainer>
+    </CContainer>
   );
 };
 
@@ -374,6 +517,7 @@ export const QuizWorkspace = (props: Props) => {
         />
 
         <QuestionList
+          courseDetail={courseDetail}
           exams={exams}
           activeQuizIdx={activeQuizIdx}
           setActiveQuizIdx={setActiveQuizIdx}

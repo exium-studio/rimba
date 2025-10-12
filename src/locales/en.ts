@@ -52,6 +52,7 @@ const translations = {
   "deleted_file": "Removed file",
   "description": "Description",
   "educator": "Educator",
+  "ended_at": "Ended at",
   "enroll_now": "Enroll now",
   "error_400_default": {
     "title": "Bad request",
@@ -268,6 +269,7 @@ const translations = {
   "msg_already_have_account": "Already have an account?",
   "msg_cannot_be_undone": "This action cannot be undone, please be careful.",
   "msg_chrome_permissions_settings_link": "Settings → Privacy & Security → Site Settings → ",
+  "msg_cross_check_before_submit": "Please check again before submit",
   "msg_default_permissions_settings_link": "Open browser settings to change permissions.",
   "msg_dont_have_an_account": "Don't have an account?",
   "msg_edge_permissions_settings_link": "Settings → Cookies and site permissions → ",
@@ -384,6 +386,7 @@ const translations = {
   "show_more": "Show more",
   "showing": "Showing",
   "start_learning": "Start learning",
+  "started_at": "Started at",
   "student": "Student",
   "submit": "Submit",
   "success_200_default": {

@@ -52,6 +52,7 @@ const translations = {
   "deleted_file": "File dihapus",
   "description": "Deskripsi",
   "educator": "Pengajar",
+  "ended_at": "Selesai pada",
   "enroll_now": "Gabung sekarang",
   "error_400_default": {
     "title": "Bad request",
@@ -268,6 +269,7 @@ const translations = {
   "msg_already_have_account": "Sudah punya akun?",
   "msg_cannot_be_undone": "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
   "msg_chrome_permissions_settings_link": "Pengaturan → Privasi & Keamanan → Pengaturan Situs → ",
+  "msg_cross_check_before_submit": "Periksa kembali sebelum submit",
   "msg_default_permissions_settings_link": "Buka pengaturan browser untuk mengubah izin.",
   "msg_dont_have_an_account": "Belum punya akun?",
   "msg_edge_permissions_settings_link": "Pengaturan → Cookie dan izin situs → ",
@@ -384,6 +386,7 @@ const translations = {
   "show_more": "Tampilkan lebih",
   "showing": "Menampilkan",
   "start_learning": "Mulai belajar",
+  "started_at": "Dimulai pada",
   "student": "Pelajar",
   "submit": "Submit",
   "success_200_default": {

@@ -36,6 +36,9 @@
   border-color: var(--d1) !important;
   margin: 4px 0;
 }
+.tox {
+  z-index: 99999;
+}
 .tox-platform-touch {
   width: 100% !important;
 }

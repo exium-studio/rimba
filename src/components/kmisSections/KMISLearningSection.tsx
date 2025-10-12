@@ -2,14 +2,17 @@
 
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
+import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import SafeHtml from "@/components/ui/safe-html";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import FeedbackState from "@/components/widget/FeedbackState";
+import { FileItem } from "@/components/widget/FIleItem";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
+import { QuizWorkspace } from "@/components/widget/QuizWorkspace";
 import VideoPlayer from "@/components/widget/VideoPlayer";
 import {
   Interface__KMISMaterial,
@@ -17,17 +20,28 @@ import {
 } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
+import useRequest from "@/hooks/useRequest";
+import { interpolateString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
-import { Center, Icon, Skeleton, Stack, StackProps } from "@chakra-ui/react";
+import {
+  Center,
+  Circle,
+  Icon,
+  Skeleton,
+  Stack,
+  StackProps,
+} from "@chakra-ui/react";
 import {
   IconBook,
   IconBooks,
-  IconFile,
+  IconCheck,
+  IconFiles,
   IconHelpHexagon,
   IconPhoto,
   IconVideo,
 } from "@tabler/icons-react";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import React from "react";
 
 const MATERIAL_REGISTRY = {
   text: {
@@ -40,9 +54,13 @@ const MATERIAL_REGISTRY = {
 
       return (
         <CContainer gap={4} {...restProps}>
-          <H2 fontWeight={"semibold"}>{resolvedMaterial.title}</H2>
+          <P fontSize={"xl"} fontWeight={"semibold"}>
+            {resolvedMaterial.title}
+          </P>
 
-          <P>{resolvedMaterial?.description}</P>
+          <CContainer p={4} rounded={"xl"} bg={"body"}>
+            <SafeHtml html={resolvedMaterial?.description} />
+          </CContainer>
         </CContainer>
       );
     },
@@ -57,16 +75,21 @@ const MATERIAL_REGISTRY = {
 
       return (
         <CContainer gap={4} {...restProps}>
-          <H2 fontWeight={"semibold"}>{resolvedMaterial.title}</H2>
-          <VideoPlayer src={`https://www.youtube.com/embed/45I4Eu9zSb8`} />
+          <P fontSize={"xl"} fontWeight={"semibold"}>
+            {resolvedMaterial.title}
+          </P>
 
-          <P>{resolvedMaterial?.description}</P>
+          <CContainer gap={4} p={4} rounded={"xl"} bg={"body"}>
+            <VideoPlayer src={`https://www.youtube.com/embed/45I4Eu9zSb8`} />
+
+            <SafeHtml html={resolvedMaterial?.description} />
+          </CContainer>
         </CContainer>
       );
     },
   },
-  document: {
-    icon: <IconFile stroke={1.5} />,
+  dokumen: {
+    icon: <IconFiles stroke={1.5} />,
     minimalStudyTime: 10,
     render: (props: any) => {
       // Props
@@ -75,15 +98,19 @@ const MATERIAL_REGISTRY = {
 
       return (
         <CContainer gap={4} {...restProps}>
-          <H2 fontWeight={"semibold"}>{resolvedMaterial.title}</H2>
+          <P fontSize={"xl"} fontWeight={"semibold"}>
+            {resolvedMaterial.title}
+          </P>
 
-          {resolvedMaterial?.materialFile?.map(
-            (item: Interface__StorageFile) => {
-              const url = imgUrl(item.filePath);
+          <CContainer gap={4} p={4} rounded={"xl"} bg={"body"}>
+            {resolvedMaterial?.materialFile?.map(
+              (item: Interface__StorageFile) => {
+                return <FileItem key={item.id} fileData={item} />;
+              }
+            )}
 
-              return <Img key={url} fluid w={"full"} src={url} />;
-            }
-          )}
+            <SafeHtml html={resolvedMaterial?.description} />
+          </CContainer>
         </CContainer>
       );
     },
@@ -98,7 +125,9 @@ const MATERIAL_REGISTRY = {
 
       return (
         <CContainer gap={4} {...restProps}>
-          <H2 fontWeight={"semibold"}>{resolvedMaterial.title}</H2>
+          <P fontSize={"xl"} fontWeight={"semibold"}>
+            {resolvedMaterial.title}
+          </P>
 
           {resolvedMaterial?.materialFile?.map(
             (item: Interface__StorageFile) => {
@@ -133,144 +162,310 @@ const ListItemContainer = (props: BtnProps) => {
 };
 const MaterialList = (props: any) => {
   // Props
-  const { topicDetail, activeMaterialId, setActiveMaterialId, ...restProps } =
-    props;
+  const { courseDetail, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
 
+  // Hooks
+  const searchParams = useSearchParams();
+
   // States
-  const completedMaterialIds = topicDetail.completedMaterialIds || [];
-  const materials = topicDetail.material;
+  const activeMaterialId = searchParams.get("activeMaterialId") || "";
+  const completedMaterials =
+    courseDetail?.learningAttempt?.completedMaterial || [];
+  const materials = courseDetail?.material;
 
   return (
     <CContainer bg={"body"} rounded={"xl"} {...restProps}>
       <CContainer p={4}>
         <P fontWeight={"medium"}>{l.learning_material}</P>
         <P fontSize={"sm"} color={"fg.subtle"}>
-          {`${topicDetail?.totalMaterial} ${l.learning_material.toLowerCase()}`}
+          {`${
+            courseDetail?.learningAttempt?.totalMaterial
+          } ${l.learning_material.toLowerCase()}`}
         </P>
       </CContainer>
 
       <CContainer gap={1} px={2} pb={2}>
-        {materials.map((material: Interface__KMISMaterial) => {
+        {materials?.map((material: Interface__KMISMaterial, idx: number) => {
           const materialProps =
             MATERIAL_REGISTRY[
               (material?.materialType ||
                 "text") as keyof typeof MATERIAL_REGISTRY
             ];
           const isActive = activeMaterialId === material.id;
+          const firstIdx = idx === 0;
+
+          const completedMaterialIds = new Set(
+            completedMaterials.map((m: any) => m.id)
+          );
 
           return (
-            <ListItemContainer
+            <NavLink
               key={material.id}
-              onClick={() => {
-                setActiveMaterialId(material.id);
-              }}
-              disabled={!completedMaterialIds?.includes(material.id)}
+              to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?activeMaterialId=${material.id}`}
             >
-              <Icon>{materialProps.icon}</Icon>
+              <ListItemContainer
+                disabled={
+                  !firstIdx && !completedMaterialIds.has(materials[idx - 1]?.id)
+                }
+              >
+                <Center pos={"relative"}>
+                  <Circle
+                    bg={"fg.success"}
+                    pos={"absolute"}
+                    top={"-4px"}
+                    right={"-4px"}
+                  >
+                    <Icon color={"light"} boxSize={4}>
+                      <IconCheck />
+                    </Icon>
+                  </Circle>
 
-              <CContainer>
-                <P fontWeight={"medium"}>{material.title}</P>
-                <P fontSize={"sm"} color={"fg.subtle"}>
-                  {`${
-                    materialProps.minimalStudyTime
-                  } ${l.minutes.toLowerCase()}`}
-                </P>
-              </CContainer>
+                  {materialProps?.icon && (
+                    <Icon boxSize={6}>
+                      {materialProps?.icon || <IconBook stroke={1.5} />}
+                    </Icon>
+                  )}
+                </Center>
 
-              {isActive && <DotIndicator ml={"auto"} mr={1} />}
-            </ListItemContainer>
+                <CContainer>
+                  <P fontWeight={"medium"}>{material.title}</P>
+                  <P fontSize={"sm"} color={"fg.subtle"}>
+                    {`${
+                      materialProps?.minimalStudyTime
+                    } ${l.minutes.toLowerCase()}`}
+                  </P>
+                </CContainer>
+
+                {isActive && <DotIndicator ml={"auto"} mr={1} />}
+              </ListItemContainer>
+            </NavLink>
           );
         })}
 
-        <ListItemContainer
-          disabled={
-            completedMaterialIds.length === topicDetail?.totalMaterial ||
-            topicDetail?.topic?.totalQuiz === 0
-          }
+        <NavLink
+          to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`}
         >
-          <Icon>
-            <IconHelpHexagon stroke={1.5} />
-          </Icon>
+          <ListItemContainer
+            disabled={
+              completedMaterials.length !== materials.length ||
+              courseDetail?.learningAttempt?.topic?.totalQuiz === 0
+            }
+          >
+            <Icon>
+              <IconHelpHexagon stroke={1.5} />
+            </Icon>
 
-          <CContainer>
-            <P fontWeight={"medium"}>Quiz</P>
-            <P fontSize={"sm"} color={"fg.subtle"}>
-              {`${topicDetail?.topic?.totalQuiz} ${l.question}`}
-            </P>
-          </CContainer>
-        </ListItemContainer>
+            <CContainer>
+              <P fontWeight={"medium"}>Quiz</P>
+              <P fontSize={"sm"} color={"fg.subtle"}>
+                {`${courseDetail?.learningAttempt?.topic?.totalQuiz} ${l.question}`}
+              </P>
+            </CContainer>
+          </ListItemContainer>
+        </NavLink>
       </CContainer>
     </CContainer>
   );
 };
-const ActiveMaterial = (props: any) => {
+
+const NextMaterialButton = (props: any) => {
   // Props
-  const { activeMaterialId, ...restProps } = props;
+  const {
+    activeMaterialId,
+    courseDetail,
+    setCourseDetail,
+    idx,
+    lastIdx,
+    ...restProps
+  } = props;
 
   // Contexts
   const { l } = useLang();
 
+  // Hooks
+  const { req, loading } = useRequest({
+    id: "next-material",
+    showLoadingToast: false,
+    showSuccessToast: false,
+    errorMessage: {
+      422: {
+        TIME_NOT_ELAPSED: {
+          title: l.error_material_time_not_elapsed.title,
+          description: interpolateString(
+            l.error_material_time_not_elapsed.description,
+            {
+              timeRemaining: "00:20",
+            }
+          ),
+        },
+      },
+    },
+  });
+  const router = useRouter();
+
   // States
+  const materials = courseDetail?.material;
+
+  // Utils
+  function updateCurrentActiveMaterialToCompleted() {
+    setCourseDetail((ps: any) => {
+      const newMaterials = ps.material.map((material: any) => {
+        if (material.id === activeMaterialId) {
+          return {
+            ...material,
+            isCompleted: true,
+          };
+        }
+        return material;
+      });
+      return {
+        ...ps,
+        material: newMaterials,
+      };
+    });
+  }
+  function nextActiveMaterial() {
+    router.push(
+      `/related-apps/kmis/my-course/${
+        courseDetail?.learningAttempt?.topic?.id
+      }?activeMaterialId=${materials?.[idx + 1]?.id}`
+    );
+  }
+  function startQuiz() {
+    router.push(
+      `/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`
+    );
+  }
+  function onNextMaterial() {
+    const nextMaterialIsComppleted = materials[idx + 1]?.isCompleted;
+
+    if (nextMaterialIsComppleted) {
+      nextActiveMaterial();
+    } else {
+      const config = {
+        url: `/api/kmis/learning-course/update/${courseDetail?.learningAttempt?.id}`,
+        method: "PATCH",
+      };
+
+      req({
+        config,
+        onResolve: {
+          onSuccess: () => {
+            updateCurrentActiveMaterialToCompleted();
+            if (!lastIdx) {
+              nextActiveMaterial();
+            } else {
+              startQuiz();
+            }
+          },
+        },
+      });
+    }
+  }
+
+  return (
+    <Btn
+      colorPalette={"p"}
+      w={"fit"}
+      ml={"auto"}
+      loading={loading}
+      onClick={onNextMaterial}
+      {...restProps}
+    >
+      {l.next}
+    </Btn>
+  );
+};
+const ActiveMaterial = (props: any) => {
+  // Props
+  const { courseDetail, setCourseDetail, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+
+  // Hooks
+  const searchParams = useSearchParams();
+
+  // States
+  const activeMaterialId = searchParams.get("activeMaterialId") || "";
+  const quizStarted = searchParams.get("quizStarted") || "";
   const { error, initialLoading, data, onRetry } =
     useDataState<Interface__KMISMaterial>({
-      url: ``,
-      conditions: activeMaterialId,
+      url: `/api/kmis/learning-course/get-material/${activeMaterialId}`,
+      conditions: !!activeMaterialId,
       dependencies: [activeMaterialId],
+      dataResource: false,
     });
   const render = {
     loading: <Skeleton />,
     error: <FeedbackRetry onRetry={onRetry} />,
     empty: <FeedbackNoData />,
-    loaded: MATERIAL_REGISTRY?.[
-      data?.materialType as keyof typeof MATERIAL_REGISTRY
-    ]?.render({ material: data }),
+    loaded: (
+      <CContainer gap={4}>
+        {MATERIAL_REGISTRY?.[
+          data?.materialType as keyof typeof MATERIAL_REGISTRY
+        ]?.render({ material: data })}
+
+        <NextMaterialButton
+          activeMaterialId={activeMaterialId}
+          courseDetail={courseDetail}
+          setCourseDetail={setCourseDetail}
+          idx={courseDetail?.material?.findIndex((m: any) => m.id === data?.id)}
+          lastIdx={courseDetail?.material?.length - 1}
+        />
+      </CContainer>
+    ),
   };
 
   return (
     <CContainer minH={"500px"} {...restProps}>
-      {activeMaterialId && (
+      {quizStarted && <QuizWorkspace courseDetail={courseDetail} />}
+
+      {!quizStarted && (
         <>
-          {initialLoading && render.loading}
-          {!initialLoading && (
+          {activeMaterialId && (
             <>
-              {error && render.error}
-              {!error && (
+              {initialLoading && render.loading}
+              {!initialLoading && (
                 <>
-                  {data && render.loaded}
-                  {!data && render.empty}
+                  {error && render.error}
+                  {!error && (
+                    <>
+                      {data && render.loaded}
+                      {!data && render.empty}
+                    </>
+                  )}
                 </>
               )}
             </>
           )}
-        </>
-      )}
 
-      {!activeMaterialId && (
-        <Center flex={1} bg={"body"} p={4} rounded={"xl"}>
-          <FeedbackState
-            icon={<IconBooks stroke={1.5} />}
-            title={l.learning_material}
-            description={l.msg_select_material_first}
-            m={"auto"}
-          />
-        </Center>
+          {!activeMaterialId && (
+            <Center flex={1} bg={"body"} p={4} rounded={"xl"}>
+              <FeedbackState
+                icon={<IconBooks stroke={1.5} />}
+                title={l.learning_material}
+                description={l.msg_select_material_first}
+                m={"auto"}
+              />
+            </Center>
+          )}
+        </>
       )}
     </CContainer>
   );
 };
 
 interface Props extends StackProps {
-  topicDetail: any;
+  courseDetail: any;
+  setCourseDetail: React.Dispatch<any>;
 }
 export const KMISLearningSection = (props: Props) => {
   // Props
-  const { topicDetail, ...restProps } = props;
-
-  // States
-  const [activeMaterialId, setActiveMaterialId] = useState<string>("");
+  const { courseDetail, setCourseDetail, ...restProps } = props;
 
   return (
     <LPSectionContainer
@@ -282,16 +477,14 @@ export const KMISLearningSection = (props: Props) => {
     >
       <Stack flexDir={["column", null, "row"]} gap={4}>
         <CContainer flex={1} gap={4}>
-          {/* <MiniProfile /> */}
-
-          <MaterialList
-            topicDetail={topicDetail}
-            activeMaterialId={activeMaterialId}
-            setActiveMaterialId={setActiveMaterialId}
-          />
+          <MaterialList courseDetail={courseDetail} />
         </CContainer>
 
-        <ActiveMaterial flex={3.5} />
+        <ActiveMaterial
+          flex={3.5}
+          courseDetail={courseDetail}
+          setCourseDetail={setCourseDetail}
+        />
       </Stack>
     </LPSectionContainer>
   );

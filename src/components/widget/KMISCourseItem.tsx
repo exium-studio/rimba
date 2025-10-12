@@ -131,7 +131,7 @@ const DetailCourse = (props: any) => {
         {/* Overview */}
         <Stack flexDir={["column", null, "row"]} gapX={8} gapY={4}>
           <Img
-            src={imgUrl(data?.topicCover?.[0]?.filePath)}
+            src={imgUrl(data?.topic?.topicCover?.[0]?.filePath)}
             aspectRatio={1}
             fluid
             rounded={"lg"}

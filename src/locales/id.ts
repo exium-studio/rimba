@@ -30,6 +30,7 @@ const translations = {
   "all_categories": "Semua kategori",
   "all_document": "Semua dokumen",
   "answer": "Jawaban",
+  "answered": "Terjawab",
   "apply": "Terapkan",
   "april": "April",
   "august": "Agustus",
@@ -132,6 +133,10 @@ const translations = {
     "title": "Gagal mendapatkan lokasi",
     "description": "Periksa izin lokasi atau pastikan GPS diaktifkan."
   },
+  "error_material_time_not_elapsed": {
+    "title": "Waktu Belajar Belum Cukup",
+    "description": "Kamu perlu menyelesaikan waktu belajar minimal sebelum lanjut ke materi berikutnya. Tersisa ${timeRemaining}."
+  },
   "error_mic": {
     "title": "Gagal mengakses mikrofon",
     "description": "Periksa izin mikrofon atau pastikan tidak digunakan aplikasi lain."
@@ -150,6 +155,7 @@ const translations = {
   },
   "estimated_planned_date": "Estimasi tanggal pelaksanaan",
   "example_UI": "Contoh UI",
+  "explanation": "Penjelasan",
   "february": "Februari",
   "friday": "Jumat",
   "get": "Dapatkan",
@@ -165,6 +171,11 @@ const translations = {
   "last_updated": "Terakhir diperbarui",
   "learn_more": "Pelajari lebih lanjut",
   "learning_material": "Materi pembelajaran",
+  "list_of_questions": "Daftar pertanyaan",
+  "loading_answer": {
+    "title": "No.${quizNumber}",
+    "description": "Jawaban no.${quizNumber} sedang disimpan..."
+  },
   "loading_default": {
     "title": "Memuat",
     "description": "Permintaan sedang diproses..."
@@ -237,6 +248,7 @@ const translations = {
   },
   "map": "Peta",
   "march": "Maret",
+  "marked": "Ditandai",
   "maximize": "Maksimalkan",
   "may": "Mei",
   "mic": "Mic",
@@ -401,6 +413,10 @@ const translations = {
   "success_226_default": {
     "title": "Im used",
     "description": "Resource berhasil dimodifikasi menggunakan instance-manipulation."
+  },
+  "success_answer": {
+    "title": "No.${quizNumber}",
+    "description": "Jawaban no.${quizNumber} berhasil disimpan."
   },
   "success_default": {
     "title": "Request successful",

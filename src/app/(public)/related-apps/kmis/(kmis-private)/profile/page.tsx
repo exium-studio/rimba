@@ -123,7 +123,7 @@ const ProfileForm = (props: any) => {
           ? [
               {
                 id: user?.gender,
-                label: user?.gender === "1" ? "Male" : "Female",
+                label: user?.gender == 1 ? "Male" : "Female",
               },
             ]
           : null,

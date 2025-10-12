@@ -647,6 +647,22 @@ export const successful = {
   id: "Berhasil",
   en: "Successful",
 };
+export const explanation = {
+  id: "Penjelasan",
+  en: "Explanation",
+};
+export const list_of_questions = {
+  id: "Daftar pertanyaan",
+  en: "List of questions",
+};
+export const answered = {
+  id: "Terjawab",
+  en: "Answered",
+};
+export const marked = {
+  id: "Ditandai",
+  en: "Marked",
+};
 
 // Message
 export const msg_reload_after_submit = {
@@ -848,6 +864,13 @@ export const settings_location = {
 };
 
 // Loading Toast
+export const loading_answer = {
+  title: { id: "No.${quizNumber}", en: "No.${quizNumber}" },
+  description: {
+    id: "Jawaban no.${quizNumber} sedang disimpan...",
+    en: "Answer no.${quizNumber} is being saved...",
+  },
+};
 export const loading_default = {
   title: { id: "Memuat", en: "Loading" },
   description: {
@@ -899,6 +922,13 @@ export const loading_reset_password = {
 };
 
 // Success Toast
+export const success_answer = {
+  title: { id: "No.${quizNumber}", en: "No.${quizNumber}" },
+  description: {
+    id: "Jawaban no.${quizNumber} berhasil disimpan.",
+    en: "Answer no.${quizNumber} saved successfully.",
+  },
+};
 export const success_enroll_course = {
   title: { id: "Enroll course", en: "Enroll course" },
   description: {
@@ -996,6 +1026,16 @@ export const success_226_default = {
 };
 
 // Error Toast
+export const error_material_time_not_elapsed = {
+  title: {
+    id: "Waktu Belajar Belum Cukup",
+    en: "Minimum Study Time Not Reached",
+  },
+  description: {
+    id: "Kamu perlu menyelesaikan waktu belajar minimal sebelum lanjut ke materi berikutnya. Tersisa ${timeRemaining}.",
+    en: "You need to complete the minimum study time before proceeding to the next material. ${timeRemaining} remaining.",
+  },
+};
 export const error_default = {
   title: { id: "Terjadi kesalahan", en: "An error occurred" },
   description: {

@@ -51,6 +51,7 @@ export interface Interface__KMISMaterial extends Interface__CUD {
   materialUrl: any;
   description: string;
   isPublic: boolean;
+  isCompleted?: boolean;
 }
 export interface Interface__KMISQuiz extends Interface__CUD {
   id: string;
@@ -63,7 +64,7 @@ export interface Interface__KMISQuiz extends Interface__CUD {
   correctOption: string;
   explanation: string;
 }
-export interface Interface__KMISQuizAssessment extends Interface__CUD {
+export interface Interface__KMISLearningAttempt extends Interface__CUD {
   id: string;
   attemptUser: Interface__User;
   topic: Interface__KMISTopic;
@@ -84,7 +85,7 @@ export interface Interface__KMISQuizAssessment extends Interface__CUD {
 }
 export interface Interface__KMISQuizResponse extends Interface__CUD {
   id: string;
-  learningParticipant: Interface__KMISQuizAssessment;
+  learningParticipant: Interface__KMISLearningAttempt;
   quiz: Interface__KMISQuiz;
   selectedOption: string;
   isMarker: boolean | number;

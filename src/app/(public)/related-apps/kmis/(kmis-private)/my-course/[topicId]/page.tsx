@@ -27,9 +27,9 @@ export default function Page(props: Props) {
   const { l } = useLang();
 
   // States
-  const { error, initialLoading, data, onRetry } = useDataState<any>({
+  const { error, initialLoading, data, setData, onRetry } = useDataState<any>({
     initialData: undefined,
-    url: `/api/kmis/learning-course/show/${topicId}`,
+    url: `/api/kmis/learning-course/detail/${topicId}`,
     dependencies: [],
     dataResource: false,
   });
@@ -79,14 +79,14 @@ export default function Page(props: Props) {
                 path: "/related-apps/kmis/my-course",
               },
               {
-                label: data?.topic?.title,
+                label: data?.learningAttempt?.topic?.title,
                 path: "",
               },
             ]}
           />
         </LPSectionContainer>
 
-        <KMISLearningSection topicDetail={data} />
+        <KMISLearningSection courseDetail={data} setCourseDetail={setData} />
       </>
     ),
   };

@@ -10,7 +10,7 @@ import { KMISCourseItem } from "@/components/widget/KMISCourseItem";
 import { Limitation } from "@/components/widget/Limitation";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Pagination } from "@/components/widget/Pagination";
-import { Interface__KMISQuizAssessment } from "@/constants/interfaces";
+import { Interface__KMISLearningAttempt } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import { useScrollWithOffset } from "@/hooks/useScrollWithOffset";
@@ -48,7 +48,7 @@ const Data = (props: any) => {
     page,
     setPage,
     pagination,
-  } = useDataState<Interface__KMISQuizAssessment[]>({
+  } = useDataState<Interface__KMISLearningAttempt[]>({
     initialData: undefined,
     url: `/api/kmis/learning-course/get-all-learning-attempt`,
     params: {

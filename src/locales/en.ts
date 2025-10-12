@@ -30,6 +30,7 @@ const translations = {
   "all_categories": "All categories",
   "all_document": "All document",
   "answer": "Answer",
+  "answered": "Answered",
   "apply": "Apply",
   "april": "April",
   "august": "August",
@@ -132,6 +133,10 @@ const translations = {
     "title": "Failed to get location",
     "description": "Check location permission or ensure GPS is enabled."
   },
+  "error_material_time_not_elapsed": {
+    "title": "Minimum Study Time Not Reached",
+    "description": "You need to complete the minimum study time before proceeding to the next material. ${timeRemaining} remaining."
+  },
   "error_mic": {
     "title": "Failed to access microphone",
     "description": "Check microphone permission or ensure it's not in use by another app."
@@ -150,6 +155,7 @@ const translations = {
   },
   "estimated_planned_date": "Estimated implementation date",
   "example_UI": "Example UI",
+  "explanation": "Explanation",
   "february": "February",
   "friday": "Friday",
   "get": "Get",
@@ -165,6 +171,11 @@ const translations = {
   "last_updated": "Last updated",
   "learn_more": "Learn more",
   "learning_material": "Learning material",
+  "list_of_questions": "List of questions",
+  "loading_answer": {
+    "title": "No.${quizNumber}",
+    "description": "Answer no.${quizNumber} is being saved..."
+  },
   "loading_default": {
     "title": "Loading",
     "description": "The request is being processed..."
@@ -237,6 +248,7 @@ const translations = {
   },
   "map": "Map",
   "march": "March",
+  "marked": "Marked",
   "maximize": "Maximize",
   "may": "May",
   "mic": "Mic",
@@ -401,6 +413,10 @@ const translations = {
   "success_226_default": {
     "title": "IM used",
     "description": "Resource successfully modified using instance-manipulation."
+  },
+  "success_answer": {
+    "title": "No.${quizNumber}",
+    "description": "Answer no.${quizNumber} saved successfully."
   },
   "success_default": {
     "title": "Request successful",

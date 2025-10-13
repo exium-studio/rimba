@@ -17,6 +17,7 @@ import BackButton from "@/components/widget/BackButton";
 import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
+import { SigninDisclosureTrigger } from "@/components/widget/SigninDisclosure";
 import { Interface__KMISTopic } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
@@ -70,13 +71,15 @@ const EnrollButton = (props: any) => {
   }
 
   return (
-    <Btn w={"fit"} colorPalette={"p"} onClick={onEnroll} {...restProps}>
-      {l.enroll_now}
+    <SigninDisclosureTrigger>
+      <Btn w={"fit"} colorPalette={"p"} onClick={onEnroll} {...restProps}>
+        {l.enroll_now}
 
-      <Icon>
-        <IconArrowRight stroke={1.5} />
-      </Icon>
-    </Btn>
+        <Icon>
+          <IconArrowRight stroke={1.5} />
+        </Icon>
+      </Btn>
+    </SigninDisclosureTrigger>
   );
 };
 const StartLearningButton = (props: any) => {

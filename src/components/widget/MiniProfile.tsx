@@ -64,9 +64,11 @@ export const MiniProfile = (props: StackProps) => {
           removeAuth();
           router.push("/");
         },
-        onError: () => {
-          removeAuth();
-          router.push("/related-apps/kmis");
+        onError: (e) => {
+          if (e.status === 401) {
+            removeAuth();
+            router.push("/related-apps/kmis");
+          }
         },
       },
     });

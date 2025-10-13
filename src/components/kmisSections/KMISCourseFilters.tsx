@@ -27,12 +27,12 @@ import { Interface__KMISTopicCategory } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
 import { capitalizeWords } from "@/utils/string";
 import { Icon, Skeleton, useDisclosure } from "@chakra-ui/react";
 import { IconCaretDownFilled } from "@tabler/icons-react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const AllCategory = (props: any) => {
@@ -176,16 +176,17 @@ const CategoryFilter = (props: any) => {
   const { l } = useLang();
 
   // Hooks
-  const iss = useIsSmScreenWidth();
+  const pathname = usePathname();
 
   // States
+  const isMyCourse = pathname === `/related-apps/kmis/my-course`;
   const { error, initialLoading, data, onRetry } = useDataState<
     Interface__KMISTopicCategory[]
   >({
     initialData: undefined,
     url: `/api/kmis/public-request/get-all-category`,
     params: {
-      limit: iss ? 5 : 5,
+      limit: isMyCourse ? 10 : 5,
     },
     dependencies: [],
   });

@@ -1,8 +1,15 @@
 "use client";
 
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { Box, BoxProps, Icon, IconProps } from "@chakra-ui/react";
-import { IconCircleFilled } from "@tabler/icons-react";
+import {
+  Box,
+  BoxProps,
+  Circle,
+  Icon,
+  IconProps,
+  StackProps,
+} from "@chakra-ui/react";
+import { IconCheck, IconCircleFilled } from "@tabler/icons-react";
 
 export const LeftIndicator = (props: BoxProps) => {
   // Contexts
@@ -53,5 +60,21 @@ export const DotIndicator = (props: IconProps) => {
     <Icon color={themeConfig.primaryColor} boxSize={2} {...restProps}>
       {children || <IconCircleFilled />}
     </Icon>
+  );
+};
+
+export const CompleteIndicator = (props: StackProps) => {
+  return (
+    <Circle
+      bg={"fg.success"}
+      pos={"absolute"}
+      top={"-4px"}
+      left={"-4px"}
+      {...props}
+    >
+      <Icon color={"light"} boxSize={3.5}>
+        <IconCheck />
+      </Icon>
+    </Circle>
   );
 };

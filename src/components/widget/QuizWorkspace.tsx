@@ -42,6 +42,7 @@ import {
   IconArrowRight,
   IconStopwatch,
 } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const AnswerOption = (props: any) => {
@@ -116,7 +117,11 @@ const AnswerOption = (props: any) => {
       justifyContent={"start"}
       variant={"outline"}
       borderColor={isActive ? "p.500" : "border.muted"}
-      onClick={onAnswerSelect}
+      onClick={
+        !!courseDetail?.learningAttempt?.quizFinished
+          ? () => {}
+          : onAnswerSelect
+      }
       {...restProps}
     >
       <P>{optionLetter}</P>
@@ -126,7 +131,7 @@ const AnswerOption = (props: any) => {
     </Btn>
   );
 };
-const MarkingOption = (props: any) => {
+const MarkingCheckbox = (props: any) => {
   // Props
   const { courseDetail, activeQuiz } = props;
 
@@ -170,6 +175,7 @@ const MarkingOption = (props: any) => {
       colorPalette={"p"}
       checked={activeQuiz?.isMarker}
       onCheckedChange={onToggleMark}
+      disabled={!!courseDetail?.learningAttempt?.quizFinished}
     >
       {l.marked}
     </Checkbox>
@@ -188,6 +194,10 @@ const ManualSubmitButton = (props: any) => {
   const { req } = useRequest({
     id: "submit-quiz",
   });
+  const router = useRouter();
+
+  // States
+  const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
 
   // Utils
   function onSubmitQuiz() {
@@ -217,17 +227,23 @@ const ManualSubmitButton = (props: any) => {
       variant={"outline"}
       colorPalette={"p"}
       onClick={() => {
-        setConfirmationData({
-          title: "Submit",
-          description: l.msg_cross_check_before_submit,
-          confirmLabel: "Submit",
-          onConfirm: onSubmitQuiz,
-        });
-        confirmationOnOpen();
+        if (isQuizFinished) {
+          router.push(
+            `/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?quizFinished=1`
+          );
+        } else {
+          setConfirmationData({
+            title: "Submit",
+            description: l.msg_cross_check_before_submit,
+            confirmLabel: "Submit",
+            onConfirm: onSubmitQuiz,
+          });
+          confirmationOnOpen();
+        }
       }}
       {...restProps}
     >
-      Submit
+      {isQuizFinished ? "Feedback" : `Submit`}
       <Icon>
         <IconArrowRight stroke={1.5} />
       </Icon>
@@ -288,7 +304,7 @@ const ActiveQuiz = (props: any) => {
       </CContainer>
 
       <HStack mt={4} justify={"space-between"}>
-        <MarkingOption courseDetail={courseDetail} activeQuiz={activeQuiz} />
+        <MarkingCheckbox courseDetail={courseDetail} activeQuiz={activeQuiz} />
 
         <HStack>
           <Btn
@@ -333,12 +349,16 @@ const CountDownDuration = (props: any) => {
   // Props
   const { quizEndedAt, courseDetail, ...restProps } = props;
 
+  // Contexts
+  const { l } = useLang();
+
   // Hooks
   const { req } = useRequest({
     id: "running-out-of-time-auto-submit",
   });
 
   // States
+  const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
   const [remainingSeconds, setRemainingSeconds] = useState(
     getRemainingSecondsUntil(quizEndedAt)
   );
@@ -371,7 +391,7 @@ const CountDownDuration = (props: any) => {
         const next = prev - 1;
         if (next <= 0) {
           clearInterval(interval);
-          onSubmitQuiz(); // call custom handler
+          if (!isQuizFinished) onSubmitQuiz();
           return 0;
         }
         return next;
@@ -381,22 +401,31 @@ const CountDownDuration = (props: any) => {
     return () => clearInterval(interval);
   }, [quizEndedAt]);
 
+  if (isQuizFinished) {
+    return (
+      <Btn colorPalette={"p"} variant={"subtle"} rounded={"xl"}>
+        {l.answer_review}
+      </Btn>
+    );
+  }
+
   return (
     <HStack
       gap={1}
-      p={4}
+      h={"40px"}
       pl={3}
+      pr={4}
       bg={"blue.100"}
       rounded={"xl"}
-      justify={"center"}
+      justify={"space-between"}
       color={"blue.500"}
       {...restProps}
     >
-      <Icon boxSize={8}>
+      <Icon boxSize={5}>
         <IconStopwatch />
       </Icon>
 
-      <P fontSize={"2xl"} fontWeight={"semibold"}>
+      <P fontSize={"lg"} fontWeight={"semibold"}>
         {formattedTime}
       </P>
     </HStack>

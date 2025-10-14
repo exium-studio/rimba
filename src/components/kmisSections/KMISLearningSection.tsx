@@ -11,7 +11,7 @@ import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import FeedbackState from "@/components/widget/FeedbackState";
 import { FileItem } from "@/components/widget/FIleItem";
-import { DotIndicator } from "@/components/widget/Indicator";
+import { CompleteIndicator, DotIndicator } from "@/components/widget/Indicator";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { QuizWorkspace } from "@/components/widget/QuizWorkspace";
 import VideoPlayer from "@/components/widget/VideoPlayer";
@@ -30,25 +30,16 @@ import {
   makeTime,
 } from "@/utils/time";
 import { imgUrl } from "@/utils/url";
-import {
-  Center,
-  Circle,
-  Icon,
-  Skeleton,
-  Stack,
-  StackProps,
-} from "@chakra-ui/react";
+import { Center, Icon, Skeleton, Stack, StackProps } from "@chakra-ui/react";
 import {
   IconBook,
   IconBooks,
-  IconCheck,
   IconFiles,
   IconHelpHexagon,
   IconPhoto,
   IconVideo,
 } from "@tabler/icons-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
 
 const MATERIAL_REGISTRY = {
   text: {
@@ -180,6 +171,7 @@ const MaterialList = (props: any) => {
   // States
   const activeMaterialId = searchParams.get("activeMaterialId") || "";
   const quizStarted = searchParams.get("quizStarted") || "";
+  const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
   const completedMaterials =
     courseDetail?.learningAttempt?.completedMaterial || [];
   const materials = courseDetail?.material;
@@ -220,18 +212,7 @@ const MaterialList = (props: any) => {
                 }
               >
                 <Center pos={"relative"}>
-                  {material?.isCompleted && (
-                    <Circle
-                      bg={"fg.success"}
-                      pos={"absolute"}
-                      top={"-4px"}
-                      left={"-4px"}
-                    >
-                      <Icon color={"light"} boxSize={3.5}>
-                        <IconCheck />
-                      </Icon>
-                    </Circle>
-                  )}
+                  {material?.isCompleted && <CompleteIndicator />}
 
                   {materialProps?.icon && (
                     <Icon boxSize={6}>
@@ -264,9 +245,41 @@ const MaterialList = (props: any) => {
               courseDetail?.learningAttempt?.topic?.totalQuiz === 0
             }
           >
-            <Icon boxSize={6}>
-              <IconHelpHexagon stroke={1.5} />
-            </Icon>
+            <Center pos={"relative"}>
+              {isQuizFinished && <CompleteIndicator />}
+
+              <Icon boxSize={6}>
+                <IconHelpHexagon stroke={1.5} />
+              </Icon>
+            </Center>
+
+            <CContainer>
+              <P fontWeight={"medium"}>Quiz</P>
+              <P fontSize={"sm"} color={"fg.subtle"}>
+                {`${courseDetail?.learningAttempt?.topic?.totalQuiz} ${l.question}`}
+              </P>
+            </CContainer>
+
+            {quizStarted && <DotIndicator ml={"auto"} mr={1} />}
+          </ListItemContainer>
+        </NavLink>
+
+        <NavLink
+          to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`}
+        >
+          <ListItemContainer
+            disabled={
+              completedMaterials.length !== materials.length ||
+              courseDetail?.learningAttempt?.topic?.totalQuiz === 0
+            }
+          >
+            <Center pos={"relative"}>
+              {isQuizFinished && <CompleteIndicator />}
+
+              <Icon boxSize={6}>
+                <IconHelpHexagon stroke={1.5} />
+              </Icon>
+            </Center>
 
             <CContainer>
               <P fontWeight={"medium"}>Quiz</P>

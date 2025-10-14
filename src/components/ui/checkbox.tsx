@@ -34,7 +34,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     return (
       <ChakraCheckbox.Root
         ref={rootRef}
-        cursor={"pointer"}
+        cursor={props.disabled ? "not-allowed" : "pointer"}
         colorPalette={themeConfig.colorPalette}
         {...restProps}
       >
@@ -56,7 +56,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               ? "border.muted"
               : "d3"
           }
-          cursor={"pointer"}
+          cursor={props.disabled ? "not-allowed" : "pointer"}
         >
           {checked && (
             <Icon boxSize={4} color={`${themeConfig.colorPalette}.contrast`}>

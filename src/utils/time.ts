@@ -229,6 +229,8 @@ export const addSecondsToTime = (
 };
 
 export const getRemainingSecondsUntil = (targetTime: string): number => {
+  if (!targetTime) return 0;
+
   // Parse "HH:mm:ss"
   const parts = targetTime.split(":").map(Number);
   if (parts.length !== 3 || parts.some((n) => Number.isNaN(n))) {

@@ -30,6 +30,7 @@ const translations = {
   "all_categories": "Semua kategori",
   "all_document": "Semua dokumen",
   "answer": "Jawaban",
+  "answer_review": "Review jawaban",
   "answered": "Terjawab",
   "apply": "Terapkan",
   "april": "April",
@@ -93,6 +94,10 @@ const translations = {
   "error_409_default": {
     "title": "Conflict",
     "description": "Data yang sama sudah ada."
+  },
+  "error_409_quiz_attempt_closed": {
+    "title": "Quiz sudah ditutup",
+    "description": "Kamu tidak bisa lagi mengirim jawaban karena waktu pengerjaan kuis telah berakhir."
   },
   "error_413_default": {
     "title": "Payload too large",

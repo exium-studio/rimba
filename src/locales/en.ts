@@ -30,6 +30,7 @@ const translations = {
   "all_categories": "All categories",
   "all_document": "All document",
   "answer": "Answer",
+  "answer_review": "Answer review",
   "answered": "Answered",
   "apply": "Apply",
   "april": "April",
@@ -93,6 +94,10 @@ const translations = {
   "error_409_default": {
     "title": "Conflict",
     "description": "The same data already exists."
+  },
+  "error_409_quiz_attempt_closed": {
+    "title": "Quiz closed",
+    "description": "You can no longer submit answers because the quiz session has ended."
   },
   "error_413_default": {
     "title": "Payload too large",

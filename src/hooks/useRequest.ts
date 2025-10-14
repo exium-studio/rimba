@@ -126,6 +126,8 @@ export default function useRequest<T = any>(props: Props) {
 
       case 409:
         switch (errorCase) {
+          case "ATTEMPT_CLOSED":
+            return l.error_409_quiz_attempt_closed;
           case "ALREADY_EXISTS":
             return l.error_409_course_already_subbed;
           default:

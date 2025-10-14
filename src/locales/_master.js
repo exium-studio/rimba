@@ -671,6 +671,10 @@ export const ended_at = {
   id: "Selesai pada",
   en: "Ended at",
 };
+export const answer_review = {
+  id: "Review jawaban",
+  en: "Answer review",
+};
 
 // Message
 export const msg_cross_check_before_submit = {
@@ -1134,6 +1138,13 @@ export const error_409_course_already_subbed = {
   description: {
     id: "Kamu sudah terdaftar dalam kelas ini.",
     en: "You are already subscribed to this course.",
+  },
+};
+export const error_409_quiz_attempt_closed = {
+  title: { id: "Quiz sudah ditutup", en: "Quiz closed" },
+  description: {
+    id: "Kamu tidak bisa lagi mengirim jawaban karena waktu pengerjaan kuis telah berakhir.",
+    en: "You can no longer submit answers because the quiz session has ended.",
   },
 };
 export const error_413_default = {

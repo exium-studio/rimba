@@ -1,11 +1,12 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { FileIcon } from "@/components/ui/file-icon";
+import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { Props__FileItem } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import { fileUrl } from "@/utils/url";
 import { HStack, Icon } from "@chakra-ui/react";
-import Link from "next/link";
 
 export const FileItem = (props: Props__FileItem) => {
   // Props
@@ -26,9 +27,9 @@ export const FileItem = (props: Props__FileItem) => {
       justify={"space-between"}
       {...restProps}
     >
-      <Link
-        href={fileData?.fileUrl}
-        target="_blank"
+      <NavLink
+        to={fileUrl(fileData?.filePath)}
+        external
         style={{
           width: "100%",
         }}
@@ -43,7 +44,7 @@ export const FileItem = (props: Props__FileItem) => {
             </P>
           </CContainer>
         </HStack>
-      </Link>
+      </NavLink>
 
       <HStack justify={"end"}>
         {actions.map((action) => {

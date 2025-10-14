@@ -679,6 +679,42 @@ export const quiz_finished = {
   id: "Quiz Selesai",
   en: "Quiz Finished",
 };
+export const feedback_question = {
+  id: "Bagaimana pendapatmu tentang course <b>${courseName}</b>?",
+  en: "How do you feel about course <b>${courseName}</b>?",
+};
+export const feedback_label_1 = {
+  id: "Sangat buruk",
+  en: "Very bad",
+};
+export const feedback_label_2 = {
+  id: "Buruk",
+  en: "Bad",
+};
+export const feedback_label_3 = {
+  id: "Cukup",
+  en: "Satisfactory",
+};
+export const feedback_label_4 = {
+  id: "Baik",
+  en: "Good",
+};
+export const feedback_label_5 = {
+  id: "Sangat baik",
+  en: "Very good",
+};
+export const comment = {
+  id: "Komentar",
+  en: "Comment",
+};
+export const score = {
+  id: "Skor",
+  en: "Score",
+};
+export const feedback_placeholder = {
+  id: "Rate dan komentar",
+  en: "Rate and comment",
+};
 
 // Message
 export const msg_cross_check_before_submit = {
@@ -785,6 +821,11 @@ export const msg_dont_have_an_account = {
   id: "Belum punya akun?",
   en: "Don't have an account?",
 };
+export const msg_input_feedback_to_get_course_certificate = {
+  id: "Masukkan feedback Anda untuk mendapatkan sertifikat kursus ini.",
+  en: "Enter your feedback to get this course certificate.",
+};
+
 // Alert
 export const alert_offline = {
   title: {

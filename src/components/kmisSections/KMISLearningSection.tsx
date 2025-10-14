@@ -35,6 +35,7 @@ import { Center, Icon, Skeleton, Stack, StackProps } from "@chakra-ui/react";
 import {
   IconBook,
   IconBooks,
+  IconCertificate,
   IconFiles,
   IconHelpHexagon,
   IconPhoto,
@@ -174,6 +175,7 @@ const LearningModules = (props: any) => {
   const activeMaterialId = searchParams.get("activeMaterialId") || "";
   const quizStarted = searchParams.get("quizStarted") || "";
   const feedbackSession = searchParams.get("feedbackSession") || "";
+  const certificateSection = searchParams.get("certificateSection") || "";
   const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
   const isFeedbackFinished = !!courseDetail?.learningAttempt?.feedback;
   const completedMaterials =
@@ -261,7 +263,9 @@ const LearningModules = (props: any) => {
             <CContainer>
               <P fontWeight={"medium"}>Quiz</P>
               <P fontSize={"sm"} color={"fg.subtle"}>
-                {`${courseDetail?.learningAttempt?.topic?.totalQuiz} ${l.question}`}
+                {`${courseDetail?.learningAttempt?.topic?.quizDuration / 60} ${
+                  l.minutes
+                }`}
               </P>
             </CContainer>
 
@@ -290,11 +294,42 @@ const LearningModules = (props: any) => {
             <CContainer>
               <P fontWeight={"medium"}>Feedback</P>
               <P fontSize={"sm"} color={"fg.subtle"}>
-                {`${courseDetail?.learningAttempt?.topic?.totalQuiz} ${l.question}`}
+                {l.feedback_placeholder}
               </P>
             </CContainer>
 
             {feedbackSession && <DotIndicator ml={"auto"} mr={1} />}
+          </ListItemContainer>
+        </NavLink>
+
+        {/* Certificate */}
+        <NavLink
+          to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`}
+        >
+          <ListItemContainer
+            disabled={
+              completedMaterials.length !== materials.length ||
+              courseDetail?.learningAttempt?.topic?.totalQuiz === 0
+            }
+          >
+            <Center pos={"relative"}>
+              {isFeedbackFinished && <CompleteIndicator />}
+
+              <Icon boxSize={6}>
+                <IconCertificate stroke={1.5} />
+              </Icon>
+            </Center>
+
+            <CContainer>
+              <P fontWeight={"medium"}>{l.certificate}</P>
+              <P fontSize={"sm"} color={"fg.subtle"}>
+                {`${l.score} ${
+                  courseDetail?.learningAttempt?.scoreTotal ?? "-"
+                }`}
+              </P>
+            </CContainer>
+
+            {certificateSection && <DotIndicator ml={"auto"} mr={1} />}
           </ListItemContainer>
         </NavLink>
       </CContainer>
@@ -433,7 +468,12 @@ const ActiveMaterial = (props: any) => {
   const activeMaterialId = searchParams.get("activeMaterialId") || "";
   const quizStarted = searchParams.get("quizStarted") || "";
   const feedbackSession = searchParams.get("feedbackSession") || "";
-  const isIndex = !activeMaterialId && !quizStarted && !feedbackSession;
+  const certificateSection = searchParams.get("certificateSection") || "";
+  const isIndex =
+    !activeMaterialId &&
+    !quizStarted &&
+    !feedbackSession &&
+    !certificateSection;
   const materials = courseDetail?.material;
   const { error, initialLoading, data, onRetry } =
     useDataState<Interface__KMISMaterial>({

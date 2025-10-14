@@ -1,5 +1,6 @@
 "use client";
 
+import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import {
@@ -261,8 +262,33 @@ const DetailCourse = (props: any) => {
                     rounded={"lg"}
                     border={"1px solid"}
                     borderColor={"border.muted"}
+                    w={"200px"}
+                    gap={4}
                   >
-                    <P>{`"${feedback?.coment}"`}</P>
+                    <P>{`"${feedback?.comment}"`}</P>
+
+                    <HStack>
+                      <Avatar
+                        size={"sm"}
+                        name={feedback?.ratedBy?.name}
+                        src={imgUrl(
+                          feedback?.ratedBy?.photoProfile?.[0]?.filePath
+                        )}
+                      />
+
+                      <CContainer>
+                        <ClampText w={"full"}>
+                          {feedback?.ratedBy?.name}
+                        </ClampText>
+                        <ClampText
+                          w={"full"}
+                          color={"fg.subtle"}
+                          fontSize={"sm"}
+                        >
+                          {feedback?.ratedBy?.email}
+                        </ClampText>
+                      </CContainer>
+                    </HStack>
                   </CContainer>
                 );
               })}

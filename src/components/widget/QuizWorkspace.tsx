@@ -187,6 +187,7 @@ const ManualSubmitButton = (props: any) => {
 
   // Contexts
   const { l } = useLang();
+  const setRt = useRenderTrigger((s) => s.setRt);
   const { setConfirmationData, confirmationOnOpen } =
     useConfirmationDisclosure();
 
@@ -214,6 +215,7 @@ const ManualSubmitButton = (props: any) => {
       config,
       onResolve: {
         onSuccess: () => {
+          setRt((ps) => !ps);
           router.push(
             `/related-apps/kmis/my-course/${courseDetail?.learningAttempt.id}?feedbackSession=1`
           );
@@ -350,6 +352,9 @@ const CountDownDuration = (props: any) => {
   // Props
   const { quizEndedAt, courseDetail, ...restProps } = props;
 
+  // Contexts
+  const setRt = useRenderTrigger((s) => s.setRt);
+
   // Hooks
   const { req } = useRequest({
     id: "running-out-of-time-auto-submit",
@@ -379,6 +384,7 @@ const CountDownDuration = (props: any) => {
       config,
       onResolve: {
         onSuccess: () => {
+          setRt((ps) => !ps);
           router.push(
             `/related-apps/kmis/my-course/${courseDetail?.learningAttempt.id}?feedbackSession=1`
           );

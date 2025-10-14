@@ -287,7 +287,7 @@ const NextStepButton = (props: any) => {
   const {
     activeMaterial,
     courseDetail,
-    setCourseDetail,
+    getCourseDetail,
     idx,
     lastIdx,
     ...restProps
@@ -339,42 +339,6 @@ const NextStepButton = (props: any) => {
     courseDetail?.learningAttempt?.topic?.totalQuiz === 0;
 
   // Utils
-  function updateCurrentActiveMaterialToCompleted() {
-    setCourseDetail((ps: any) => {
-      const newMaterials = ps.material.map((material: any) => {
-        if (material.id === activeMaterial?.id) {
-          return {
-            ...material,
-            isCompleted: true,
-          };
-        }
-        return material;
-      });
-      return {
-        ...ps,
-        material: newMaterials,
-      };
-    });
-  }
-  function updateCompletedMaterials() {
-    setCourseDetail((ps: any) => {
-      const materials = [...ps.learningAttempt.completedMaterial];
-      const isExist = materials.some((m: any) => m.id === activeMaterial?.id);
-
-      // Add only if not exist
-      const updatedMaterials = isExist
-        ? materials
-        : [...materials, activeMaterial];
-
-      return {
-        ...ps,
-        learningAttempt: {
-          ...ps.learningAttempt,
-          completedMaterial: updatedMaterials,
-        },
-      };
-    });
-  }
   function nextActiveMaterial() {
     router.push(
       `/related-apps/kmis/my-course/${
@@ -388,9 +352,10 @@ const NextStepButton = (props: any) => {
     );
   }
   function onNextMaterial() {
+    const currentMaterialIsCompleted = activeMaterial?.isCompleted;
     const nextMaterialIsCompleted = materials[idx + 1]?.isCompleted;
 
-    if (nextMaterialIsCompleted) {
+    if (currentMaterialIsCompleted || nextMaterialIsCompleted) {
       nextActiveMaterial();
     } else {
       const config = {
@@ -402,8 +367,7 @@ const NextStepButton = (props: any) => {
         config,
         onResolve: {
           onSuccess: () => {
-            updateCompletedMaterials();
-            updateCurrentActiveMaterialToCompleted();
+            getCourseDetail();
             if (lastIdx) {
               if (quizDisabled) {
                 toaster.create({
@@ -438,7 +402,7 @@ const NextStepButton = (props: any) => {
 };
 const ActiveMaterial = (props: any) => {
   // Props
-  const { courseDetail, setCourseDetail, ...restProps } = props;
+  const { courseDetail, getCourseDetail, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -449,6 +413,7 @@ const ActiveMaterial = (props: any) => {
   // States
   const activeMaterialId = searchParams.get("activeMaterialId") || "";
   const quizStarted = searchParams.get("quizStarted") || "";
+  const materials = courseDetail?.material;
   const { error, initialLoading, data, onRetry } =
     useDataState<Interface__KMISMaterial>({
       url: `/api/kmis/learning-course/get-material/${activeMaterialId}`,
@@ -469,11 +434,11 @@ const ActiveMaterial = (props: any) => {
         <NextStepButton
           activeMaterial={data}
           courseDetail={courseDetail}
-          setCourseDetail={setCourseDetail}
-          idx={courseDetail?.material?.findIndex((m: any) => m.id === data?.id)}
+          getCourseDetail={getCourseDetail}
+          idx={materials?.findIndex((m: any) => m.id === data?.id)}
           lastIdx={
-            courseDetail?.material?.findIndex((m: any) => m.id === data?.id) ===
-            courseDetail?.material?.length - 1
+            materials?.findIndex((m: any) => m.id === data?.id) ===
+            materials?.length - 1
           }
         />
       </CContainer>
@@ -521,11 +486,11 @@ const ActiveMaterial = (props: any) => {
 
 interface Props extends StackProps {
   courseDetail: any;
-  setCourseDetail: React.Dispatch<any>;
+  getCourseDetail: () => void;
 }
 export const KMISLearningSection = (props: Props) => {
   // Props
-  const { courseDetail, setCourseDetail, ...restProps } = props;
+  const { courseDetail, getCourseDetail, ...restProps } = props;
 
   return (
     <LPSectionContainer
@@ -543,7 +508,7 @@ export const KMISLearningSection = (props: Props) => {
         <ActiveMaterial
           flex={3.5}
           courseDetail={courseDetail}
-          setCourseDetail={setCourseDetail}
+          getCourseDetail={getCourseDetail}
         />
       </Stack>
     </LPSectionContainer>

@@ -27,12 +27,13 @@ export default function Page(props: Props) {
   const { l } = useLang();
 
   // States
-  const { error, initialLoading, data, setData, onRetry } = useDataState<any>({
-    initialData: undefined,
-    url: `/api/kmis/learning-course/detail/${topicId}`,
-    dependencies: [],
-    dataResource: false,
-  });
+  const { error, initialLoading, data, onRetry, makeRequest } =
+    useDataState<any>({
+      initialData: undefined,
+      url: `/api/kmis/learning-course/detail/${topicId}`,
+      dependencies: [],
+      dataResource: false,
+    });
   const render = {
     loading: (
       <LPSectionContainer minH={"500px"}>
@@ -86,7 +87,10 @@ export default function Page(props: Props) {
           />
         </LPSectionContainer>
 
-        <KMISLearningSection courseDetail={data} setCourseDetail={setData} />
+        <KMISLearningSection
+          courseDetail={data}
+          getCourseDetail={makeRequest}
+        />
       </>
     ),
   };

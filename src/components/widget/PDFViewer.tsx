@@ -1,14 +1,14 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { Box, StackProps } from "@chakra-ui/react";
-import dynamic from "next/dynamic";
-import { useMemo } from "react";
+import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
+import { StackProps } from "@chakra-ui/react";
 import { Worker } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
-import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
+import dynamic from "next/dynamic";
+import { useMemo } from "react";
 
 // Lazy load Viewer for SSR safety
 const Viewer = dynamic(
@@ -40,15 +40,13 @@ export function PDFViewer(props: Props) {
 
   return (
     <CContainer w="full" aspectRatio={aspectRatio} {...restProps}>
-      <Box overflow="hidden" bg="gray.50" _dark={{ bg: "gray.800" }}>
-        {fileUrl ? (
-          <Worker workerUrl={workerUrl}>
-            <Viewer fileUrl={fileUrl} plugins={[defaultLayoutPluginInstance]} />
-          </Worker>
-        ) : (
-          <FeedbackNotFound />
-        )}
-      </Box>
+      {fileUrl ? (
+        <Worker workerUrl={workerUrl}>
+          <Viewer fileUrl={fileUrl} plugins={[defaultLayoutPluginInstance]} />
+        </Worker>
+      ) : (
+        <FeedbackNotFound />
+      )}
     </CContainer>
   );
 }

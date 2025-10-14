@@ -36,7 +36,7 @@ export default function Page(props: Props) {
     });
   const render = {
     loading: (
-      <LPSectionContainer minH={"500px"}>
+      <LPSectionContainer minH={"400px"}>
         <Breadcrumbs
           links={[
             {
@@ -57,10 +57,10 @@ export default function Page(props: Props) {
 
         <HStack flex={1} gap={4} w={"full"} align={"stretch"}>
           <CContainer flex={1} gap={4}>
-            <Skeleton minH={"200px"} rounded={"xl"} />
+            <Skeleton flex={1} rounded={"xl"} />
           </CContainer>
 
-          <Skeleton flex={3.5} rounded={"xl"} />
+          <Skeleton flex={3.5} rounded={"xl"} minH={"400px"} />
         </HStack>
       </LPSectionContainer>
     ),

@@ -435,7 +435,7 @@ const ActiveMaterial = (props: any) => {
       dataResource: false,
     });
   const render = {
-    loading: <Skeleton />,
+    loading: <Skeleton minH={"400px"} />,
     error: <FeedbackRetry onRetry={onRetry} />,
     empty: <FeedbackNoData />,
     loaded: (

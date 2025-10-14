@@ -212,6 +212,7 @@ const LearningModules = (props: any) => {
             <NavLink
               key={material.id}
               to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?activeMaterialId=${material.id}`}
+              w={"full"}
             >
               <ListItemContainer
                 disabled={
@@ -246,6 +247,7 @@ const LearningModules = (props: any) => {
         {/* Quiz */}
         <NavLink
           to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`}
+          w={"full"}
         >
           <ListItemContainer
             disabled={
@@ -277,6 +279,7 @@ const LearningModules = (props: any) => {
         {/* Feedback */}
         <NavLink
           to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?feedbackSession=1`}
+          w={"full"}
         >
           <ListItemContainer
             disabled={
@@ -306,6 +309,7 @@ const LearningModules = (props: any) => {
         {/* Certificate */}
         <NavLink
           to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`}
+          w={"full"}
         >
           <ListItemContainer
             disabled={

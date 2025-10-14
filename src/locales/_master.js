@@ -679,6 +679,10 @@ export const quiz_finished = {
   id: "Quiz Selesai",
   en: "Quiz Finished",
 };
+export const finished = {
+  id: "Selesai",
+  en: "Finished",
+};
 export const feedback_question = {
   id: "Bagaimana pendapatmu tentang course <b>${courseName}</b>?",
   en: "How do you feel about course <b>${courseName}</b>?",

@@ -18,7 +18,10 @@ import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { SigninDisclosureTrigger } from "@/components/widget/SigninDisclosure";
-import { Interface__KMISTopic } from "@/constants/interfaces";
+import {
+  Interface__KMISLearningAttempt,
+  Interface__KMISTopic,
+} from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
@@ -37,6 +40,7 @@ import {
 } from "@chakra-ui/react";
 import {
   IconArrowRight,
+  IconCertificate,
   IconCircleFilled,
   IconEye,
   IconRefresh,
@@ -94,7 +98,7 @@ const StartLearningButton = (props: any) => {
       to={`/related-apps/kmis/my-course/${topic?.id}`}
       w={restProps.w || "fit"}
     >
-      <Btn colorPalette={"p"} variant={"subtle"} {...restProps}>
+      <Btn colorPalette={"p"} variant={"outline"} {...restProps}>
         {l.start_learning}
 
         <Icon>
@@ -272,7 +276,7 @@ const DetailCourse = (props: any) => {
   return (
     <>
       <Btn
-        colorPalette={"p"}
+        colorPalette={myCourse ? "" : "p"}
         variant={"outline"}
         onClick={onOpen}
         {...restProps}
@@ -315,13 +319,20 @@ const DetailCourse = (props: any) => {
 };
 
 interface Props extends StackProps {
+  learningAttempt?: Interface__KMISLearningAttempt;
   topic: Interface__KMISTopic;
   idx: number;
   myCourse?: boolean;
 }
 export const KMISCourseItem = (props: Props) => {
   // Props
-  const { myCourse = false, topic, idx, ...restProps } = props;
+  const { learningAttempt, myCourse = false, topic, idx, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+
+  // States
+  const isFinished = !!learningAttempt?.certificate;
 
   return (
     <CContainer
@@ -331,8 +342,21 @@ export const KMISCourseItem = (props: Props) => {
       overflow={"clip"}
       border={"1px solid"}
       borderColor={"d1"}
+      pos={"relative"}
       {...restProps}
     >
+      {isFinished && (
+        <Badge
+          colorPalette={"green"}
+          pos={"absolute"}
+          top={4}
+          left={4}
+          zIndex={2}
+        >
+          {l.finished}
+        </Badge>
+      )}
+
       <Img
         key={topic?.topicCover?.[0]?.filePath}
         src={imgUrl(topic?.topicCover?.[0]?.filePath)}
@@ -367,10 +391,28 @@ export const KMISCourseItem = (props: Props) => {
           topic={topic}
           idx={idx}
           pl={[5, null, 3]}
-          colorPalette={"p"}
         />
 
-        {myCourse && <StartLearningButton topic={topic} w={"full"} />}
+        {(isFinished || myCourse) && (
+          <HStack>
+            {isFinished && (
+              <NavLink
+                to={`/related-apps/kmis/my-course/${topic?.id}?certificateSection=1`}
+                w={"full"}
+              >
+                <Btn colorPalette={"p"} variant={"outline"}>
+                  <Icon>
+                    <IconCertificate stroke={1.5} />
+                  </Icon>
+
+                  {`${l.view} ${l.certificate.toLowerCase()}`}
+                </Btn>
+              </NavLink>
+            )}
+
+            {myCourse && !isFinished && <StartLearningButton topic={topic} />}
+          </HStack>
+        )}
       </CContainer>
     </CContainer>
   );

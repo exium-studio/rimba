@@ -108,7 +108,7 @@ export const MiniProfile = (props: StackProps) => {
       <Divider />
 
       <CContainer gap={1} p={"6px"}>
-        <NavLink to={`/related-apps/kmis/my-course`}>
+        <NavLink to={`/related-apps/kmis/my-course`} w={"full"}>
           <Btn
             clicky={false}
             size={"md"}
@@ -129,7 +129,7 @@ export const MiniProfile = (props: StackProps) => {
           </Btn>
         </NavLink>
 
-        <NavLink to={`/related-apps/kmis/profile`}>
+        <NavLink to={`/related-apps/kmis/profile`} w={"full"}>
           <Btn
             clicky={false}
             size={"md"}

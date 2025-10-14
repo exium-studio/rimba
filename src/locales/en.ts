@@ -167,6 +167,7 @@ const translations = {
   "feedback_label_5": "Very good",
   "feedback_placeholder": "Rate and comment",
   "feedback_question": "How do you feel about course <b>${courseName}</b>?",
+  "finished": "Finished",
   "friday": "Friday",
   "get": "Get",
   "hide": "Hide",

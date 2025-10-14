@@ -66,7 +66,13 @@ const Data = (props: any) => {
         <SimpleGrid columns={[1, null, 2, 3, null, 4]} gap={4}>
           {data?.map((item, idx) => {
             return (
-              <KMISCourseItem key={idx} myCourse topic={item.topic} idx={idx} />
+              <KMISCourseItem
+                key={idx}
+                myCourse
+                learningAttempt={item}
+                topic={item.topic}
+                idx={idx}
+              />
             );
           })}
         </SimpleGrid>

@@ -102,7 +102,7 @@ const MobileTopNav = () => {
           top={0}
           zIndex={10}
         >
-          <NavLink w={"fit"} to="/">
+          <NavLink to="/">
             <PartnersLogo ml={2} />
           </NavLink>
 
@@ -397,6 +397,7 @@ const DesktopTopNav = () => {
                                 key={subNav.path}
                                 to={subNav.path}
                                 external={subNav.external}
+                                w={"full"}
                               >
                                 <MenuItem value={subNav.path} pr={5}>
                                   <Icon boxSize={5}>
@@ -420,7 +421,7 @@ const DesktopTopNav = () => {
                   )}
 
                   {!nav.subMenus && (
-                    <NavLink to={nav.path} external={nav.external}>
+                    <NavLink to={nav.path} external={nav.external} w={"full"}>
                       <Btn
                         clicky={false}
                         variant={"ghost"}

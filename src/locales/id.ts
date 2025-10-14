@@ -167,6 +167,7 @@ const translations = {
   "feedback_label_5": "Sangat baik",
   "feedback_placeholder": "Rate dan komentar",
   "feedback_question": "Bagaimana pendapatmu tentang course <b>${courseName}</b>?",
+  "finished": "Selesai",
   "friday": "Jumat",
   "get": "Dapatkan",
   "hide": "Sembunyikan",

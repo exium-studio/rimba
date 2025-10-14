@@ -459,7 +459,7 @@ const ActiveMaterial = (props: any) => {
   };
 
   return (
-    <CContainer minH={"500px"} {...restProps}>
+    <CContainer minH={"400px"} {...restProps}>
       {quizStarted && <QuizWorkspace courseDetail={courseDetail} />}
 
       {!quizStarted && (

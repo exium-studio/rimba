@@ -333,6 +333,7 @@ const translations = {
   "purpose": "Tujuan",
   "question": "Pertanyaan",
   "quiz_duration": "Durasi quiz",
+  "quiz_finished": "Quiz Selesai",
   "read_more": "Baca selengkapnya",
   "recieve": "Terima",
   "related_apps": "Aplikasi Terkait",

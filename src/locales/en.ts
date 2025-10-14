@@ -333,6 +333,7 @@ const translations = {
   "purpose": "Purpose",
   "question": "Question",
   "quiz_duration": "Quiz duration",
+  "quiz_finished": "Quiz Finished",
   "read_more": "Read more",
   "recieve": "Recieve",
   "related_apps": "Related Apps",

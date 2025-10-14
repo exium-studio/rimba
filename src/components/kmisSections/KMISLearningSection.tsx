@@ -9,6 +9,7 @@ import SafeHtml from "@/components/ui/safe-html";
 import { toaster } from "@/components/ui/toaster";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
+import { FeedbackSession } from "@/components/widget/FeedbackSession";
 import FeedbackState from "@/components/widget/FeedbackState";
 import { FileItem } from "@/components/widget/FIleItem";
 import { CompleteIndicator, DotIndicator } from "@/components/widget/Indicator";
@@ -37,6 +38,7 @@ import {
   IconFiles,
   IconHelpHexagon,
   IconPhoto,
+  IconStar,
   IconVideo,
 } from "@tabler/icons-react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -158,7 +160,7 @@ const ListItemContainer = (props: BtnProps) => {
     </Btn>
   );
 };
-const MaterialList = (props: any) => {
+const LearningModules = (props: any) => {
   // Props
   const { courseDetail, ...restProps } = props;
 
@@ -171,7 +173,9 @@ const MaterialList = (props: any) => {
   // States
   const activeMaterialId = searchParams.get("activeMaterialId") || "";
   const quizStarted = searchParams.get("quizStarted") || "";
+  const feedbackSession = searchParams.get("feedbackSession") || "";
   const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
+  const isFeedbackFinished = !!courseDetail?.learningAttempt?.feedback;
   const completedMaterials =
     courseDetail?.learningAttempt?.completedMaterial || [];
   const materials = courseDetail?.material;
@@ -236,6 +240,7 @@ const MaterialList = (props: any) => {
           );
         })}
 
+        {/* Quiz */}
         <NavLink
           to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`}
         >
@@ -264,8 +269,9 @@ const MaterialList = (props: any) => {
           </ListItemContainer>
         </NavLink>
 
+        {/* Feedback */}
         <NavLink
-          to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`}
+          to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?feedbackSession=1`}
         >
           <ListItemContainer
             disabled={
@@ -274,21 +280,21 @@ const MaterialList = (props: any) => {
             }
           >
             <Center pos={"relative"}>
-              {isQuizFinished && <CompleteIndicator />}
+              {isFeedbackFinished && <CompleteIndicator />}
 
               <Icon boxSize={6}>
-                <IconHelpHexagon stroke={1.5} />
+                <IconStar stroke={1.5} />
               </Icon>
             </Center>
 
             <CContainer>
-              <P fontWeight={"medium"}>Quiz</P>
+              <P fontWeight={"medium"}>Feedback</P>
               <P fontSize={"sm"} color={"fg.subtle"}>
                 {`${courseDetail?.learningAttempt?.topic?.totalQuiz} ${l.question}`}
               </P>
             </CContainer>
 
-            {quizStarted && <DotIndicator ml={"auto"} mr={1} />}
+            {feedbackSession && <DotIndicator ml={"auto"} mr={1} />}
           </ListItemContainer>
         </NavLink>
       </CContainer>
@@ -426,6 +432,8 @@ const ActiveMaterial = (props: any) => {
   // States
   const activeMaterialId = searchParams.get("activeMaterialId") || "";
   const quizStarted = searchParams.get("quizStarted") || "";
+  const feedbackSession = searchParams.get("feedbackSession") || "";
+  const isIndex = !activeMaterialId && !quizStarted && !feedbackSession;
   const materials = courseDetail?.material;
   const { error, initialLoading, data, onRetry } =
     useDataState<Interface__KMISMaterial>({
@@ -460,39 +468,37 @@ const ActiveMaterial = (props: any) => {
 
   return (
     <CContainer minH={"400px"} {...restProps}>
-      {quizStarted && <QuizWorkspace courseDetail={courseDetail} />}
+      {isIndex && (
+        <Center flex={1} bg={"body"} p={4} rounded={"xl"}>
+          <FeedbackState
+            icon={<IconBooks stroke={1.5} />}
+            title={l.learning_material}
+            description={l.msg_select_material_first}
+            m={"auto"}
+          />
+        </Center>
+      )}
 
-      {!quizStarted && (
+      {activeMaterialId && (
         <>
-          {activeMaterialId && (
+          {initialLoading && render.loading}
+          {!initialLoading && (
             <>
-              {initialLoading && render.loading}
-              {!initialLoading && (
+              {error && render.error}
+              {!error && (
                 <>
-                  {error && render.error}
-                  {!error && (
-                    <>
-                      {data && render.loaded}
-                      {!data && render.empty}
-                    </>
-                  )}
+                  {data && render.loaded}
+                  {!data && render.empty}
                 </>
               )}
             </>
           )}
-
-          {!activeMaterialId && (
-            <Center flex={1} bg={"body"} p={4} rounded={"xl"}>
-              <FeedbackState
-                icon={<IconBooks stroke={1.5} />}
-                title={l.learning_material}
-                description={l.msg_select_material_first}
-                m={"auto"}
-              />
-            </Center>
-          )}
         </>
       )}
+
+      {quizStarted && <QuizWorkspace courseDetail={courseDetail} />}
+
+      {feedbackSession && <FeedbackSession courseDetail={courseDetail} />}
     </CContainer>
   );
 };
@@ -515,7 +521,7 @@ export const KMISLearningSection = (props: Props) => {
     >
       <Stack flexDir={["column", null, "row"]} gap={4}>
         <CContainer flex={1} gap={4}>
-          <MaterialList courseDetail={courseDetail} />
+          <LearningModules courseDetail={courseDetail} />
         </CContainer>
 
         <ActiveMaterial

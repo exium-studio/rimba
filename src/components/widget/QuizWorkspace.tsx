@@ -42,7 +42,6 @@ import {
   IconArrowRight,
   IconStopwatch,
 } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const AnswerOption = (props: any) => {
@@ -194,10 +193,6 @@ const ManualSubmitButton = (props: any) => {
   const { req } = useRequest({
     id: "submit-quiz",
   });
-  const router = useRouter();
-
-  // States
-  const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
 
   // Utils
   function onSubmitQuiz() {
@@ -227,23 +222,18 @@ const ManualSubmitButton = (props: any) => {
       variant={"outline"}
       colorPalette={"p"}
       onClick={() => {
-        if (isQuizFinished) {
-          router.push(
-            `/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?quizFinished=1`
-          );
-        } else {
-          setConfirmationData({
-            title: "Submit",
-            description: l.msg_cross_check_before_submit,
-            confirmLabel: "Submit",
-            onConfirm: onSubmitQuiz,
-          });
-          confirmationOnOpen();
-        }
+        setConfirmationData({
+          title: "Submit",
+          description: l.msg_cross_check_before_submit,
+          confirmLabel: "Submit",
+          onConfirm: onSubmitQuiz,
+        });
+        confirmationOnOpen();
       }}
+      disabled={!!courseDetail?.learningAttempt?.quizFinished}
       {...restProps}
     >
-      {isQuizFinished ? "Feedback" : `Submit`}
+      Submit
       <Icon>
         <IconArrowRight stroke={1.5} />
       </Icon>
@@ -280,77 +270,79 @@ const ActiveQuiz = (props: any) => {
   const lastIdx = activeQuizIdx === exams?.length - 1;
 
   return (
-    <ItemContainer flex={4} gap={2} p={4}>
-      <P fontWeight={"semibold"} color={"fg.subtle"}>{`No. ${
-        activeQuizIdx + 1
-      }`}</P>
+    <CContainer flex={4} gap={4}>
+      <ItemContainer gap={2} p={4}>
+        <P fontWeight={"semibold"} color={"fg.subtle"}>{`No. ${
+          activeQuizIdx + 1
+        }`}</P>
 
-      <P fontWeight={"medium"}>{quiz?.question}</P>
+        <P fontWeight={"medium"}>{quiz?.question}</P>
 
-      {/* options abcd */}
-      <CContainer gap={2} mt={2}>
-        {OPTIONS_REGISTRY.map(({ optionLetter, optionKey }) => {
-          return (
-            <AnswerOption
-              key={optionKey}
-              quizNumber={activeQuizIdx + 1}
-              courseDetail={courseDetail}
-              optionLetter={optionLetter}
-              optionKey={optionKey}
-              activeQuiz={activeQuiz}
-            />
-          );
-        })}
-      </CContainer>
+        {/* options abcd */}
+        <CContainer gap={2} mt={2}>
+          {OPTIONS_REGISTRY.map(({ optionLetter, optionKey }) => {
+            return (
+              <AnswerOption
+                key={optionKey}
+                quizNumber={activeQuizIdx + 1}
+                courseDetail={courseDetail}
+                optionLetter={optionLetter}
+                optionKey={optionKey}
+                activeQuiz={activeQuiz}
+              />
+            );
+          })}
+        </CContainer>
 
-      <HStack mt={4} justify={"space-between"}>
-        <MarkingCheckbox courseDetail={courseDetail} activeQuiz={activeQuiz} />
+        <HStack mt={4} justify={"space-between"}>
+          <MarkingCheckbox
+            courseDetail={courseDetail}
+            activeQuiz={activeQuiz}
+          />
 
-        <HStack>
-          <Btn
-            w={"150px"}
-            variant={"ghost"}
-            disabled={activeQuizIdx === 0}
-            onClick={() => {
-              setActiveQuizIdx((ps: any) => ps - 1);
-            }}
-          >
-            <Icon>
-              <IconArrowLeft stroke={1.5} />
-            </Icon>
-
-            {l.previous}
-          </Btn>
-
-          {lastIdx && <ManualSubmitButton courseDetail={courseDetail} />}
-
-          {!lastIdx && (
+          <HStack>
             <Btn
               w={"150px"}
               variant={"ghost"}
-              colorPalette={""}
+              disabled={activeQuizIdx === 0}
               onClick={() => {
-                setActiveQuizIdx((ps: any) => ps + 1);
+                setActiveQuizIdx((ps: any) => ps - 1);
               }}
             >
-              {l.next}
-
               <Icon>
-                <IconArrowRight stroke={1.5} />
+                <IconArrowLeft stroke={1.5} />
               </Icon>
+
+              {l.previous}
             </Btn>
-          )}
+
+            {lastIdx && <ManualSubmitButton courseDetail={courseDetail} />}
+
+            {!lastIdx && (
+              <Btn
+                w={"150px"}
+                variant={"ghost"}
+                colorPalette={""}
+                onClick={() => {
+                  setActiveQuizIdx((ps: any) => ps + 1);
+                }}
+              >
+                {l.next}
+
+                <Icon>
+                  <IconArrowRight stroke={1.5} />
+                </Icon>
+              </Btn>
+            )}
+          </HStack>
         </HStack>
-      </HStack>
-    </ItemContainer>
+      </ItemContainer>
+    </CContainer>
   );
 };
 const CountDownDuration = (props: any) => {
   // Props
   const { quizEndedAt, courseDetail, ...restProps } = props;
-
-  // Contexts
-  const { l } = useLang();
 
   // Hooks
   const { req } = useRequest({
@@ -401,14 +393,6 @@ const CountDownDuration = (props: any) => {
     return () => clearInterval(interval);
   }, [quizEndedAt]);
 
-  if (isQuizFinished) {
-    return (
-      <Btn colorPalette={"p"} variant={"subtle"} rounded={"xl"}>
-        {l.answer_review}
-      </Btn>
-    );
-  }
-
   return (
     <HStack
       gap={1}
@@ -444,25 +428,31 @@ const QuestionList = (props: any) => {
     courseDetail?.learningAttempt?.topic?.quizDuration;
   const quizStartedAt = makeTime(courseDetail?.learningAttempt?.quizStarted);
   const quizEndedAt = addSecondsToTime(quizStartedAt, quizDurationSeconds);
+  const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
 
   return (
     <CContainer flex={1} gap={4} {...restProps}>
-      <CountDownDuration
-        quizEndedAt={quizEndedAt}
-        courseDetail={courseDetail}
-      />
+      {isQuizFinished && (
+        <CContainer gap={2} rounded={"xl"} bg={"body"} p={2}>
+          <Btn colorPalette={"p"}>
+            Feedback
+            <Icon>
+              <IconArrowRight stroke={1.5} />
+            </Icon>
+          </Btn>
 
-      <ItemContainer gap={1} p={4}>
-        <HStack justify={"space-between"}>
-          <P>{l.started_at}</P>
-          <P fontWeight={"medium"}>{quizStartedAt}</P>
-        </HStack>
+          <Btn colorPalette={"p"} variant={"outline"}>
+            {l.answer_review}
+          </Btn>
+        </CContainer>
+      )}
 
-        <HStack justify={"space-between"}>
-          <P>{l.ended_at}</P>
-          <P fontWeight={"medium"}>{quizEndedAt}</P>
-        </HStack>
-      </ItemContainer>
+      {!isQuizFinished && (
+        <CountDownDuration
+          quizEndedAt={quizEndedAt}
+          courseDetail={courseDetail}
+        />
+      )}
 
       <ItemContainer h={"fit"} gap={4} p={4}>
         <P fontWeight={"semibold"}>{l.list_of_questions}</P>
@@ -502,6 +492,18 @@ const QuestionList = (props: any) => {
             <P>{l.marked}</P>
           </HStack>
         </CContainer>
+      </ItemContainer>
+
+      <ItemContainer gap={1} p={4}>
+        <HStack justify={"space-between"}>
+          <P>{l.started_at}</P>
+          <P fontWeight={"medium"}>{quizStartedAt}</P>
+        </HStack>
+
+        <HStack justify={"space-between"}>
+          <P>{l.ended_at}</P>
+          <P fontWeight={"medium"}>{quizEndedAt}</P>
+        </HStack>
       </ItemContainer>
     </CContainer>
   );

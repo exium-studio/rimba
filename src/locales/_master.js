@@ -675,6 +675,10 @@ export const answer_review = {
   id: "Review jawaban",
   en: "Answer review",
 };
+export const quiz_finished = {
+  id: "Quiz Selesai",
+  en: "Quiz Finished",
+};
 
 // Message
 export const msg_cross_check_before_submit = {

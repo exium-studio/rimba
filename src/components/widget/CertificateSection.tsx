@@ -19,6 +19,7 @@ export const CertificateSection = (props: Props) => {
         fileUrl={fileUrl(
           courseDetail?.learningAttempt?.certificate?.[0]?.filePath
         )}
+        aspectRatio={16 / 11}
       />
     </ItemContainer>
   );

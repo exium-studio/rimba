@@ -42,6 +42,7 @@ import {
   IconArrowRight,
   IconStopwatch,
 } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const AnswerOption = (props: any) => {
@@ -193,6 +194,7 @@ const ManualSubmitButton = (props: any) => {
   const { req } = useRequest({
     id: "submit-quiz",
   });
+  const router = useRouter();
 
   // Utils
   function onSubmitQuiz() {
@@ -211,7 +213,11 @@ const ManualSubmitButton = (props: any) => {
     req({
       config,
       onResolve: {
-        onSuccess: () => {},
+        onSuccess: () => {
+          router.push(
+            `/related-apps/kmis/my-course/${courseDetail?.learningAttempt.id}?feedbackSession=1`
+          );
+        },
       },
     });
   }
@@ -348,6 +354,7 @@ const CountDownDuration = (props: any) => {
   const { req } = useRequest({
     id: "running-out-of-time-auto-submit",
   });
+  const router = useRouter();
 
   // States
   const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
@@ -371,7 +378,11 @@ const CountDownDuration = (props: any) => {
     req({
       config,
       onResolve: {
-        onSuccess: () => {},
+        onSuccess: () => {
+          router.push(
+            `/related-apps/kmis/my-course/${courseDetail?.learningAttempt.id}?feedbackSession=1`
+          );
+        },
       },
     });
   }
@@ -433,18 +444,9 @@ const QuestionList = (props: any) => {
   return (
     <CContainer flex={1} gap={4} {...restProps}>
       {isQuizFinished && (
-        <CContainer gap={2} rounded={"xl"} bg={"body"} p={2}>
-          <Btn colorPalette={"p"}>
-            Feedback
-            <Icon>
-              <IconArrowRight stroke={1.5} />
-            </Icon>
-          </Btn>
-
-          <Btn colorPalette={"p"} variant={"outline"}>
-            {l.answer_review}
-          </Btn>
-        </CContainer>
+        <Btn colorPalette={"p"} variant={"outline"}>
+          {l.answer_review}
+        </Btn>
       )}
 
       {!isQuizFinished && (

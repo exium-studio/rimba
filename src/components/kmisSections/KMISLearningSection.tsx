@@ -7,6 +7,7 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import SafeHtml from "@/components/ui/safe-html";
 import { toaster } from "@/components/ui/toaster";
+import { CertificateSection } from "@/components/widget/CertificateSection";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { FeedbackSession } from "@/components/widget/FeedbackSession";
@@ -539,6 +540,8 @@ const ActiveMaterial = (props: any) => {
       {quizStarted && <QuizWorkspace courseDetail={courseDetail} />}
 
       {feedbackSession && <FeedbackSession courseDetail={courseDetail} />}
+
+      {certificateSection && <CertificateSection courseDetail={courseDetail} />}
     </CContainer>
   );
 };

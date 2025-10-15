@@ -106,7 +106,7 @@ const MATERIAL_REGISTRY = {
           </P>
 
           <CContainer gap={4} p={4} rounded={"xl"} bg={"body"}>
-            {resolvedMaterial?.materialFile?.map(
+            {resolvedMaterial?.materialFiles?.map(
               (item: Interface__StorageFile) => {
                 return <FileItem key={item.id} fileData={item} />;
               }
@@ -132,7 +132,7 @@ const MATERIAL_REGISTRY = {
             {resolvedMaterial.title}
           </P>
 
-          {resolvedMaterial?.materialFile?.map(
+          {resolvedMaterial?.materialFiles?.map(
             (item: Interface__StorageFile) => {
               const url = imgUrl(item.filePath);
 

@@ -10,6 +10,7 @@ import { KMISCourseItem } from "@/components/widget/KMISCourseItem";
 import { Limitation } from "@/components/widget/Limitation";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Pagination } from "@/components/widget/Pagination";
+import { SelectCourseFinishedStatus } from "@/components/widget/SelectCourseFinishedStatus";
 import { Interface__KMISLearningAttempt } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
@@ -54,6 +55,7 @@ const Data = (props: any) => {
     params: {
       search: filter.search,
       categoryId: filter.category,
+      finishedStatus: filter.finishedStatus?.[0]?.id,
     },
     dependencies: [filter],
   });
@@ -93,7 +95,7 @@ const Data = (props: any) => {
   useEffect(() => {
     if (!fr) {
       if (data) {
-        scrollTo(topicListContainerRef, 122);
+        scrollTo(topicListContainerRef, 160);
       }
     } else {
       if (data) {
@@ -128,9 +130,14 @@ export const KMISMyCourses = (props: Props) => {
   const { l } = useLang();
 
   // States
-  const DEFAULT_FILTER = {
+  const DEFAULT_FILTER: any = {
     search: "",
-    isCompleted: null,
+    finishedStatus: [
+      {
+        id: 1,
+        label: l.all,
+      },
+    ],
     category: [],
   };
   const [filter, setFilter] = useState(DEFAULT_FILTER);
@@ -159,13 +166,23 @@ export const KMISMyCourses = (props: Props) => {
               </P>
             </CContainer>
 
-            <SearchInput
-              flex={"1 1 200px"}
-              inputValue={filter.search}
-              onChange={(inputValue) => {
-                setFilter({ ...filter, search: inputValue });
-              }}
-            />
+            <HStack flex={"1 1 350px"}>
+              <SelectCourseFinishedStatus
+                inputValue={filter.finishedStatus}
+                onConfirm={(inputValue) =>
+                  setFilter({ ...filter, finishedStatus: inputValue })
+                }
+                w={"150px"}
+              />
+
+              <SearchInput
+                flex={"1 1 200px"}
+                inputValue={filter.search}
+                onChange={(inputValue) => {
+                  setFilter({ ...filter, search: inputValue });
+                }}
+              />
+            </HStack>
           </HStack>
 
           <Data filter={filter} />

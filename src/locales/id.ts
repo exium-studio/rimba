@@ -49,6 +49,7 @@ const translations = {
   "confirm": "Konfirmasi",
   "correct_answer": "Jawaban benar",
   "course_category": "Kategori course",
+  "course_finished_status": "Status penyelesaian course",
   "dark_mode": "Mode gelap",
   "date_format": "Format tanggal",
   "day": "Hari",

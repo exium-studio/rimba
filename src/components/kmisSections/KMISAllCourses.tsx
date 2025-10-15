@@ -90,7 +90,7 @@ const Data = (props: any) => {
   useEffect(() => {
     if (!fr) {
       if (data) {
-        scrollTo(topicListContainerRef, 122);
+        scrollTo(topicListContainerRef, 160);
       }
     } else {
       if (data) {

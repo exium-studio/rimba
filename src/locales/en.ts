@@ -49,6 +49,7 @@ const translations = {
   "confirm": "Confirm",
   "correct_answer": "Correct answer",
   "course_category": "Course category",
+  "course_finished_status": "Course completion status",
   "dark_mode": "Dark mode",
   "date_format": "Date format",
   "day": "Day",

@@ -791,6 +791,10 @@ export const progress_status = {
   id: "Status progress",
   en: "Progress status",
 };
+export const course_finished_status = {
+  id: "Status penyelesaian course",
+  en: "Course completion status",
+};
 
 // Message
 export const msg_cross_check_before_submit = {

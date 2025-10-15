@@ -757,7 +757,7 @@ const QuestionList = (props: any) => {
                 variant={"outline"}
                 border={"1px solid"}
                 borderColor={isActive ? "p.500" : "border.muted"}
-                bg={isMarked ? "fg.warning" : isAnswered ? "fg.success" : ""}
+                bg={isMarked ? "orange.400" : isAnswered ? "fg.success" : ""}
                 color={isMarked || isAnswered ? "light" : ""}
                 onClick={() => setActiveQuizIdx(idx)}
               >
@@ -774,7 +774,7 @@ const QuestionList = (props: any) => {
           </HStack>
 
           <HStack>
-            <Box w={"12px"} aspectRatio={1} bg={"fg.warning"} rounded={"xs"} />
+            <Box w={"12px"} aspectRatio={1} bg={"orange.400"} rounded={"xs"} />
             <P>{l.marked}</P>
           </HStack>
         </CContainer>

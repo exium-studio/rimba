@@ -254,10 +254,10 @@ const DetailCourse = (props: any) => {
 
           <CContainer overflowX={"auto"}>
             <HStack w={"max"}>
-              {data?.feedback?.map((feedback: any) => {
+              {data?.feedback?.map((feedback: any, idx: number) => {
                 return (
                   <CContainer
-                    key={feedback?.id}
+                    key={`${feedback?.id}-${idx}`}
                     p={4}
                     rounded={"lg"}
                     border={"1px solid"}

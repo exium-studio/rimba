@@ -246,7 +246,6 @@ const ManualSubmitButton = (props: any) => {
 
   return (
     <Btn
-      w={"150px"}
       variant={"outline"}
       colorPalette={"p"}
       onClick={() => {
@@ -322,15 +321,16 @@ const ActiveQuiz = (props: any) => {
           })}
         </CContainer>
 
-        <HStack mt={4} justify={"space-between"}>
+        <HStack wrap={"wrap"} mt={4} justify={"space-between"}>
           <MarkingCheckbox
             courseDetail={courseDetail}
             activeQuiz={activeQuiz}
           />
 
-          <HStack>
+          <HStack flex={[1, null, 0]}>
             <Btn
-              w={"150px"}
+              w={["", null, "150px"]}
+              flex={1}
               variant={"ghost"}
               disabled={activeQuizIdx === 0}
               onClick={() => {
@@ -344,11 +344,18 @@ const ActiveQuiz = (props: any) => {
               {l.previous}
             </Btn>
 
-            {lastIdx && <ManualSubmitButton courseDetail={courseDetail} />}
+            {lastIdx && (
+              <ManualSubmitButton
+                courseDetail={courseDetail}
+                w={["", null, "150px"]}
+                flex={1}
+              />
+            )}
 
             {!lastIdx && (
               <Btn
-                w={"150px"}
+                w={["", null, "150px"]}
+                flex={1}
                 variant={"ghost"}
                 colorPalette={""}
                 onClick={() => {

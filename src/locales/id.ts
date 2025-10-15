@@ -46,6 +46,7 @@ const translations = {
   "comment": "Komentar",
   "component": "Komponen",
   "confirm": "Konfirmasi",
+  "correct_answer": "Jawaban benar",
   "dark_mode": "Mode gelap",
   "date_format": "Format tanggal",
   "day": "Hari",
@@ -488,6 +489,7 @@ const translations = {
   "wednesday": "Rabu",
   "week": "Minggu",
   "will_be_deleted": "Akan dihapus",
+  "wrong_answer": "Jawaban salah",
   "year": "Tahun"
 };
 

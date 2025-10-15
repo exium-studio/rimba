@@ -46,6 +46,7 @@ const translations = {
   "comment": "Comment",
   "component": "Component",
   "confirm": "Confirm",
+  "correct_answer": "Correct answer",
   "dark_mode": "Dark mode",
   "date_format": "Date format",
   "day": "Day",
@@ -488,6 +489,7 @@ const translations = {
   "wednesday": "Wednesday",
   "week": "Week",
   "will_be_deleted": "Will be deleted",
+  "wrong_answer": "Wrong answer",
   "year": "Year"
 };
 

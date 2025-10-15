@@ -719,6 +719,14 @@ export const feedback_placeholder = {
   id: "Rate dan komentar",
   en: "Rate and comment",
 };
+export const correct_answer = {
+  id: "Jawaban benar",
+  en: "Correct answer",
+};
+export const wrong_answer = {
+  id: "Jawaban salah",
+  en: "Wrong answer",
+};
 
 // Message
 export const msg_cross_check_before_submit = {

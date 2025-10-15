@@ -263,11 +263,16 @@ const DetailCourse = (props: any) => {
                     border={"1px solid"}
                     borderColor={"border.muted"}
                     w={"200px"}
+                    h={"auto"}
+                    aspectRatio={3 / 4}
                     gap={4}
                   >
-                    <P>{`"${feedback?.comment}"`}</P>
+                    <ClampText
+                      w={"full"}
+                      lineClamp={8}
+                    >{`"${feedback?.comment}"`}</ClampText>
 
-                    <HStack>
+                    <HStack mt={"auto"}>
                       <Avatar
                         size={"sm"}
                         name={feedback?.ratedBy?.name}
@@ -280,6 +285,7 @@ const DetailCourse = (props: any) => {
                         <ClampText w={"full"}>
                           {feedback?.ratedBy?.name}
                         </ClampText>
+
                         <ClampText
                           w={"full"}
                           color={"fg.subtle"}

@@ -146,7 +146,7 @@ export const FeedbackSession = (props: Props) => {
             loading={loading}
             colorPalette={"p"}
             ml={"auto"}
-            disabled={courseDetail?.learningAttempt?.feedback}
+            // disabled={courseDetail?.learningAttempt?.feedback}
           >
             Submit
           </Btn>

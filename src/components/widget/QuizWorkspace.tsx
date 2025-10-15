@@ -246,7 +246,7 @@ const ManualSubmitButton = (props: any) => {
 
   return (
     <Btn
-      variant={"outline"}
+      variant={"subtle"}
       colorPalette={"p"}
       onClick={() => {
         setConfirmationData({

@@ -3,11 +3,26 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  DisclosureBody,
+  DisclosureContent,
+  DisclosureFooter,
+  DisclosureHeader,
+  DisclosureRoot,
+} from "@/components/ui/disclosure";
+import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import BackButton from "@/components/widget/BackButton";
+import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
+import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
+import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
+import { QuizAttempStatus } from "@/components/widget/QuizAttempStatus";
+import { ReviewQuizWorkspace } from "@/components/widget/ReviewQuizWorkspace";
 import {
   Interface__KMISLearningAttempt,
   Interface__KMISMaterial,
@@ -17,17 +32,20 @@ import {
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useLang from "@/context/useLang";
 import useRenderTrigger from "@/context/useRenderTrigger";
+import { useThemeConfig } from "@/context/useThemeConfig";
+import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
-import { formatDuration } from "@/utils/formatter";
-import { interpolateString } from "@/utils/string";
+import { formatDate, formatDuration, formatNumber } from "@/utils/formatter";
+import { capitalizeWords, interpolateString } from "@/utils/string";
 import {
   addSecondsToTime,
   getRemainingSecondsUntil,
   makeTime,
 } from "@/utils/time";
+import { fileUrl } from "@/utils/url";
 import {
   Box,
   HStack,
@@ -36,10 +54,12 @@ import {
   Skeleton,
   Stack,
   StackProps,
+  useDisclosure,
 } from "@chakra-ui/react";
 import {
   IconArrowLeft,
   IconArrowRight,
+  IconArrowUpRight,
   IconStopwatch,
 } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
@@ -432,6 +452,268 @@ const CountDownDuration = (props: any) => {
     </HStack>
   );
 };
+const ResultDetail = (props: any) => {
+  // Props
+  const { courseDetail, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
+
+  // Hooks
+  const { open, onOpen, onClose } = useDisclosure();
+  useBackOnClose(
+    `answer-review-${courseDetail?.learningAttempt?.id}`,
+    open,
+    onOpen,
+    onClose
+  );
+
+  // States
+  const { error, initialLoading, data, onRetry } = useDataState<{
+    learningParticipant: Interface__KMISLearningAttempt;
+    exam: Interface__KMISQuizResponse[];
+  }>({
+    initialData: undefined,
+    url: `/api/kmis/learning-course/get-finished-attempt/${courseDetail?.learningAttempt?.id}`,
+    dependencies: [open],
+    conditions: open,
+    dataResource: false,
+  });
+  const resolvedAttempt = data?.learningParticipant;
+  const render = {
+    loading: <Skeleton w={"full"} h={"400px"} />,
+    error: <FeedbackRetry onRetry={onRetry} h={"400px"} />,
+    empty: <FeedbackNoData h={"400px"} />,
+    loaded: (
+      <CContainer gap={4}>
+        <SimpleGrid columns={[1, null, 2]} gap={4} px={1}>
+          <ItemContainer
+            rounded={themeConfig.radii.component}
+            border={"1px solid"}
+            borderColor={"border.muted"}
+          >
+            <ItemHeaderContainer borderless>
+              <ItemHeaderTitle>{capitalizeWords(l.basic_info)}</ItemHeaderTitle>
+            </ItemHeaderContainer>
+
+            <CContainer gap={4} p={4} pt={2}>
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.name}
+                </P>
+                <P>:</P>
+                <ClampText>{resolvedAttempt?.attemptUser.name}</ClampText>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {"Email"}
+                </P>
+                <P>:</P>
+                <ClampText>{resolvedAttempt?.attemptUser.email}</ClampText>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.course_category}
+                </P>
+                <P>:</P>
+                <ClampText>{resolvedAttempt?.topic.category.title}</ClampText>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  Course
+                </P>
+                <P>:</P>
+                <ClampText>{resolvedAttempt?.topic.title}</ClampText>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.description}
+                </P>
+                <P>:</P>
+                <ClampText>{resolvedAttempt?.topic.description}</ClampText>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.duration}
+                </P>
+                <P>:</P>
+                <P>{formatDuration(resolvedAttempt?.topic.quizDuration)}</P>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.start_date_time}
+                </P>
+                <P>:</P>
+                <P>
+                  {formatDate(resolvedAttempt?.quizStarted, {
+                    variant: "numeric",
+                    withTime: true,
+                  })}
+                </P>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.end_date_time}
+                </P>
+                <P>:</P>
+                <P>
+                  {formatDate(resolvedAttempt?.quizFinished, {
+                    variant: "numeric",
+                    withTime: true,
+                  })}
+                </P>
+              </HStack>
+            </CContainer>
+          </ItemContainer>
+
+          <ItemContainer
+            rounded={themeConfig.radii.component}
+            border={"1px solid"}
+            borderColor={"border.muted"}
+          >
+            <ItemHeaderContainer borderless>
+              <ItemHeaderTitle>{capitalizeWords(l.quiz_info)}</ItemHeaderTitle>
+            </ItemHeaderContainer>
+
+            <CContainer gap={4} p={4} pt={2}>
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.progress_status}
+                </P>
+                <P>:</P>
+                <QuizAttempStatus
+                  quizAttempStatus={resolvedAttempt?.attemptStatus}
+                />
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.grade}
+                </P>
+                <P>:</P>
+                <P>{`${resolvedAttempt?.scoreTotal}`}</P>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.total_answered}
+                </P>
+                <P>:</P>
+                <P>{formatNumber(resolvedAttempt?.questionsAnswered || 0)}</P>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.total_correct}
+                </P>
+                <P>:</P>
+                <P>{formatNumber(resolvedAttempt?.correctCount)}</P>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.total_wrong}
+                </P>
+                <P>:</P>
+                <P>{formatNumber(resolvedAttempt?.wrongCount)}</P>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.total_empty}
+                </P>
+                <P>:</P>
+                <P>{formatNumber(resolvedAttempt?.emptyCount)}</P>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  Feedback
+                </P>
+                <P>:</P>
+                <P>{resolvedAttempt?.feedback || "-"}</P>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  {l.certificate}
+                </P>
+                <P>:</P>
+                <NavLink
+                  to={fileUrl(resolvedAttempt?.certificate?.[0]?.filePath)}
+                  external
+                >
+                  <Btn
+                    variant={"plain"}
+                    p={0}
+                    h={"fit"}
+                    color={`${themeConfig.colorPalette}.fg`}
+                  >
+                    {l.view}
+                    <Icon boxSize={5}>
+                      <IconArrowUpRight stroke={1.5} />
+                    </Icon>
+                  </Btn>
+                </NavLink>
+              </HStack>
+            </CContainer>
+          </ItemContainer>
+        </SimpleGrid>
+
+        <ReviewQuizWorkspace quizResponses={data} px={1} />
+      </CContainer>
+    ),
+  };
+
+  return (
+    <>
+      <Btn
+        colorPalette={"p"}
+        variant={"outline"}
+        onClick={onOpen}
+        {...restProps}
+      >
+        {l.answer_review}
+      </Btn>
+
+      <DisclosureRoot open={open} lazyLoad size={"xl"}>
+        <DisclosureContent>
+          <DisclosureHeader>
+            <DisclosureHeaderContent title={l.answer_review} />
+          </DisclosureHeader>
+
+          <DisclosureBody>
+            {initialLoading && render.loading}
+
+            {!initialLoading && (
+              <>
+                {error && render.error}
+                {!error && (
+                  <>
+                    {data && render.loaded}
+                    {!data && render.empty}
+                  </>
+                )}
+              </>
+            )}
+          </DisclosureBody>
+
+          <DisclosureFooter>
+            <BackButton />
+          </DisclosureFooter>
+        </DisclosureContent>
+      </DisclosureRoot>
+    </>
+  );
+};
 const QuestionList = (props: any) => {
   // Props
   const { exams, courseDetail, activeQuizIdx, setActiveQuizIdx, ...restProps } =
@@ -449,11 +731,7 @@ const QuestionList = (props: any) => {
 
   return (
     <CContainer flex={1} gap={4} {...restProps}>
-      {isQuizFinished && (
-        <Btn colorPalette={"p"} variant={"outline"}>
-          {l.answer_review}
-        </Btn>
-      )}
+      {isQuizFinished && <ResultDetail courseDetail={courseDetail} />}
 
       {!isQuizFinished && (
         <CountDownDuration

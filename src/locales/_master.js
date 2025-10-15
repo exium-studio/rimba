@@ -727,6 +727,70 @@ export const wrong_answer = {
   id: "Jawaban salah",
   en: "Wrong answer",
 };
+export const course_category = {
+  id: "Kategori course",
+  en: "Course category",
+};
+export const not_starterd = {
+  id: "Belum dimulai",
+  en: "Not started",
+};
+export const not_started = {
+  id: "Belum dimulai",
+  en: "Not started",
+};
+export const on_progress = {
+  id: "Dalam proses",
+  en: "On progress",
+};
+export const grade = {
+  id: "Nilai",
+  en: "Grade",
+};
+export const result_detail = {
+  id: "Detail hasil",
+  en: "Result detail",
+};
+export const basic_info = {
+  id: "Informasi umum",
+  en: "Basic info",
+};
+export const quiz_info = {
+  id: "Informasi quiz",
+  en: "Quiz info",
+};
+export const duration = {
+  id: "Durasi",
+  en: "Duration",
+};
+export const total_answered = {
+  id: "Total terjawab",
+  en: "Total answered",
+};
+export const total_correct = {
+  id: "Total benar",
+  en: "Total correct",
+};
+export const total_wrong = {
+  id: "Total salah",
+  en: "Total wrong",
+};
+export const total_empty = {
+  id: "Total kosong",
+  en: "Total empty",
+};
+export const start_date_time = {
+  id: "Dimulai pada",
+  en: "Started at",
+};
+export const end_date_time = {
+  id: "Selesai pada",
+  en: "Ended at",
+};
+export const progress_status = {
+  id: "Status progress",
+  en: "Progress status",
+};
 
 // Message
 export const msg_cross_check_before_submit = {

@@ -684,7 +684,7 @@ const ResultDetail = (props: any) => {
     <>
       <Btn
         colorPalette={"p"}
-        variant={"outline"}
+        // variant={"outline"}
         onClick={onOpen}
         {...restProps}
       >

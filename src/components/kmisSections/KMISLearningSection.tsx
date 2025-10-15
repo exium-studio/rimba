@@ -2,6 +2,7 @@
 
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { Divider } from "@/components/ui/divider";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
@@ -243,6 +244,8 @@ const LearningModules = (props: any) => {
             </NavLink>
           );
         })}
+
+        <Divider />
 
         {/* Quiz */}
         <NavLink

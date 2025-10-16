@@ -364,7 +364,7 @@ export const KMISCourseItem = (props: Props) => {
   const { l } = useLang();
 
   // States
-  const isFinished = !!learningAttempt?.certificate;
+  const isFinished = !isEmptyArray(learningAttempt?.certificate);
 
   return (
     <CContainer
@@ -425,7 +425,7 @@ export const KMISCourseItem = (props: Props) => {
           pl={[5, null, 3]}
         />
 
-        {isFinished && myCourse && (
+        {myCourse && (
           <HStack>
             {isFinished && (
               <NavLink
@@ -442,7 +442,9 @@ export const KMISCourseItem = (props: Props) => {
               </NavLink>
             )}
 
-            {myCourse && !isFinished && <StartLearningButton topic={topic} />}
+            {myCourse && !isFinished && (
+              <StartLearningButton topic={topic} w={"full"} />
+            )}
           </HStack>
         )}
       </CContainer>

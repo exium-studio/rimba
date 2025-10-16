@@ -285,7 +285,7 @@ const EditProfile = (props: any) => {
     });
   const render = {
     loading: (
-      <CContainer flex={1} bg={"body"} p={4} rounded={"xl"}>
+      <CContainer flex={1} bg={"body"} p={4} rounded={"xl"} minH={"988px"}>
         <Skeleton flex={1} rounded={"lg"} />
       </CContainer>
     ),
@@ -295,7 +295,7 @@ const EditProfile = (props: any) => {
   };
 
   return (
-    <CContainer flex={3.5} {...restProps}>
+    <CContainer flex={1} {...restProps}>
       <HStack h={"40px"}>
         <CContainer flex={"2 0 300px"} gap={1}>
           <P fontSize={"lg"} fontWeight={"semibold"}>
@@ -325,10 +325,11 @@ export default function Page() {
   const { l } = useLang();
 
   return (
-    <CContainer>
+    <CContainer minH={"100dvh"}>
       <TopNav />
 
       <CContainer
+        flex={1}
         bg={"bgContent"}
         rounded={"3xl"}
         overflow={"clip"}
@@ -336,7 +337,12 @@ export default function Page() {
         pt={"120px"}
         pb={[4, null, 12]}
       >
-        <LPSectionContainer>
+        <LPSectionContainer
+          flex={1}
+          outerContainerProps={{
+            flex: 1,
+          }}
+        >
           <Breadcrumbs
             links={[
               {
@@ -351,7 +357,7 @@ export default function Page() {
             mb={4}
           />
 
-          <Stack flexDir={["column", null, "row"]} gap={4}>
+          <Stack flex={1} flexDir={["column", null, "row"]} gap={4}>
             {/* <CContainer flex={1}>
               <MiniProfile />
             </CContainer> */}

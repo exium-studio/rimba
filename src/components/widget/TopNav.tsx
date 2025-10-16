@@ -486,7 +486,7 @@ const DesktopTopNav = () => {
                 </HStack>
               </MenuTrigger>
 
-              <MenuContent w={"240px"} p={0} mt={4} mr={-2}>
+              <MenuContent w={"240px"} p={0} mt={4} mr={"-9px"}>
                 <MiniProfile />
               </MenuContent>
             </MenuRoot>

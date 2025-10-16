@@ -567,6 +567,7 @@ export const KMISLearningSection = (props: Props) => {
         flex: 1,
       }}
       flex={1}
+      bg={"bgContent"}
       {...restProps}
     >
       <Stack flexDir={["column", null, "row"]} gap={4}>

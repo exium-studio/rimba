@@ -12,6 +12,7 @@ export default function Page() {
       <TopNav />
 
       <CContainer
+        flex={1}
         bg={"bgContent"}
         pb={[4, null, 12]}
         rounded={"3xl"}

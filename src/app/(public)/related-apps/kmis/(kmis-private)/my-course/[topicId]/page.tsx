@@ -36,7 +36,7 @@ export default function Page(props: Props) {
     });
   const render = {
     loading: (
-      <LPSectionContainer minH={"400px"}>
+      <LPSectionContainer flex={1} minH={"400px"}>
         <Breadcrumbs
           links={[
             {
@@ -102,6 +102,7 @@ export default function Page(props: Props) {
       <CContainer
         flex={1}
         // border={"2px solid red"}
+        bg={"body"}
         rounded={"3xl"}
         overflow={"clip"}
         zIndex={2}

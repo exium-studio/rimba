@@ -306,11 +306,20 @@ export const LPHomeHero = (props: StackProps) => {
           <CContainer
             className="hero_content_1"
             maxW={["220px", null, "320px"]}
-            gap={4}
+            gap={2}
             mt={"auto"}
             ml={[0, null, "12px"]}
             mr={"auto"}
           >
+            <EditableContentContainer content={staticContents[2]}>
+              <P
+                fontSize={["lg", null, "lg"]}
+                fontWeight={"medium"}
+                lineHeight={1.2}
+              >
+                {staticContents[2]?.content[lang]}
+              </P>
+            </EditableContentContainer>
             <H1
               fontSize={["64px", null, "80px"]}
               fontWeight={"bold"}
@@ -326,16 +335,6 @@ export const LPHomeHero = (props: StackProps) => {
             gap={4}
             mt={[0, null, "auto"]}
           >
-            <EditableContentContainer content={staticContents[2]}>
-              <P
-                fontSize={["lg", null, "xl"]}
-                fontWeight={"medium"}
-                lineHeight={1.2}
-              >
-                {staticContents[2]?.content[lang]}
-              </P>
-            </EditableContentContainer>
-
             <EditableContentContainer content={staticContents[3]}>
               <P color={"light"} opacity={0.8}>
                 {staticContents[3]?.content[lang]}

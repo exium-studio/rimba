@@ -397,10 +397,10 @@ export const KMISCourseItem = (props: Props) => {
       />
 
       <CContainer p={4} gap={2} pos={"relative"}>
-        <Badge pos={"absolute"} top={"-36px"} left={4}>
-          <P fontSize={"xs"} lineClamp={1} maxW={"100px"}>
+        <Badge w={"fit"}>
+          <ClampText fontSize={"xs"} maxW={"140px"}>
             {topic?.category?.title}
-          </P>
+          </ClampText>
         </Badge>
 
         <ClampText

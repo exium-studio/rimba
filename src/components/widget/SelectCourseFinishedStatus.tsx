@@ -18,10 +18,10 @@ export const SelectCourseFinishedStatus = (
 
   // States
   const selectOptions = [
-    {
-      id: 1,
-      label: l.all,
-    },
+    // {
+    //   id: 1,
+    //   label: l.all,
+    // },
     {
       id: 2,
       label: l.finished,
@@ -37,6 +37,7 @@ export const SelectCourseFinishedStatus = (
       id={ID}
       title={capitalizeWords(l.course_finished_status)}
       selectOptions={selectOptions}
+      placeholder={capitalizeWords(l.course_finished_status)}
       {...restProps}
     />
   );

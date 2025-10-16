@@ -3,6 +3,7 @@
 import { CContainer } from "@/components/ui/c-container";
 import { H1 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
+import { P } from "@/components/ui/p";
 import { Breadcrumbs } from "@/components/widget/Breadcrumbs";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
@@ -14,13 +15,14 @@ import { useRef } from "react";
 
 interface Props extends StackProps {
   titleContent: any;
+  descriptionContent?: any;
   img?: string;
   links?: { label: string; path: string }[];
 }
 
 export const PageHeader = (props: Props) => {
   // Props
-  const { titleContent, img, links, ...restProps } = props;
+  const { titleContent, descriptionContent, img, links, ...restProps } = props;
 
   // Contexts
   const { lang } = useLang();
@@ -79,16 +81,22 @@ export const PageHeader = (props: Props) => {
           />
         )}
 
-        <CContainer mt={"auto"} gap={8} py={12} zIndex={2}>
+        <CContainer mt={"auto"} gap={4} py={12} mb={"48px"} zIndex={2}>
           {links && (
             <Breadcrumbs links={links} justify={["center", null, "start"]} />
           )}
 
-          <EditableContentContainer content={titleContent} mb={"48px"}>
+          <EditableContentContainer content={titleContent}>
             <H1 fontWeight={"semibold"} lineHeight={1.4}>
               {titleContent.content[lang]}
             </H1>
           </EditableContentContainer>
+
+          {descriptionContent && (
+            <EditableContentContainer content={descriptionContent}>
+              <P fontSize={"lg"}>{descriptionContent.content[lang]}</P>
+            </EditableContentContainer>
+          )}
         </CContainer>
       </LPSectionContainer>
     </CContainer>

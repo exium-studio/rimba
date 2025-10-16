@@ -425,7 +425,7 @@ export const KMISCourseItem = (props: Props) => {
           pl={[5, null, 3]}
         />
 
-        {(isFinished || myCourse) && (
+        {isFinished && myCourse && (
           <HStack>
             {isFinished && (
               <NavLink

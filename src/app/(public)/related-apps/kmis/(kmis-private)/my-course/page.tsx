@@ -13,7 +13,7 @@ export default function Page() {
   const { l } = useLang();
 
   return (
-    <CContainer>
+    <CContainer minH={"100dvh"}>
       <TopNav />
 
       <CContainer

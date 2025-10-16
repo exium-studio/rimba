@@ -278,6 +278,7 @@ export const LPFooter = (props: StackProps) => {
           left: 0,
           opacity: 0,
           pointerEvents: "none",
+          // border: "2px solid red",
         }}
       >
         <TheFooter />

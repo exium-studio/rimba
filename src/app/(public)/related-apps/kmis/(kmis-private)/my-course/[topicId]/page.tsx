@@ -96,11 +96,12 @@ export default function Page(props: Props) {
   };
 
   return (
-    <CContainer>
+    <CContainer minH={"100dvh"}>
       <TopNav />
 
       <CContainer
-        bg={"bgContent"}
+        flex={1}
+        // border={"2px solid red"}
         rounded={"3xl"}
         overflow={"clip"}
         zIndex={2}

@@ -9,7 +9,7 @@ export const PartnersLogo = (props: StackProps) => {
   const { ...restProps } = props;
 
   return (
-    <CContainer color={"p.500"} {...restProps}>
+    <CContainer color={"p.300"} {...restProps}>
       <P fontWeight={"medium"}>Program Koridor</P>
       <P fontWeight={"medium"}>Ekosistem RIMBA</P>
     </CContainer>

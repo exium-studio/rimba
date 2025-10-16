@@ -39,6 +39,7 @@ const Data = (props: any) => {
 
   // States
   const [fr, setFr] = useState<boolean>(true);
+  // const initialLoading = true;
   const {
     error,
     initialLoading,
@@ -60,9 +61,16 @@ const Data = (props: any) => {
     dependencies: [filter],
   });
   const render = {
-    loading: <Skeleton rounded={"lg"} h={"full"} />,
-    error: <FeedbackRetry onRetry={onRetry} />,
-    empty: <FeedbackNoData />,
+    loading: (
+      <Skeleton rounded={"lg"} minH={"calc(100vh - 37px - 140px - 64px)"} />
+    ),
+    error: (
+      <FeedbackRetry
+        onRetry={onRetry}
+        minH={"calc(100vh - 37px - 140px - 64px)"}
+      />
+    ),
+    empty: <FeedbackNoData minH={"calc(100vh - 37px - 140px - 64px)"} />,
     loaded: (
       <CContainer ref={topicListContainerRef} gap={4}>
         <SimpleGrid columns={[1, null, 2, 3, null, 4]} gap={4}>

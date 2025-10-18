@@ -52,7 +52,7 @@ export function EditableContentContainer(
             left="50%"
             transform="translate(-50%, -50%)"
           >
-            {content.id}
+            {`${content.id}`}
           </P>
         </>
       )}

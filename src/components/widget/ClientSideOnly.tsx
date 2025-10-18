@@ -1,20 +1,26 @@
 "use client";
 
+import { CSpinner } from "@/components/ui/c-spinner";
 import { useColorMode } from "@/components/ui/color-mode";
+import FeedbackNoData from "@/components/widget/FeedbackNoData";
+import FeedbackRetry from "@/components/widget/FeedbackRetry";
+import { LoadingBar } from "@/components/widget/LoadingBar";
 import { PartnersLogo } from "@/components/widget/PartnersLogo";
 import useADM from "@/context/useADM";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
+import useContents from "@/context/useContents";
+import useDataState from "@/hooks/useDataState";
 import { useFirefoxPaddingY } from "@/hooks/useFirefoxPaddingY";
 import useOfflineAlert from "@/hooks/useOfflineAlert";
+import useRequest from "@/hooks/useRequest";
+import { getAuthToken } from "@/utils/auth";
+import { setStorage } from "@/utils/client";
 import { Center } from "@chakra-ui/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
-import { LoadingBar } from "@/components/widget/LoadingBar";
-import { getAuthToken } from "@/utils/auth";
-import useAuthMiddleware from "@/context/useAuthMiddleware";
-import useRequest from "@/hooks/useRequest";
-import { setStorage } from "@/utils/client";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,6 +54,7 @@ export default function ClientSideOnly(props: Props) {
   const { children, fallback } = props;
 
   // Contexts
+  const setContents = useContents((s) => s.setContents);
   const { setColorMode } = useColorMode();
   const ADM = useADM((s) => s.ADM);
   const authToken = getAuthToken();
@@ -57,6 +64,8 @@ export default function ClientSideOnly(props: Props) {
   const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
 
   // Hooks
+  const searchParams = useSearchParams();
+  const fetchContents = searchParams.get("fetchContents");
   useFirefoxPaddingY();
   const { req } = useRequest({
     id: "user-profile",
@@ -67,12 +76,49 @@ export default function ClientSideOnly(props: Props) {
 
   // States
   const [mounted, setMounted] = useState(mountedGlobal);
+  const { error, initialLoading, data, onRetry } = useDataState<any>({
+    initialData: undefined,
+    url: `/api/cms/public-request/get-all-content`,
+    dependencies: [fetchContents],
+    dataResource: false,
+  });
+  const render = {
+    loading: (
+      <Center minH={"100dvh"}>
+        <CSpinner />
+      </Center>
+    ),
+    error: (
+      <Center minH={"100dvh"}>
+        <FeedbackRetry onRetry={onRetry} />
+      </Center>
+    ),
+    empty: (
+      <Center minH={"100dvh"}>
+        <FeedbackNoData />
+      </Center>
+    ),
+    loaded: (
+      <>
+        <LoadingBar />
+        <GlobalDisclosure />
+        {children}
+      </>
+    ),
+  };
 
   // Utils
   function updateDarkMode() {
     const hour = new Date().getHours();
     setColorMode(hour >= 18 || hour < 6 ? "dark" : "light");
   }
+
+  // handle LP contents
+  useEffect(() => {
+    if (data) {
+      setContents(data);
+    }
+  }, [data]);
 
   // handle mount
   useEffect(() => {
@@ -136,9 +182,18 @@ export default function ClientSideOnly(props: Props) {
 
   return (
     <>
-      <LoadingBar />
-      <GlobalDisclosure />
-      {children}
+      {initialLoading && render.loading}
+      {!initialLoading && (
+        <>
+          {error && render.error}
+          {!error && (
+            <>
+              {data && render.loaded}
+              {!data && render.empty}
+            </>
+          )}
+        </>
+      )}
     </>
   );
 }

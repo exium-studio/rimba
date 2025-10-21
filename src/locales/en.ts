@@ -61,6 +61,7 @@ const translations = {
   "educator": "Educator",
   "end_date_time": "Ended at",
   "ended_at": "Ended at",
+  "ended_automatically_at": "End automatically",
   "enroll_now": "Enroll now",
   "error_400_default": {
     "title": "Bad request",

@@ -61,6 +61,7 @@ const translations = {
   "educator": "Pengajar",
   "end_date_time": "Selesai pada",
   "ended_at": "Selesai pada",
+  "ended_automatically_at": "Selesai otomatis",
   "enroll_now": "Gabung sekarang",
   "error_400_default": {
     "title": "Bad request",

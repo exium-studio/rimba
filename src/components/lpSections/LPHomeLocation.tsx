@@ -389,7 +389,7 @@ export const LPHomeLocation = (props: StackProps) => {
 
       {ciss && (
         <LPSectionContainer zIndex={2} pb={"80px"}>
-          <CContainer>
+          <CContainer gap={4}>
             <LocationListItem
               provinceContent={staticContents[30]}
               locationListContent={staticContents[31]}

@@ -76,7 +76,7 @@ export default function ClientSideOnly(props: Props) {
 
   // States
   const [mounted, setMounted] = useState(mountedGlobal);
-  const { error, initialLoading, data, onRetry } = useDataState<any>({
+  const { data, onRetry } = useDataState<any>({
     initialData: undefined,
     url: `/api/cms/public-request/get-all-content`,
     dependencies: [fetchContents],
@@ -180,20 +180,22 @@ export default function ClientSideOnly(props: Props) {
 
   if (!mounted) return <>{fallback || <DefaultFallback />}</>;
 
-  return (
-    <>
-      {initialLoading && render.loading}
-      {!initialLoading && (
-        <>
-          {error && render.error}
-          {!error && (
-            <>
-              {data && render.loaded}
-              {!data && render.empty}
-            </>
-          )}
-        </>
-      )}
-    </>
-  );
+  // return (
+  //   <>
+  //     {initialLoading && render.loading}
+  //     {!initialLoading && (
+  //       <>
+  //         {error && render.error}
+  //         {!error && (
+  //           <>
+  //             {data && render.loaded}
+  //             {!data && render.empty}
+  //           </>
+  //         )}
+  //       </>
+  //     )}
+  //   </>
+  // );
+
+  return render.loaded;
 }

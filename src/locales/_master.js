@@ -787,6 +787,10 @@ export const end_date_time = {
   id: "Selesai pada",
   en: "Ended at",
 };
+export const ended_automatically_at = {
+  id: "Selesai otomatis",
+  en: "End automatically",
+};
 export const progress_status = {
   id: "Status progress",
   en: "Progress status",

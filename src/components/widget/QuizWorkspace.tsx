@@ -132,23 +132,30 @@ const AnswerOption = (props: any) => {
   }
 
   return (
-    <Btn
-      clicky={false}
-      justifyContent={"start"}
-      variant={"outline"}
+    <HStack
+      align={"start"}
+      py={2}
+      px={4}
+      border={"1px solid"}
       borderColor={isActive ? "p.500" : "border.muted"}
       onClick={
         !!courseDetail?.learningAttempt?.quizFinished
           ? () => {}
           : onAnswerSelect
       }
+      rounded={"lg"}
+      cursor={"pointer"}
+      transition={"200ms"}
+      _hover={{
+        bg: "d0",
+      }}
       {...restProps}
     >
       <P>{optionLetter}</P>
       <P>{(resolvedQuiz as Record<string, any>)?.[optionKey]}</P>
 
       {isActive && <DotIndicator ml={"auto"} mr={1} />}
-    </Btn>
+    </HStack>
   );
 };
 const MarkingCheckbox = (props: any) => {
@@ -377,7 +384,14 @@ const ActiveQuiz = (props: any) => {
 };
 const CountDownDuration = (props: any) => {
   // Props
-  const { quizEndedAt, courseDetail, ...restProps } = props;
+  const {
+    quizEndedAutomaticallyAt,
+    quizStartedAt,
+    courseDetail,
+    ...restProps
+  } = props;
+
+  // console.debug(courseDetail);
 
   // Contexts
   const setRt = useRenderTrigger((s) => s.setRt);
@@ -391,7 +405,7 @@ const CountDownDuration = (props: any) => {
   // States
   const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
   const [remainingSeconds, setRemainingSeconds] = useState(
-    getRemainingSecondsUntil(quizEndedAt)
+    getRemainingSecondsUntil(quizEndedAutomaticallyAt)
   );
   const formattedTime = formatDuration(remainingSeconds, "digital");
 
@@ -427,7 +441,7 @@ const CountDownDuration = (props: any) => {
         const next = prev - 1;
         if (next <= 0) {
           clearInterval(interval);
-          if (!isQuizFinished) onSubmitQuiz();
+          if (!isQuizFinished && quizStartedAt) onSubmitQuiz();
           return 0;
         }
         return next;
@@ -435,7 +449,7 @@ const CountDownDuration = (props: any) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [quizEndedAt]);
+  }, [quizEndedAutomaticallyAt]);
 
   return (
     <HStack
@@ -733,7 +747,11 @@ const QuestionList = (props: any) => {
   const quizDurationSeconds =
     courseDetail?.learningAttempt?.topic?.quizDuration;
   const quizStartedAt = makeTime(courseDetail?.learningAttempt?.quizStarted);
-  const quizEndedAt = addSecondsToTime(quizStartedAt, quizDurationSeconds);
+  const quizEndedAutomaticallyAt = addSecondsToTime(
+    quizStartedAt,
+    quizDurationSeconds
+  );
+  const quizEndedAt = makeTime(courseDetail?.learningAttempt?.quizEnded);
   const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
 
   return (
@@ -742,6 +760,8 @@ const QuestionList = (props: any) => {
 
       {!isQuizFinished && (
         <CountDownDuration
+          quizStartedAt={quizStartedAt}
+          quizEndedAutomaticallyAt={quizEndedAutomaticallyAt}
           quizEndedAt={quizEndedAt}
           courseDetail={courseDetail}
         />
@@ -790,12 +810,17 @@ const QuestionList = (props: any) => {
       <ItemContainer gap={1} p={4}>
         <HStack justify={"space-between"}>
           <P>{l.started_at}</P>
-          <P fontWeight={"medium"}>{quizStartedAt}</P>
+          <P fontWeight={"medium"}>{quizStartedAt || "-"}</P>
+        </HStack>
+
+        <HStack justify={"space-between"}>
+          <P>{l.ended_automatically_at}</P>
+          <P fontWeight={"medium"}>{quizEndedAutomaticallyAt || "-"}</P>
         </HStack>
 
         <HStack justify={"space-between"}>
           <P>{l.ended_at}</P>
-          <P fontWeight={"medium"}>{quizEndedAt}</P>
+          <P fontWeight={"medium"}>{quizEndedAt || "-"}</P>
         </HStack>
       </ItemContainer>
     </CContainer>

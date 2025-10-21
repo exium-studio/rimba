@@ -102,7 +102,7 @@ export default function Page(props: Props) {
       <CContainer
         flex={1}
         // border={"2px solid red"}
-        bg={"body"}
+        bg={"bgContent"}
         rounded={"3xl"}
         overflow={"clip"}
         zIndex={2}

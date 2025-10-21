@@ -326,7 +326,7 @@ const DetailCourse = (props: any) => {
             <DisclosureHeaderContent title={``} />
           </DisclosureHeader>
 
-          <DisclosureBody>
+          <DisclosureBody pt={2}>
             {loading && render.loading}
             {!loading && (
               <>

@@ -66,7 +66,7 @@ export default function ClientSideOnly(props: Props) {
 
   // Hooks
   const searchParams = useSearchParams();
-  const fetchContents = searchParams.get("fetchContents");
+  const fetchContents = searchParams?.get("fetchContents");
   useFirefoxPaddingY();
   const { req } = useRequest({
     id: "user-profile",

@@ -5,7 +5,6 @@ import { useColorMode } from "@/components/ui/color-mode";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LoadingBar } from "@/components/widget/LoadingBar";
-import { PartnersLogo } from "@/components/widget/PartnersLogo";
 import useADM from "@/context/useADM";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useContents from "@/context/useContents";
@@ -18,9 +17,9 @@ import { setStorage } from "@/utils/client";
 import { Center } from "@chakra-ui/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
-import { useSearchParams } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,29 +28,12 @@ interface Props {
   fallback?: React.ReactNode;
 }
 
-export const DefaultFallback = () => {
-  return (
-    <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
-      <Center position={"relative"}>
-        {/* <Img
-          alt={`RIMBA letter art`}
-          src={`${SVGS_PATH}/rimba_letter_art_color.svg`}
-          width={40}
-          height={40}
-          objectFit="contain"
-        /> */}
-        <PartnersLogo />
-      </Center>
-    </Center>
-  );
-};
-
 // persist mounted state across route changes
 let mountedGlobal = false;
 
 export default function ClientSideOnly(props: Props) {
   // Props
-  const { children, fallback } = props;
+  const { children } = props;
 
   // Contexts
   const setContents = useContents((s) => s.setContents);
@@ -177,8 +159,6 @@ export default function ClientSideOnly(props: Props) {
       });
     }
   }, [authToken, verifiedAuthToken]);
-
-  if (!mounted) return <>{fallback || <DefaultFallback />}</>;
 
   // return (
   //   <>

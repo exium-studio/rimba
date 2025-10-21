@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { LPFooter } from "@/components/lpSections/LPFooter";
 import { Btn } from "@/components/ui/btn";

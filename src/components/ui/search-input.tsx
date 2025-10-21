@@ -44,7 +44,7 @@ export default function SearchInput(props: Props__SearchInput) {
 
   // Initialize from URL or prop
   useEffect(() => {
-    const queryValue = searchParams.get(queryKey);
+    const queryValue = searchParams?.get(queryKey);
     if (queryValue !== null) {
       setSearchTemp(queryValue);
       onChange?.(queryValue);

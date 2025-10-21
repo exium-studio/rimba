@@ -49,6 +49,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 const MATERIAL_REGISTRY = {
   text: {
     icon: <IconBook stroke={1.5} />,
+    type: "Text",
     minimalStudyTime: 5,
     render: (props: any) => {
       // Props
@@ -70,6 +71,7 @@ const MATERIAL_REGISTRY = {
   },
   video: {
     icon: <IconVideo stroke={1.5} />,
+    type: "Video",
     minimalStudyTime: 15,
     render: (props: any) => {
       // Props
@@ -93,6 +95,7 @@ const MATERIAL_REGISTRY = {
   },
   dokumen: {
     icon: <IconFiles stroke={1.5} />,
+    type: "Document",
     minimalStudyTime: 7,
     render: (props: any) => {
       // Props
@@ -120,6 +123,7 @@ const MATERIAL_REGISTRY = {
   },
   gambar: {
     icon: <IconPhoto stroke={1.5} />,
+    type: "Image",
     minimalStudyTime: 5,
     render: (props: any) => {
       // Props
@@ -195,6 +199,7 @@ const LearningModules = (props: any) => {
         </P>
       </CContainer>
 
+      {/* List */}
       <CContainer gap={1} px={2} pb={2}>
         {materials?.map((material: Interface__KMISMaterial, idx: number) => {
           const materialProps =
@@ -233,9 +238,7 @@ const LearningModules = (props: any) => {
                 <CContainer>
                   <P fontWeight={"medium"}>{material.title}</P>
                   <P fontSize={"sm"} color={"fg.subtle"}>
-                    {`${
-                      materialProps?.minimalStudyTime
-                    } ${l.minutes.toLowerCase()}`}
+                    {materialProps?.type}
                   </P>
                 </CContainer>
 

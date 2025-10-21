@@ -1,8 +1,9 @@
 import { Provider } from "@/components/ui/provider";
 import { Toaster } from "@/components/ui/toaster";
-import ClientSideOnly from "@/components/widget/ClientSideOnly";
+import { DefaultFallback } from "@/components/widget/ClientSideOnly";
 import { APP } from "@/constants/_meta";
 import { Metadata, Viewport } from "next";
+import dynamic from "next/dynamic";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
@@ -56,6 +57,14 @@ const poppins = Poppins({
   display: "swap",
 });
 
+const ClientWrapper = dynamic(
+  () => import("@/components/widget/ClientSideOnly"),
+  {
+    ssr: false,
+    loading: () => <DefaultFallback />,
+  }
+);
+
 export default function RootLayout(props: Props) {
   // Props
   const { children } = props;
@@ -69,7 +78,7 @@ export default function RootLayout(props: Props) {
       <body>
         <Provider>
           <Toaster />
-          <ClientSideOnly>{children}</ClientSideOnly>
+          <ClientWrapper>{children}</ClientWrapper>
         </Provider>
       </body>
     </html>

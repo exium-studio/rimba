@@ -1,5 +1,4 @@
 "use client";
-export const dynamic = "force-dynamic";
 
 import { CSpinner } from "@/components/ui/c-spinner";
 import { useColorMode } from "@/components/ui/color-mode";
@@ -21,6 +20,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
+import { useSearchParams } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,7 +29,7 @@ interface Props {
   fallback?: React.ReactNode;
 }
 
-const DefaultFallback = () => {
+export const DefaultFallback = () => {
   return (
     <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
       <Center position={"relative"}>
@@ -64,8 +64,8 @@ export default function ClientSideOnly(props: Props) {
   const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
 
   // Hooks
-  // const searchParams = useSearchParams();
-  // const fetchContents = searchParams?.get("fetchContents");
+  const searchParams = useSearchParams();
+  const fetchContents = searchParams?.get("fetchContents");
   useFirefoxPaddingY();
   const { req } = useRequest({
     id: "user-profile",
@@ -79,7 +79,7 @@ export default function ClientSideOnly(props: Props) {
   const { data, onRetry } = useDataState<any>({
     initialData: undefined,
     url: `/api/cms/public-request/get-all-content`,
-    // dependencies: [fetchContents],
+    dependencies: [fetchContents],
     dataResource: false,
   });
   const render = {

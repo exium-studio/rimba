@@ -19,7 +19,6 @@ import { setStorage } from "@/utils/client";
 import { Center } from "@chakra-ui/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
 
@@ -65,8 +64,8 @@ export default function ClientSideOnly(props: Props) {
   const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
 
   // Hooks
-  const searchParams = useSearchParams();
-  const fetchContents = searchParams?.get("fetchContents");
+  // const searchParams = useSearchParams();
+  // const fetchContents = searchParams?.get("fetchContents");
   useFirefoxPaddingY();
   const { req } = useRequest({
     id: "user-profile",
@@ -80,7 +79,7 @@ export default function ClientSideOnly(props: Props) {
   const { data, onRetry } = useDataState<any>({
     initialData: undefined,
     url: `/api/cms/public-request/get-all-content`,
-    dependencies: [fetchContents],
+    // dependencies: [fetchContents],
     dataResource: false,
   });
   const render = {

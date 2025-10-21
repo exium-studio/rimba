@@ -66,6 +66,7 @@ const Data = (props: any) => {
     loading: (
       <Skeleton
         rounded={"lg"}
+        flex={1}
         minH={"calc(100vh - 37px - 140px - 64px - 200px)"}
       />
     ),

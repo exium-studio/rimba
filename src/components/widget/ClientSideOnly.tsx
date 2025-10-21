@@ -1,10 +1,12 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { CSpinner } from "@/components/ui/c-spinner";
 import { useColorMode } from "@/components/ui/color-mode";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LoadingBar } from "@/components/widget/LoadingBar";
+import { PartnersLogo } from "@/components/widget/PartnersLogo";
 import useADM from "@/context/useADM";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useContents from "@/context/useContents";
@@ -12,12 +14,12 @@ import useDataState from "@/hooks/useDataState";
 import { useFirefoxPaddingY } from "@/hooks/useFirefoxPaddingY";
 import useOfflineAlert from "@/hooks/useOfflineAlert";
 import useRequest from "@/hooks/useRequest";
+import { useSearchKeyWatcher } from "@/hooks/useSearchKeyWatcher";
 import { getAuthToken } from "@/utils/auth";
 import { setStorage } from "@/utils/client";
 import { Center } from "@chakra-ui/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
 
@@ -28,12 +30,29 @@ interface Props {
   fallback?: React.ReactNode;
 }
 
+const DefaultFallback = () => {
+  return (
+    <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
+      <Center position={"relative"}>
+        {/* <Img
+          alt={`RIMBA letter art`}
+          src={`${SVGS_PATH}/rimba_letter_art_color.svg`}
+          width={40}
+          height={40}
+          objectFit="contain"
+        /> */}
+        <PartnersLogo />
+      </Center>
+    </Center>
+  );
+};
+
 // persist mounted state across route changes
 let mountedGlobal = false;
 
 export default function ClientSideOnly(props: Props) {
   // Props
-  const { children } = props;
+  const { children, fallback } = props;
 
   // Contexts
   const setContents = useContents((s) => s.setContents);
@@ -46,8 +65,7 @@ export default function ClientSideOnly(props: Props) {
   const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
 
   // Hooks
-  const searchParams = useSearchParams();
-  const fetchContents = searchParams?.get("fetchContents");
+  const fetchContents = useSearchKeyWatcher("fetchContents");
   useFirefoxPaddingY();
   const { req } = useRequest({
     id: "user-profile",
@@ -159,6 +177,8 @@ export default function ClientSideOnly(props: Props) {
       });
     }
   }, [authToken, verifiedAuthToken]);
+
+  if (!mounted) return <>{fallback || <DefaultFallback />}</>;
 
   // return (
   //   <>

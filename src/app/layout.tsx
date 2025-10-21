@@ -1,29 +1,14 @@
 import { Provider } from "@/components/ui/provider";
 import { Toaster } from "@/components/ui/toaster";
+import ClientSideOnly from "@/components/widget/ClientSideOnly";
 import { APP } from "@/constants/_meta";
 import { Metadata, Viewport } from "next";
-import dynamic from "next/dynamic";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { Center } from "@chakra-ui/react";
-import { PartnersLogo } from "@/components/widget/PartnersLogo";
 
-const DefaultFallback = () => {
-  return (
-    <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
-      <Center position={"relative"}>
-        {/* <Img
-          alt={`RIMBA letter art`}
-          src={`${SVGS_PATH}/rimba_letter_art_color.svg`}
-          width={40}
-          height={40}
-          objectFit="contain"
-        /> */}
-        <PartnersLogo />
-      </Center>
-    </Center>
-  );
-};
+interface Props {
+  children: React.ReactNode;
+}
 
 export const metadata: Metadata = {
   applicationName: APP.name,
@@ -71,17 +56,6 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const ClientWrapper = dynamic(
-  () => import("@/components/widget/ClientSideOnly"),
-  {
-    ssr: false,
-    loading: () => <DefaultFallback />,
-  }
-);
-
-interface Props {
-  children: React.ReactNode;
-}
 export default function RootLayout(props: Props) {
   // Props
   const { children } = props;
@@ -95,7 +69,7 @@ export default function RootLayout(props: Props) {
       <body>
         <Provider>
           <Toaster />
-          <ClientWrapper>{children}</ClientWrapper>
+          <ClientSideOnly>{children}</ClientSideOnly>
         </Provider>
       </body>
     </html>

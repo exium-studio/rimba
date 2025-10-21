@@ -265,7 +265,7 @@ const translations = {
     "related_apps": {
       "index": "Aplikasi Terkait",
       "kmis": "KMIS",
-      "admin_portal": "Admin/Monev Portal"
+      "admin_portal": "Admin/Monev"
     }
   },
   "main": "Utama",

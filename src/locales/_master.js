@@ -58,8 +58,8 @@ export const lp_navs = {
       en: "KMIS",
     },
     admin_portal: {
-      id: "Admin/Monev Portal",
-      en: "Admin/Monev Portal",
+      id: "Admin/Monev",
+      en: "Admin/Monev",
     },
   },
 };

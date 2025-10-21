@@ -265,7 +265,7 @@ const translations = {
     "related_apps": {
       "index": "Related Apps",
       "kmis": "KMIS",
-      "admin_portal": "Admin/Monev Portal"
+      "admin_portal": "Admin/Monev"
     }
   },
   "main": "Main",

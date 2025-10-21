@@ -737,16 +737,20 @@ const ResultDetail = (props: any) => {
 };
 const QuestionList = (props: any) => {
   // Props
-  const { exams, courseDetail, activeQuizIdx, setActiveQuizIdx, ...restProps } =
+  const { data, courseDetail, activeQuizIdx, setActiveQuizIdx, ...restProps } =
     props;
 
   // Contexts
   const { l } = useLang();
 
+  // console.debug(courseDetail);
+
   // States
+  const exams = data?.exams;
+  const learningAttempt = data?.learningParticipant || data?.learningAttempt;
   const quizDurationSeconds =
     courseDetail?.learningAttempt?.topic?.quizDuration;
-  const quizStartedAt = makeTime(courseDetail?.learningAttempt?.quizStarted);
+  const quizStartedAt = makeTime(learningAttempt?.quizStarted);
   const quizEndedAutomaticallyAt = addSecondsToTime(
     quizStartedAt,
     quizDurationSeconds
@@ -867,7 +871,7 @@ export const QuizWorkspace = (props: Props) => {
 
         <QuestionList
           courseDetail={courseDetail}
-          exams={exams}
+          data={data}
           activeQuizIdx={activeQuizIdx}
           setActiveQuizIdx={setActiveQuizIdx}
         />

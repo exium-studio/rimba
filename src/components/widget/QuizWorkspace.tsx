@@ -743,11 +743,8 @@ const QuestionList = (props: any) => {
   // Contexts
   const { l } = useLang();
 
-  // console.debug(courseDetail);
-
   // States
   const exams = data?.exam;
-  console.debug(data);
   const learningAttempt = data?.learningParticipant || data?.learningAttempt;
   const quizDurationSeconds =
     courseDetail?.learningAttempt?.topic?.quizDuration;

@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { CSpinner } from "@/components/ui/c-spinner";
 import { useColorMode } from "@/components/ui/color-mode";

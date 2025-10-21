@@ -746,7 +746,8 @@ const QuestionList = (props: any) => {
   // console.debug(courseDetail);
 
   // States
-  const exams = data?.exams;
+  const exams = data?.exam;
+  console.debug(data);
   const learningAttempt = data?.learningParticipant || data?.learningAttempt;
   const quizDurationSeconds =
     courseDetail?.learningAttempt?.topic?.quizDuration;

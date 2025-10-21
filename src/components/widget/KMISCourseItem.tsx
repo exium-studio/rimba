@@ -264,7 +264,7 @@ const DetailCourse = (props: any) => {
                     borderColor={"border.muted"}
                     w={"200px"}
                     h={"auto"}
-                    aspectRatio={3 / 4}
+                    aspectRatio={1}
                     gap={4}
                   >
                     <ClampText
@@ -326,7 +326,7 @@ const DetailCourse = (props: any) => {
             <DisclosureHeaderContent title={``} />
           </DisclosureHeader>
 
-          <DisclosureBody pt={2}>
+          <DisclosureBody pt={6}>
             {loading && render.loading}
             {!loading && (
               <>

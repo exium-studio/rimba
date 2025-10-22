@@ -18,6 +18,11 @@ import {
 import { ReactNode } from "react";
 
 // CMS
+export interface Interface__CMSFAQs extends Interface__CUD {
+  id: string;
+  question: Interface__CMSTextContent;
+  answer: Interface__CMSTextContent;
+}
 export interface Interface__CMSLegalDocs extends Interface__CUD {
   id: string;
   title: Interface__CMSTextContent;

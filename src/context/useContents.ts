@@ -5,6 +5,7 @@ import {
   staticContents,
   homeLegalDocuments,
   homeNews,
+  FAQs,
 } from "@/constants/_dummy";
 import { create } from "zustand";
 
@@ -13,8 +14,9 @@ interface State_Actions {
   homeActivities: any;
   homeAnimalComposition: any;
   homeCompletionProgress: any;
-  legalDocuments: any;
+  homeLegalDocuments: any;
   homeNews: any;
+  FAQs: any;
   setContents: (newState: any) => void;
 }
 
@@ -23,15 +25,17 @@ const useContents = create<State_Actions>((set) => ({
   homeActivities: homeActivities || [],
   homeAnimalComposition: homeAnimalComposition || [],
   homeCompletionProgress: homeCompletionProgress || [],
-  legalDocuments: homeLegalDocuments || [],
+  homeLegalDocuments: homeLegalDocuments || [],
   homeNews: homeNews || [],
+  FAQs: FAQs || [],
   setContents: (newState) =>
     set({
       staticContents: newState.staticContents,
       homeActivities: newState.homeActivities,
       homeAnimalComposition: newState.homeAnimalComposition,
       homeCompletionProgress: newState.homeCompletionProgress,
-      legalDocuments: newState.legalDocuments,
+      homeLegalDocuments: newState.homeLegalDocuments,
+      FAQs: newState.FAQs,
     }),
 }));
 

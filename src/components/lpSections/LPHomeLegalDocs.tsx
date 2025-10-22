@@ -26,7 +26,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
   // Contexts
   const { l, lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
-  const legalDocuments = useContents((s) => s.legalDocuments);
+  const homeLegalDocuments = useContents((s) => s.homeLegalDocuments);
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -107,19 +107,21 @@ export const LPHomeLegalDocs = (props: StackProps) => {
 
         <SimpleGrid
           ref={mainContentsRef}
-          columns={[1, null, 2, legalDocuments.length]}
+          columns={[1, null, 2, homeLegalDocuments.length]}
           gap={6}
           mt={"100px"}
         >
-          {legalDocuments?.map((doc: Interface__CMSDocument, idx: number) => {
-            return (
-              <DocumentItem
-                key={idx}
-                document={doc}
-                className={`doc_item_${idx + 1}`}
-              />
-            );
-          })}
+          {homeLegalDocuments?.map(
+            (doc: Interface__CMSDocument, idx: number) => {
+              return (
+                <DocumentItem
+                  key={idx}
+                  document={doc}
+                  className={`doc_item_${idx + 1}`}
+                />
+              );
+            }
+          )}
         </SimpleGrid>
 
         <CContainer ref={bottomContentsRef} mt={"80px"}>

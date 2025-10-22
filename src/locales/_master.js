@@ -801,6 +801,14 @@ export const course_finished_status = {
 };
 
 // Message
+export const msg_still_have_question = {
+  id: "Masih ada pertanyaan?",
+  en: "Still have question?",
+};
+export const msg_ask_our_help_desk = {
+  id: "Ada yang bikin bingung? Tim help desk kami siap bantu kamu kapan aja!",
+  en: "Something confusing? Our help desk team is ready to help you anytime!",
+};
 export const msg_cross_check_before_submit = {
   id: "Periksa kembali sebelum submit",
   en: "Please check again before submit",

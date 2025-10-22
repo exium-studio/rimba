@@ -1285,3 +1285,56 @@ export const homeNews = [
     deletedAt: null,
   },
 ];
+
+export const FAQs = [
+  {
+    question: {
+      id: "Apa itu platform ini?",
+      en: "What is this platform?",
+    },
+    answer: {
+      id: "Platform ini adalah tempat untuk belajar dan berbagi pengetahuan dengan cara yang interaktif dan menyenangkan.",
+      en: "This platform is a place to learn and share knowledge in an interactive and enjoyable way.",
+    },
+  },
+  {
+    question: {
+      id: "Apakah platform ini gratis?",
+      en: "Is this platform free?",
+    },
+    answer: {
+      id: "Ya, sebagian besar fitur bisa digunakan secara gratis. Namun ada fitur premium untuk dukungan tambahan.",
+      en: "Yes, most features are free to use. However, there are premium features for additional support.",
+    },
+  },
+  {
+    question: {
+      id: "Bagaimana cara menghubungi tim support?",
+      en: "How can I contact the support team?",
+    },
+    answer: {
+      id: "Kamu bisa menghubungi kami lewat halaman kontak atau mengirim email ke support@example.com.",
+      en: "You can reach us through the contact page or send an email to support@example.com.",
+    },
+  },
+  {
+    question: {
+      id: "Apakah data pengguna aman?",
+      en: "Is user data safe?",
+    },
+    answer: {
+      id: "Kami menggunakan enkripsi dan sistem keamanan berlapis untuk melindungi data pengguna.",
+      en: "We use encryption and multi-layered security systems to protect user data.",
+    },
+  },
+  {
+    question: {
+      id: "Bisakah saya menggunakan platform ini di perangkat mobile?",
+      en: "Can I use this platform on mobile devices?",
+    },
+    answer: {
+      id: "Ya, platform ini sudah dioptimalkan untuk bekerja di semua perangkat termasuk ponsel dan tablet.",
+      en: "Yes, this platform is optimized to work on all devices including phones and tablets.",
+    },
+  },
+];

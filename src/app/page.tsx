@@ -11,6 +11,7 @@ import { LPPartners } from "@/components/lpSections/LPPartners";
 import { LPHomeStrategyValue } from "@/components/lpSections/LPHomeStrategyValue";
 import { CContainer } from "@/components/ui/c-container";
 import { TopNav } from "@/components/widget/TopNav";
+import { LPFAQs } from "@/components/lpSections/LPFAQs";
 
 const IndexRoute = () => {
   return (
@@ -33,6 +34,8 @@ const IndexRoute = () => {
         <LPHomeNews />
 
         <LPPartners bg={"bg.subtle"} />
+
+        <LPFAQs bg={"bg.subtle"} />
       </CContainer>
 
       <LPFooter />

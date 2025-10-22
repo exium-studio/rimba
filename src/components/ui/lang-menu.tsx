@@ -46,7 +46,7 @@ export const LangMenu = (props: Props__LangMenu) => {
               >
                 {item.label}
 
-                {active && <DotIndicator mr={1} />}
+                {active && <DotIndicator mr={1} ml={"auto"} />}
               </MenuItem>
             );
           })}

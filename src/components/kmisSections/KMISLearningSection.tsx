@@ -252,7 +252,7 @@ const LearningModules = (props: any) => {
           );
         })}
 
-        <Divider />
+        <Divider my={1} />
 
         {/* Quiz */}
         <NavLink

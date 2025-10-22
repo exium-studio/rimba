@@ -111,7 +111,7 @@ const AnswerOption = (props: any) => {
       learningAttemptId: courseDetail?.learningAttempt?.id,
       quizId: resolvedQuiz?.id,
       selectedOption: optionLetter || "",
-      isMarker: activeQuiz.isMarker,
+      isMarker: !!activeQuiz.isMarker,
     };
 
     const config = {
@@ -154,13 +154,13 @@ const AnswerOption = (props: any) => {
       <P>{optionLetter}</P>
       <P>{(resolvedQuiz as Record<string, any>)?.[optionKey]}</P>
 
-      {isActive && <DotIndicator ml={"auto"} mr={1} />}
+      {isActive && <DotIndicator ml={"auto"} mt={"6px"} />}
     </HStack>
   );
 };
 const MarkingCheckbox = (props: any) => {
   // Props
-  const { courseDetail, activeQuiz } = props;
+  const { courseDetail, activeQuiz, quizNumber } = props;
 
   // Contexts
   const { l } = useLang();
@@ -169,6 +169,11 @@ const MarkingCheckbox = (props: any) => {
   // Hooks
   const { req } = useRequest({
     id: "marking-question",
+    successMessage: {
+      title: interpolateString(l.success_answer.title, {
+        quizNumber: quizNumber,
+      }),
+    },
   });
 
   // Utils
@@ -332,6 +337,7 @@ const ActiveQuiz = (props: any) => {
           <MarkingCheckbox
             courseDetail={courseDetail}
             activeQuiz={activeQuiz}
+            quizNumber={activeQuizIdx + 1}
           />
 
           <HStack flex={[1, null, 0]}>
@@ -840,7 +846,13 @@ export const QuizWorkspace = (props: Props) => {
   // Props
   const { courseDetail, ...restProps } = props;
 
+  // Contexts
+  const { l } = useLang();
+
   // States
+  const [startQuiz, setStartQuiz] = useState<boolean>(
+    !!courseDetail?.learningAttempt?.quizStarted || false
+  );
   const [activeQuizIdx, setActiveQuizIdx] = useState<number>(0);
   const { error, initialLoading, data, onRetry } = useDataState<{
     learningParticipant: Interface__KMISLearningAttempt;
@@ -848,6 +860,7 @@ export const QuizWorkspace = (props: Props) => {
   }>({
     url: `/api/kmis/learning-course/get-quiz-with-answer/${courseDetail?.learningAttempt?.id}`,
     dependencies: [],
+    conditions: startQuiz,
     dataResource: false,
   });
   const exams = data?.exam;
@@ -879,17 +892,53 @@ export const QuizWorkspace = (props: Props) => {
 
   return (
     <CContainer flex={1}>
-      {initialLoading && render.loading}
-      {!initialLoading && (
+      {startQuiz && (
         <>
-          {error && render.error}
-          {!error && (
+          {initialLoading && render.loading}
+          {!initialLoading && (
             <>
-              {data && render.loaded}
-              {(!data || isEmptyArray(exams)) && render.empty}
+              {error && render.error}
+              {!error && (
+                <>
+                  {data && render.loaded}
+                  {(!data || isEmptyArray(exams)) && render.empty}
+                </>
+              )}
             </>
           )}
         </>
+      )}
+
+      {!startQuiz && (
+        <ItemContainer
+          rounded={"xl"}
+          flex={1}
+          p={4}
+          justify={"center"}
+          align={"center"}
+        >
+          <P
+            fontSize={"lg"}
+            fontWeight={"medium"}
+            textAlign={"center"}
+          >{`${formatNumber(
+            courseDetail?.learningAttempt?.topic?.totalQuiz
+          )} quiz / ${
+            (courseDetail?.learningAttempt?.topic?.quizDuration || 0) / 60
+          } ${l.minutes}`}</P>
+
+          <Btn
+            w={"140px"}
+            colorPalette={"p"}
+            size={"lg"}
+            onClick={() => {
+              setStartQuiz(true);
+            }}
+            mt={4}
+          >
+            Start Quiz
+          </Btn>
+        </ItemContainer>
       )}
     </CContainer>
   );

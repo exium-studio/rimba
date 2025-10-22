@@ -1084,7 +1084,7 @@ export const loading_reset_password = {
 
 // Success Toast
 export const success_answer = {
-  title: { id: "No.${quizNumber}", en: "No.${quizNumber}" },
+  title: { id: "No.${quizNumber} tersimpan", en: "No.${quizNumber} saved" },
   description: {
     id: "Jawaban no.${quizNumber} berhasil disimpan.",
     en: "Answer no.${quizNumber} saved successfully.",

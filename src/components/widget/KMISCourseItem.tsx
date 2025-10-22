@@ -276,7 +276,7 @@ const DetailCourse = (props: any) => {
           {isEmptyArray(data?.feedback) && <P>-</P>}
 
           <CContainer overflowX={"auto"}>
-            <HStack w={"max"}>
+            <HStack w={"max"} align={"stretch"}>
               {data?.feedback?.map((feedback: any, idx: number) => {
                 return (
                   <CContainer
@@ -290,10 +290,30 @@ const DetailCourse = (props: any) => {
                     aspectRatio={1}
                     gap={4}
                   >
-                    <ClampText
-                      w={"full"}
-                      lineClamp={8}
-                    >{`"${feedback?.comment}"`}</ClampText>
+                    <CContainer>
+                      <HStack gap={1}>
+                        {Array.from({ length: 5 }, (_, i) => {
+                          return (
+                            <Icon
+                              key={i}
+                              boxSize={3}
+                              color={
+                                i < feedback?.rate ? "orange.500" : "fg.subtle"
+                              }
+                            >
+                              <IconStarFilled />
+                            </Icon>
+                          );
+                        })}
+                      </HStack>
+                    </CContainer>
+
+                    <CContainer gap={2}>
+                      <ClampText
+                        w={"full"}
+                        lineClamp={8}
+                      >{`${feedback?.comment}`}</ClampText>
+                    </CContainer>
 
                     <HStack mt={"auto"}>
                       <Avatar

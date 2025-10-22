@@ -295,7 +295,7 @@ const MobileTopNav = () => {
               />
 
               <SigninDisclosureTrigger flex={1}>
-                <Btn colorPalette={"p"} disabled={!!authToken}>
+                <Btn colorPalette={"p"} disabled={!!authToken} size={"xl"}>
                   Sign up/Sign in
                 </Btn>
               </SigninDisclosureTrigger>

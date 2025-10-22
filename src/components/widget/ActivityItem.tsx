@@ -75,6 +75,9 @@ export const ActivityItem = (props: Props) => {
             _hover={{
               transform: "scale(1.1)",
             }}
+            imageProps={{
+              unoptimized: true,
+            }}
           />
         </Center>
       </Center>

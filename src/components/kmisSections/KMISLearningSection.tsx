@@ -136,13 +136,17 @@ const MATERIAL_REGISTRY = {
             {resolvedMaterial.title}
           </P>
 
-          {resolvedMaterial?.materialFiles?.map(
-            (item: Interface__StorageFile) => {
-              const url = imgUrl(item.filePath);
+          <CContainer gap={4} p={4} rounded={"xl"} bg={"body"}>
+            {resolvedMaterial?.materialFiles?.map(
+              (item: Interface__StorageFile) => {
+                const url = imgUrl(item.filePath);
 
-              return <Img key={url} fluid w={"full"} src={url} />;
-            }
-          )}
+                return <Img key={url} fluid w={"full"} src={url} />;
+              }
+            )}
+
+            <SafeHtml html={resolvedMaterial?.description} />
+          </CContainer>
         </CContainer>
       );
     },
@@ -400,7 +404,7 @@ const NextStepButton = (props: any) => {
   const completedMaterials = courseDetail?.learningAttempt?.completedMaterial;
   const materials = courseDetail?.material;
   const quizDisabled =
-    completedMaterials.length !== materials.length - 1 ||
+    completedMaterials.length !== materials.length ||
     courseDetail?.learningAttempt?.topic?.totalQuiz === 0;
 
   // Utils

@@ -209,7 +209,7 @@ const DetailCourse = (props: any) => {
               </HStack>
 
               <HStack color={"fg.subtle"}>
-                <Icon boxSize={4}>
+                <Icon boxSize={4.5}>
                   <IconEye stroke={1.5} />
                 </Icon>
 

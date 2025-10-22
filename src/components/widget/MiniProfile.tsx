@@ -20,7 +20,13 @@ import { Center, Icon, StackProps } from "@chakra-ui/react";
 import { IconBook2, IconLogout, IconUser } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 
-export const MiniProfile = (props: StackProps) => {
+interface Props extends StackProps {
+  inDisclosure?: boolean;
+}
+export const MiniProfile = (props: Props) => {
+  // Props
+  const { inDisclosure = false, ...restProps } = props;
+
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
@@ -80,10 +86,10 @@ export const MiniProfile = (props: StackProps) => {
       overflow={"clip"}
       bg={"body"}
       color={"ibody"}
-      {...props}
+      {...restProps}
     >
       <CContainer>
-        <Center w={"full"} p={1} aspectRatio={1}>
+        <Center w={"full"} p={inDisclosure ? 1 : 0} aspectRatio={1}>
           <Img
             flex={1}
             src={imgUrl(user?.photoProfile?.[0]?.filePath)}

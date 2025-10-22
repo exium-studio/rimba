@@ -491,7 +491,7 @@ const DesktopTopNav = () => {
               </MenuTrigger>
 
               <MenuContent w={"240px"} p={0} mt={4} mr={"-9px"}>
-                <MiniProfile />
+                <MiniProfile inDisclosure />
               </MenuContent>
             </MenuRoot>
           )}

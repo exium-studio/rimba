@@ -340,16 +340,16 @@ const SigninForm = (props: Props) => {
                 mt={6}
                 size={"lg"}
                 loading={loading}
-                colorPalette={themeConfig.colorPalette}
+                colorPalette={"p"}
               >
-                Login
+                Sign in
               </Btn>
 
               <HStack mt={4}>
                 <Divider h={"1px"} w={"full"} />
 
                 <ResetPasswordDisclosure>
-                  <Btn variant={"ghost"} color={themeConfig.primaryColor}>
+                  <Btn variant={"ghost"} color={"p.500"}>
                     Reset Password
                   </Btn>
                 </ResetPasswordDisclosure>

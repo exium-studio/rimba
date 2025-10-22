@@ -1205,7 +1205,7 @@ export const error_invalid_file = {
   },
 };
 export const error_signin_wrong_credentials = {
-  title: { id: "Login gagal", en: "Login failed" },
+  title: { id: "Sign in gagal", en: "Sign in failed" },
   description: { id: "Kredensial tidak valid.", en: "Invalid credentials." },
 };
 export const error_network = {

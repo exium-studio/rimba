@@ -5,6 +5,7 @@ import { APP } from "@/constants/_meta";
 import { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import TawkChat from "@/components/widget/TawkChat";
 
 interface Props {
   children: React.ReactNode;
@@ -71,6 +72,8 @@ export default function RootLayout(props: Props) {
           <Toaster />
           <ClientSideOnly>{children}</ClientSideOnly>
         </Provider>
+
+        <TawkChat />
       </body>
     </html>
   );

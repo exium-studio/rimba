@@ -272,9 +272,9 @@ const LearningModules = (props: any) => {
             <CContainer>
               <P fontWeight={"medium"}>Quiz</P>
               <P fontSize={"sm"} color={"fg.subtle"}>
-                {`${courseDetail?.learningAttempt?.topic?.quizDuration / 60} ${
-                  l.minutes
-                }`}
+                {`${courseDetail?.learningAttempt?.topic?.totalQuiz} quiz / ${
+                  courseDetail?.learningAttempt?.topic?.quizDuration / 60
+                } ${l.minutes}`}
               </P>
             </CContainer>
 

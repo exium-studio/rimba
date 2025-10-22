@@ -135,6 +135,14 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const views = {
+  id: "Dilihat",
+  en: "Views",
+};
+export const released = {
+  id: "Diterbitkan",
+  en: "Released",
+};
 export const example_UI = {
   id: "Contoh UI",
   en: "Example UI",

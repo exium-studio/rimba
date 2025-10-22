@@ -28,7 +28,7 @@ import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";
-import { formatDate } from "@/utils/formatter";
+import { formatDate, formatNumber } from "@/utils/formatter";
 import { imgUrl } from "@/utils/url";
 import {
   Badge,
@@ -46,6 +46,7 @@ import {
   IconEye,
   IconRefresh,
   IconRocket,
+  IconStarFilled,
 } from "@tabler/icons-react";
 
 const EnrollButton = (props: any) => {
@@ -192,7 +193,7 @@ const DetailCourse = (props: any) => {
 
                 <P fontSize={"sm"}>{`${formatDate(
                   data?.topic?.createdAt
-                )} (${l.release_date.toLowerCase()})`}</P>
+                )} ${l.released.toLowerCase()}`}</P>
               </HStack>
 
               <HStack color={"fg.subtle"}>
@@ -203,10 +204,32 @@ const DetailCourse = (props: any) => {
                 <P fontSize={"sm"}>
                   {`${formatDate(
                     data?.topic?.updatedAt as string
-                  )}  (${l.last_updated.toLowerCase()})`}
+                  )} ${l.last_updated.toLowerCase()}`}
+                </P>
+              </HStack>
+
+              <HStack color={"fg.subtle"}>
+                <Icon boxSize={4}>
+                  <IconEye stroke={1.5} />
+                </Icon>
+
+                <P fontSize={"sm"}>
+                  {`${formatNumber(
+                    data?.topic?.totalViews
+                  )} ${l.views.toLowerCase()}`}
                 </P>
               </HStack>
             </CContainer>
+
+            <HStack mt={4}>
+              <Icon color={"orange.400"}>
+                <IconStarFilled />
+              </Icon>
+
+              <P fontSize={"lg"}>{`${
+                data?.avgFeedbackRating ? `${data?.avgFeedbackRate}/5` : "-"
+              }`}</P>
+            </HStack>
 
             <CContainer mt={"auto"}>
               {!myCourse && <EnrollButton topic={topic} mt={2} />}

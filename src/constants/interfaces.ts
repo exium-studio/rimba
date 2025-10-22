@@ -42,6 +42,7 @@ export interface Interface__KMISTopic extends Interface__CUD {
   title: string;
   description: string;
   totalQuiz: number;
+  totalViews?: number;
   quizDuration: number; // seconds
 }
 export interface Interface__KMISMaterial extends Interface__CUD {

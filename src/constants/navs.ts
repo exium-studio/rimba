@@ -1,6 +1,5 @@
 import { Interface__NavItem } from "@/constants/interfaces";
 import {
-  IconBook2,
   IconDeviceDesktop,
   IconDeviceDesktopAnalytics,
   IconHeartHandshake,
@@ -9,6 +8,7 @@ import {
   IconMap2,
   IconMapQuestion,
   IconNews,
+  IconSchool,
   IconSeedling,
   IconSettings,
   IconShieldHalf,
@@ -95,7 +95,7 @@ export const LP_NAVS: Interface__NavItem[] = [
           {
             list: [
               {
-                icon: IconBook2,
+                icon: IconSchool,
                 labelKey: "lp_navs.related_apps.kmis",
                 path: `/related-apps/kmis`,
               },

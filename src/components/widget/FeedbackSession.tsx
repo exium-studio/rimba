@@ -12,6 +12,7 @@ import useRequest from "@/hooks/useRequest";
 import { interpolateString, pluckString } from "@/utils/string";
 import { FieldRoot, HStack, StackProps } from "@chakra-ui/react";
 import { useFormik } from "formik";
+import { useRouter } from "next/navigation";
 import * as yup from "yup";
 
 interface Props extends StackProps {
@@ -27,6 +28,7 @@ export const FeedbackSession = (props: Props) => {
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
+  const router = useRouter();
   const { req, loading } = useRequest({
     id: "submit-feedback",
   });
@@ -67,6 +69,9 @@ export const FeedbackSession = (props: Props) => {
         onResolve: {
           onSuccess: () => {
             setRt((ps) => !ps);
+            router.push(
+              `/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`
+            );
           },
         },
       });

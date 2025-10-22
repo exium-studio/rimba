@@ -71,6 +71,16 @@ const PhoneNumberInput = (props: Props) => {
   );
 
   useEffect(() => {
+    if (inputValue) {
+      setPhone(
+        parseInt(inputValue?.split(" ")[1] as string)
+          ? parseInt(inputValue?.split(" ")[1] as string)
+          : null
+      );
+    }
+  }, [inputValue]);
+
+  useEffect(() => {
     onChange?.(`${country?.[0]?.id} ${phone}`);
   }, [phone]);
 

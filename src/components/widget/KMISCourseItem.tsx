@@ -136,7 +136,7 @@ const DetailCourse = (props: any) => {
     error: <FeedbackRetry onRetry={onRetry} minH={"400px"} />,
     empty: <FeedbackNoData minH={"400px"} />,
     loaded: (
-      <CContainer gap={8}>
+      <CContainer gap={8} px={[0, null, 2]}>
         {/* Overview */}
         <Stack flexDir={["column", null, "row"]} gapX={8} gapY={4}>
           <Img

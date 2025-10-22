@@ -479,7 +479,7 @@ const CountDownDuration = (props: any) => {
     </HStack>
   );
 };
-const ResultDetail = (props: any) => {
+const ReviewAnswer = (props: any) => {
   // Props
   const { courseDetail, ...restProps } = props;
 
@@ -666,7 +666,7 @@ const ResultDetail = (props: any) => {
                   Feedback
                 </P>
                 <P>:</P>
-                <P>{resolvedAttempt?.feedback || "-"}</P>
+                <P>{resolvedAttempt?.feedbackComment || "-"}</P>
               </HStack>
 
               <HStack align={"start"}>
@@ -766,7 +766,7 @@ const QuestionList = (props: any) => {
     <CContainer flex={1} gap={4} {...restProps}>
       {/* Timer & Review */}
       <>
-        {isQuizFinished && <ResultDetail courseDetail={courseDetail} />}
+        {isQuizFinished && <ReviewAnswer courseDetail={courseDetail} />}
 
         {!isQuizFinished && (
           <CountDownDuration

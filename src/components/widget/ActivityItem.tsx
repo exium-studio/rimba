@@ -76,7 +76,7 @@ export const ActivityItem = (props: Props) => {
               transform: "scale(1.1)",
             }}
             imageProps={{
-              unoptimized: true,
+              unoptimized: thumbnailFill ? true : false,
             }}
           />
         </Center>

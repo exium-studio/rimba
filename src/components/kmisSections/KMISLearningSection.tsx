@@ -404,7 +404,7 @@ const NextStepButton = (props: any) => {
   const completedMaterials = courseDetail?.learningAttempt?.completedMaterial;
   const materials = courseDetail?.material;
   const quizDisabled =
-    completedMaterials.length !== materials.length ||
+    completedMaterials.length < materials.length - 1 ||
     courseDetail?.learningAttempt?.topic?.totalQuiz === 0;
 
   // Utils

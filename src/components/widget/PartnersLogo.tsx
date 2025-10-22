@@ -9,9 +9,9 @@ export const PartnersLogo = (props: StackProps) => {
   const { ...restProps } = props;
 
   return (
-    <CContainer color={"p.300"} {...restProps}>
-      <P fontWeight={"medium"}>Program Koridor</P>
-      <P fontWeight={"medium"}>Ekosistem RIMBA</P>
+    <CContainer color={"orange.300"} {...restProps}>
+      <P>Program Koridor</P>
+      <P>{`Ekosistem <b>RIMBA</b>`}</P>
     </CContainer>
 
     // <HStack {...restProps}>

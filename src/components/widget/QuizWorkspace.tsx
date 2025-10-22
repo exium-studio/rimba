@@ -764,17 +764,21 @@ const QuestionList = (props: any) => {
 
   return (
     <CContainer flex={1} gap={4} {...restProps}>
-      {isQuizFinished && <ResultDetail courseDetail={courseDetail} />}
+      {/* Timer & Review */}
+      <>
+        {isQuizFinished && <ResultDetail courseDetail={courseDetail} />}
 
-      {!isQuizFinished && (
-        <CountDownDuration
-          quizStartedAt={quizStartedAt}
-          quizEndedAutomaticallyAt={quizEndedAutomaticallyAt}
-          quizEndedAt={quizEndedAt}
-          courseDetail={courseDetail}
-        />
-      )}
+        {!isQuizFinished && (
+          <CountDownDuration
+            quizStartedAt={quizStartedAt}
+            quizEndedAutomaticallyAt={quizEndedAutomaticallyAt}
+            quizEndedAt={quizEndedAt}
+            courseDetail={courseDetail}
+          />
+        )}
+      </>
 
+      {/* Quiz list */}
       <ItemContainer h={"fit"} gap={4} p={4}>
         <P fontWeight={"semibold"}>{l.list_of_questions}</P>
 
@@ -815,21 +819,27 @@ const QuestionList = (props: any) => {
         </CContainer>
       </ItemContainer>
 
-      <ItemContainer gap={1} p={4}>
-        <HStack justify={"space-between"}>
-          <P>{l.started_at}</P>
-          <P fontWeight={"medium"}>{quizStartedAt || "-"}</P>
-        </HStack>
+      {/* Timestamps */}
+      <ItemContainer gap={4} p={4}>
+        <CContainer justify={"space-between"} gap={1}>
+          <P color={"fg.subtle"}>{l.started_at}</P>
+          <P>
+            {formatDate(learningAttempt?.quizStarted, {
+              variant: "dayShortMonthYear",
+              withTime: true,
+            }) || "-"}
+          </P>
+        </CContainer>
 
-        <HStack justify={"space-between"}>
-          <P>{l.ended_automatically_at}</P>
-          <P fontWeight={"medium"}>{quizEndedAutomaticallyAt || "-"}</P>
-        </HStack>
+        <CContainer justify={"space-between"} gap={1}>
+          <P color={"fg.subtle"}>{l.ended_automatically_at}</P>
+          <P>{quizEndedAutomaticallyAt || "-"}</P>
+        </CContainer>
 
-        <HStack justify={"space-between"}>
-          <P>{l.ended_at}</P>
-          <P fontWeight={"medium"}>{quizEndedAt || "-"}</P>
-        </HStack>
+        <CContainer justify={"space-between"} gap={1}>
+          <P color={"fg.subtle"}>{l.ended_at}</P>
+          <P>{quizEndedAt || "-"}</P>
+        </CContainer>
       </ItemContainer>
     </CContainer>
   );

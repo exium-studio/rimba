@@ -877,8 +877,7 @@ export const homeActivities = [
         fileName: "ecosystem_corridor.jpg",
         filePath:
           "https://images.unsplash.com/photo-1501788888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
-        fileUrl:
-          "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+        fileUrl: `${IMAGES_PATH}/lp/home/activity_1.jpg`,
         fileMimeType: "image/jpeg",
         fileSize: "600KB",
         createdAt: "2025-01-15T08:30:00Z",
@@ -887,12 +886,12 @@ export const homeActivities = [
       },
     ],
     title: {
-      id: "Koridor Ekosistem: Menjaga Alam, Menggerakkan Ekonomi",
-      en: "Ecosystem Corridor: Preserving Nature, Driving Economy",
+      id: "Commodo mollit reprehenderit nulla veniam nulla Lorem ullamco",
+      en: "Dolor ad et pariatur ipsum veniam irure esse ipsum consectetur nisi ex.",
     },
     description: {
-      id: "Dengan teknologi pemetaan dan data spasial, pelestarian alam kini lebih terukur dan transparan. Penggunaan data lingkungan membantu pengambil kebijakan, peneliti, dan masyarakat.",
-      en: "With spatial mapping and spatial data, nature preservation is now more accurate and transparent. Using environmental data helps policymakers, researchers, and the public.",
+      id: "Mollit eiusmod adipisicing adipisicing culpa fugiat. Incididunt aute excepteur voluptate magna ut. Irure velit ullamco laboris excepteur sit velit exercitation ea dolor. Veniam ullamco reprehenderit quis excepteur anim minim minim ex exercitation officia cillum consectetur cupidatat in. Veniam est sunt mollit cupidatat exercitation proident incididunt laborum. Consequat minim occaecat elit deserunt aute dolore eiusmod. Tempor nostrud ut sint incididunt.",
+      en: "Nulla incididunt in velit culpa do occaecat ea. Lorem officia laborum ad voluptate laboris nisi magna dolore sint voluptate voluptate. Ea exercitation excepteur sunt dolore. Ullamco eu sint eu do tempor elit pariatur eu consequat duis Lorem consectetur.",
     },
     eventContent: {
       id: "Detail kegiatan koridor ekosistem.",
@@ -927,8 +926,7 @@ export const homeActivities = [
         fileName: "nature_maps.jpg",
         filePath:
           "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
-        fileUrl:
-          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
+        fileUrl: `${IMAGES_PATH}/lp/home/activity_2.jpg`,
         fileMimeType: "image/jpeg",
         fileSize: "550KB",
         createdAt: "2025-01-15T08:30:00Z",
@@ -937,12 +935,12 @@ export const homeActivities = [
       },
     ],
     title: {
-      id: "Data Bukan Sekadar Angka: Alam yang Terlihat Lewat Peta",
-      en: "Data Is Not Just Numbers: Nature Revealed Through Maps",
+      id: "Elit pariatur Lorem qui quis nulla culpa nulla.",
+      en: "Id irure culpa voluptate consectetur enim.",
     },
     description: {
-      id: "Dengan teknologi pemetaan dan data spasial, pelestarian alam kini lebih terukur dan transparan. Penggunaan data lingkungan membantu pengambil kebijakan, peneliti, dan masyarakat.",
-      en: "With spatial mapping and spatial data, nature preservation is now more accurate and transparent. Using environmental data helps policymakers, researchers, and the public.",
+      id: "Sint voluptate sint in occaecat consequat voluptate cillum. Cupidatat sint anim ad in pariatur sint occaecat fugiat deserunt amet. Amet anim anim eiusmod deserunt. Incididunt Lorem aute enim labore consectetur. Elit ipsum Lorem enim ad in pariatur enim veniam adipisicing incididunt consequat laboris irure. Amet deserunt eiusmod ex cupidatat aute duis amet quis dolore laborum.",
+      en: "Nostrud fugiat et voluptate ipsum aliquip nulla in. Anim dolor eu duis amet nulla nisi aute minim ad reprehenderit consectetur non. Nisi aliqua ut non ut aliqua duis adipisicing Lorem laborum est sit ea sunt. Sunt irure anim laborum deserunt exercitation. Deserunt dolore non ut ullamco nostrud consequat ipsum cupidatat.",
     },
     eventContent: {
       id: "Detail kegiatan pemetaan alam.",
@@ -977,8 +975,7 @@ export const homeActivities = [
         fileName: "clean_water.jpg",
         filePath:
           "https://images.unsplash.com/photo-1521207418485-99c705420785?auto=format&fit=crop&w=1200&q=80",
-        fileUrl:
-          "https://images.unsplash.com/photo-1521207418485-99c705420785?auto=format&fit=crop&w=1200&q=80",
+        fileUrl: `${IMAGES_PATH}/lp/home/activity_3.jpg`,
         fileMimeType: "image/jpeg",
         fileSize: "580KB",
         createdAt: "2025-01-15T08:30:00Z",
@@ -987,12 +984,12 @@ export const homeActivities = [
       },
     ],
     title: {
-      id: "Air Bersih untuk Semua: Kolaborasi Data dan Infrastruktur",
-      en: "Clean Water for Everyone: Collaboration of Data and Infrastructure",
+      id: "Ullamco ullamco elit sit ex voluptate.",
+      en: "Pariatur do ex eu aute voluptate veniam cillum sit ad.",
     },
     description: {
-      id: "Akses air bersih kini tak hanya soal infrastruktur, tapi juga soal informasi. Penggunaan sensor kualitas air dan dashboard pelaporan membuat distribusi air lebih adil dan tanggap terhadap krisis lokal.",
-      en: "Clean water access is not just infrastructure, but also information. Using water quality sensors and reporting dashboards makes water distribution more equitable and responsive to local crises.",
+      id: "Et id ut amet nulla minim irure ad ipsum proident. Aliquip nulla ut ut tempor sit sit mollit cupidatat adipisicing officia. Pariatur velit et qui esse ipsum irure adipisicing et id tempor consectetur consectetur non. Consectetur ipsum consequat ipsum adipisicing est nostrud veniam dolor veniam esse ut fugiat ullamco nulla. Consequat ut veniam dolore cupidatat sint ea Lorem magna do id in. Ipsum proident ut proident tempor tempor commodo officia tempor aliquip. Consectetur anim fugiat qui est exercitation id esse.",
+      en: "Non voluptate qui cillum cupidatat ea ea qui id. Aliqua mollit adipisicing aliqua elit culpa ex sunt voluptate amet eu fugiat minim id ullamco. Exercitation aute officia ea eiusmod eiusmod sit consequat elit aliqua reprehenderit.",
     },
     eventContent: {
       id: "Detail kegiatan akses air bersih.",

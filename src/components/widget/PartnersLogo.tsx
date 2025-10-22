@@ -9,7 +9,7 @@ export const PartnersLogo = (props: StackProps) => {
   const { ...restProps } = props;
 
   return (
-    <CContainer color={"orange.300"} {...restProps}>
+    <CContainer color={"#fec32f"} {...restProps}>
       <P>Program Koridor</P>
       <P>{`Ekosistem <b>RIMBA</b>`}</P>
     </CContainer>

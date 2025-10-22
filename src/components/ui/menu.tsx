@@ -13,11 +13,46 @@ import {
 import { forwardRef } from "react";
 import { LuCheck, LuChevronRight } from "react-icons/lu";
 
+export const MenuRoot = (props: MenuRootProps) => {
+  const { children, ...restProps } = props;
+  return (
+    <ChakraMenu.Root
+      positioning={{ hideWhenDetached: true }}
+      unmountOnExit={false}
+      {...restProps}
+    >
+      {children}
+    </ChakraMenu.Root>
+  );
+};
+
+export interface MenuTriggerItemProps extends ChakraMenu.ItemProps {
+  startIcon?: React.ReactNode;
+}
+export const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
+  function MenuTriggerItem(props, ref) {
+    // Contexts
+    const { themeConfig } = useThemeConfig();
+
+    const { startIcon, children, ...restProps } = props;
+    return (
+      <ChakraMenu.TriggerItem
+        ref={ref}
+        rounded={themeConfig.radii.component}
+        {...restProps}
+      >
+        {startIcon}
+        {children}
+        <LuChevronRight />
+      </ChakraMenu.TriggerItem>
+    );
+  }
+);
+
 interface MenuContentProps extends ChakraMenu.ContentProps {
   portalled?: boolean;
   portalRef?: React.RefObject<HTMLElement | null>;
 }
-
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   function MenuContent(props, ref) {
     // Props
@@ -141,43 +176,6 @@ export const MenuItemGroup = forwardRef<
     </ChakraMenu.ItemGroup>
   );
 });
-
-export interface MenuTriggerItemProps extends ChakraMenu.ItemProps {
-  startIcon?: React.ReactNode;
-}
-
-export const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
-  function MenuTriggerItem(props, ref) {
-    // Contexts
-    const { themeConfig } = useThemeConfig();
-
-    const { startIcon, children, ...restProps } = props;
-    return (
-      <ChakraMenu.TriggerItem
-        ref={ref}
-        rounded={themeConfig.radii.component}
-        {...restProps}
-      >
-        {startIcon}
-        {children}
-        <LuChevronRight />
-      </ChakraMenu.TriggerItem>
-    );
-  }
-);
-
-export const MenuRoot = (props: MenuRootProps) => {
-  const { children, ...restProps } = props;
-  return (
-    <ChakraMenu.Root
-      positioning={{ hideWhenDetached: true }}
-      unmountOnExit={false}
-      {...restProps}
-    >
-      {children}
-    </ChakraMenu.Root>
-  );
-};
 
 export const MenuSeparator = (props: MenuSeparatorProps) => {
   return <ChakraMenu.Separator {...props} />;

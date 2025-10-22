@@ -41,7 +41,7 @@ const DefaultFallback = () => {
           height={40}
           objectFit="contain"
         /> */}
-        <PartnersLogo />
+        <PartnersLogo color={"p.500"} />
       </Center>
     </Center>
   );

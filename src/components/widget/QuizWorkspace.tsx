@@ -795,7 +795,8 @@ const QuestionList = (props: any) => {
                 size={"xs"}
                 variant={"outline"}
                 border={"1px solid"}
-                borderColor={isActive ? "p.500" : "border.muted"}
+                borderColor={"border.muted"}
+                boxShadow={isActive ? `0 0 0 2px {colors.p.400}` : ""}
                 bg={isMarked ? "orange.400" : isAnswered ? "fg.success" : ""}
                 color={isMarked || isAnswered ? "light" : ""}
                 onClick={() => setActiveQuizIdx(idx)}

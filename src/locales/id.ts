@@ -48,8 +48,8 @@ const translations = {
   "component": "Komponen",
   "confirm": "Konfirmasi",
   "correct_answer": "Jawaban benar",
-  "course_category": "Kategori course",
-  "course_finished_status": "Status penyelesaian course",
+  "course_category": "Kategori topik",
+  "course_finished_status": "Status penyelesaian topik",
   "dark_mode": "Mode gelap",
   "date_format": "Format tanggal",
   "day": "Hari",
@@ -173,7 +173,7 @@ const translations = {
   "feedback_label_4": "Baik",
   "feedback_label_5": "Sangat baik",
   "feedback_placeholder": "Rate dan komentar",
-  "feedback_question": "Bagaimana pendapatmu tentang course <b>${courseName}</b>?",
+  "feedback_question": "Bagaimana pendapatmu tentang topik <b>${courseName}</b>?",
   "finished": "Selesai",
   "friday": "Jumat",
   "get": "Dapatkan",
@@ -298,7 +298,7 @@ const translations = {
   "msg_edge_permissions_settings_link": "Pengaturan → Cookie dan izin situs → ",
   "msg_file_input_dropzone": "Drag and drop/klik untuk unggah berkas",
   "msg_firefox_permissions_settings_link": "Preferensi → Privasi & Keamanan → Izin → ",
-  "msg_input_feedback_to_get_course_certificate": "Masukkan feedback Anda untuk mendapatkan sertifikat kursus ini.",
+  "msg_input_feedback_to_get_course_certificate": "Masukkan feedback Anda untuk mendapatkan sertifikat topik ini.",
   "msg_location_test_helper": "Klik dapatkan lokasi untuk mendapatkan data lokasi.",
   "msg_password_confirmation_not_match": "Konfirmasi kata sandi tidak cocok",
   "msg_permissions_denied_helper": "Jika ingin memberi akses kembali, buka",
@@ -317,7 +317,7 @@ const translations = {
   "msg_still_have_question": "Masih ada pertanyaan?",
   "msg_toggle_dark_mode": "Toggle mode gelap",
   "my_cerficate": "Sertifikat saya",
-  "my_course": "Kursus saya",
+  "my_course": "Topik saya",
   "my_profile": "Profil saya",
   "name": "Nama",
   "navigation": "Navigasi",
@@ -465,8 +465,8 @@ const translations = {
     "description": "Proses berjalan tanpa kendala."
   },
   "success_enroll_course": {
-    "title": "Enroll course",
-    "description": "Anda berhasil bergabung di kursus ini."
+    "title": "Enroll topik",
+    "description": "Anda berhasil bergabung di topik ini."
   },
   "success_online": {
     "title": "Koneksi Pulih",

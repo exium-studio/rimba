@@ -48,8 +48,8 @@ const translations = {
   "component": "Component",
   "confirm": "Confirm",
   "correct_answer": "Correct answer",
-  "course_category": "Course category",
-  "course_finished_status": "Course completion status",
+  "course_category": "Topic category",
+  "course_finished_status": "Topic completion status",
   "dark_mode": "Dark mode",
   "date_format": "Date format",
   "day": "Day",
@@ -97,7 +97,7 @@ const translations = {
   },
   "error_409_course_already_subbed": {
     "title": "Already subscribed",
-    "description": "You are already subscribed to this course."
+    "description": "You are already subscribed to this topic."
   },
   "error_409_default": {
     "title": "Conflict",
@@ -173,7 +173,7 @@ const translations = {
   "feedback_label_4": "Good",
   "feedback_label_5": "Very good",
   "feedback_placeholder": "Rate and comment",
-  "feedback_question": "How do you feel about course <b>${courseName}</b>?",
+  "feedback_question": "How do you feel about topic <b>${courseName}</b>?",
   "finished": "Finished",
   "friday": "Friday",
   "get": "Get",
@@ -298,7 +298,7 @@ const translations = {
   "msg_edge_permissions_settings_link": "Settings → Cookies and site permissions → ",
   "msg_file_input_dropzone": "Drag and drop/click to upload files",
   "msg_firefox_permissions_settings_link": "Preferences → Privacy & Security → Permissions → ",
-  "msg_input_feedback_to_get_course_certificate": "Enter your feedback to get this course certificate.",
+  "msg_input_feedback_to_get_course_certificate": "Enter your feedback to get this topic certificate.",
   "msg_location_test_helper": "Click get location to get location data.",
   "msg_password_confirmation_not_match": "Password confirmation does not match",
   "msg_permissions_denied_helper": "If you want to grant access again, go to",
@@ -317,7 +317,7 @@ const translations = {
   "msg_still_have_question": "Still have question?",
   "msg_toggle_dark_mode": "Toggle dark mode",
   "my_cerficate": "My certificate",
-  "my_course": "My course",
+  "my_course": "My topic",
   "my_profile": "My profile",
   "name": "Name",
   "navigation": "Navigation",
@@ -465,8 +465,8 @@ const translations = {
     "description": "Process completed without issues."
   },
   "success_enroll_course": {
-    "title": "Enroll course",
-    "description": "You have successfully enrolled in this course."
+    "title": "Enroll topic",
+    "description": "You have successfully enrolled in this topic."
   },
   "success_online": {
     "title": "Connection Recovered",

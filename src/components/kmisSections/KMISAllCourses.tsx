@@ -155,8 +155,8 @@ export const KMISAllCourses = (props: Props) => {
       flex={1}
       {...restProps}
     >
-      <HStack wrap={"wrap"} gap={4}>
-        <CContainer flex={"2 0 300px"} gap={1}>
+      <CContainer gap={4}>
+        <CContainer gap={1}>
           <EditableContentContainer content={staticContents[118]} w={"fit"}>
             <P fontSize={"lg"} fontWeight={"semibold"}>
               {staticContents[118]?.content[lang]}
@@ -169,13 +169,12 @@ export const KMISAllCourses = (props: Props) => {
         </CContainer>
 
         <SearchInput
-          flex={"1 1 200px"}
           inputValue={filter.search}
           onChange={(inputValue) => {
             setFilter({ ...filter, search: inputValue });
           }}
         />
-      </HStack>
+      </CContainer>
 
       {/* Content */}
       <Stack flexDir={["column", null, "row"]} mt={4} align={"stretch"} gap={4}>

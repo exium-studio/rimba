@@ -584,8 +584,8 @@ export const name = {
   en: "Name",
 };
 export const my_course = {
-  id: "Kursus saya",
-  en: "My course",
+  id: "Topik saya",
+  en: "My topic",
 };
 export const certificate = {
   id: "Sertifikat",
@@ -692,8 +692,8 @@ export const finished = {
   en: "Finished",
 };
 export const feedback_question = {
-  id: "Bagaimana pendapatmu tentang course <b>${courseName}</b>?",
-  en: "How do you feel about course <b>${courseName}</b>?",
+  id: "Bagaimana pendapatmu tentang topik <b>${courseName}</b>?",
+  en: "How do you feel about topic <b>${courseName}</b>?",
 };
 export const feedback_label_1 = {
   id: "Sangat buruk",
@@ -736,8 +736,8 @@ export const wrong_answer = {
   en: "Wrong answer",
 };
 export const course_category = {
-  id: "Kategori course",
-  en: "Course category",
+  id: "Kategori topik",
+  en: "Topic category",
 };
 export const not_starterd = {
   id: "Belum dimulai",
@@ -804,8 +804,8 @@ export const progress_status = {
   en: "Progress status",
 };
 export const course_finished_status = {
-  id: "Status penyelesaian course",
-  en: "Course completion status",
+  id: "Status penyelesaian topik",
+  en: "Topic completion status",
 };
 
 // Message
@@ -922,8 +922,8 @@ export const msg_dont_have_an_account = {
   en: "Don't have an account?",
 };
 export const msg_input_feedback_to_get_course_certificate = {
-  id: "Masukkan feedback Anda untuk mendapatkan sertifikat kursus ini.",
-  en: "Enter your feedback to get this course certificate.",
+  id: "Masukkan feedback Anda untuk mendapatkan sertifikat topik ini.",
+  en: "Enter your feedback to get this topic certificate.",
 };
 
 // Alert
@@ -1091,10 +1091,10 @@ export const success_answer = {
   },
 };
 export const success_enroll_course = {
-  title: { id: "Enroll course", en: "Enroll course" },
+  title: { id: "Enroll topik", en: "Enroll topic" },
   description: {
-    id: "Anda berhasil bergabung di kursus ini.",
-    en: "You have successfully enrolled in this course.",
+    id: "Anda berhasil bergabung di topik ini.",
+    en: "You have successfully enrolled in this topic.",
   },
 };
 export const success_online = {
@@ -1282,7 +1282,7 @@ export const error_409_course_already_subbed = {
   title: { id: "Sudah terdaftar", en: "Already subscribed" },
   description: {
     id: "Kamu sudah terdaftar dalam kelas ini.",
-    en: "You are already subscribed to this course.",
+    en: "You are already subscribed to this topic.",
   },
 };
 export const error_409_quiz_attempt_closed = {

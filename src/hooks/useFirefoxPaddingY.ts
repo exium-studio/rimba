@@ -5,7 +5,7 @@ export function useFirefoxPaddingY(
   additionalPx: string = FIREFOX_SCROLL_Y_CLASS_PR_PREFIX
 ) {
   useEffect(() => {
-    if (!navigator.userAgent.toLowerCase().includes("firefox")) return;
+    if (!navigator.userAgent?.toLowerCase().includes("firefox")) return;
 
     const updatePadding = () => {
       document.querySelectorAll<HTMLElement>(".scrollY").forEach((el) => {

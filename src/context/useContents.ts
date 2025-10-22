@@ -35,6 +35,7 @@ const useContents = create<State_Actions>((set) => ({
       homeAnimalComposition: newState.homeAnimalComposition,
       homeCompletionProgress: newState.homeCompletionProgress,
       homeLegalDocuments: newState.homeLegalDocuments,
+      homeNews: newState.homeNews,
       FAQs: newState.FAQs,
     }),
 }));

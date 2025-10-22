@@ -195,7 +195,7 @@ const LearningModules = (props: any) => {
         <P fontSize={"sm"} color={"fg.subtle"}>
           {`${
             courseDetail?.learningAttempt?.totalMaterial
-          } ${l.learning_material.toLowerCase()}`}
+          } ${l.learning_material?.toLowerCase()}`}
         </P>
       </CContainer>
 
@@ -385,7 +385,7 @@ const NextStepButton = (props: any) => {
           description: interpolateString(
             l.info_material_time_not_elapsed.description,
             {
-              minTime: `${minimalStudyTime} ${l.minutes.toLowerCase()}`,
+              minTime: `${minimalStudyTime} ${l.minutes?.toLowerCase()}`,
               remainingTime: `${remainingTime}`,
               endTime: `${estimatedEndTime}`,
             }

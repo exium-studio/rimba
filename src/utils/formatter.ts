@@ -73,7 +73,7 @@ export const formatDate = (
         ? String(monthOrName + 1)
         : String(monthOrName);
 
-    switch (dateFormat.toLowerCase()) {
+    switch (dateFormat?.toLowerCase()) {
       case "dmy":
         return `${dayVal}${basicVariant ? "-" : " "}${monthDisplay}${
           basicVariant ? "-" : " "
@@ -231,7 +231,7 @@ export const formatCount = (number: number): string => {
 };
 
 export const formatDBTableName = (str: string): string => {
-  return str.toLowerCase().replace(/\s+/g, "_");
+  return str?.toLowerCase().replace(/\s+/g, "_");
 };
 
 export function formatTime(

@@ -58,7 +58,7 @@ const AllCategory = (props: any) => {
     dependencies: [],
   });
   const resolvedData = data?.filter((item) =>
-    item.title.toLowerCase().includes(search.toLowerCase())
+    item.title?.toLowerCase().includes(search?.toLowerCase())
   );
   const render = {
     loading: <Skeleton rounded={"lg"} minH={"176px"} />,

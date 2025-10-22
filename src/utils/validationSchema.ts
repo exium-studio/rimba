@@ -40,7 +40,7 @@ export const fileValidation = ({
 
           const fileExtension = file.name
             .slice(((file.name.lastIndexOf(".") - 1) >>> 0) + 2)
-            .toLowerCase();
+            ?.toLowerCase();
 
           return allowedExtensions.includes(`${fileExtension}`);
         });

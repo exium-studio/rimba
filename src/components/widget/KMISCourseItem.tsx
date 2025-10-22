@@ -180,7 +180,7 @@ const DetailCourse = (props: any) => {
                 </P>
 
                 <P fontSize={"sm"} transform={"translateY(1px)"}>
-                  {`${l.quiz_duration} (${l.minutes.toLowerCase()})`}
+                  {`${l.quiz_duration} (${l.minutes?.toLowerCase()})`}
                 </P>
               </HStack>
             </HStack>
@@ -193,7 +193,7 @@ const DetailCourse = (props: any) => {
 
                 <P fontSize={"sm"}>{`${formatDate(
                   data?.topic?.createdAt
-                )} ${l.released.toLowerCase()}`}</P>
+                )} ${l.released?.toLowerCase()}`}</P>
               </HStack>
 
               <HStack color={"fg.subtle"}>
@@ -204,7 +204,7 @@ const DetailCourse = (props: any) => {
                 <P fontSize={"sm"}>
                   {`${formatDate(
                     data?.topic?.updatedAt as string
-                  )} ${l.last_updated.toLowerCase()}`}
+                  )} ${l.last_updated?.toLowerCase()}`}
                 </P>
               </HStack>
 
@@ -216,7 +216,7 @@ const DetailCourse = (props: any) => {
                 <P fontSize={"sm"}>
                   {`${formatNumber(
                     data?.topic?.totalViews
-                  )} ${l.views.toLowerCase()}`}
+                  )} ${l.views?.toLowerCase()}`}
                 </P>
               </HStack>
             </CContainer>
@@ -460,7 +460,7 @@ export const KMISCourseItem = (props: Props) => {
                     <IconCertificate stroke={1.5} />
                   </Icon>
 
-                  {`${l.view} ${l.certificate.toLowerCase()}`}
+                  {`${l.view} ${l.certificate?.toLowerCase()}`}
                 </Btn>
               </NavLink>
             )}

@@ -46,7 +46,7 @@ const SelectOptions = (props: Props__SelectOptions) => {
   const [search, setSearch] = useState<string>("");
   const [selectAll, setSelectAll] = useState<boolean>(false);
   const resolvedSelectOptions = selectOptions?.filter((o) =>
-    o.label?.toLowerCase().includes(search.toLowerCase())
+    o.label?.toLowerCase().includes(search?.toLowerCase())
   );
 
   useEffect(() => {

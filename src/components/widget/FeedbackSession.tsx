@@ -31,6 +31,7 @@ export const FeedbackSession = (props: Props) => {
   const router = useRouter();
   const { req, loading } = useRequest({
     id: "submit-feedback",
+    successMessage: l.success_feedback_submitted,
   });
 
   // States

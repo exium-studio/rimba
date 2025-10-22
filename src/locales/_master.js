@@ -1083,6 +1083,16 @@ export const loading_reset_password = {
 };
 
 // Success Toast
+export const success_feedback_submitted = {
+  title: {
+    id: "Feedback dikirim",
+    en: "Feedback submitted",
+  },
+  description: {
+    id: "Terima kasih atas feedback Anda.",
+    en: "Thank you for your feedback.",
+  },
+};
 export const success_answer = {
   title: { id: "No.${quizNumber} tersimpan", en: "No.${quizNumber} saved" },
   description: {

@@ -333,6 +333,7 @@ const translations = {
     "profile": "Profile"
   },
   "next": "Next",
+  "not_answered": "Not answered",
   "not_started": "Not started",
   "not_starterd": "Not started",
   "november": "November",

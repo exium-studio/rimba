@@ -807,6 +807,10 @@ export const course_finished_status = {
   id: "Status penyelesaian topik",
   en: "Topic completion status",
 };
+export const not_answered = {
+  id: "Belum terjawab",
+  en: "Not answered",
+};
 
 // Message
 export const msg_still_have_question = {

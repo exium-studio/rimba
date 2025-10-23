@@ -333,6 +333,7 @@ const translations = {
     "profile": "Profil"
   },
   "next": "Selanjutnya",
+  "not_answered": "Belum terjawab",
   "not_started": "Belum dimulai",
   "not_starterd": "Belum dimulai",
   "november": "November",

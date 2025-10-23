@@ -227,7 +227,7 @@ const DetailCourse = (props: any) => {
               </Icon>
 
               <P fontSize={"lg"}>{`${
-                data?.avgFeedbackRating ? `${data?.avgFeedbackRate}/5` : "-"
+                data?.avgFeedbackRate ? `${data?.avgFeedbackRate}/5` : "-"
               }`}</P>
             </HStack>
 

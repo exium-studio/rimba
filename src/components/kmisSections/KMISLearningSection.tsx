@@ -584,6 +584,7 @@ export const KMISLearningSection = (props: Props) => {
 
         <ActiveMaterial
           flex={3.5}
+          flexshrink={0}
           courseDetail={courseDetail}
           getCourseDetail={getCourseDetail}
         />

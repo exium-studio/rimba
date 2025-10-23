@@ -674,22 +674,27 @@ const ReviewAnswer = (props: any) => {
                   {l.certificate}
                 </P>
                 <P>:</P>
-                <NavLink
-                  to={fileUrl(resolvedAttempt?.certificate?.[0]?.filePath)}
-                  external
-                >
-                  <Btn
-                    variant={"plain"}
-                    p={0}
-                    h={"fit"}
-                    color={`${themeConfig.colorPalette}.fg`}
+
+                {!courseDetail?.learningAttempt?.feedback && <P>-</P>}
+
+                {courseDetail?.learningAttempt?.feedback && (
+                  <NavLink
+                    to={fileUrl(resolvedAttempt?.certificate?.[0]?.filePath)}
+                    external
                   >
-                    {l.view}
-                    <Icon boxSize={5}>
-                      <IconArrowUpRight stroke={1.5} />
-                    </Icon>
-                  </Btn>
-                </NavLink>
+                    <Btn
+                      variant={"plain"}
+                      p={0}
+                      h={"fit"}
+                      color={`${themeConfig.colorPalette}.fg`}
+                    >
+                      {l.view}
+                      <Icon boxSize={5}>
+                        <IconArrowUpRight stroke={1.5} />
+                      </Icon>
+                    </Btn>
+                  </NavLink>
+                )}
               </HStack>
             </CContainer>
           </ItemContainer>

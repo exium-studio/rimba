@@ -16,6 +16,7 @@ import { Breadcrumbs } from "@/components/widget/Breadcrumbs";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
+import ResetPasswordDisclosure from "@/components/widget/ResetPasswordDisclosure";
 import { TopNav } from "@/components/widget/TopNav";
 import {
   Interface__SelectOption,
@@ -254,17 +255,21 @@ const ProfileForm = (props: any) => {
 
       <HelperText mt={4}>{l.msg_reload_after_submit}</HelperText>
 
-      <Btn
-        w={"fit"}
-        colorPalette={"p"}
-        mt={8}
-        ml={[0, null, "auto"]}
-        type="submit"
-        form="edit_profile"
-        loading={loading}
-      >
-        {l.save}
-      </Btn>
+      <HStack justify={"space-between"} mt={8}>
+        <ResetPasswordDisclosure>
+          <Btn variant={"outline"}>Reset password</Btn>
+        </ResetPasswordDisclosure>
+
+        <Btn
+          w={"fit"}
+          colorPalette={"p"}
+          type="submit"
+          form="edit_profile"
+          loading={loading}
+        >
+          {l.save}
+        </Btn>
+      </HStack>
     </CContainer>
   );
 };

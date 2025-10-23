@@ -50,8 +50,8 @@ export const lp_navs = {
   },
   related_apps: {
     index: {
-      id: "Aplikasi Terkait",
-      en: "Related Apps",
+      id: "Aplikasi",
+      en: "Applications",
     },
     kmis: {
       id: "KMIS",

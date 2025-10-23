@@ -145,7 +145,17 @@ const MATERIAL_REGISTRY = {
               (item: Interface__StorageFile) => {
                 const url = imgUrl(item.filePath);
 
-                return <Img key={url} fluid w={"full"} src={url} />;
+                return (
+                  <Img
+                    key={url}
+                    fluid
+                    w={"full"}
+                    src={url}
+                    imageProps={{
+                      unoptimized: true,
+                    }}
+                  />
+                );
               }
             )}
 

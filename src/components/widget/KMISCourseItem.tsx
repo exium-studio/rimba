@@ -315,7 +315,7 @@ const DetailCourse = (props: any) => {
                       >{`${feedback?.comment}`}</ClampText>
                     </CContainer>
 
-                    <HStack mt={"auto"}>
+                    <HStack mt={"auto"} pt={2}>
                       <Avatar
                         size={"sm"}
                         name={feedback?.ratedBy?.name}

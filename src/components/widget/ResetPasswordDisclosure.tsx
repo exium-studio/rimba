@@ -78,7 +78,7 @@ const Step1 = (props: any) => {
     <>
       <DisclosureBody>
         <CContainer>
-          <form>
+          <form id="reset_password_step_1" onSubmit={formik.handleSubmit}>
             <Field
               label="Email"
               invalid={!!formik.errors.email}
@@ -104,8 +104,9 @@ const Step1 = (props: any) => {
         <BackButton />
 
         <Btn
+          type="submit"
+          form="reset_password_step_1"
           colorPalette={themeConfig.colorPalette}
-          onClick={formik.submitForm}
           loading={loading}
         >
           {l.recieve} OTP
@@ -133,13 +134,14 @@ const Step2 = (props: any) => {
     initialValues: { email: email, otp: "" },
     validationSchema: yup.object().shape({
       email: yup.string().email().required(l.msg_required_form),
-      otp: yup.string().email().required(l.msg_required_form),
+      otp: yup.string().required(l.msg_required_form),
     }),
     onSubmit: (values) => {
       // console.log(values);
 
       const payload = new FormData();
       payload.append("email", values.email);
+      payload.append("otp", values.otp);
       const url = `/api/verify-otp`;
       const config = {
         url,
@@ -163,7 +165,7 @@ const Step2 = (props: any) => {
     <>
       <DisclosureBody>
         <CContainer>
-          <form>
+          <form id="reset_password_step_2" onSubmit={formik.handleSubmit}>
             <Field
               label="OTP"
               invalid={!!formik.errors.otp}
@@ -175,7 +177,7 @@ const Step2 = (props: any) => {
                 w={"full"}
                 size={"xl"}
                 onValueChange={(e) => {
-                  formik?.setFieldValue("otp", e.value);
+                  formik?.setFieldValue("otp", e.value.join(""));
                 }}
               >
                 <PinInputHiddenInput />
@@ -208,8 +210,9 @@ const Step2 = (props: any) => {
         <BackButton />
 
         <Btn
+          type="submit"
+          form="reset_password_step_2"
           colorPalette={themeConfig.colorPalette}
-          onClick={formik.submitForm}
           loading={loading}
         >
           {l.verify} OTP
@@ -259,7 +262,7 @@ const Step3 = (props: any) => {
       payload.append("email", values.email);
       payload.append("otp", values.otp);
       payload.append("password", values.password);
-      payload.append("password_confirmation", values.password_confirmation);
+      payload.append("passwordConfirmation", values.password_confirmation);
       const url = `/api/reset-password`;
       const config = {
         url,
@@ -282,7 +285,7 @@ const Step3 = (props: any) => {
     <>
       <DisclosureBody>
         <CContainer>
-          <form>
+          <form id="reset_password_step_3" onSubmit={formik.handleSubmit}>
             <Field
               label={"Password"}
               invalid={!!formik.errors.password}
@@ -320,8 +323,9 @@ const Step3 = (props: any) => {
         <BackButton />
 
         <Btn
+          type="submit"
+          form="reset_password_step_3"
           colorPalette={themeConfig.colorPalette}
-          onClick={formik.submitForm}
           loading={loading}
           disabled={
             !!!(formik.values.password && formik.values.password_confirmation)

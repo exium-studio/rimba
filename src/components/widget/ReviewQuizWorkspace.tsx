@@ -39,6 +39,8 @@ const AnswerOption = (props: any) => {
     optionLetter === resolvedRes?.selectedOption;
   const isAnswer = resolvedRes?.selectedOption === optionLetter;
 
+  console.debug(resolvedRes);
+
   return (
     <Btn
       clicky={false}
@@ -54,7 +56,7 @@ const AnswerOption = (props: any) => {
       {...restProps}
     >
       <P>{optionLetter}</P>
-      <P>{(resolvedRes as Record<string, any>)?.[optionKey]}</P>
+      <P>{(resolvedRes as Record<string, any>)?.quiz?.[optionKey]}</P>
 
       {isAnswer && <DotIndicator ml={"auto"} />}
     </Btn>

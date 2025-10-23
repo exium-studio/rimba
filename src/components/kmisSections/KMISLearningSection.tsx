@@ -292,10 +292,7 @@ const LearningModules = (props: any) => {
           w={"full"}
         >
           <ListItemContainer
-            disabled={
-              completedMaterials.length !== materials.length ||
-              courseDetail?.learningAttempt?.topic?.totalQuiz === 0
-            }
+            disabled={!!!courseDetail?.learningAttempt?.quizFinished}
           >
             <Center pos={"relative"}>
               {isFeedbackFinished && <CompleteIndicator />}
@@ -323,8 +320,8 @@ const LearningModules = (props: any) => {
         >
           <ListItemContainer
             disabled={
-              completedMaterials.length !== materials.length ||
-              courseDetail?.learningAttempt?.topic?.totalQuiz === 0
+              !!!courseDetail?.learningAttempt?.quizFinished &&
+              !!!courseDetail?.learningAttempt?.feedback
             }
           >
             <Center pos={"relative"}>

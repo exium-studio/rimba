@@ -855,22 +855,20 @@ export const staticContents = {
 export const homeActivities = [
   {
     id: 1,
-    eventCategory: [
-      {
-        id: 1,
-        name: {
-          id: "Konservasi",
-          en: "Conservation",
-        },
-        description: {
-          id: "Kategori kegiatan yang berfokus pada pelestarian lingkungan.",
-          en: "Category of activities focused on environmental preservation.",
-        },
-        createdAt: "2025-01-15T08:30:00Z",
-        updatedAt: "2025-01-15T08:30:00Z",
-        deletedAt: null,
+    eventCategory: {
+      id: 1,
+      name: {
+        id: "Konservasi",
+        en: "Conservation",
       },
-    ],
+      description: {
+        id: "Kategori kegiatan yang berfokus pada pelestarian lingkungan.",
+        en: "Category of activities focused on environmental preservation.",
+      },
+      createdAt: "2025-01-15T08:30:00Z",
+      updatedAt: "2025-01-15T08:30:00Z",
+      deletedAt: null,
+    },
     thumbnail: [
       {
         id: 1,
@@ -904,22 +902,20 @@ export const homeActivities = [
   },
   {
     id: 2,
-    eventCategory: [
-      {
-        id: 2,
-        name: {
-          id: "Pemetaan",
-          en: "Mapping",
-        },
-        description: {
-          id: "Kategori kegiatan yang menggunakan peta dan data spasial.",
-          en: "Category of activities using maps and spatial data.",
-        },
-        createdAt: "2025-01-15T08:30:00Z",
-        updatedAt: "2025-01-15T08:30:00Z",
-        deletedAt: null,
+    eventCategory: {
+      id: 2,
+      name: {
+        id: "Pemetaan",
+        en: "Mapping",
       },
-    ],
+      description: {
+        id: "Kategori kegiatan yang menggunakan peta dan data spasial.",
+        en: "Category of activities using maps and spatial data.",
+      },
+      createdAt: "2025-01-15T08:30:00Z",
+      updatedAt: "2025-01-15T08:30:00Z",
+      deletedAt: null,
+    },
     thumbnail: [
       {
         id: 2,
@@ -953,22 +949,20 @@ export const homeActivities = [
   },
   {
     id: 3,
-    eventCategory: [
-      {
-        id: 3,
-        name: {
-          id: "Infrastruktur",
-          en: "Infrastructure",
-        },
-        description: {
-          id: "Kategori kegiatan terkait pembangunan infrastruktur berkelanjutan.",
-          en: "Category of activities related to sustainable infrastructure.",
-        },
-        createdAt: "2025-01-15T08:30:00Z",
-        updatedAt: "2025-01-15T08:30:00Z",
-        deletedAt: null,
+    eventCategory: {
+      id: 3,
+      name: {
+        id: "Infrastruktur",
+        en: "Infrastructure",
       },
-    ],
+      description: {
+        id: "Kategori kegiatan terkait pembangunan infrastruktur berkelanjutan.",
+        en: "Category of activities related to sustainable infrastructure.",
+      },
+      createdAt: "2025-01-15T08:30:00Z",
+      updatedAt: "2025-01-15T08:30:00Z",
+      deletedAt: null,
+    },
     thumbnail: [
       {
         id: 3,

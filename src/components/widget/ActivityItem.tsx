@@ -54,13 +54,9 @@ export const ActivityItem = (props: Props) => {
           </HStack>
 
           <HStack wrap={"wrap"} zIndex={2} pos={"absolute"} bottom={4} left={4}>
-            {activity.eventCategory?.map((category) => {
-              return (
-                <Badge key={category.id} w={"fit"}>
-                  {category.name[lang]}
-                </Badge>
-              );
-            })}
+            <Badge key={activity.eventCategory?.id} w={"fit"}>
+              {activity.eventCategory?.name?.[lang]}
+            </Badge>
           </HStack>
 
           <Img

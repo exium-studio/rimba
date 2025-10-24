@@ -159,7 +159,7 @@ export interface Interface_CMSActivityCategory extends Interface__CUD {
 }
 export interface Interface__CMSActivity extends Interface__CUD {
   id: number;
-  eventCategory: Interface_CMSActivityCategory[];
+  eventCategory: Interface_CMSActivityCategory;
   thumbnail: Interface__StorageFile[];
   title: Interface__CMSContentText;
   description: Interface__CMSContentText;

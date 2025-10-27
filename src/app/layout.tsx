@@ -1,11 +1,10 @@
 import { Provider } from "@/components/ui/provider";
-import { Toaster } from "@/components/ui/toaster";
 import ClientSideOnly from "@/components/widget/ClientSideOnly";
+import TawkChat from "@/components/widget/TawkChat";
 import { APP } from "@/constants/_meta";
 import { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import TawkChat from "@/components/widget/TawkChat";
 
 interface Props {
   children: React.ReactNode;
@@ -69,7 +68,6 @@ export default function RootLayout(props: Props) {
 
       <body>
         <Provider>
-          <Toaster />
           <ClientSideOnly>{children}</ClientSideOnly>
         </Provider>
 

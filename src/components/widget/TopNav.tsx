@@ -73,8 +73,6 @@ const MobileTopNav = () => {
     }
   }, [open]);
 
-  console.log(user);
-
   return (
     <CContainer
       h={"fit"}

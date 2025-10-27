@@ -22,6 +22,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
+import { Toaster } from "@/components/ui/toaster";
+import { isEmptyArray } from "@/utils/array";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,6 +57,7 @@ export default function ClientSideOnly(props: Props) {
   const { children, fallback } = props;
 
   // Contexts
+  const staticContents = useContents((s) => s.staticContents);
   const setContents = useContents((s) => s.setContents);
   const { setColorMode } = useColorMode();
   const ADM = useADM((s) => s.ADM);
@@ -76,7 +79,7 @@ export default function ClientSideOnly(props: Props) {
 
   // States
   const [mounted, setMounted] = useState(mountedGlobal);
-  const { data, onRetry } = useDataState<any>({
+  const { data, initialLoading, error, onRetry } = useDataState<any>({
     initialData: undefined,
     url: `/api/cms/public-request/get-all-content`,
     dependencies: [fetchContents],
@@ -100,6 +103,7 @@ export default function ClientSideOnly(props: Props) {
     ),
     loaded: (
       <>
+        <Toaster />
         <LoadingBar />
         <GlobalDisclosure />
         {children}
@@ -180,22 +184,20 @@ export default function ClientSideOnly(props: Props) {
 
   if (!mounted) return <>{fallback || <DefaultFallback />}</>;
 
-  // return (
-  //   <>
-  //     {initialLoading && render.loading}
-  //     {!initialLoading && (
-  //       <>
-  //         {error && render.error}
-  //         {!error && (
-  //           <>
-  //             {data && render.loaded}
-  //             {!data && render.empty}
-  //           </>
-  //         )}
-  //       </>
-  //     )}
-  //   </>
-  // );
-
-  return render.loaded;
+  return (
+    <>
+      {initialLoading && render.loading}
+      {!initialLoading && (
+        <>
+          {error && render.error}
+          {!error && (
+            <>
+              {data && !isEmptyArray(staticContents) && render.loaded}
+              {!data && render.empty}
+            </>
+          )}
+        </>
+      )}
+    </>
+  );
 }

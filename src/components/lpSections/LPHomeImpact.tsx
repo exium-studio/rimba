@@ -68,6 +68,24 @@ const CompletionProgressChart = (props: StackProps) => {
     }),
   });
 
+  // Utils
+  function getMaxYear(data: Record<string, number>[]): number {
+    // Merge all yearly values into one object
+    const merged = data.reduce<Record<string, number>>((acc, obj) => {
+      for (const [year, value] of Object.entries(obj)) {
+        acc[year] = (acc[year] || 0) + value;
+      }
+      return acc;
+    }, {});
+
+    // Find the year with the highest total value
+    const maxYear = Object.keys(merged).reduce((a, b) =>
+      merged[a] > merged[b] ? a : b
+    );
+
+    return Number(maxYear);
+  }
+
   return (
     <CContainer gap={4} {...props}>
       <EditableContentContainer content={staticContents[47]}>
@@ -89,7 +107,7 @@ const CompletionProgressChart = (props: StackProps) => {
             axisLine={false}
             tickLine={false}
             tickMargin={10}
-            dataKey={chart.key("2023")}
+            dataKey={chart.key(getMaxYear(homeCompletionProgress))}
             stroke={chart.color("border")}
           />
           <Tooltip

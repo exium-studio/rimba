@@ -8,11 +8,13 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { DocumentItem } from "@/components/widget/DocumentItem";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
+import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Interface__CMSDocument } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
+import { isEmptyArray } from "@/utils/array";
 import { Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
@@ -107,10 +109,12 @@ export const LPHomeLegalDocs = (props: StackProps) => {
 
         <SimpleGrid
           ref={mainContentsRef}
-          columns={[1, null, 2, homeLegalDocuments.length]}
+          columns={[1, null, 2, 4]}
           gap={6}
           mt={"100px"}
         >
+          {isEmptyArray(homeLegalDocuments) && <FeedbackNoData />}
+
           {homeLegalDocuments?.map(
             (doc: Interface__CMSDocument, idx: number) => {
               return (

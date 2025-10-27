@@ -7,11 +7,13 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { ActivityItem } from "@/components/widget/ActivityItem";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
+import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Interface__CMSActivity } from "@/constants/interfaces";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import { isEmptyArray } from "@/utils/array";
 import { HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import {
@@ -167,6 +169,8 @@ export const LPHomeActivities = (props: StackProps) => {
           overflowX={"auto"}
         >
           <HStack ref={mainContentsRef} w={"max"} gap={0}>
+            {isEmptyArray(homeActivities) && <FeedbackNoData />}
+
             {homeActivities.map((activity: any, idx: number) => {
               return (
                 <ActivityItemFull

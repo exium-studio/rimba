@@ -6,11 +6,13 @@ import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
+import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Interface__CMSNews } from "@/constants/interfaces";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
 import { Center, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
@@ -200,6 +202,8 @@ export const LPHomeNews = (props: StackProps) => {
       </EditableContentContainer>
 
       <CContainer mt={"80px"} gap={"80px"}>
+        {isEmptyArray(homeNews) && <FeedbackNoData />}
+
         {homeNews?.map((news: Interface__CMSNews, idx: number) => {
           return <NewsItem key={news.id} news={news} idx={idx} />;
         })}

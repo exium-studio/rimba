@@ -129,9 +129,9 @@ export const LPHomeLegalDocs = (props: StackProps) => {
         </SimpleGrid>
 
         <CContainer ref={bottomContentsRef} mt={"80px"}>
-          <EditableContentContainer content={staticContents[25]} mx={"auto"}>
+          <EditableContentContainer content={staticContents[51]} mx={"auto"}>
             <P textAlign={"center"} maxW={"500px"} mx={"auto"}>
-              {staticContents[25]?.content[lang]}
+              {staticContents[51]?.content[lang]}
             </P>
           </EditableContentContainer>
 

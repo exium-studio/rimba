@@ -12,7 +12,6 @@ import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { PageHeader } from "@/components/widget/PageHeader";
 import { TopNav } from "@/components/widget/TopNav";
-import { homeActivities } from "@/constants/_dummy";
 import { Interface__CMSActivity } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
@@ -35,7 +34,7 @@ const ListSection = () => {
   const { error, loading, data, makeRequest } = useDataState<
     Interface__CMSActivity[]
   >({
-    initialData: homeActivities,
+    initialData: undefined,
     // url: `/api/cms/public-request/get-all-event`,
     dependencies: [],
   });

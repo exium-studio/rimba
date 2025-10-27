@@ -697,16 +697,21 @@ const StructureSection = () => {
       </EditableContentContainer>
 
       <CContainer ref={mainContentRef} mt={"80px"}>
-        <EditableContentContainer content={staticContents[112]} mx={"auto"}>
+        <EditableContentContainer
+          content={staticContents[112]}
+          mx={"auto"}
+          w={"full"}
+        >
           <Img
             src={staticContents[112]?.content}
             alt="RIMBA organizational structure"
             fluid
+            w={"full"}
           />
         </EditableContentContainer>
 
         <Center mt={8}>
-          <Link href={staticContents[111]?.content} target="_blank">
+          <Link href={staticContents[112]?.content} target="_blank">
             <Btn colorPalette={"p"} variant={"ghost"} pr={[5, null, 3]}>
               {l.view}
 

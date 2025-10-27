@@ -9,11 +9,13 @@ import {
 import { CContainer } from "@/components/ui/c-container";
 import { H2 } from "@/components/ui/heading";
 import { P } from "@/components/ui/p";
+import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Interface__CMSFAQs } from "@/constants/interfaces";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import { isEmptyArray } from "@/utils/array";
 import { SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -97,6 +99,8 @@ export const LPFAQs = (props: StackProps) => {
           <CContainer className="content_2">
             <AccordionRoot multiple>
               <CContainer gap={4}>
+                {isEmptyArray(FAQs) && <FeedbackNoData />}
+
                 {FAQs.map((faq: Interface__CMSFAQs, idx: number) => {
                   return (
                     <AccordionItem

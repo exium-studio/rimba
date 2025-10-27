@@ -87,7 +87,7 @@ export const LPFAQs = (props: StackProps) => {
               className="section_title"
               fontWeight={"bold"}
               color={"p.700"}
-              maxW={"400px"}
+              maxW={["", null, "400px"]}
               textAlign={["center", null, "left"]}
             >
               Frequently Asked Questions

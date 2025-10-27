@@ -21,7 +21,7 @@ export function EditableContentContainer(
     ? highlightedContentIdsParam.split(",").map((id) => id.trim())
     : [];
 
-  const isHighlighted = !highlightedContentIds.includes(String(content?.id));
+  const isHighlighted = highlightedContentIds.includes(String(content?.id));
 
   return (
     <CContainer

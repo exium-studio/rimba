@@ -1,3 +1,12 @@
+import {
+  FAQs,
+  homeActivities,
+  homeAnimalComposition,
+  homeCompletionProgress,
+  homeLegalDocuments,
+  homeNews,
+  staticContents,
+} from "@/constants/_dummy";
 import { create } from "zustand";
 
 interface State_Actions {
@@ -12,13 +21,13 @@ interface State_Actions {
 }
 
 const useContents = create<State_Actions>((set) => ({
-  staticContents: [],
-  homeActivities: [],
-  homeAnimalComposition: [],
-  homeCompletionProgress: [],
-  homeLegalDocuments: [],
-  homeNews: [],
-  FAQs: [],
+  staticContents: staticContents || [],
+  homeActivities: homeActivities || [],
+  homeAnimalComposition: homeAnimalComposition || [],
+  homeCompletionProgress: homeCompletionProgress || [],
+  homeLegalDocuments: homeLegalDocuments || [],
+  homeNews: homeNews || [],
+  FAQs: FAQs || [],
   setContents: (newState) =>
     set({
       staticContents: newState.staticContents,

@@ -58,7 +58,7 @@ export default function ClientSideOnly(props: Props) {
 
   // Contexts
   const staticContents = useContents((s) => s.staticContents);
-  const setContents = useContents((s) => s.setContents);
+  // const setContents = useContents((s) => s.setContents);
   const { setColorMode } = useColorMode();
   const ADM = useADM((s) => s.ADM);
   const authToken = getAuthToken();
@@ -120,7 +120,7 @@ export default function ClientSideOnly(props: Props) {
   // handle LP contents
   useEffect(() => {
     if (data) {
-      setContents(data);
+      // setContents(data);
     }
   }, [data]);
 

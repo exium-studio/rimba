@@ -269,7 +269,8 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             minH={"max"}
             justify={["", null, "center"]}
             zIndex={2}
-            py={"80px"}
+            pt={[0, null, "80px"]}
+            pb={"80px"}
           >
             <CContainer gap={6} zIndex={2}>
               {values.map((value, idx) => {

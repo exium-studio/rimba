@@ -9,7 +9,6 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { Interface__CMSActivity } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import { formatDate } from "@/utils/formatter";
-import { imgUrl } from "@/utils/url";
 import { Badge, Center, HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconArrowUpRight, IconSeedling } from "@tabler/icons-react";
 
@@ -61,7 +60,8 @@ export const ActivityItem = (props: Props) => {
           </HStack>
 
           <Img
-            src={imgUrl(activity.thumbnail?.[0]?.filePath)}
+            // src={imgUrl(activity.thumbnail?.[0]?.filePath)}
+            src={activity.thumbnail?.[0]?.fileUrl}
             aspectRatio={1}
             w={thumbnailFill ? "100vw" : "full"}
             h={thumbnailFill ? "700px" : "full"}

@@ -14,7 +14,6 @@ import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
-import { imgUrl } from "@/utils/url";
 import { HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import {
@@ -34,7 +33,8 @@ const ActivityItemFull = (props: any) => {
     <CContainer
       w="100vw"
       h="700px"
-      bgImage={`url(${imgUrl(activity.thumbnail?.[0]?.filePath)})`}
+      // bgImage={`url(${imgUrl(activity.thumbnail?.[0]?.filePath)})`}
+      bgImage={`url(${activity.thumbnail?.[0]?.fileUrl})`}
       bgSize="cover"
       bgPos="center"
       display="flex"

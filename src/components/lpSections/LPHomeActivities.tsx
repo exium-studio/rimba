@@ -3,6 +3,7 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { H2 } from "@/components/ui/heading";
+import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { ActivityItem } from "@/components/widget/ActivityItem";
@@ -34,7 +35,7 @@ const ActivityItemFull = (props: any) => {
       w="100vw"
       h="700px"
       // bgImage={`url(${imgUrl(activity.thumbnail?.[0]?.filePath)})`}
-      bgImage={`url(${activity.thumbnail?.[0]?.fileUrl})`}
+      // bgImage={`url(${activity.thumbnail?.[0]?.fileUrl})`}
       bgSize="cover"
       bgPos="center"
       display="flex"
@@ -43,7 +44,25 @@ const ActivityItemFull = (props: any) => {
       pos={"relative"}
       {...restProps}
     >
-      <ActivityItem activity={activity} thumbnailFill={true} w={"300px"} />
+      <Img
+        src={activity.thumbnail?.[0]?.fileUrl}
+        fluid
+        w={"full"}
+        h={"full"}
+        pos={"absolute"}
+        top={0}
+        left={0}
+        imageProps={{
+          unoptimized: true,
+        }}
+      />
+
+      <ActivityItem
+        activity={activity}
+        thumbnailFill={true}
+        w={"300px"}
+        zIndex={2}
+      />
     </CContainer>
   );
 };

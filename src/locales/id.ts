@@ -537,6 +537,7 @@ const translations = {
   },
   "successful": "Berhasil",
   "sunday": "Minggu",
+  "table_of_content": "Daftar isi",
   "theme": "Tema",
   "thursday": "Kamis",
   "time_format": "Format waktu",

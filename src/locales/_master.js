@@ -943,6 +943,10 @@ export const document = {
   id: "Dokumen",
   en: "Document",
 };
+export const table_of_content = {
+  id: "Daftar isi",
+  en: "Table of content",
+};
 
 // Message
 export const msg_still_have_question = {

@@ -4,6 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
+import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
@@ -122,18 +123,20 @@ const NewsItem = (props: any) => {
 
         <P lineClamp={4}>{news.description[lang]}</P>
 
-        <Btn
-          w={"fit"}
-          colorPalette={"p"}
-          variant={"outline"}
-          pr={[5, null, 3]}
-          mt={4}
-        >
-          {l.read_more}
-          <Icon>
-            <IconArrowUpRight />
-          </Icon>
-        </Btn>
+        <NavLink to={`/about-us/news/${news.slug[lang]}`}>
+          <Btn
+            w={"fit"}
+            colorPalette={"p"}
+            variant={"outline"}
+            pr={[5, null, 3]}
+            mt={4}
+          >
+            {l.read_more}
+            <Icon>
+              <IconArrowUpRight />
+            </Icon>
+          </Btn>
+        </NavLink>
       </CContainer>
     </SimpleGrid>
   );

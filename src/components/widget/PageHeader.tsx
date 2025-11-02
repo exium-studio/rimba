@@ -17,14 +17,22 @@ interface Props extends StackProps {
   titleContent?: any;
   title?: string;
   descriptionContent?: any;
+  description?: string;
   img?: string;
   links?: { label: string; path: string }[];
 }
 
 export const PageHeader = (props: Props) => {
   // Props
-  const { titleContent, title, descriptionContent, img, links, ...restProps } =
-    props;
+  const {
+    titleContent,
+    title,
+    descriptionContent,
+    description,
+    img,
+    links,
+    ...restProps
+  } = props;
 
   // Contexts
   const { lang } = useLang();
@@ -76,7 +84,7 @@ export const PageHeader = (props: Props) => {
             src={img}
             h={"full"}
             w={"full"}
-            opacity={0.5}
+            opacity={0.4}
             pos={"absolute"}
             top={0}
             left={0}
@@ -107,6 +115,8 @@ export const PageHeader = (props: Props) => {
               <P fontSize={"lg"}>{descriptionContent.content[lang]}</P>
             </EditableContentContainer>
           )}
+
+          {description && <P fontSize={"lg"}>{description}</P>}
         </CContainer>
       </LPSectionContainer>
     </CContainer>

@@ -126,6 +126,7 @@ export default function Page(props: Props) {
 
       <PageHeader
         title={data ? data?.title?.[lang] : "Loading..."}
+        description={data ? data?.description?.[lang] : ""}
         img={`${IMAGES_PATH}/lp/documents/header-bg.jpg`}
         links={[
           { label: l.lp_navs.home, path: "/" },

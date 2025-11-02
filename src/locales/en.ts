@@ -537,6 +537,7 @@ const translations = {
   },
   "successful": "Successful",
   "sunday": "Sunday",
+  "table_of_content": "Table of content",
   "theme": "Theme",
   "thursday": "Thursday",
   "time_format": "Time format",

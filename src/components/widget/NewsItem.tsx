@@ -96,7 +96,11 @@ export const NewsItem = (props: Props) => {
         </CContainer>
 
         <CContainer p={2} mt={"auto"}>
-          <NavLink to={`/activities/${news.id}`} w={"fit"} ml={"auto"}>
+          <NavLink
+            to={`/about-us/news/${news.slug[lang]}`}
+            w={"fit"}
+            ml={"auto"}
+          >
             <Btn colorPalette={"p"} variant={"ghost"} mt={"auto"}>
               {l.learn_more}
 

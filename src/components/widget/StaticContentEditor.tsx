@@ -1,5 +1,11 @@
 "use client";
 
+import {
+  AccordionItem,
+  AccordionItemContent,
+  AccordionItemTrigger,
+  AccordionRoot,
+} from "@/components/ui/accordion";
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { CloseButton } from "@/components/ui/close-button";
@@ -962,89 +968,106 @@ export const StaticContentList = () => {
         pr={`calc(16px - 8px)`}
         gap={4}
       >
-        {staticContents &&
-          resolvedRegistry.map((reg) => {
-            return (
-              <CContainer key={reg.pageLabelKey} gap={2}>
-                <HStack color={"fg.subtle"}>
-                  <Icon boxSize={5}>
-                    <IconWorld stroke={1.5} />
-                  </Icon>
+        <AccordionRoot multiple>
+          {staticContents &&
+            resolvedRegistry.map((reg, idx) => {
+              return (
+                <AccordionItem
+                  key={reg.pageLabelKey}
+                  value={`${reg.pageLabelKey}-${idx}`}
+                  gap={2}
+                  px={2}
+                >
+                  <AccordionItemTrigger>
+                    <Icon boxSize={5}>
+                      <IconWorld stroke={1.5} />
+                    </Icon>
 
-                  <P fontWeight={"medium"}>
-                    {pluckString(l, reg.pageLabelKey)}
-                  </P>
-                </HStack>
+                    <P fontWeight={"medium"}>
+                      {pluckString(l, reg.pageLabelKey)}
+                    </P>
+                  </AccordionItemTrigger>
 
-                {reg.contents.map((section) => {
-                  return (
-                    <CContainer
-                      key={section.sectionLabelKey}
-                      gap={1}
-                      rounded={"lg"}
-                      border={"1px solid"}
-                      borderColor={"d1"}
-                    >
-                      <HStack color={"fg.subtle"} px={3} py={2}>
-                        <Icon boxSize={5}>
-                          <IconSection stroke={1.5} />
-                        </Icon>
+                  <AccordionItemContent>
+                    <AccordionRoot multiple>
+                      {reg.contents.map((section, idx2) => {
+                        const isLast = idx2 === reg.contents.length - 1;
 
-                        <P fontWeight={"medium"}>
-                          {pluckString(l, section.sectionLabelKey)}
-                        </P>
-                      </HStack>
+                        return (
+                          <AccordionItem
+                            key={section.sectionLabelKey}
+                            value={`${section.sectionLabelKey}-${idx2}`}
+                            gap={1}
+                            borderBottom={isLast ? "none" : "1px solid"}
+                            borderColor={"border.muted"}
+                          >
+                            <AccordionItemTrigger px={3} py={2}>
+                              <Icon boxSize={5}>
+                                <IconSection stroke={1.5} />
+                              </Icon>
 
-                      <CContainer p={2} pt={0} gap={2}>
-                        {section.listIds.map((id, idx) => {
-                          const content = staticContents[id];
+                              <P fontWeight={"medium"}>
+                                {pluckString(l, section.sectionLabelKey)}
+                              </P>
+                            </AccordionItemTrigger>
 
-                          return (
-                            <CContainer
-                              key={idx}
-                              align={"start"}
-                              gap={1}
-                              rounded={`calc(16 - 1px)`}
-                              border={"1px solid"}
-                              borderColor={"d1"}
-                            >
-                              <HStack
-                                justify={"space-between"}
-                                w={"full"}
-                                mb={1}
-                                px={3}
-                                py={2}
-                              >
-                                <HStack gap={4}>
-                                  <P
-                                    fontWeight={"medium"}
-                                  >{`ID: ${content.id}`}</P>
-                                  <P color={"fg.subtle"}>{`${content.type}`}</P>
-                                </HStack>
+                            <AccordionItemContent p={2}>
+                              <CContainer gap={2} pb={4}>
+                                {section.listIds.map((id, idx) => {
+                                  const content = staticContents[id];
 
-                                <HStack>
-                                  <EditContentBtn content={content} />
-                                </HStack>
+                                  return (
+                                    <CContainer
+                                      key={idx}
+                                      align={"start"}
+                                      gap={1}
+                                      rounded={`lg`}
+                                      border={"1px solid"}
+                                      borderColor={"border.muted"}
+                                    >
+                                      <HStack
+                                        justify={"space-between"}
+                                        w={"full"}
+                                        mb={1}
+                                        px={3}
+                                        py={2}
+                                      >
+                                        <HStack gap={4}>
+                                          <P
+                                            fontWeight={"medium"}
+                                          >{`ID: ${content.id}`}</P>
+                                          <P
+                                            color={"fg.subtle"}
+                                          >{`${content.type}`}</P>
+                                        </HStack>
 
-                                {/* <P>{`No. ${idx + 1}`}</P> */}
-                              </HStack>
+                                        <HStack>
+                                          <EditContentBtn content={content} />
+                                        </HStack>
 
-                              <CContainer p={3} pt={0}>
-                                <RenderContent
-                                  type={content.type}
-                                  content={content.content}
-                                />
+                                        {/* <P>{`No. ${idx + 1}`}</P> */}
+                                      </HStack>
+
+                                      <CContainer p={3} pt={0}>
+                                        <RenderContent
+                                          type={content.type}
+                                          content={content.content}
+                                        />
+                                      </CContainer>
+                                    </CContainer>
+                                  );
+                                })}
                               </CContainer>
-                            </CContainer>
-                          );
-                        })}
-                      </CContainer>
-                    </CContainer>
-                  );
-                })}
-              </CContainer>
-            );
-          })}
+                            </AccordionItemContent>
+                          </AccordionItem>
+                        );
+                      })}
+                    </AccordionRoot>
+                  </AccordionItemContent>
+                </AccordionItem>
+              );
+            })}
+        </AccordionRoot>
       </CContainer>
     </CContainer>
   );
@@ -1064,15 +1087,20 @@ export const StaticContentListToggle = (props: BtnProps) => {
         onClick={onOpen}
         zIndex={99}
         pos={"fixed"}
+        aspectRatio={1}
+        h={"70px"}
+        rounded={"full"}
         {...props}
       >
-        <Icon>
-          <IconPencilMinus stroke={1.5} />
-        </Icon>
-        CMS
+        <CContainer align={"center"}>
+          <Icon>
+            <IconPencilMinus stroke={1.5} />
+          </Icon>
+          CMS
+        </CContainer>
       </DraggableBtn>
 
-      <DrawerRoot open={true} placement={"start"} size={"sm"}>
+      <DrawerRoot open={open} placement={"start"} size={"sm"}>
         <DrawerContent>
           <DrawerHeader py={3} pr={2}>
             <HStack w={"full"} justify={"space-between"}>

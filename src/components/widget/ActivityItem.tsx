@@ -91,7 +91,11 @@ export const ActivityItem = (props: Props) => {
         </CContainer>
 
         <CContainer p={2} mt={"auto"}>
-          <NavLink to={`/activities/${activity.id}`} w={"fit"} ml={"auto"}>
+          <NavLink
+            to={`/about-us/activity/${activity.id}`}
+            w={"fit"}
+            ml={"auto"}
+          >
             <Btn colorPalette={"p"} variant={"ghost"} mt={"auto"}>
               {l.learn_more}
 

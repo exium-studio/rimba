@@ -15,7 +15,7 @@ import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { PageHeader } from "@/components/widget/PageHeader";
 import { TopNav } from "@/components/widget/TopNav";
-import { Interface__CMSNews } from "@/constants/interfaces";
+import { Interface__CMSActivity } from "@/constants/interfaces";
 import { R_SPACING } from "@/constants/sizes";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
@@ -34,13 +34,13 @@ type TocItem = {
 };
 interface Props {
   params: {
-    newsSlug: string;
+    activityId: string;
   };
 }
 export default function Page(props: Props) {
   // Props
   const { params } = props;
-  const { newsSlug } = params;
+  const { activityId } = params;
 
   // Contexts
   const { l, lang } = useLang();
@@ -48,9 +48,9 @@ export default function Page(props: Props) {
 
   // States
   const { error, initialLoading, data, onRetry } =
-    useDataState<Interface__CMSNews>({
+    useDataState<Interface__CMSActivity>({
       initialData: undefined,
-      url: `/api/cms/public-request/get-news-by-slug/${newsSlug}`,
+      url: `/api/cms/public-request/get-event/${activityId}`,
       dependencies: [],
       dataResource: false,
     });
@@ -150,7 +150,7 @@ export default function Page(props: Props) {
   useEffect(() => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(
-      data?.newsContent?.[lang] || "",
+      data?.eventContent?.[lang] || "",
       "text/html"
     );
 
@@ -181,12 +181,12 @@ export default function Page(props: Props) {
         links={[
           { label: l.lp_navs.home, path: "/" },
           {
-            label: staticContents[114].content[lang],
-            path: "/about-us/news",
+            label: staticContents[113].content[lang],
+            path: "/about-us/activity",
           },
           {
             label: data ? data?.title?.[lang] : "Loading...",
-            path: `/document/${data?.id}`,
+            path: `/activity/${data?.id}`,
           },
         ]}
       />

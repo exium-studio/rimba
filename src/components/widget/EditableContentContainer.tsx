@@ -2,9 +2,11 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
+import { EditContentTrigger } from "@/components/widget/StaticContentEditor";
 import { Props__EditableContentContainer } from "@/constants/props";
 import { useCMS } from "@/context/useCMS";
 import { Center } from "@chakra-ui/react";
+import { useState } from "react";
 
 export function EditableContentContainer(
   props: Props__EditableContentContainer
@@ -14,8 +16,9 @@ export function EditableContentContainer(
 
   // Contexts
   const highlightedContentIds = useCMS((s) => s.highlightedContentIds);
-
   const isHighlighted = highlightedContentIds.includes(String(content?.id));
+
+  const [hover, setHover] = useState<boolean>(false);
 
   return (
     <CContainer
@@ -26,30 +29,41 @@ export function EditableContentContainer(
     >
       {children}
 
-      {isHighlighted && (
-        <>
+      <EditContentTrigger content={content} pos="absolute" w="full" h="full">
+        <CContainer
+          onMouseEnter={() => {
+            setHover(true);
+          }}
+          onMouseLeave={() => {
+            setHover(false);
+          }}
+          cursor={"pointer"}
+          w="full"
+          h="full"
+        >
           <Center
             w="full"
             h="full"
             bg="orange.400"
-            opacity={0.8}
-            pos="absolute"
+            opacity={isHighlighted || hover ? 0.8 : 0}
           />
 
-          <P
-            fontSize="xl"
-            fontWeight="bold"
-            whiteSpace="nowrap"
-            color="light"
-            pos="absolute"
-            top="50%"
-            left="50%"
-            transform="translate(-50%, -50%)"
-          >
-            {`${content.id}`}
-          </P>
-        </>
-      )}
+          {hover && (
+            <P
+              fontSize="xl"
+              fontWeight="bold"
+              whiteSpace="nowrap"
+              color="light"
+              pos="absolute"
+              top="50%"
+              left="50%"
+              transform="translate(-50%, -50%)"
+            >
+              {`${content.id}`}
+            </P>
+          )}
+        </CContainer>
+      </EditContentTrigger>
     </CContainer>
   );
 }

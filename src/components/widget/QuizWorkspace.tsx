@@ -60,6 +60,7 @@ import {
   IconArrowLeft,
   IconArrowRight,
   IconArrowUpRight,
+  IconStarFilled,
   IconStopwatch,
 } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
@@ -659,6 +660,29 @@ const ReviewAnswer = (props: any) => {
                 </P>
                 <P>:</P>
                 <P>{formatNumber(resolvedAttempt?.emptyCount)}</P>
+              </HStack>
+
+              <HStack align={"start"}>
+                <P w={"120px"} color={"fg.muted"} flexShrink={0}>
+                  Rating
+                </P>
+                <P>:</P>
+                {resolvedAttempt?.feedback ? (
+                  <HStack gap={1}>
+                    {Array.from(
+                      { length: resolvedAttempt?.feedback },
+                      (_, i) => {
+                        return (
+                          <Icon key={i} color={"yellow.500"} boxSize={5}>
+                            <IconStarFilled />
+                          </Icon>
+                        );
+                      }
+                    )}
+                  </HStack>
+                ) : (
+                  "-"
+                )}{" "}
               </HStack>
 
               <HStack align={"start"}>

@@ -126,7 +126,7 @@ export default function DocumentsPage() {
         img={`${IMAGES_PATH}/lp/documents/header-bg.jpg`}
         links={[
           { label: l.lp_navs.home, path: "/" },
-          { label: staticContents[65].content[lang], path: "/documents" },
+          { label: staticContents[65].content[lang], path: "/document" },
         ]}
       />
 

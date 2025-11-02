@@ -14,7 +14,8 @@ import gsap from "gsap";
 import { useRef } from "react";
 
 interface Props extends StackProps {
-  titleContent: any;
+  titleContent?: any;
+  title?: string;
   descriptionContent?: any;
   img?: string;
   links?: { label: string; path: string }[];
@@ -22,7 +23,8 @@ interface Props extends StackProps {
 
 export const PageHeader = (props: Props) => {
   // Props
-  const { titleContent, descriptionContent, img, links, ...restProps } = props;
+  const { titleContent, title, descriptionContent, img, links, ...restProps } =
+    props;
 
   // Contexts
   const { lang } = useLang();
@@ -86,11 +88,19 @@ export const PageHeader = (props: Props) => {
             <Breadcrumbs links={links} justify={["center", null, "start"]} />
           )}
 
-          <EditableContentContainer content={titleContent}>
+          {titleContent && (
+            <EditableContentContainer content={titleContent}>
+              <H1 fontWeight={"semibold"} lineHeight={1.4}>
+                {titleContent.content[lang]}
+              </H1>
+            </EditableContentContainer>
+          )}
+
+          {title && (
             <H1 fontWeight={"semibold"} lineHeight={1.4}>
-              {titleContent.content[lang]}
+              {title}
             </H1>
-          </EditableContentContainer>
+          )}
 
           {descriptionContent && (
             <EditableContentContainer content={descriptionContent}>

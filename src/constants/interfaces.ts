@@ -258,7 +258,7 @@ export interface Interface__Req<T = any> {
 // CUD
 export interface Interface__CUD {
   createdAt?: string;
-  updatedAt?: string | null;
+  updatedAt?: string;
   deletedAt?: string | null;
 }
 

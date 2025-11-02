@@ -939,6 +939,10 @@ export const footer = {
   id: "Footer",
   en: "Footer",
 };
+export const document = {
+  id: "Dokumen",
+  en: "Document",
+};
 
 // Message
 export const msg_still_have_question = {
@@ -1107,6 +1111,16 @@ export const alert_retry = {
   description: {
     id: "Silakan coba lagi.",
     en: "Please try again.",
+  },
+};
+export const alert_no_document_selected = {
+  title: {
+    id: "Belum ada dokumen yang dipilih",
+    en: "No document selected",
+  },
+  description: {
+    id: "Silakan pilih dokumen terlebih dahulu.",
+    en: "Please select a document first.",
   },
 };
 

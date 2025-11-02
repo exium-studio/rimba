@@ -13,6 +13,10 @@ const translations = {
     "title": "No data available",
     "description": "Please refresh the data or adjust your filters."
   },
+  "alert_no_document_selected": {
+    "title": "No document selected",
+    "description": "Please select a document first."
+  },
   "alert_not_found": {
     "title": "Not found",
     "description": "The requested data could not be found."
@@ -58,6 +62,7 @@ const translations = {
   "delete_": "Delete",
   "deleted_file": "Removed file",
   "description": "Description",
+  "document": "Document",
   "duration": "Duration",
   "educator": "Educator",
   "end_date_time": "Ended at",

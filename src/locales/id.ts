@@ -13,6 +13,10 @@ const translations = {
     "title": "Tidak ada data",
     "description": "Silakan perbarui data atau sesuaikan filter."
   },
+  "alert_no_document_selected": {
+    "title": "Belum ada dokumen yang dipilih",
+    "description": "Silakan pilih dokumen terlebih dahulu."
+  },
   "alert_not_found": {
     "title": "Tidak ditemukan",
     "description": "Data yang dicari tidak tersedia."
@@ -58,6 +62,7 @@ const translations = {
   "delete_": "Hapus",
   "deleted_file": "File dihapus",
   "description": "Deskripsi",
+  "document": "Dokumen",
   "duration": "Durasi",
   "educator": "Pengajar",
   "end_date_time": "Selesai pada",

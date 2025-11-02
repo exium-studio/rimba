@@ -118,11 +118,13 @@ export const LPHomeLegalDocs = (props: StackProps) => {
           {homeLegalDocuments?.map(
             (doc: Interface__CMSDocument, idx: number) => {
               return (
-                <DocumentItem
-                  key={idx}
-                  document={doc}
-                  className={`doc_item_${idx + 1}`}
-                />
+                idx < 4 && (
+                  <DocumentItem
+                    key={idx}
+                    document={doc}
+                    className={`doc_item_${idx + 1}`}
+                  />
+                )
               );
             }
           )}

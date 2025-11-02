@@ -12,7 +12,6 @@ import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { NewsItem } from "@/components/widget/NewsItem";
 import { PageHeader } from "@/components/widget/PageHeader";
 import { TopNav } from "@/components/widget/TopNav";
-import { homeNews } from "@/constants/_dummy";
 import { Interface__CMSNews } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
@@ -35,8 +34,8 @@ const ListSection = () => {
   const { error, loading, data, makeRequest } = useDataState<
     Interface__CMSNews[]
   >({
-    initialData: homeNews,
-    // url: `/api/cms/public-request/get-all-news`,
+    initialData: undefined,
+    url: `/api/cms/public-request/get-all-news`,
     dependencies: [],
   });
 

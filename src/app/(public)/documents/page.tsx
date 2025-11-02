@@ -12,7 +12,6 @@ import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { PageHeader } from "@/components/widget/PageHeader";
 import { TopNav } from "@/components/widget/TopNav";
-import { homeLegalDocuments } from "@/constants/_dummy";
 import { Interface__CMSDocument } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
@@ -35,8 +34,8 @@ const ListSection = () => {
   const { error, loading, data, makeRequest } = useDataState<
     Interface__CMSDocument[]
   >({
-    initialData: homeLegalDocuments,
-    // url: `/api/cms/public-request/get-all-legal-document`,
+    initialData: undefined,
+    url: `/api/cms/public-request/get-all-legal-document`,
     dependencies: [],
   });
 

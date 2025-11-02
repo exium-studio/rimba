@@ -35,7 +35,7 @@ const ListSection = () => {
     Interface__CMSActivity[]
   >({
     initialData: undefined,
-    // url: `/api/cms/public-request/get-all-event`,
+    url: `/api/cms/public-request/get-all-event`,
     dependencies: [],
   });
 

@@ -173,7 +173,7 @@ export interface Interface_CMSNewsCategory extends Interface__CUD {
 }
 export interface Interface__CMSNews extends Interface__CUD {
   id: number;
-  newsCategory: Interface_CMSNewsCategory[];
+  newsCategory: Interface_CMSNewsCategory;
   thumbnail: Interface__StorageFile[];
   title: Interface__CMSContentText;
   slug: Interface__CMSContentText;

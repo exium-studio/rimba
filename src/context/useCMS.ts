@@ -3,8 +3,8 @@ import { create } from "zustand";
 const CMS_SECRET_KEY = "cms-secret-key-kuat";
 
 interface CMSState {
-  authToken: string;
-  setAuthToken: (newToken: string) => void;
+  CMSAuthToken: string;
+  setCMSAuthToken: (newToken: string) => void;
   highlightedContentIds: string[];
   setHighlightedContentIds: (newIds: string[]) => void;
   isCMSActive: boolean;
@@ -21,15 +21,15 @@ export const useCMS = create<CMSState>((set) => {
   }
 
   return {
-    authToken:
+    CMSAuthToken:
       typeof window !== "undefined"
-        ? sessionStorage.getItem("authToken") || ""
+        ? sessionStorage.getItem("CMSAuthToken") || ""
         : "",
 
-    setAuthToken: (newToken: string) => {
-      set({ authToken: newToken });
+    setCMSAuthToken: (newToken: string) => {
+      set({ CMSAuthToken: newToken });
       if (typeof window !== "undefined") {
-        sessionStorage.setItem("authToken", newToken);
+        sessionStorage.setItem("CMSAuthToken", newToken);
       }
     },
 

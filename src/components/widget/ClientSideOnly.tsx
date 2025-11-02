@@ -11,21 +11,21 @@ import { PartnersLogo } from "@/components/widget/PartnersLogo";
 import { StaticContentListToggle } from "@/components/widget/StaticContentEditor";
 import useADM from "@/context/useADM";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
+import { useCMS } from "@/context/useCMS";
 import useContents from "@/context/useContents";
 import useDataState from "@/hooks/useDataState";
 import { useFirefoxPaddingY } from "@/hooks/useFirefoxPaddingY";
 import useOfflineAlert from "@/hooks/useOfflineAlert";
 import useRequest from "@/hooks/useRequest";
-import { useSearchKeyWatcher } from "@/hooks/useSearchKeyWatcher";
 import { isEmptyArray } from "@/utils/array";
 import { getAuthToken } from "@/utils/auth";
 import { setStorage } from "@/utils/client";
 import { Center } from "@chakra-ui/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
-import { useCMS } from "@/context/useCMS";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,10 +68,12 @@ export default function ClientSideOnly(props: Props) {
   const setRole = useAuthMiddleware((s) => s.setRole);
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
   const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
-  const cmsAuthToken = useCMS((s) => s.authToken);
+  const CMSAuthToken = useCMS((s) => s.CMSAuthToken);
+  const setCMSAuthToken = useCMS((s) => s.setCMSAuthToken);
 
   // Hooks
-  const fetchContents = useSearchKeyWatcher("fetchContents");
+  const searchParams = useSearchParams();
+  const CMSAuthTokenParams = searchParams.get("CMSAuthToken");
   useFirefoxPaddingY();
   const { req } = useRequest({
     id: "user-profile",
@@ -84,8 +86,8 @@ export default function ClientSideOnly(props: Props) {
   const [mounted, setMounted] = useState(mountedGlobal);
   const { data, initialLoading, error, onRetry } = useDataState<any>({
     initialData: undefined,
-    url: `/api/cms/public-request/get-all-content?cms=${cmsAuthToken ? 1 : 0}`,
-    dependencies: [fetchContents],
+    url: `/api/cms/public-request/get-all-content?cms=${CMSAuthToken ? 1 : 0}`,
+    dependencies: [],
     dataResource: false,
   });
   const render = {
@@ -109,7 +111,7 @@ export default function ClientSideOnly(props: Props) {
         <Toaster />
         <LoadingBar />
         <GlobalDisclosure />
-        {cmsAuthToken && <StaticContentListToggle />}
+        {CMSAuthToken && <StaticContentListToggle />}
 
         {children}
       </>
@@ -121,6 +123,10 @@ export default function ClientSideOnly(props: Props) {
     const hour = new Date().getHours();
     setColorMode(hour >= 18 || hour < 6 ? "dark" : "light");
   }
+
+  useEffect(() => {
+    setCMSAuthToken(CMSAuthTokenParams as string);
+  }, [CMSAuthTokenParams]);
 
   // handle LP contents
   useEffect(() => {

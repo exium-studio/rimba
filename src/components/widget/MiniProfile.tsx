@@ -73,7 +73,7 @@ export const MiniProfile = (props: Props) => {
         onError: (e) => {
           if (e.status === 401) {
             removeAuth();
-            router.push("/related-apps/kmis");
+            router.push("/");
           }
         },
       },

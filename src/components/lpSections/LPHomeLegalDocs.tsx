@@ -137,7 +137,7 @@ export const LPHomeLegalDocs = (props: StackProps) => {
             </P>
           </EditableContentContainer>
 
-          <NavLink to={"/documents"} w={"fit"} mx={"auto"}>
+          <NavLink to={"/document"} w={"fit"} mx={"auto"}>
             <Btn pr={3} colorPalette={"p"} variant={"outline"} mt={4}>
               {l.all_document}
 

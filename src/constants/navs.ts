@@ -28,7 +28,7 @@ export const LP_NAVS: Interface__NavItem[] = [
       },
       {
         labelKey: "lp_navs.document",
-        path: `/documents`,
+        path: `/document`,
       },
       {
         labelKey: "lp_navs.about_us.index",
@@ -44,7 +44,7 @@ export const LP_NAVS: Interface__NavItem[] = [
               {
                 icon: IconSeedling,
                 labelKey: "lp_navs.about_us.activities",
-                path: `/about-us/activities`,
+                path: `/about-us/activity`,
               },
               {
                 icon: IconNews,

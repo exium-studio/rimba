@@ -163,7 +163,7 @@ export const LPHomeActivities = (props: StackProps) => {
               <P maxW={"500px"}>{staticContents[25]?.content[lang]}</P>
             </EditableContentContainer>
 
-            <NavLink to={"/about-us/activities"} w={"fit"}>
+            <NavLink to={"/about-us/activity"} w={"fit"}>
               <Btn
                 pr={[5, null, 3]}
                 colorPalette={"p"}

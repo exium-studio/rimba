@@ -1,12 +1,1091 @@
 "use client";
 
+import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { CloseButton } from "@/components/ui/close-button";
+import {
+  DisclosureBody,
+  DisclosureContent,
+  DisclosureFooter,
+  DisclosureHeader,
+  DisclosureRoot,
+} from "@/components/ui/disclosure";
+import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import {
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+  DrawerRoot,
+} from "@/components/ui/drawer";
+import { Field } from "@/components/ui/field";
+import { Img } from "@/components/ui/img";
+import { ImgInput } from "@/components/ui/img-input";
+import { NavLink } from "@/components/ui/nav-link";
+import { P } from "@/components/ui/p";
+import SearchInput from "@/components/ui/search-input";
+import { StringInput } from "@/components/ui/string-input";
+import { Textarea } from "@/components/ui/textarea";
+import { DraggableBtn } from "@/components/widget/DraggableBtn";
+import { ImgViewer } from "@/components/widget/ImgViewer";
+import { Interface__CMSTextContent } from "@/constants/interfaces";
+import { useCMS } from "@/context/useCMS";
+import useContents from "@/context/useContents";
+import useLang from "@/context/useLang";
+import useRenderTrigger from "@/context/useRenderTrigger";
+import { useThemeConfig } from "@/context/useThemeConfig";
+import useBackOnClose from "@/hooks/useBackOnClose";
+import useRequest from "@/hooks/useRequest";
+import { isEmptyArray, subset } from "@/utils/array";
+import { back } from "@/utils/client";
+import { disclosureId } from "@/utils/disclosure";
+import { pluckString } from "@/utils/string";
+import { fileValidation, min1FileExist } from "@/utils/validationSchema";
+import {
+  HStack,
+  Icon,
+  InputGroup,
+  SimpleGrid,
+  useDisclosure,
+} from "@chakra-ui/react";
+import {
+  IconBulb,
+  IconBulbFilled,
+  IconPencilMinus,
+  IconSection,
+  IconTrash,
+  IconWorld,
+} from "@tabler/icons-react";
+import { useFormik } from "formik";
+import { useEffect, useState } from "react";
+import * as yup from "yup";
 
-interface Props {}
+const STATIC_CONTENT_REGISTRY = [
+  {
+    pageLabelKey: "lp_home_section.index",
+    contents: [
+      {
+        sectionLabelKey: "lp_home_section.hero",
+        listIds: ["1", "2", "3"],
+      },
+      {
+        sectionLabelKey: "lp_home_section.brief",
+        listIds: ["4"],
+      },
+      {
+        sectionLabelKey: "lp_home_section.gallery",
+        listIds: ["5", "6", "7", "8", "9", "10", "11", "12", "13", "14"],
+      },
+      {
+        sectionLabelKey: "lp_home_section.strategy_value",
+        listIds: ["15", "16", "17", "18", "19", "20", "21", "22", "23"],
+      },
+      {
+        sectionLabelKey: "lp_home_section.location",
+        listIds: ["27", "28", "29", "30", "31", "32", "33", "34", "35"],
+      },
+      {
+        sectionLabelKey: "lp_home_section.activity",
+        listIds: ["24", "25"],
+      },
+      {
+        sectionLabelKey: "lp_home_section.impact",
+        listIds: [
+          "36",
+          "37",
+          "38",
+          "39",
+          "40",
+          "41",
+          "42",
+          "43",
+          "44",
+          "46",
+          "47",
+        ],
+      },
+      {
+        sectionLabelKey: "lp_home_section.legal_docs",
+        listIds: ["50", "51"],
+      },
+      {
+        sectionLabelKey: "lp_home_section.news",
+        listIds: ["52"],
+      },
+      {
+        sectionLabelKey: "lp_home_section.partner",
+        listIds: ["53", "54", "55", "56"],
+      },
+      {
+        sectionLabelKey: "footer",
+        listIds: ["57", "58", "59", "60", "61", "62", "63", "64"],
+      },
+    ],
+  },
+  {
+    pageLabelKey: "lp_legal_docs_section.index",
+    contents: [
+      {
+        sectionLabelKey: "lp_legal_docs_section.header",
+        listIds: ["65"],
+      },
+    ],
+  },
+  {
+    pageLabelKey: "lp_about_section.index",
+    contents: [
+      {
+        sectionLabelKey: "lp_about_section.header",
+        listIds: ["66"],
+      },
+      {
+        sectionLabelKey: "lp_about_section.purpose",
+        listIds: ["67", "68", "69", "70", "71", "72", "73", "74", "75", "76"],
+      },
+      {
+        sectionLabelKey: "lp_about_section.strategy",
+        listIds: ["77", "78", "79", "80", "81", "82", "83", "85", "86", "84"],
+      },
+      {
+        sectionLabelKey: "lp_about_section.progress",
+        listIds: [
+          "87",
+          "88",
+          "89",
+          "90",
+          "91",
+          "92",
+          "93",
+          "94",
+          "95",
+          "96",
+          "97",
+        ],
+      },
+      {
+        sectionLabelKey: "lp_about_section.achievement_indicator",
+        listIds: [
+          "98",
+          "99",
+          "100",
+          "101",
+          "102",
+          "103",
+          "104",
+          "105",
+          "106",
+          "107",
+          "108",
+          "109",
+          "110",
+        ],
+      },
+      {
+        sectionLabelKey: "lp_about_section.orfanizational_structure",
+        listIds: ["111", "112"],
+      },
+    ],
+  },
+  {
+    pageLabelKey: "lp_activity_section.index",
+    contents: [
+      {
+        sectionLabelKey: "lp_activity_section.header",
+        listIds: ["113"],
+      },
+    ],
+  },
+  {
+    pageLabelKey: "lp_news_section.index",
+    contents: [
+      {
+        sectionLabelKey: "lp_news_section.header",
+        listIds: ["114"],
+      },
+    ],
+  },
+  {
+    pageLabelKey: "lp_partner_section.index",
+    contents: [
+      {
+        sectionLabelKey: "lp_partner_section.header",
+        listIds: ["115"],
+      },
+    ],
+  },
+];
 
-export const StaticContentEditor = (props: Props) => {
+const allContentIds = STATIC_CONTENT_REGISTRY.flatMap(
+  (page) => page.contents
+).flatMap((content) => content.listIds);
+
+const TextForm = (props: any) => {
   // Props
-  const { ...restProps } = props;
+  const { content } = props;
 
-  return <CContainer {...restProps}></CContainer>;
+  // Contexts
+  const { l } = useLang();
+  const setRt = useRenderTrigger((s) => s.setRt);
+
+  // Hooks
+  const { req } = useRequest({
+    id: "cms-edit",
+  });
+
+  // States
+  const formik = useFormik({
+    validateOnChange: false,
+    initialValues: { textId: "", textEn: "" },
+    validationSchema: yup.object().shape({
+      textId: yup.string().required(l.msg_required_form),
+      textEn: yup.string().required(l.msg_required_form),
+    }),
+    onSubmit: (values) => {
+      back();
+
+      const payload = {
+        type: content.type,
+        content: {
+          id: values.textId,
+          en: values.textEn,
+        },
+      };
+
+      const config = {
+        url: `/api/cms/content/update/${content.id}`,
+        method: "PATCH",
+        data: payload,
+      };
+
+      req({
+        config,
+        onResolve: {
+          onSuccess: () => {
+            setRt((ps) => !ps);
+          },
+        },
+      });
+    },
+  });
+
+  useEffect(() => {
+    formik.setValues({
+      textId: content.content.id,
+      textEn: content.content.en,
+    });
+  }, [content]);
+
+  return (
+    <form id="cms-edit" onSubmit={formik.handleSubmit}>
+      <Field
+        label={l.content}
+        invalid={!!(formik.errors.textId || formik.errors.textEn)}
+        errorText={(formik.errors.textId || formik.errors.textEn) as string}
+      >
+        <InputGroup
+          startElement="id"
+          display={"flex"}
+          startElementProps={{
+            fontSize: "md",
+            fontWeight: "medium",
+            alignItems: "start !important",
+            mt: "18px",
+          }}
+        >
+          <Textarea
+            inputValue={formik.values.textId}
+            onChange={(inputValue) => {
+              formik.setFieldValue("textId", inputValue);
+            }}
+            pl={"40px !important"}
+          />
+        </InputGroup>
+        <InputGroup
+          startElement="en"
+          display={"flex"}
+          startElementProps={{
+            fontSize: "md",
+            fontWeight: "medium",
+            alignItems: "start !important",
+            mt: "18px",
+          }}
+        >
+          <Textarea
+            inputValue={formik.values.textEn}
+            onChange={(inputValue) => {
+              formik.setFieldValue("textEn", inputValue);
+            }}
+            pl={"40px !important"}
+          />
+        </InputGroup>
+      </Field>
+    </form>
+  );
+};
+const TextArrayForm = (props: any) => {
+  // Props
+  const { content } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
+  const setRt = useRenderTrigger((s) => s.setRt);
+
+  // Hooks
+  const { req } = useRequest({
+    id: "cms-edit",
+  });
+
+  // States
+  const CMSTextContentSchema = yup.object().shape({
+    id: yup.string().trim().required(l.msg_required_form),
+    en: yup.string().trim().required(l.msg_required_form),
+  });
+  const formik = useFormik({
+    validateOnChange: false,
+    initialValues: { textArray: [] },
+    validationSchema: yup.object().shape({
+      textArray: yup
+        .array()
+        .required(l.msg_required_form)
+        .test("textArray-validation", l.msg_required_form, function (value) {
+          if (!Array.isArray(value) || value.length === 0) return false;
+
+          for (const item of value) {
+            try {
+              CMSTextContentSchema.validateSync(item);
+            } catch {
+              return false;
+            }
+          }
+
+          return true;
+        }),
+    }),
+    onSubmit: (values) => {
+      back();
+
+      const payload = {
+        type: content.type,
+        content: values.textArray,
+      };
+
+      const config = {
+        url: `/api/cms/content/update/${content.id}`,
+        method: "PATCH",
+        data: payload,
+      };
+
+      req({
+        config,
+        onResolve: {
+          onSuccess: () => {
+            setRt((ps) => !ps);
+          },
+        },
+      });
+    },
+  });
+
+  useEffect(() => {
+    formik.setValues({
+      textArray: content.content,
+    });
+  }, [content]);
+
+  return (
+    <form id="cms-edit" onSubmit={formik.handleSubmit}>
+      <Field
+        label={l.content}
+        invalid={!!formik.errors.textArray}
+        errorText={formik.errors.textArray as string}
+        gap={1}
+      >
+        {formik.values.textArray.map((text: any, idx: number) => {
+          return (
+            <CContainer key={idx} gap={2} mt={idx !== 0 ? 1 : 0}>
+              <HStack justify={"space-between"}>
+                <P fontWeight={"medium"} color={"fg.subtle"}>{`No. ${
+                  idx + 1
+                }`}</P>
+
+                <Btn
+                  iconButton
+                  size={"sm"}
+                  variant={"ghost"}
+                  onClick={() => {
+                    const newTextArray: Interface__CMSTextContent[] = [
+                      ...formik.values.textArray,
+                    ];
+                    newTextArray.splice(idx, 1);
+                    formik.setFieldValue("textArray", newTextArray);
+                  }}
+                >
+                  <Icon>
+                    <IconTrash stroke={1.5} />
+                  </Icon>
+                </Btn>
+              </HStack>
+
+              <InputGroup
+                startElement="id"
+                display={"flex"}
+                startElementProps={{
+                  fontSize: "md",
+                  fontWeight: "medium",
+                  alignItems: "start !important",
+                  mt: "18px",
+                }}
+              >
+                <StringInput
+                  inputValue={text.id}
+                  onChange={(inputValue) => {
+                    const newTextArray: Interface__CMSTextContent[] = [
+                      ...formik.values.textArray,
+                    ];
+
+                    newTextArray[idx] = {
+                      ...newTextArray[idx],
+                      id: inputValue,
+                    };
+
+                    formik.setFieldValue("textArray", newTextArray);
+                  }}
+                  pl={"40px !important"}
+                />
+              </InputGroup>
+
+              <InputGroup
+                startElement="en"
+                display={"flex"}
+                startElementProps={{
+                  fontSize: "md",
+                  fontWeight: "medium",
+                  alignItems: "start !important",
+                  mt: "18px",
+                }}
+              >
+                <StringInput
+                  inputValue={text.en}
+                  onChange={(inputValue) => {
+                    const newTextArray: Interface__CMSTextContent[] = [
+                      ...formik.values.textArray,
+                    ];
+
+                    newTextArray[idx] = {
+                      ...newTextArray[idx],
+                      en: inputValue,
+                    };
+
+                    formik.setFieldValue("textArray", newTextArray);
+                  }}
+                  pl={"40px !important"}
+                />
+              </InputGroup>
+            </CContainer>
+          );
+        })}
+
+        <Btn
+          w={"full"}
+          variant={"outline"}
+          colorPalette={themeConfig.colorPalette}
+          mt={2}
+          onClick={() => {
+            const newTextArray: Interface__CMSTextContent[] = [
+              ...formik.values.textArray,
+            ];
+            newTextArray.push({
+              id: "",
+              en: "",
+            });
+            formik.setFieldValue("textArray", newTextArray);
+          }}
+        >
+          {l.add}
+        </Btn>
+      </Field>
+    </form>
+  );
+};
+const LinkForm = (props: any) => {
+  // Props
+  const { content } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const setRt = useRenderTrigger((s) => s.setRt);
+
+  // Hooks
+  const { req } = useRequest({
+    id: "cms-edit",
+  });
+
+  // States
+  const formik = useFormik({
+    validateOnChange: false,
+    initialValues: { link: "" },
+    validationSchema: yup.object().shape({
+      link: yup.string().required(l.msg_required_form),
+    }),
+    onSubmit: (values) => {
+      back();
+
+      const payload = {
+        type: content.type,
+        content: values.link,
+      };
+
+      const config = {
+        url: `/api/cms/content/update/${content.id}`,
+        method: "PATCH",
+        data: payload,
+      };
+
+      req({
+        config,
+        onResolve: {
+          onSuccess: () => {
+            setRt((ps) => !ps);
+          },
+        },
+      });
+    },
+  });
+
+  useEffect(() => {
+    formik.setValues({
+      link: content.content,
+    });
+  }, [content]);
+
+  return (
+    <form id="cms-edit" onSubmit={formik.handleSubmit}>
+      <Field
+        label={l.content}
+        invalid={!!formik.errors.link}
+        errorText={formik.errors.link as string}
+      >
+        <Textarea
+          inputValue={formik.values.link}
+          onChange={(inputValue) => {
+            formik.setFieldValue("link", inputValue);
+          }}
+        />
+      </Field>
+    </form>
+  );
+};
+const ImageForm = (props: any) => {
+  // Props
+  const { content } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const setRt = useRenderTrigger((s) => s.setRt);
+
+  // Hooks
+  const { req } = useRequest({
+    id: "cms-edit",
+  });
+
+  // States
+  const formik = useFormik({
+    validateOnChange: false,
+    initialValues: { files: [] as any[], deleteDocumentIds: [] },
+    validationSchema: yup.object().shape({
+      files: fileValidation({
+        allowedExtensions: ["jpg", "jpeg", "png"],
+      }).concat(
+        min1FileExist({
+          resolvedData: content,
+          existingKey: "image",
+          deletedKey: "deleteDocumentIds",
+          newKey: "files",
+          message: l.msg_required_form,
+        })
+      ),
+    }),
+    onSubmit: (values) => {
+      back();
+
+      const payload = new FormData();
+      payload.append("type", content.type);
+      if (!isEmptyArray(values.files)) {
+        payload.append("files", values.files[0]);
+      }
+      payload.append(
+        "deleteDocumentIds",
+        JSON.stringify(values.deleteDocumentIds)
+      );
+
+      const config = {
+        url: `/api/cms/content/update/${content.id}`,
+        method: "PATCH",
+        data: payload,
+      };
+
+      req({
+        config,
+        onResolve: {
+          onSuccess: () => {
+            setRt((ps) => !ps);
+          },
+        },
+      });
+    },
+  });
+
+  useEffect(() => {
+    formik.setValues({
+      files: [],
+      deleteDocumentIds: [],
+    });
+  }, [content]);
+
+  return (
+    <form id="cms-edit" onSubmit={formik.handleSubmit}>
+      <Field
+        label={l.content}
+        invalid={!!formik.errors.files}
+        errorText={formik.errors.files as string}
+      >
+        <ImgInput
+          inputValue={formik.values.files}
+          onChange={(inputValue) => {
+            formik.setFieldValue("files", inputValue);
+          }}
+          existingFiles={content.image}
+          onDeleteFile={(fileData) => {
+            formik.setFieldValue(
+              "deleteDocumentIds",
+              Array.from(new Set([...formik.values.files, fileData.id]))
+            );
+          }}
+          onUndoDeleteFile={(fileData) => {
+            formik.setFieldValue(
+              "deleteDocumentIds",
+              formik.values.files.filter((id: string) => id !== fileData.id)
+            );
+          }}
+        />
+      </Field>
+    </form>
+  );
+};
+const ImageArrayForm = (props: any) => {
+  // Props
+  const { content, maxFiles = 1 } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const setRt = useRenderTrigger((s) => s.setRt);
+
+  // Hooks
+  const { req } = useRequest({
+    id: "cms-edit",
+  });
+
+  // States
+  const formik = useFormik({
+    validateOnChange: false,
+    initialValues: { files: [] as any[], deleteDocumentIds: [] },
+    validationSchema: yup.object().shape({
+      files: fileValidation({
+        allowedExtensions: ["jpg", "jpeg", "png"],
+      }).concat(
+        min1FileExist({
+          resolvedData: content,
+          existingKey: "image",
+          deletedKey: "deleteDocumentIds",
+          newKey: "files",
+          message: l.msg_required_form,
+        })
+      ),
+    }),
+    onSubmit: (values) => {
+      back();
+
+      const payload = new FormData();
+      payload.append("type", content.type);
+      if (!isEmptyArray(values.files)) {
+        payload.append("files", values.files[0]);
+      }
+      payload.append(
+        "deleteDocumentIds",
+        JSON.stringify(values.deleteDocumentIds)
+      );
+
+      const config = {
+        url: `/api/cms/content/update/${content.id}`,
+        method: "PATCH",
+        data: payload,
+      };
+
+      req({
+        config,
+        onResolve: {
+          onSuccess: () => {
+            setRt((ps) => !ps);
+          },
+        },
+      });
+    },
+  });
+
+  useEffect(() => {
+    formik.setValues({
+      files: [],
+      deleteDocumentIds: [],
+    });
+  }, [content]);
+
+  return (
+    <form id="cms-edit" onSubmit={formik.handleSubmit}>
+      <Field
+        label={l.content}
+        invalid={!!formik.errors.files}
+        errorText={formik.errors.files as string}
+      >
+        <ImgInput
+          maxFiles={maxFiles}
+          inputValue={formik.values.files}
+          onChange={(inputValue) => {
+            formik.setFieldValue("files", inputValue);
+          }}
+          existingFiles={content.image}
+          onDeleteFile={(fileData) => {
+            const current: string[] = formik.values.deleteDocumentIds || [];
+
+            formik.setFieldValue(
+              "deleteDocumentIds",
+              Array.from(new Set([...current, fileData.id]))
+            );
+          }}
+          onUndoDeleteFile={(fileData) => {
+            const current: string[] = formik.values.deleteDocumentIds || [];
+
+            formik.setFieldValue(
+              "deleteDocumentIds",
+              current.filter((id: string) => id !== fileData.id)
+            );
+          }}
+        />
+      </Field>
+    </form>
+  );
+};
+export const EditContentTrigger = (props: any) => {
+  // Props
+  const { content, children, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
+
+  // Hooks
+  const { open, onOpen, onClose } = useDisclosure();
+  useBackOnClose(
+    disclosureId(`edit-cms-${content?.id}`),
+    open,
+    onOpen,
+    onClose
+  );
+
+  // States
+  const FORM_REGISTRY = {
+    Text: <TextForm content={content} />,
+    TextArray: <TextArrayForm content={content} />,
+    Link: <LinkForm content={content} />,
+    Image: <ImageForm content={content} />,
+    ImageArray: <ImageArrayForm content={content} maxFiles={20} />,
+  };
+
+  return (
+    <>
+      <CContainer w={"fit"} onClick={onOpen} {...restProps}>
+        {children}
+      </CContainer>
+
+      <DisclosureRoot open={open} lazyLoad size={"xs"}>
+        <DisclosureContent>
+          <DisclosureHeader>
+            <DisclosureHeaderContent title={`Edit ${l.content}`} />
+          </DisclosureHeader>
+
+          <DisclosureBody>
+            {FORM_REGISTRY[content?.type as keyof typeof FORM_REGISTRY]}
+          </DisclosureBody>
+
+          <DisclosureFooter>
+            <Btn
+              type="submit"
+              form="cms-edit"
+              colorPalette={themeConfig.colorPalette}
+            >
+              {l.save}
+            </Btn>
+          </DisclosureFooter>
+        </DisclosureContent>
+      </DisclosureRoot>
+    </>
+  );
+};
+const EditContentBtn = (props: any) => {
+  // Props
+  const { content, ...restProps } = props;
+
+  return (
+    <EditContentTrigger content={content}>
+      <Btn iconButton size={"sm"} variant={"ghost"} {...restProps}>
+        <Icon boxSize={5}>
+          <IconPencilMinus stroke={1.5} />
+        </Icon>
+      </Btn>
+    </EditContentTrigger>
+  );
+};
+const RenderContent = (props: any) => {
+  // Props
+  const { type, content } = props;
+
+  // Contexts
+  const { lang } = useLang();
+
+  switch (type.toLowerCase()) {
+    case "imagearray":
+      return (
+        <SimpleGrid columns={2} gap={2}>
+          {content?.map((content: string, idx: number) => {
+            return (
+              <ImgViewer
+                key={`${idx}-${content}`}
+                id={`img-array-${idx}-${content}`}
+                w={"full"}
+                src={content}
+              >
+                <Img src={content} fluid w={"full"} />
+              </ImgViewer>
+            );
+          })}
+        </SimpleGrid>
+      );
+    case "image":
+      return (
+        <ImgViewer
+          key={`${content}`}
+          id={`img-${content}`}
+          w={"full"}
+          src={content}
+        >
+          <Img src={content} fluid w={"full"} />
+        </ImgViewer>
+      );
+    case "textarray":
+      return (
+        <CContainer gap={2}>
+          {content?.map((content: Interface__CMSTextContent, idx: number) => {
+            return (
+              <P key={idx} color={"fg.muted"}>
+                {content?.[lang]}
+              </P>
+            );
+          })}
+        </CContainer>
+      );
+    case "link":
+      return (
+        <NavLink to={content} external>
+          <P color={"p.500"}>{content}</P>
+        </NavLink>
+      );
+    default:
+      return <P color={"fg.muted"}>{content?.[lang]}</P>;
+  }
+};
+export const StaticContentList = () => {
+  // Contexts
+  const { l } = useLang();
+  const staticContents = useContents((s) => s.staticContents);
+  const highlightedContentIds = useCMS((s) => s.highlightedContentIds);
+  const setHighlightedContentIds = useCMS((s) => s.setHighlightedContentIds);
+
+  // States
+  const [search, setSearch] = useState<string>("");
+  const isHighlighted =
+    !isEmptyArray(highlightedContentIds) &&
+    subset(highlightedContentIds, allContentIds);
+  const resolvedRegistry = !search.trim()
+    ? STATIC_CONTENT_REGISTRY
+    : STATIC_CONTENT_REGISTRY.map((page) => ({
+        ...page,
+        contents: page.contents
+          .map((content) => ({
+            ...content,
+            listIds: content.listIds.filter((id) =>
+              search.includes(id.toString())
+            ),
+          }))
+          .filter((content) => content.listIds.length > 0),
+      })).filter((page) => page.contents.length > 0);
+
+  return (
+    <CContainer flex={"1 0 0"} overflowY={"auto"}>
+      <HStack px={4} py={4}>
+        <SearchInput
+          queryKey="cms-content"
+          inputValue={search}
+          onChange={(inputValue) => {
+            setSearch(inputValue);
+          }}
+          placeholder={`${l.search} ID`}
+        />
+
+        <Btn
+          iconButton
+          variant={"outline"}
+          color={isHighlighted ? "p.500" : ""}
+          onClick={() => {
+            if (isHighlighted) {
+              setHighlightedContentIds([]);
+            } else {
+              setHighlightedContentIds(allContentIds);
+            }
+          }}
+        >
+          <Icon>{isHighlighted ? <IconBulbFilled /> : <IconBulb />}</Icon>
+        </Btn>
+      </HStack>
+
+      <CContainer
+        className="scrollY"
+        pl={`16px`}
+        pr={`calc(16px - 8px)`}
+        gap={4}
+      >
+        {staticContents &&
+          resolvedRegistry.map((reg) => {
+            return (
+              <CContainer key={reg.pageLabelKey} gap={2}>
+                <HStack color={"fg.subtle"}>
+                  <Icon boxSize={5}>
+                    <IconWorld stroke={1.5} />
+                  </Icon>
+
+                  <P fontWeight={"medium"}>
+                    {pluckString(l, reg.pageLabelKey)}
+                  </P>
+                </HStack>
+
+                {reg.contents.map((section) => {
+                  return (
+                    <CContainer
+                      key={section.sectionLabelKey}
+                      gap={1}
+                      rounded={"lg"}
+                      border={"1px solid"}
+                      borderColor={"d1"}
+                    >
+                      <HStack color={"fg.subtle"} px={3} py={2}>
+                        <Icon boxSize={5}>
+                          <IconSection stroke={1.5} />
+                        </Icon>
+
+                        <P fontWeight={"medium"}>
+                          {pluckString(l, section.sectionLabelKey)}
+                        </P>
+                      </HStack>
+
+                      <CContainer p={2} pt={0} gap={2}>
+                        {section.listIds.map((id, idx) => {
+                          const content = staticContents[id];
+
+                          return (
+                            <CContainer
+                              key={idx}
+                              align={"start"}
+                              gap={1}
+                              rounded={`calc(16 - 1px)`}
+                              border={"1px solid"}
+                              borderColor={"d1"}
+                            >
+                              <HStack
+                                justify={"space-between"}
+                                w={"full"}
+                                mb={1}
+                                px={3}
+                                py={2}
+                              >
+                                <HStack gap={4}>
+                                  <P
+                                    fontWeight={"medium"}
+                                  >{`ID: ${content.id}`}</P>
+                                  <P color={"fg.subtle"}>{`${content.type}`}</P>
+                                </HStack>
+
+                                <HStack>
+                                  <EditContentBtn content={content} />
+                                </HStack>
+
+                                {/* <P>{`No. ${idx + 1}`}</P> */}
+                              </HStack>
+
+                              <CContainer p={3} pt={0}>
+                                <RenderContent
+                                  type={content.type}
+                                  content={content.content}
+                                />
+                              </CContainer>
+                            </CContainer>
+                          );
+                        })}
+                      </CContainer>
+                    </CContainer>
+                  );
+                })}
+              </CContainer>
+            );
+          })}
+      </CContainer>
+    </CContainer>
+  );
+};
+
+export const StaticContentListToggle = (props: BtnProps) => {
+  // Hooks
+  const { open, onOpen, onClose } = useDisclosure();
+  useBackOnClose(disclosureId("cms-list"), open, onOpen, onClose);
+
+  return (
+    <>
+      <DraggableBtn
+        allowedSnap={["left"]}
+        size={"xl"}
+        colorPalette={"p"}
+        onClick={onOpen}
+        zIndex={99}
+        pos={"fixed"}
+        {...props}
+      >
+        <Icon>
+          <IconPencilMinus stroke={1.5} />
+        </Icon>
+        CMS
+      </DraggableBtn>
+
+      <DrawerRoot open={true} placement={"start"} size={"sm"}>
+        <DrawerContent>
+          <DrawerHeader py={3} pr={2}>
+            <HStack w={"full"} justify={"space-between"}>
+              CMS
+              <CloseButton onClick={back} />
+            </HStack>
+          </DrawerHeader>
+
+          <DrawerBody p={0}>
+            <StaticContentList />
+          </DrawerBody>
+        </DrawerContent>
+      </DrawerRoot>
+    </>
+  );
 };

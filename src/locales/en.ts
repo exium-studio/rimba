@@ -47,6 +47,7 @@ const translations = {
   "comment": "Comment",
   "component": "Component",
   "confirm": "Confirm",
+  "content": "Content",
   "correct_answer": "Correct answer",
   "course_category": "Topic category",
   "course_finished_status": "Topic completion status",
@@ -175,6 +176,7 @@ const translations = {
   "feedback_placeholder": "Rate and comment",
   "feedback_question": "How do you feel about topic <b>${courseName}</b>?",
   "finished": "Finished",
+  "footer": "Footer",
   "friday": "Friday",
   "get": "Get",
   "grade": "Grade",
@@ -244,8 +246,39 @@ const translations = {
     "description": "Uploading file..."
   },
   "location": "Location",
+  "lp_about_section": {
+    "index": "About Program Koridor Ekosistem RIMBA",
+    "header": "Header",
+    "purpose": "Purpose",
+    "strategy": "Strategy",
+    "progress": "Progress",
+    "achievement_indicator": "Achievement Indicator",
+    "organizational_structure": "Organizational Structure"
+  },
+  "lp_activity_section": {
+    "index": "Activity",
+    "header": "Header"
+  },
   "lp_home_location_area_size": "Area Size",
   "lp_home_location_protected_areas": "Protected Area",
+  "lp_home_section": {
+    "index": "Home",
+    "hero": "Hero",
+    "brief": "Brief",
+    "gallery": "Gallery",
+    "strategy_value": "Strategy Value",
+    "location": "Location",
+    "activity": "Activity",
+    "impact": "Impact",
+    "legal_docs": "Legal Document",
+    "news": "News",
+    "partner": "Partner",
+    "FAQs": "FAQs"
+  },
+  "lp_legal_docs_section": {
+    "index": "Legal Document",
+    "header": "Header"
+  },
   "lp_navs": {
     "home": "Home",
     "document": "Legal Document",
@@ -267,6 +300,14 @@ const translations = {
       "kmis": "KMIS",
       "admin_portal": "Admin/Monev"
     }
+  },
+  "lp_news_section": {
+    "index": "News and Field Notes",
+    "header": "Header"
+  },
+  "lp_partner_section": {
+    "index": "Partner",
+    "header": "Header"
   },
   "main": "Main",
   "main_page": "Main page",

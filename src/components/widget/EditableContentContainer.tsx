@@ -3,8 +3,8 @@
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import { Props__EditableContentContainer } from "@/constants/props";
+import { useCMS } from "@/context/useCMS";
 import { Center } from "@chakra-ui/react";
-import { useSearchParams } from "next/navigation";
 
 export function EditableContentContainer(
   props: Props__EditableContentContainer
@@ -12,14 +12,8 @@ export function EditableContentContainer(
   // Props
   const { children, content, ...restProps } = props;
 
-  // Hooks
-  const searchParams = useSearchParams();
-
-  // Parse `highlightedContentIds` from URL
-  const highlightedContentIdsParam = searchParams.get("highlightedContentIds");
-  const highlightedContentIds = highlightedContentIdsParam
-    ? highlightedContentIdsParam.split(",").map((id) => id.trim())
-    : [];
+  // Contexts
+  const highlightedContentIds = useCMS((s) => s.highlightedContentIds);
 
   const isHighlighted = highlightedContentIds.includes(String(content?.id));
 

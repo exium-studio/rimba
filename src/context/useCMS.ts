@@ -5,12 +5,15 @@ const CMS_SECRET_KEY = "cms-secret-key-kuat";
 interface CMSState {
   authToken: string;
   setAuthToken: (newToken: string) => void;
-  highlightedContentIds: number[];
-  setHighlightedContentIds: (newIds: number[]) => void;
+  highlightedContentIds: string[];
+  setHighlightedContentIds: (newIds: string[]) => void;
   isCMSActive: boolean;
+  isStaticContentListOpen: boolean;
+  toggleStaticContentList: () => void;
+  setStaticContentList: (newState: boolean) => void;
 }
 
-const useCMS = create<CMSState>((set) => {
+export const useCMS = create<CMSState>((set) => {
   let cmsKeyFromURL = "";
   if (typeof window !== "undefined") {
     const params = new URLSearchParams(window.location.search);
@@ -31,11 +34,20 @@ const useCMS = create<CMSState>((set) => {
     },
 
     highlightedContentIds: [],
-    setHighlightedContentIds: (newIds: number[]) =>
+    setHighlightedContentIds: (newIds: string[]) =>
       set({ highlightedContentIds: newIds }),
 
     isCMSActive: cmsKeyFromURL === CMS_SECRET_KEY,
+
+    // new toggle for static content list
+    isStaticContentListOpen: false,
+    toggleStaticContentList: () =>
+      set((state) => ({
+        isStaticContentListOpen: !state.isStaticContentListOpen,
+      })),
+    setStaticContentList: (newState) =>
+      set(() => ({
+        isStaticContentListOpen: newState,
+      })),
   };
 });
-
-export default useCMS;

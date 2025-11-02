@@ -264,7 +264,7 @@ export interface Interface__CUD {
 
 // Storage
 export interface Interface__StorageFile extends Interface__CUD {
-  id: number;
+  id: string;
   fileName: string;
   filePath: string;
   fileUrl: string;

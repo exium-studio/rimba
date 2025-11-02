@@ -3,10 +3,12 @@ export const dynamic = "force-dynamic";
 
 import { CSpinner } from "@/components/ui/c-spinner";
 import { useColorMode } from "@/components/ui/color-mode";
+import { Toaster } from "@/components/ui/toaster";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LoadingBar } from "@/components/widget/LoadingBar";
 import { PartnersLogo } from "@/components/widget/PartnersLogo";
+import { StaticContentListToggle } from "@/components/widget/StaticContentEditor";
 import useADM from "@/context/useADM";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useContents from "@/context/useContents";
@@ -15,6 +17,7 @@ import { useFirefoxPaddingY } from "@/hooks/useFirefoxPaddingY";
 import useOfflineAlert from "@/hooks/useOfflineAlert";
 import useRequest from "@/hooks/useRequest";
 import { useSearchKeyWatcher } from "@/hooks/useSearchKeyWatcher";
+import { isEmptyArray } from "@/utils/array";
 import { getAuthToken } from "@/utils/auth";
 import { setStorage } from "@/utils/client";
 import { Center } from "@chakra-ui/react";
@@ -22,8 +25,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
-import { Toaster } from "@/components/ui/toaster";
-import { isEmptyArray } from "@/utils/array";
+import { useCMS } from "@/context/useCMS";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,6 +68,7 @@ export default function ClientSideOnly(props: Props) {
   const setRole = useAuthMiddleware((s) => s.setRole);
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
   const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
+  const cmsAuthToken = useCMS((s) => s.authToken);
 
   // Hooks
   const fetchContents = useSearchKeyWatcher("fetchContents");
@@ -81,7 +84,7 @@ export default function ClientSideOnly(props: Props) {
   const [mounted, setMounted] = useState(mountedGlobal);
   const { data, initialLoading, error, onRetry } = useDataState<any>({
     initialData: undefined,
-    url: `/api/cms/public-request/get-all-content`,
+    url: `/api/cms/public-request/get-all-content?cms=${cmsAuthToken ? 1 : 0}`,
     dependencies: [fetchContents],
     dataResource: false,
   });
@@ -106,6 +109,8 @@ export default function ClientSideOnly(props: Props) {
         <Toaster />
         <LoadingBar />
         <GlobalDisclosure />
+        <StaticContentListToggle />
+
         {children}
       </>
     ),

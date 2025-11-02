@@ -47,6 +47,7 @@ const translations = {
   "comment": "Komentar",
   "component": "Komponen",
   "confirm": "Konfirmasi",
+  "content": "Konten",
   "correct_answer": "Jawaban benar",
   "course_category": "Kategori topik",
   "course_finished_status": "Status penyelesaian topik",
@@ -175,6 +176,7 @@ const translations = {
   "feedback_placeholder": "Rate dan komentar",
   "feedback_question": "Bagaimana pendapatmu tentang topik <b>${courseName}</b>?",
   "finished": "Selesai",
+  "footer": "Footer",
   "friday": "Jumat",
   "get": "Dapatkan",
   "grade": "Nilai",
@@ -244,8 +246,39 @@ const translations = {
     "description": "Sedang mengunggah file..."
   },
   "location": "Lokasi",
+  "lp_about_section": {
+    "index": "Tentang Program Koridor Ekosistem RIMBA",
+    "header": "Header",
+    "purpose": "Tujuan",
+    "strategy": "Strategi",
+    "progress": "Progress",
+    "achievement_indicator": "Indikator pencapaian",
+    "organizational_structure": "Struktur Organisasi"
+  },
+  "lp_activity_section": {
+    "index": "Kegiatan",
+    "header": "Header"
+  },
   "lp_home_location_area_size": "Luas Kawasan",
   "lp_home_location_protected_areas": "Kawasan Lindung",
+  "lp_home_section": {
+    "index": "Beranda",
+    "hero": "Hero",
+    "brief": "Ringkasan",
+    "gallery": "Galeri",
+    "strategy_value": "Nilai Strategi",
+    "location": "Lokasi",
+    "activity": "Aktivitas",
+    "impact": "Dampak",
+    "legal_docs": "Dokumen Hukum",
+    "news": "Berita",
+    "partner": "Mitra",
+    "FAQs": "FAQs"
+  },
+  "lp_legal_docs_section": {
+    "index": "Dokumen Hukum",
+    "header": "Header"
+  },
   "lp_navs": {
     "home": "Beranda",
     "document": "Dokumen Hukum",
@@ -267,6 +300,14 @@ const translations = {
       "kmis": "KMIS",
       "admin_portal": "Admin/Monev"
     }
+  },
+  "lp_news_section": {
+    "index": "Berita dan Catatan Lapangan",
+    "header": "Header"
+  },
+  "lp_partner_section": {
+    "index": "Mitra",
+    "header": "Header"
   },
   "main": "Utama",
   "main_page": "Halaman utama",

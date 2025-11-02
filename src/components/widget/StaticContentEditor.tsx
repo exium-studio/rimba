@@ -708,7 +708,7 @@ const ImageArrayForm = (props: any) => {
       const payload = new FormData();
       payload.append("type", content.type);
       if (!isEmptyArray(values.files)) {
-        payload.append("files", values.files[0]);
+        for (const file of values.files) payload.append("files", file);
       }
       payload.append(
         "deleteDocumentIds",

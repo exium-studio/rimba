@@ -22,21 +22,16 @@ import useDataState from "@/hooks/useDataState";
 import { formatDate } from "@/utils/formatter";
 import { HStack, Icon, SimpleGrid } from "@chakra-ui/react";
 import { IconFileOff, IconFileTypePdf } from "@tabler/icons-react";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 
-interface Props {
-  params: {
-    docsId: string;
-  };
-}
-export default function Page(props: Props) {
-  // Props
-  const { params } = props;
-  const { docsId } = params;
-
+export default function Page() {
   // Contexts
   const { l, lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
+
+  // Hooks
+  const { docsId } = useParams<{ docsId: string }>();
 
   // States
   const [activeDoc, setActiveDoc] = useState<Interface__StorageFile | null>(

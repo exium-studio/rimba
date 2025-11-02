@@ -25,6 +25,7 @@ import { formatDate } from "@/utils/formatter";
 import { HStack, Icon, Stack } from "@chakra-ui/react";
 import { IconArticleOff, IconCircleFilled } from "@tabler/icons-react";
 import parse from "html-react-parser";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type TocItem = {
@@ -32,19 +33,14 @@ type TocItem = {
   level: number;
   text: string;
 };
-interface Props {
-  params: {
-    newsSlug: string;
-  };
-}
-export default function Page(props: Props) {
-  // Props
-  const { params } = props;
-  const { newsSlug } = params;
 
+export default function Page() {
   // Contexts
   const { l, lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
+
+  // Hooks
+  const { newsSlug } = useParams<{ newsSlug: string }>();
 
   // States
   const { error, initialLoading, data, onRetry } =

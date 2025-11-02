@@ -109,7 +109,7 @@ export default function ClientSideOnly(props: Props) {
         <Toaster />
         <LoadingBar />
         <GlobalDisclosure />
-        <StaticContentListToggle />
+        {cmsAuthToken && <StaticContentListToggle />}
 
         {children}
       </>

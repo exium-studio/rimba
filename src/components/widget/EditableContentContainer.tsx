@@ -15,6 +15,7 @@ export function EditableContentContainer(
   const { children, content, ...restProps } = props;
 
   // Contexts
+  const cmsAuthToken = useCMS((s) => s.authToken);
   const highlightedContentIds = useCMS((s) => s.highlightedContentIds);
   const isHighlighted = highlightedContentIds.includes(String(content?.id));
 
@@ -32,12 +33,12 @@ export function EditableContentContainer(
       <EditContentTrigger content={content} pos="absolute" w="full" h="full">
         <CContainer
           onMouseEnter={() => {
-            setHover(true);
+            if (cmsAuthToken) setHover(true);
           }}
           onMouseLeave={() => {
-            setHover(false);
+            if (cmsAuthToken) setHover(false);
           }}
-          cursor={"pointer"}
+          cursor={cmsAuthToken ? "pointer" : ""}
           w="full"
           h="full"
         >

@@ -4,10 +4,10 @@ export const dynamic = "force-dynamic";
 import { CSpinner } from "@/components/ui/c-spinner";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Toaster } from "@/components/ui/toaster";
+import { DefaultFallback } from "@/components/widget/DefaultFallback";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LoadingBar } from "@/components/widget/LoadingBar";
-import { PartnersLogo } from "@/components/widget/PartnersLogo";
 import { StaticContentListToggle } from "@/components/widget/StaticContentEditor";
 import useADM from "@/context/useADM";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
@@ -33,23 +33,6 @@ interface Props {
   children: React.ReactNode;
   fallback?: React.ReactNode;
 }
-
-const DefaultFallback = () => {
-  return (
-    <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
-      <Center position={"relative"}>
-        {/* <Img
-          alt={`RIMBA letter art`}
-          src={`${SVGS_PATH}/rimba_letter_art_color.svg`}
-          width={40}
-          height={40}
-          objectFit="contain"
-        /> */}
-        <PartnersLogo color={"p.500"} />
-      </Center>
-    </Center>
-  );
-};
 
 // persist mounted state across route changes
 let mountedGlobal = false;

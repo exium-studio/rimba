@@ -5,6 +5,8 @@ import { APP } from "@/constants/_meta";
 import { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { Suspense } from "react";
+import { DefaultFallback } from "@/components/widget/DefaultFallback";
 
 interface Props {
   children: React.ReactNode;
@@ -68,7 +70,9 @@ export default function RootLayout(props: Props) {
 
       <body>
         <Provider>
-          <ClientSideOnly>{children}</ClientSideOnly>
+          <Suspense fallback={<DefaultFallback />}>
+            <ClientSideOnly>{children}</ClientSideOnly>
+          </Suspense>
         </Provider>
 
         <TawkChat />

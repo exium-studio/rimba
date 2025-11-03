@@ -209,7 +209,7 @@ const MobileTopNav = () => {
                           bg: "transparent",
                         }}
                         _hover={{
-                          bg: "blackAlpha.500",
+                          bg: "d0",
                         }}
                       >
                         <P fontSize={"lg"} textAlign={"left"}>
@@ -226,6 +226,7 @@ const MobileTopNav = () => {
                               key={subNav.path}
                               to={subNav.path}
                               external={subNav.external}
+                              w={"full"}
                             >
                               <Btn
                                 clicky={false}
@@ -233,7 +234,7 @@ const MobileTopNav = () => {
                                 variant={"ghost"}
                                 color={"light"}
                                 _hover={{
-                                  bg: "blackAlpha.500",
+                                  bg: "d0",
                                 }}
                               >
                                 <Icon boxSize={5}>
@@ -257,7 +258,7 @@ const MobileTopNav = () => {
                 )}
 
                 {!nav.subMenus && (
-                  <NavLink to={nav.path} external={nav.external}>
+                  <NavLink to={nav.path} external={nav.external} w={"full"}>
                     <Btn
                       clicky={false}
                       justifyContent={"start"}

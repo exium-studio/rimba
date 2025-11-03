@@ -77,6 +77,7 @@ export default function ClientSideOnly(props: Props) {
   useFirefoxPaddingY();
   const { req } = useRequest({
     id: "user-profile",
+
     showLoadingToast: false,
     showSuccessToast: false,
     showErrorToast: false,

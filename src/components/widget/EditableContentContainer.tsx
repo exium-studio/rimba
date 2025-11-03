@@ -15,7 +15,7 @@ export function EditableContentContainer(
   const { children, content, ...restProps } = props;
 
   // Contexts
-  const cmsAuthToken = useCMS((s) => s.authToken);
+  const cmsAuthToken = useCMS((s) => s.CMSAuthToken);
   const highlightedContentIds = useCMS((s) => s.highlightedContentIds);
   const isHighlighted = highlightedContentIds.includes(String(content?.id));
 

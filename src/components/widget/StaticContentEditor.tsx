@@ -787,6 +787,7 @@ export const EditContentTrigger = (props: any) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
+  const cmsAuthToken = useCMS((s) => s.CMSAuthToken);
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
@@ -808,7 +809,11 @@ export const EditContentTrigger = (props: any) => {
 
   return (
     <>
-      <CContainer w={"fit"} onClick={onOpen} {...restProps}>
+      <CContainer
+        w={"fit"}
+        onClick={cmsAuthToken ? onOpen : () => {}}
+        {...restProps}
+      >
         {children}
       </CContainer>
 

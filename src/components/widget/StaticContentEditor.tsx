@@ -32,6 +32,7 @@ import SearchInput from "@/components/ui/search-input";
 import { StringInput } from "@/components/ui/string-input";
 import { Textarea } from "@/components/ui/textarea";
 import { DraggableBtn } from "@/components/widget/DraggableBtn";
+import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { ImgViewer } from "@/components/widget/ImgViewer";
 import { Interface__CMSTextContent } from "@/constants/interfaces";
 import { useCMS } from "@/context/useCMS";
@@ -995,6 +996,8 @@ export const StaticContentList = () => {
         gap={4}
       >
         <AccordionRoot multiple>
+          {isEmptyArray(resolvedRegistry) && <FeedbackNotFound />}
+
           {staticContents &&
             resolvedRegistry.map((reg, idx) => {
               return (

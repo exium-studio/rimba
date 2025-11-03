@@ -108,7 +108,7 @@ export default function ClientSideOnly(props: Props) {
   }
 
   useEffect(() => {
-    setCMSAuthToken(CMSAuthTokenParams as string);
+    if (CMSAuthTokenParams) setCMSAuthToken(CMSAuthTokenParams as string);
   }, [CMSAuthTokenParams]);
 
   // handle LP contents

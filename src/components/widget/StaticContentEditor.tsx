@@ -226,7 +226,7 @@ const allContentIds = STATIC_CONTENT_REGISTRY.flatMap(
 
 const TextForm = (props: any) => {
   // Props
-  const { content } = props;
+  const { CMSAuthToken, content } = props;
 
   // Contexts
   const { l } = useLang();
@@ -257,6 +257,9 @@ const TextForm = (props: any) => {
       };
 
       const config = {
+        headers: {
+          Authorization: `Bearer ${CMSAuthToken}`,
+        },
         url: `/api/cms/content/update/${content.id}`,
         method: "PATCH",
         data: payload,
@@ -329,7 +332,7 @@ const TextForm = (props: any) => {
 };
 const TextArrayForm = (props: any) => {
   // Props
-  const { content } = props;
+  const { CMSAuthToken, content } = props;
 
   // Contexts
   const { l } = useLang();
@@ -376,6 +379,9 @@ const TextArrayForm = (props: any) => {
       };
 
       const config = {
+        headers: {
+          Authorization: `Bearer ${CMSAuthToken}`,
+        },
         url: `/api/cms/content/update/${content.id}`,
         method: "PATCH",
         data: payload,
@@ -515,7 +521,7 @@ const TextArrayForm = (props: any) => {
 };
 const LinkForm = (props: any) => {
   // Props
-  const { content } = props;
+  const { CMSAuthToken, content } = props;
 
   // Contexts
   const { l } = useLang();
@@ -542,6 +548,9 @@ const LinkForm = (props: any) => {
       };
 
       const config = {
+        headers: {
+          Authorization: `Bearer ${CMSAuthToken}`,
+        },
         url: `/api/cms/content/update/${content.id}`,
         method: "PATCH",
         data: payload,
@@ -583,7 +592,7 @@ const LinkForm = (props: any) => {
 };
 const ImageForm = (props: any) => {
   // Props
-  const { content } = props;
+  const { CMSAuthToken, content } = props;
 
   // Contexts
   const { l } = useLang();
@@ -625,6 +634,9 @@ const ImageForm = (props: any) => {
       );
 
       const config = {
+        headers: {
+          Authorization: `Bearer ${CMSAuthToken}`,
+        },
         url: `/api/cms/content/update/${content.id}`,
         method: "PATCH",
         data: payload,
@@ -680,7 +692,7 @@ const ImageForm = (props: any) => {
 };
 const ImageArrayForm = (props: any) => {
   // Props
-  const { content, maxFiles = 1 } = props;
+  const { CMSAuthToken, content, maxFiles = 1 } = props;
 
   // Contexts
   const { l } = useLang();
@@ -722,6 +734,9 @@ const ImageArrayForm = (props: any) => {
       );
 
       const config = {
+        headers: {
+          Authorization: `Bearer ${CMSAuthToken}`,
+        },
         url: `/api/cms/content/update/${content.id}`,
         method: "PATCH",
         data: payload,
@@ -787,7 +802,7 @@ export const EditContentTrigger = (props: any) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-  const cmsAuthToken = useCMS((s) => s.CMSAuthToken);
+  const CMSAuthToken = useCMS((s) => s.CMSAuthToken);
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
@@ -800,18 +815,24 @@ export const EditContentTrigger = (props: any) => {
 
   // States
   const FORM_REGISTRY = {
-    Text: <TextForm content={content} />,
-    TextArray: <TextArrayForm content={content} />,
-    Link: <LinkForm content={content} />,
-    Image: <ImageForm content={content} />,
-    ImageArray: <ImageArrayForm content={content} maxFiles={20} />,
+    Text: <TextForm content={content} CMSAuthToken={CMSAuthToken} />,
+    TextArray: <TextArrayForm content={content} CMSAuthToken={CMSAuthToken} />,
+    Link: <LinkForm content={content} CMSAuthToken={CMSAuthToken} />,
+    Image: <ImageForm content={content} CMSAuthToken={CMSAuthToken} />,
+    ImageArray: (
+      <ImageArrayForm
+        content={content}
+        CMSAuthToken={CMSAuthToken}
+        maxFiles={20}
+      />
+    ),
   };
 
   return (
     <>
       <CContainer
         w={"fit"}
-        onClick={cmsAuthToken ? onOpen : () => {}}
+        onClick={CMSAuthToken ? onOpen : () => {}}
         {...restProps}
       >
         {children}

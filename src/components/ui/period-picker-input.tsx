@@ -15,6 +15,7 @@ import {
   Icon,
   SimpleGrid,
   useDisclosure,
+  useFieldContext,
 } from "@chakra-ui/react";
 import { IconCircleFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
@@ -31,6 +32,8 @@ import { Field } from "./field";
 import { NumInput } from "./number-input";
 import { P } from "./p";
 import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/sizes";
+import { disclosureId } from "@/utils/disclosure";
+import { getLocalTimezone } from "@/utils/time";
 
 const DEFAULT = {
   year: null,
@@ -55,12 +58,14 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
+  const fc = useFieldContext();
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(resolvedId, open, onOpen, onClose);
+  useBackOnClose(disclosureId(resolvedId), open, onOpen, onClose);
 
   // States
+  const resolvedInvalid = invalid ?? fc?.invalid;
   const resolvedPlaceholder = placeholder || l.select_period;
   const MONTHS = [
     l.january,
@@ -77,7 +82,8 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     l.december,
   ];
   const [selected, setSelected] = useState<Type__Period>(DEFAULT);
-  const empty = selected.year === null || selected.month === null;
+  const isEmpty = selected.year === null || selected.month === null;
+  const isIncomplete = selected.year === null || selected.month === null;
 
   // handle initial value on open
   useEffect(() => {
@@ -90,7 +96,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
   }, [open, inputValue]);
 
   const handleConfirm = () => {
-    if (!empty) {
+    if (!isEmpty) {
       onConfirm?.({ month: selected.month, year: selected.year });
     } else {
       onConfirm?.(null);
@@ -102,7 +108,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     <>
       <Tooltip
         content={
-          !empty
+          !isEmpty
             ? formatDate(new Date(selected.year!, selected.month!), {
                 variant: "monthYear",
               })
@@ -115,7 +121,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
           variant={"outline"}
           justifyContent={"start"}
           onClick={onOpen}
-          borderColor={invalid ? "border.error" : "border.muted"}
+          borderColor={resolvedInvalid ? "border.error" : "border.muted"}
           {...restProps}
         >
           {!inputValue && <P color={"placeholder"}>{resolvedPlaceholder}</P>}
@@ -124,6 +130,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
             <P>
               {formatDate(new Date(inputValue.year!, inputValue.month!), {
                 variant: "monthYear",
+                timezoneKey: getLocalTimezone().key,
               })}
             </P>
           )}
@@ -211,7 +218,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
             <Btn
               onClick={handleConfirm}
               colorPalette={themeConfig.colorPalette}
-              disabled={empty && required}
+              disabled={required && (isEmpty || isIncomplete)}
             >
               {l.confirm}
             </Btn>

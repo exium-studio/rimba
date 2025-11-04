@@ -47,7 +47,8 @@ export default function PrivateRoutesLayout({ children }: Props) {
         onResolve: {
           onSuccess: (r) => {
             const user = r.data.data;
-            setStorage("__user_data", JSON.stringify(user));
+            setStorage("__auth_token", authToken, "local", 259200000);
+            setStorage("__user_data", JSON.stringify(user), "local", 259200000);
             setVerifiedAuthToken(authToken);
             setRole(user.role);
             setPermissions(user.role.permissions);

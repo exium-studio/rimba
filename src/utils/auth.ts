@@ -5,8 +5,8 @@ export function getAuthToken() {
   return getStorage("__auth_token") || null;
 }
 
-export function setAuthToken(token: string) {
-  setStorage("__auth_token", token);
+export function setAuthToken(token: string, expireInMs?: number) {
+  setStorage("__auth_token", token, "local", expireInMs);
 }
 
 export function clearAuthToken() {

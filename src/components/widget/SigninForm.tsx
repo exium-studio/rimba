@@ -229,8 +229,8 @@ const SigninForm = (props: Props) => {
           onSuccess: (r: any) => {
             const user = r.data.data.user;
 
-            setStorage("__auth_token", r.data.data?.token);
-            setStorage("__user_data", JSON.stringify(user));
+            setStorage("__auth_token", r.data.data?.token, "local", 259200000);
+            setStorage("__user_data", JSON.stringify(user), "local", 259200000);
 
             setVerifiedAuthToken(r.data.data?.token);
             setRole(user?.role);

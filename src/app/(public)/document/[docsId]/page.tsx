@@ -51,7 +51,14 @@ export default function Page() {
     loaded: (
       <LPSectionContainer py={"80px"} overflowY={"auto"}>
         <SimpleGrid columns={[1, null, 2]} gap={8} overflowY={"auto"}>
-          <CContainer className="scrollY" maxH={"600px"}>
+          <CContainer className="scrollY" maxH={"600px"} gap={4}>
+            <CContainer gap={1}>
+              <P fontSize={"lg"} fontWeight={"semibold"}>
+                {l.all_document}
+              </P>
+              <P color={"fg.subtle"}>{l.select_document_to_view}</P>
+            </CContainer>
+
             <SimpleGrid columns={[2]} gap={4}>
               {data?.document?.map((doc, idx: number) => {
                 const isActive = activeDoc?.id === doc?.id;
@@ -59,8 +66,9 @@ export default function Page() {
                 return (
                   <CContainer
                     key={idx}
-                    bg={"bgContent"}
                     rounded={"lg"}
+                    border={"1px solid"}
+                    borderColor={"border.muted"}
                     p={4}
                     gap={8}
                     cursor={"pointer"}

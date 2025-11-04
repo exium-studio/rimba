@@ -947,6 +947,10 @@ export const table_of_content = {
   id: "Daftar isi",
   en: "Table of content",
 };
+export const select_document_to_view = {
+  id: "Pilih dokumen untuk melihat",
+  en: "Select document to view",
+};
 
 // Message
 export const msg_still_have_question = {

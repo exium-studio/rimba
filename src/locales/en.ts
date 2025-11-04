@@ -424,6 +424,7 @@ const translations = {
   "select_all": "Select all",
   "select_date": "Select date",
   "select_date_range": "Select date range",
+  "select_document_to_view": "Select document to view",
   "select_period": "Select period",
   "select_time": "Select time",
   "selected": "Selected",

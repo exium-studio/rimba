@@ -424,6 +424,7 @@ const translations = {
   "select_all": "Pilih semua",
   "select_date": "Pilih tanggal",
   "select_date_range": "Pilih rentang tanggal",
+  "select_document_to_view": "Pilih dokumen untuk melihat",
   "select_period": "Pilih periode",
   "select_time": "Pilih waktu",
   "selected": "Dipilih",

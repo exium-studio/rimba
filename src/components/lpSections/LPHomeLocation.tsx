@@ -117,6 +117,8 @@ const LocationListItem = (props: any) => {
             className="scrollY"
             content={locationListContent}
             mt={2}
+            w={"full"}
+            pr={"50px"}
           >
             <CContainer gap={1} pr={2}>
               {locationList?.map((location: string, idx: number) => {

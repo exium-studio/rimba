@@ -56,7 +56,7 @@ export const PageHeader = (props: Props) => {
         duration: 0.75,
       });
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [img] }
   );
 
   return (

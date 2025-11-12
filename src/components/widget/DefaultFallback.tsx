@@ -1,14 +1,16 @@
 "use client";
 
-import { Img } from "@/components/ui/img";
-import { APP } from "@/constants/_meta";
-import { SVGS_PATH } from "@/constants/paths";
+import { PartnersLogo } from "@/components/widget/PartnersLogo";
+import { useThemeConfig } from "@/context/useThemeConfig";
 import { Center } from "@chakra-ui/react";
 
 export const DefaultFallback = () => {
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
   return (
-    <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
-      <Img
+    <Center w={"100vw"} minH={"100dvh"} p={10}>
+      {/* <Img
         alt={`${APP.name} Logo`}
         src={`${SVGS_PATH}/logo_gray.svg`}
         width={"48px"}
@@ -16,7 +18,8 @@ export const DefaultFallback = () => {
         imageProps={{
           priority: true,
         }}
-      />
+      /> */}
+      <PartnersLogo color={themeConfig.primaryColor} />
     </Center>
   );
 };

@@ -70,9 +70,10 @@ export const FeedbackSession = (props: Props) => {
         onResolve: {
           onSuccess: () => {
             setRt((ps) => !ps);
-            router.push(
-              `/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`
-            );
+            if (!courseDetail?.learningAttempt?.feedback)
+              router.push(
+                `/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`
+              );
           },
         },
       });

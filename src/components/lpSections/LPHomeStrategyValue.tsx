@@ -12,6 +12,7 @@ import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import useScreen from "@/hooks/useScreen";
 import { Circle, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import {
@@ -21,7 +22,8 @@ import {
   IconHeartHandshake,
 } from "@tabler/icons-react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 const ValueItem = (props: any) => {
   // Props
@@ -75,6 +77,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
 
   // Hooks
   const iss = useIsSmScreenWidth();
+  const { sw } = useScreen();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -147,6 +150,10 @@ export const LPHomeStrategyValue = (props: StackProps) => {
     },
     { scope: containerRef, dependencies: [iss] }
   );
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [sw]);
 
   return (
     <LPSectionContainer

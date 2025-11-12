@@ -13,13 +13,15 @@ import { Interface__CMSNews } from "@/constants/interfaces";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import useScreen from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
 import { Center, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 const NewsItem = (props: any) => {
   // Props
@@ -151,6 +153,9 @@ export const LPHomeNews = (props: StackProps) => {
   const staticContents = useContents((s) => s.staticContents);
   const homeNews = useContents((s) => s.homeNews);
 
+  // Hooks
+  const { sw } = useScreen();
+
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -183,6 +188,10 @@ export const LPHomeNews = (props: StackProps) => {
     },
     { scope: containerRef }
   );
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [sw]);
 
   return (
     <LPSectionContainer

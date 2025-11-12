@@ -14,12 +14,14 @@ import { Interface__CMSDocument } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
+import useScreen from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
 import { Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 export const LPHomeLegalDocs = (props: StackProps) => {
   // Props
@@ -29,6 +31,9 @@ export const LPHomeLegalDocs = (props: StackProps) => {
   const { l, lang } = useLang();
   const staticContents = useContents((s) => s.staticContents);
   const homeLegalDocuments = useContents((s) => s.homeLegalDocuments);
+
+  // Hooks
+  const { sw } = useScreen();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -73,6 +78,10 @@ export const LPHomeLegalDocs = (props: StackProps) => {
     },
     { scope: containerRef }
   );
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [sw]);
 
   return (
     <CContainer

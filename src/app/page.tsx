@@ -1,5 +1,6 @@
 "use client";
 
+import { LPFAQs } from "@/components/lpSections/LPFAQs";
 import { LPFooter } from "@/components/lpSections/LPFooter";
 import { LPHomeActivities } from "@/components/lpSections/LPHomeActivities";
 import { LPHomeHero } from "@/components/lpSections/LPHomeHero";
@@ -7,11 +8,10 @@ import { LPHomeImpact } from "@/components/lpSections/LPHomeImpact";
 import { LPHomeLegalDocs } from "@/components/lpSections/LPHomeLegalDocs";
 import { LPHomeLocation } from "@/components/lpSections/LPHomeLocation";
 import { LPHomeNews } from "@/components/lpSections/LPHomeNews";
-import { LPPartners } from "@/components/lpSections/LPPartners";
 import { LPHomeStrategyValue } from "@/components/lpSections/LPHomeStrategyValue";
+import { LPPartners } from "@/components/lpSections/LPPartners";
 import { CContainer } from "@/components/ui/c-container";
 import { TopNav } from "@/components/widget/TopNav";
-import { LPFAQs } from "@/components/lpSections/LPFAQs";
 
 const IndexRoute = () => {
   return (

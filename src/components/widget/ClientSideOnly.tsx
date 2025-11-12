@@ -19,7 +19,7 @@ import useOfflineAlert from "@/hooks/useOfflineAlert";
 import useRequest from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";
 import { getAuthToken } from "@/utils/auth";
-import { setStorage } from "@/utils/client";
+import { removeStorage, setStorage } from "@/utils/client";
 import { Center } from "@chakra-ui/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -171,7 +171,10 @@ export default function ClientSideOnly(props: Props) {
             setRole(user.role);
             setPermissions(user.role.permissions);
           },
-          onError: () => {},
+          onError: () => {
+            removeStorage("__auth_token");
+            removeStorage("__user_data");
+          },
         },
       });
     }

@@ -15,7 +15,8 @@ import { Box, HStack, Icon, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import { IconMapPin2, IconWorld } from "@tabler/icons-react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 const MapInfo = (props: StackProps) => {
   // Props
@@ -215,6 +216,10 @@ export const LPHomeLocation = (props: StackProps) => {
     },
     { scope: containerRef }
   );
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [sw]);
 
   return (
     <>

@@ -10,11 +10,12 @@ import { Interface_CMSContent } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import useScreen from "@/hooks/useScreen";
 import { Box, HStack, Stack, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 const HeroH = "100lvh";
 const HeroW = "100vw";
@@ -126,7 +127,7 @@ export const LPHomeHero = (props: StackProps) => {
   const staticContents = useContents((s) => s.staticContents);
 
   // Hooks
-  const iss = useIsSmScreenWidth();
+  const { sw } = useScreen();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -260,8 +261,12 @@ export const LPHomeHero = (props: StackProps) => {
           "<"
         );
     },
-    { scope: containerRef, dependencies: [iss] }
+    { scope: containerRef }
   );
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [sw]);
 
   return (
     <CContainer

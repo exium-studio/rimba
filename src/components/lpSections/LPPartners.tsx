@@ -9,10 +9,12 @@ import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import useScreen from "@/hooks/useScreen";
 import { HStack, Image, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 export const LPPartners = (props: StackProps) => {
   // Props
@@ -24,6 +26,7 @@ export const LPPartners = (props: StackProps) => {
 
   // Hooks
   const iss = useIsSmScreenWidth();
+  const { sw } = useScreen();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -70,6 +73,10 @@ export const LPPartners = (props: StackProps) => {
     },
     { scope: containerRef }
   );
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [sw]);
 
   const partnerLogos1 = staticContents[55]?.content || [];
   const resolvedParterLogos1 = Array(6).fill(partnerLogos1).flat();

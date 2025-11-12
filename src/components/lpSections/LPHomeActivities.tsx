@@ -14,6 +14,7 @@ import { Interface__CMSActivity } from "@/constants/interfaces";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import useScreen from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
 import { HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
@@ -23,7 +24,8 @@ import {
   IconArrowUpRight,
 } from "@tabler/icons-react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 const ActivityItemFull = (props: any) => {
   // Props
@@ -78,6 +80,7 @@ export const LPHomeActivities = (props: StackProps) => {
 
   // Hooks
   const iss = useIsSmScreenWidth();
+  const { sw } = useScreen();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -138,6 +141,10 @@ export const LPHomeActivities = (props: StackProps) => {
     },
     { scope: containerRef, dependencies: [iss] }
   );
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [sw]);
 
   return (
     <CContainer>

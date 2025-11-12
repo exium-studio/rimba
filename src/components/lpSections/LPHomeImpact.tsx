@@ -10,11 +10,13 @@ import { MONTHS } from "@/constants/months";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import useScreen from "@/hooks/useScreen";
 import { BarList, BarListData, Chart, useChart } from "@chakra-ui/charts";
 import { SimpleGrid, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 import {
   CartesianGrid,
   Legend,
@@ -177,6 +179,7 @@ export const LPHomeImpact = (props: StackProps) => {
 
   // Hooks
   const iss = useIsSmScreenWidth();
+  const { sw } = useScreen();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -256,6 +259,10 @@ export const LPHomeImpact = (props: StackProps) => {
     },
     { scope: containerRef, dependencies: [iss] }
   );
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [sw]);
 
   return (
     <CContainer ref={containerRef} py={"80px"} {...restProps}>

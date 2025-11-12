@@ -4,7 +4,7 @@ import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useRequest from "@/hooks/useRequest";
 import { getAuthToken } from "@/utils/auth";
-import { setStorage } from "@/utils/client";
+import { removeStorage, setStorage } from "@/utils/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -55,6 +55,8 @@ export default function PrivateRoutesLayout({ children }: Props) {
             setChecked(true);
           },
           onError: () => {
+            removeStorage("__auth_token");
+            removeStorage("__user_data");
             setChecked(true);
           },
         },

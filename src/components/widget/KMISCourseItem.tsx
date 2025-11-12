@@ -149,7 +149,7 @@ const DetailCourse = (props: any) => {
           <CContainer gap={2} py={2}>
             <Badge w={"fit"}>{data?.topic?.category?.title}</Badge>
 
-            <P fontSize={"xl"} fontWeight={"semibold"} mb={2}>
+            <P fontSize={"xl"} fontWeight={"semibold"} mb={2} lineHeight={1.4}>
               {data?.topic?.title}
             </P>
 

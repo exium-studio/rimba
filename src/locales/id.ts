@@ -303,7 +303,7 @@ const translations = {
     "related_apps": {
       "index": "Aplikasi",
       "kmis": "KMIS",
-      "admin_portal": "Admin/Monev"
+      "admin_portal": "Admin/Monev/Pengajar"
     }
   },
   "lp_news_section": {

@@ -303,7 +303,7 @@ const translations = {
     "related_apps": {
       "index": "Applications",
       "kmis": "KMIS",
-      "admin_portal": "Admin/Monev"
+      "admin_portal": "Admin/Monev/Educator"
     }
   },
   "lp_news_section": {

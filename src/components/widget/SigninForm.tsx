@@ -1,14 +1,16 @@
 "use client";
 
 import { Field } from "@/components/ui/field";
+import { NavLink } from "@/components/ui/nav-link";
 import BrandWatermark from "@/components/widget/BrandWatermark";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useRequest from "@/hooks/useRequest";
 import { back, setStorage } from "@/utils/client";
 import { HStack, Icon, InputGroup, StackProps } from "@chakra-ui/react";
-import { IconLock, IconUser } from "@tabler/icons-react";
+import { IconLock, IconSchool, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import { useState } from "react";
 import * as yup from "yup";
@@ -19,7 +21,6 @@ import { P } from "../ui/p";
 import { PasswordInput } from "../ui/password-input";
 import { StringInput } from "../ui/string-input";
 import ResetPasswordDisclosure from "./ResetPasswordDisclosure";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 
 interface Props extends StackProps {}
 
@@ -344,6 +345,18 @@ const SigninForm = (props: Props) => {
               >
                 Sign in
               </Btn>
+
+              <NavLink
+                to={`${process.env.NEXT_PUBLIC_ADMIN_URL}/?roleId=2`}
+                w={"full"}
+              >
+                <Btn variant={"ghost"} colorPalette={"p"} w={"full"} mt={2}>
+                  <Icon>
+                    <IconSchool stroke={1.5} />
+                  </Icon>
+                  Sign in {l.educator.toLowerCase()}
+                </Btn>
+              </NavLink>
 
               <HStack mt={4}>
                 <Divider h={"1px"} w={"full"} />

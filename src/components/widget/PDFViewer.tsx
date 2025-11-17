@@ -39,7 +39,7 @@ export function PDFViewer(props: Props) {
   }, []);
 
   return (
-    <CContainer w="full" h="full" aspectRatio={aspectRatio} {...restProps}>
+    <CContainer w="full" h="fit" aspectRatio={aspectRatio} {...restProps}>
       {fileUrl ? (
         <Worker workerUrl={workerUrl}>
           <Viewer fileUrl={fileUrl} plugins={[defaultLayoutPluginInstance]} />

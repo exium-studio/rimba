@@ -26,6 +26,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
+import TawkChat from "@/components/widget/TawkChat";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,6 +98,8 @@ export default function ClientSideOnly(props: Props) {
         {CMSAuthToken && <StaticContentListToggle />}
 
         {children}
+
+        <TawkChat />
       </>
     ),
   };

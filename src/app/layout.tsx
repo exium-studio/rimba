@@ -1,13 +1,11 @@
 import { Provider } from "@/components/ui/provider";
 import ClientSideOnly from "@/components/widget/ClientSideOnly";
-import TawkChat from "@/components/widget/TawkChat";
+import { DefaultFallback } from "@/components/widget/DefaultFallback";
 import { APP } from "@/constants/_meta";
 import { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
-import "./globals.css";
 import { Suspense } from "react";
-import { DefaultFallback } from "@/components/widget/DefaultFallback";
-
+import "./globals.css";
 interface Props {
   children: React.ReactNode;
 }
@@ -74,8 +72,6 @@ export default function RootLayout(props: Props) {
             <ClientSideOnly>{children}</ClientSideOnly>
           </Suspense>
         </Provider>
-
-        <TawkChat />
       </body>
     </html>
   );

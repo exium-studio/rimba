@@ -181,6 +181,8 @@ const translations = {
   "feedback_placeholder": "Rate and comment",
   "feedback_question": "How do you feel about topic <b>${courseName}</b>?",
   "finished": "Finished",
+  "fit_to_page": "Fit to page",
+  "fit_to_width": "Fit to width",
   "footer": "Footer",
   "friday": "Friday",
   "get": "Get",
@@ -379,6 +381,7 @@ const translations = {
     "profile": "Profile"
   },
   "next": "Next",
+  "next_page": "Next page",
   "not_answered": "Not answered",
   "not_started": "Not started",
   "not_starterd": "Not started",
@@ -397,6 +400,7 @@ const translations = {
   "password_confirmation": "Password Confirmation",
   "phone_number": "Phone number",
   "previous": "Previous",
+  "previous_page": "Previous page",
   "profession": "Profession",
   "profile": "Profile",
   "progress_status": "Progress status",
@@ -565,7 +569,10 @@ const translations = {
   "week": "Week",
   "will_be_deleted": "Will be deleted",
   "wrong_answer": "Wrong answer",
-  "year": "Year"
+  "year": "Year",
+  "zoom_in": "Zoom in",
+  "zoom_out": "Zoom out",
+  "zoom_reset": "Reset zoom"
 };
 
 export default translations;

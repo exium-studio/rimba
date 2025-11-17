@@ -16,8 +16,8 @@ import { FeedbackSession } from "@/components/widget/FeedbackSession";
 import FeedbackState from "@/components/widget/FeedbackState";
 import { CompleteIndicator, DotIndicator } from "@/components/widget/Indicator";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
-import { PDFViewer } from "@/components/widget/PDFViewer";
 import { QuizWorkspace } from "@/components/widget/QuizWorkspace";
+import { SimplePDFViewer } from "@/components/widget/SimplePDFViewer";
 import VideoPlayer from "@/components/widget/VideoPlayer";
 import {
   Interface__KMISMaterial,
@@ -114,7 +114,10 @@ const MATERIAL_REGISTRY = {
               (item: Interface__StorageFile) => {
                 // return <FileItem key={item.id} fileData={item} />;
                 return (
-                  <PDFViewer key={item.id} fileUrl={fileUrl(item?.filePath)} />
+                  <SimplePDFViewer
+                    key={item.id}
+                    fileUrl={fileUrl(item?.filePath) as string}
+                  />
                 );
               }
             )}

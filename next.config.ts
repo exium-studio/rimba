@@ -36,11 +36,17 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
   },
-  webpack(config, { dev }) {
-    if (dev) {
-      config.cache = {
-        type: "memory",
+  webpack(config, { dev, isServer }) {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        canvas: false,
+        fs: false,
+        path: false,
       };
+    }
+    if (dev) {
+      config.cache = { type: "memory" };
     }
     return config;
   },

@@ -181,6 +181,8 @@ const translations = {
   "feedback_placeholder": "Rate dan komentar",
   "feedback_question": "Bagaimana pendapatmu tentang topik <b>${courseName}</b>?",
   "finished": "Selesai",
+  "fit_to_page": "Menyesuaikan halaman",
+  "fit_to_width": "Menyesuaikan lebar",
   "footer": "Footer",
   "friday": "Jumat",
   "get": "Dapatkan",
@@ -379,6 +381,7 @@ const translations = {
     "profile": "Profil"
   },
   "next": "Selanjutnya",
+  "next_page": "Halaman selanjutnya",
   "not_answered": "Belum terjawab",
   "not_started": "Belum dimulai",
   "not_starterd": "Belum dimulai",
@@ -397,6 +400,7 @@ const translations = {
   "password_confirmation": "Konfirmasi Password",
   "phone_number": "Nomor telepon",
   "previous": "Sebelumnya",
+  "previous_page": "Halaman sebelumnya",
   "profession": "Profesi",
   "profile": "Profil",
   "progress_status": "Status progress",
@@ -565,7 +569,10 @@ const translations = {
   "week": "Minggu",
   "will_be_deleted": "Akan dihapus",
   "wrong_answer": "Jawaban salah",
-  "year": "Tahun"
+  "year": "Tahun",
+  "zoom_in": "Perbesar",
+  "zoom_out": "Perkecil",
+  "zoom_reset": "Reset zoom"
 };
 
 export default translations;

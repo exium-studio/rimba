@@ -105,7 +105,7 @@ export const DocumentItem = (props: Props__DocumentItem) => {
           </P>
         </CContainer>
 
-        <CContainer p={3}>
+        <CContainer p={3} mt={"auto"}>
           <NavLink to={`/document/${document.id}`} w={"fit"} mt={4} ml={"auto"}>
             <Btn
               colorPalette={"p"}

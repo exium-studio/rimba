@@ -594,12 +594,12 @@ export const KMISLearningSection = (props: Props) => {
       {...restProps}
     >
       <Stack flexDir={["column", null, "row"]} gap={4}>
-        <CContainer flex={1} gap={4}>
+        <CContainer w={"250px"} flexShrink={0} gap={4}>
           <LearningModules courseDetail={courseDetail} />
         </CContainer>
 
         <ActiveMaterial
-          flex={3.5}
+          flex={1}
           flexshrink={0}
           courseDetail={courseDetail}
           getCourseDetail={getCourseDetail}

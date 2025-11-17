@@ -514,7 +514,7 @@ const ActiveMaterial = (props: any) => {
       dataResource: false,
     });
   const render = {
-    loading: <Skeleton minH={"400px"} />,
+    loading: <Skeleton minH={"400px"} flex={1} />,
     error: <FeedbackRetry onRetry={onRetry} />,
     empty: <FeedbackNoData />,
     loaded: (
@@ -594,13 +594,12 @@ export const KMISLearningSection = (props: Props) => {
       {...restProps}
     >
       <Stack flexDir={["column", null, "row"]} gap={4}>
-        <CContainer w={"250px"} flexShrink={0} gap={4}>
+        <CContainer w={["full", null, "250px"]} flexShrink={0} gap={4}>
           <LearningModules courseDetail={courseDetail} />
         </CContainer>
 
         <ActiveMaterial
-          flex={1}
-          flexshrink={0}
+          maxW={["", null, "calc(100% - 250px)"]}
           courseDetail={courseDetail}
           getCourseDetail={getCourseDetail}
         />

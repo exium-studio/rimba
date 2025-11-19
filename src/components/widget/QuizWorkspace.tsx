@@ -41,6 +41,7 @@ import { back } from "@/utils/client";
 import { formatDate, formatDuration, formatNumber } from "@/utils/formatter";
 import { capitalizeWords, interpolateString } from "@/utils/string";
 import {
+  addSecondsToISODate,
   addSecondsToTime,
   getRemainingSecondsUntil,
   makeTime,
@@ -392,8 +393,8 @@ const ActiveQuiz = (props: any) => {
 const CountDownDuration = (props: any) => {
   // Props
   const {
-    quizEndedAutomaticallyAt,
-    quizStartedAt,
+    quizTimeEndedAutomaticallyAt,
+    quizTimeStartedAt,
     courseDetail,
     ...restProps
   } = props;
@@ -412,7 +413,7 @@ const CountDownDuration = (props: any) => {
   // States
   const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
   const [remainingSeconds, setRemainingSeconds] = useState(
-    getRemainingSecondsUntil(quizEndedAutomaticallyAt)
+    getRemainingSecondsUntil(quizTimeEndedAutomaticallyAt)
   );
   const formattedTime = formatDuration(remainingSeconds, "digital");
 
@@ -448,7 +449,7 @@ const CountDownDuration = (props: any) => {
         const next = prev - 1;
         if (next <= 0) {
           clearInterval(interval);
-          if (!isQuizFinished && quizStartedAt) onSubmitQuiz();
+          if (!isQuizFinished && quizTimeStartedAt) onSubmitQuiz();
           return 0;
         }
         return next;
@@ -456,7 +457,7 @@ const CountDownDuration = (props: any) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [quizEndedAutomaticallyAt]);
+  }, [quizTimeEndedAutomaticallyAt]);
 
   return (
     <HStack
@@ -783,15 +784,18 @@ const QuestionList = (props: any) => {
   const learningAttempt = data?.learningParticipant || data?.learningAttempt;
   const quizDurationSeconds =
     courseDetail?.learningAttempt?.topic?.quizDuration;
-  const quizStartedAt = makeTime(learningAttempt?.quizStarted);
-  const quizEndedAutomaticallyAt = addSecondsToTime(
-    quizStartedAt,
+  const quizTimeStartedAt = makeTime(learningAttempt?.quizStarted);
+  const quizEndedAutomaticallyAt = addSecondsToISODate(
+    learningAttempt?.quizStarted,
     quizDurationSeconds
   );
-  const quizEndedAt = makeTime(courseDetail?.learningAttempt?.quizFinished);
+  const quizTimeEndedAutomaticallyAt = addSecondsToTime(
+    quizTimeStartedAt,
+    quizDurationSeconds
+  );
+  const quizEndedAt = courseDetail?.learningAttempt?.quizFinished;
+  const quizTimeEndedAt = makeTime(courseDetail?.learningAttempt?.quizFinished);
   const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
-
-  console.debug(courseDetail?.learningAttempt?.quizFinished);
 
   return (
     <CContainer flex={1} gap={4} {...restProps}>
@@ -801,9 +805,9 @@ const QuestionList = (props: any) => {
 
         {!isQuizFinished && (
           <CountDownDuration
-            quizStartedAt={quizStartedAt}
-            quizEndedAutomaticallyAt={quizEndedAutomaticallyAt}
-            quizEndedAt={quizEndedAt}
+            quizTimeStartedAt={quizTimeStartedAt}
+            quizTimeEndedAutomaticallyAt={quizTimeEndedAutomaticallyAt}
+            quizTimeEndedAt={quizTimeEndedAt}
             courseDetail={courseDetail}
           />
         )}
@@ -865,12 +869,23 @@ const QuestionList = (props: any) => {
 
         <CContainer justify={"space-between"} gap={1}>
           <P color={"fg.subtle"}>{l.ended_automatically_at}</P>
-          <P>{quizEndedAutomaticallyAt || "-"}</P>
+          {/* <P>{quizTimeEndedAutomaticallyAt || "-"}</P> */}
+          <P>
+            {formatDate(quizEndedAutomaticallyAt, {
+              variant: "dayShortMonthYear",
+              withTime: true,
+            }) || "-"}
+          </P>
         </CContainer>
 
         <CContainer justify={"space-between"} gap={1}>
           <P color={"fg.subtle"}>{l.ended_at}</P>
-          <P>{quizEndedAt || "-"}</P>
+          <P>
+            {formatDate(quizEndedAt, {
+              variant: "dayShortMonthYear",
+              withTime: true,
+            }) || "-"}
+          </P>
         </CContainer>
       </ItemContainer>
     </CContainer>

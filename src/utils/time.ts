@@ -260,3 +260,14 @@ export const getRemainingSecondsUntil = (targetTime: string): number => {
 
   return Math.floor(diffMs / 1000);
 };
+
+export const addSecondsToISODate = (
+  isoDate: string,
+  seconds: number
+): string => {
+  const date = new Date(isoDate);
+
+  date.setSeconds(date.getSeconds() + seconds);
+
+  return date.toISOString();
+};

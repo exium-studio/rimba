@@ -788,8 +788,10 @@ const QuestionList = (props: any) => {
     quizStartedAt,
     quizDurationSeconds
   );
-  const quizEndedAt = makeTime(courseDetail?.learningAttempt?.quizEnded);
+  const quizEndedAt = makeTime(courseDetail?.learningAttempt?.quizFinished);
   const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
+
+  console.debug(courseDetail?.learningAttempt?.quizFinished);
 
   return (
     <CContainer flex={1} gap={4} {...restProps}>

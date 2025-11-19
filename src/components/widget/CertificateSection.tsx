@@ -1,7 +1,7 @@
 "use client";
 
 import { ItemContainer } from "@/components/widget/ItemContainer";
-import { PDFViewer } from "@/components/widget/PDFViewer";
+import { SimplePDFViewer } from "@/components/widget/SimplePDFViewer";
 import { fileUrl } from "@/utils/url";
 import { StackProps } from "@chakra-ui/react";
 
@@ -15,10 +15,12 @@ export const CertificateSection = (props: Props) => {
 
   return (
     <ItemContainer p={4} justify={"center"} {...restProps}>
-      <PDFViewer
-        fileUrl={fileUrl(
-          courseDetail?.learningAttempt?.certificate?.[0]?.filePath
-        )}
+      <SimplePDFViewer
+        fileUrl={
+          fileUrl(
+            courseDetail?.learningAttempt?.certificate?.[0]?.filePath
+          ) as string
+        }
         aspectRatio={16 / 11}
       />
     </ItemContainer>

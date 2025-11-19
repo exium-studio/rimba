@@ -24,6 +24,7 @@
       "@app/*": ["./app/*"]
     },
     "types": ["node", "date-fns"],
+    "typeRoots": ["./node_modules/@types", "./src/types"],
 
     /* Linting */
     "noUnusedLocals": true,

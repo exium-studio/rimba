@@ -221,7 +221,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
           minH={"200px"}
           bg={"d0"}
           p={2}
-          justify={"center"}
+          m={"auto"}
           position={"relative"}
         >
           <Document

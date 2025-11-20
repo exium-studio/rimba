@@ -109,7 +109,7 @@ const MATERIAL_REGISTRY = {
             {resolvedMaterial.title}
           </P>
 
-          <CContainer gap={4} p={4} rounded={"xl"} bg={"body"}>
+          <CContainer rounded={"xl"} bg={"body"} overflow={"clip"}>
             {resolvedMaterial?.materialFiles?.map(
               (item: Interface__StorageFile) => {
                 // return <FileItem key={item.id} fileData={item} />;
@@ -122,7 +122,9 @@ const MATERIAL_REGISTRY = {
               }
             )}
 
-            <SafeHtml html={resolvedMaterial?.description} />
+            <CContainer p={4}>
+              <SafeHtml html={resolvedMaterial?.description} />
+            </CContainer>
           </CContainer>
         </CContainer>
       );

@@ -117,6 +117,7 @@ const MATERIAL_REGISTRY = {
                   <PDFViewer
                     key={item.id}
                     fileUrl={fileUrl(item?.filePath) as string}
+                    maxH={"700px"}
                   />
                 );
               }

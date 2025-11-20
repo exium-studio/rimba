@@ -9,7 +9,7 @@ import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { PageHeader } from "@/components/widget/PageHeader";
-import { SimplePDFViewer } from "@/components/widget/SimplePDFViewer";
+import { PDFViewer } from "@/components/widget/PDFViewer";
 import { TopNav } from "@/components/widget/TopNav";
 import {
   Interface__CMSLegalDocs,
@@ -115,7 +115,7 @@ export default function Page() {
             )}
 
             {activeDoc && (
-              <SimplePDFViewer fileUrl={activeDoc?.fileUrl} h={"600px"} />
+              <PDFViewer fileUrl={activeDoc?.fileUrl} h={"600px"} />
             )}
           </CContainer>
         </SimpleGrid>

@@ -1,7 +1,7 @@
 "use client";
 
 import { ItemContainer } from "@/components/widget/ItemContainer";
-import { SimplePDFViewer } from "@/components/widget/SimplePDFViewer";
+import { PDFViewer } from "@/components/widget/PDFViewer";
 import { fileUrl } from "@/utils/url";
 import { StackProps } from "@chakra-ui/react";
 
@@ -15,7 +15,7 @@ export const CertificateSection = (props: Props) => {
 
   return (
     <ItemContainer p={4} justify={"center"} {...restProps}>
-      <SimplePDFViewer
+      <PDFViewer
         fileUrl={
           fileUrl(
             courseDetail?.learningAttempt?.certificate?.[0]?.filePath

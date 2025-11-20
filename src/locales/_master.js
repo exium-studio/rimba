@@ -1159,6 +1159,16 @@ export const alert_no_document_selected = {
     en: "Please select a document first.",
   },
 };
+export const alert_pdf_failed_to_load = {
+  title: {
+    id: "Gagal memuat PDF",
+    en: "Failed to load PDF",
+  },
+  description: {
+    id: "Cek koneksi atau URL file.",
+    en: "Check your internet connection or file URL.",
+  },
+};
 
 // Setting Page
 export const settings_dark_mode = {

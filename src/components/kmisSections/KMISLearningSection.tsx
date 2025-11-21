@@ -48,6 +48,7 @@ import {
 import { useRouter, useSearchParams } from "next/navigation";
 import { isEmptyArray } from "@/utils/array";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
+import { H3 } from "@/components/ui/heading";
 
 const MATERIAL_REGISTRY = {
   text: {
@@ -217,8 +218,9 @@ const LearningModules = (props: any) => {
 
   return (
     <CContainer bg={"body"} rounded={"xl"} {...restProps}>
-      <CContainer p={4}>
+      <CContainer p={4} gap={1}>
         <P fontWeight={"medium"}>{l.learning_material}</P>
+
         <P fontSize={"sm"} color={"fg.subtle"}>
           {`${
             courseDetail?.learningAttempt?.totalMaterial
@@ -604,15 +606,20 @@ export const KMISLearningSection = (props: Props) => {
       }}
       flex={1}
       bg={"bgContent"}
+      gap={4}
       {...restProps}
     >
+      <H3 fontWeight={"semibold"}>
+        {courseDetail?.learningAttempt?.topic?.title}
+      </H3>
+
       <Stack flexDir={["column", null, "row"]} gap={4}>
-        <CContainer w={["full", null, "250px"]} flexShrink={0} gap={4}>
+        <CContainer w={["full", null, "240px"]} flexShrink={0} gap={4}>
           <LearningModules courseDetail={courseDetail} />
         </CContainer>
 
         <ActiveMaterial
-          maxW={["", null, "calc(100% - 250px)"]}
+          maxW={["", null, "calc(100% - 240px)"]}
           courseDetail={courseDetail}
           getCourseDetail={getCourseDetail}
         />

@@ -433,12 +433,14 @@ export const KMISCourseItem = (props: Props) => {
         </Badge>
       )}
 
-      <Img
-        key={topic?.topicCover?.[0]?.filePath}
-        src={imgUrl(topic?.topicCover?.[0]?.filePath)}
-        aspectRatio={1}
-        rounded={"xl"}
-      />
+      <CContainer p={2}>
+        <Img
+          key={topic?.topicCover?.[0]?.filePath}
+          src={imgUrl(topic?.topicCover?.[0]?.filePath)}
+          aspectRatio={1}
+          rounded={"lg"}
+        />
+      </CContainer>
 
       <CContainer p={4} gap={2} pos={"relative"}>
         <Badge w={"fit"} maxW={"50%"}>

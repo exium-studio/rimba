@@ -46,6 +46,8 @@ import {
   IconVideo,
 } from "@tabler/icons-react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { isEmptyArray } from "@/utils/array";
+import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 
 const MATERIAL_REGISTRY = {
   text: {
@@ -226,6 +228,8 @@ const LearningModules = (props: any) => {
 
       {/* List */}
       <CContainer gap={1} px={2} pb={2}>
+        {isEmptyArray(materials) && <FeedbackNotFound />}
+
         {materials?.map((material: Interface__KMISMaterial, idx: number) => {
           const materialProps =
             MATERIAL_REGISTRY[
@@ -277,95 +281,101 @@ const LearningModules = (props: any) => {
           );
         })}
 
-        <Divider my={1} />
+        {courseDetail?.learningAttempt?.topic?.topicType === "Pelatihan" && (
+          <>
+            <Divider my={1} />
 
-        {/* Quiz */}
-        <NavLink
-          to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`}
-          w={"full"}
-        >
-          <ListItemContainer
-            disabled={
-              completedMaterials.length !== materials.length ||
-              courseDetail?.learningAttempt?.topic?.totalQuiz === 0
-            }
-          >
-            <Center pos={"relative"}>
-              {isQuizFinished && <CompleteIndicator />}
+            {/* Quiz */}
+            <NavLink
+              to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`}
+              w={"full"}
+            >
+              <ListItemContainer
+                disabled={
+                  completedMaterials.length !== materials.length ||
+                  courseDetail?.learningAttempt?.topic?.totalQuiz === 0
+                }
+              >
+                <Center pos={"relative"}>
+                  {isQuizFinished && <CompleteIndicator />}
 
-              <Icon boxSize={6}>
-                <IconHelpHexagon stroke={1.5} />
-              </Icon>
-            </Center>
+                  <Icon boxSize={6}>
+                    <IconHelpHexagon stroke={1.5} />
+                  </Icon>
+                </Center>
 
-            <CContainer>
-              <P fontWeight={"medium"}>Quiz</P>
-              <P fontSize={"sm"} color={"fg.subtle"}>
-                {`${courseDetail?.learningAttempt?.topic?.totalQuiz} quiz / ${
-                  courseDetail?.learningAttempt?.topic?.quizDuration / 60
-                } ${l.minutes}`}
-              </P>
-            </CContainer>
+                <CContainer>
+                  <P fontWeight={"medium"}>Quiz</P>
+                  <P fontSize={"sm"} color={"fg.subtle"}>
+                    {`${
+                      courseDetail?.learningAttempt?.topic?.totalQuiz
+                    } quiz / ${
+                      courseDetail?.learningAttempt?.topic?.quizDuration / 60
+                    } ${l.minutes}`}
+                  </P>
+                </CContainer>
 
-            {quizStarted && <DotIndicator ml={"auto"} mr={1} />}
-          </ListItemContainer>
-        </NavLink>
+                {quizStarted && <DotIndicator ml={"auto"} mr={1} />}
+              </ListItemContainer>
+            </NavLink>
 
-        {/* Feedback */}
-        <NavLink
-          to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?feedbackSession=1`}
-          w={"full"}
-        >
-          <ListItemContainer
-            disabled={!!!courseDetail?.learningAttempt?.quizFinished}
-          >
-            <Center pos={"relative"}>
-              {isFeedbackFinished && <CompleteIndicator />}
+            {/* Feedback */}
+            <NavLink
+              to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?feedbackSession=1`}
+              w={"full"}
+            >
+              <ListItemContainer
+                disabled={!!!courseDetail?.learningAttempt?.quizFinished}
+              >
+                <Center pos={"relative"}>
+                  {isFeedbackFinished && <CompleteIndicator />}
 
-              <Icon boxSize={6}>
-                <IconStar stroke={1.5} />
-              </Icon>
-            </Center>
+                  <Icon boxSize={6}>
+                    <IconStar stroke={1.5} />
+                  </Icon>
+                </Center>
 
-            <CContainer>
-              <P fontWeight={"medium"}>Feedback</P>
-              <P fontSize={"sm"} color={"fg.subtle"}>
-                {l.feedback_placeholder}
-              </P>
-            </CContainer>
+                <CContainer>
+                  <P fontWeight={"medium"}>Feedback</P>
+                  <P fontSize={"sm"} color={"fg.subtle"}>
+                    {l.feedback_placeholder}
+                  </P>
+                </CContainer>
 
-            {feedbackSession && <DotIndicator ml={"auto"} mr={1} />}
-          </ListItemContainer>
-        </NavLink>
+                {feedbackSession && <DotIndicator ml={"auto"} mr={1} />}
+              </ListItemContainer>
+            </NavLink>
 
-        {/* Certificate */}
-        <NavLink
-          to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`}
-          w={"full"}
-        >
-          <ListItemContainer
-            disabled={!!!courseDetail?.learningAttempt?.feedback}
-          >
-            <Center pos={"relative"}>
-              {isFeedbackFinished && <CompleteIndicator />}
+            {/* Certificate */}
+            <NavLink
+              to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`}
+              w={"full"}
+            >
+              <ListItemContainer
+                disabled={!!!courseDetail?.learningAttempt?.feedback}
+              >
+                <Center pos={"relative"}>
+                  {isFeedbackFinished && <CompleteIndicator />}
 
-              <Icon boxSize={6}>
-                <IconCertificate stroke={1.5} />
-              </Icon>
-            </Center>
+                  <Icon boxSize={6}>
+                    <IconCertificate stroke={1.5} />
+                  </Icon>
+                </Center>
 
-            <CContainer>
-              <P fontWeight={"medium"}>{l.certificate}</P>
-              <P fontSize={"sm"} color={"fg.subtle"}>
-                {`${l.score} ${
-                  courseDetail?.learningAttempt?.scoreTotal ?? "-"
-                }`}
-              </P>
-            </CContainer>
+                <CContainer>
+                  <P fontWeight={"medium"}>{l.certificate}</P>
+                  <P fontSize={"sm"} color={"fg.subtle"}>
+                    {`${l.score} ${
+                      courseDetail?.learningAttempt?.scoreTotal ?? "-"
+                    }`}
+                  </P>
+                </CContainer>
 
-            {certificateSection && <DotIndicator ml={"auto"} mr={1} />}
-          </ListItemContainer>
-        </NavLink>
+                {certificateSection && <DotIndicator ml={"auto"} mr={1} />}
+              </ListItemContainer>
+            </NavLink>
+          </>
+        )}
       </CContainer>
     </CContainer>
   );

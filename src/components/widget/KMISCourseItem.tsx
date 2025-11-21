@@ -41,7 +41,7 @@ import {
 } from "@chakra-ui/react";
 import {
   IconArrowRight,
-  IconCertificate,
+  IconAward,
   IconCircleFilled,
   IconEye,
   IconRefresh,
@@ -480,7 +480,7 @@ export const KMISCourseItem = (props: Props) => {
               >
                 <Btn colorPalette={"p"} variant={"outline"}>
                   <Icon>
-                    <IconCertificate stroke={1.5} />
+                    <IconAward stroke={1.5} />
                   </Icon>
 
                   {`${l.view} ${l.certificate?.toLowerCase()}`}

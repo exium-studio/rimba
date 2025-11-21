@@ -72,7 +72,7 @@ export const FeedbackSession = (props: Props) => {
             setRt((ps) => !ps);
             if (!courseDetail?.learningAttempt?.feedback)
               router.push(
-                `/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`
+                `/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`
               );
           },
         },

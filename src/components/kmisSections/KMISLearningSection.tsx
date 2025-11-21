@@ -242,7 +242,7 @@ const LearningModules = (props: any) => {
           return (
             <NavLink
               key={material.id}
-              to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?activeMaterialId=${material.id}`}
+              to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?activeMaterialId=${material.id}`}
               w={"full"}
             >
               <ListItemContainer
@@ -281,7 +281,7 @@ const LearningModules = (props: any) => {
 
         {/* Quiz */}
         <NavLink
-          to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`}
+          to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`}
           w={"full"}
         >
           <ListItemContainer
@@ -313,7 +313,7 @@ const LearningModules = (props: any) => {
 
         {/* Feedback */}
         <NavLink
-          to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?feedbackSession=1`}
+          to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?feedbackSession=1`}
           w={"full"}
         >
           <ListItemContainer
@@ -340,7 +340,7 @@ const LearningModules = (props: any) => {
 
         {/* Certificate */}
         <NavLink
-          to={`/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`}
+          to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`}
           w={"full"}
         >
           <ListItemContainer
@@ -429,14 +429,14 @@ const NextStepButton = (props: any) => {
   // Utils
   function nextActiveMaterial() {
     router.push(
-      `/related-apps/kmis/my-course/${
+      `/related-apps/kmis/my-topic/${
         courseDetail?.learningAttempt?.topic?.id
       }?activeMaterialId=${materials?.[idx + 1]?.id}`
     );
   }
   function startQuiz() {
     router.push(
-      `/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`
+      `/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`
     );
   }
   function onNextMaterial() {

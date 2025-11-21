@@ -979,6 +979,10 @@ export const fit_to_page = {
   id: "Menyesuaikan halaman",
   en: "Fit to page",
 };
+export const topic_type = {
+  id: "Tipe topik",
+  en: "Topic type",
+};
 
 // Message
 export const msg_still_have_question = {

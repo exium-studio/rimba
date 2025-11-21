@@ -251,7 +251,7 @@ const ManualSubmitButton = (props: any) => {
         onSuccess: () => {
           setRt((ps) => !ps);
           router.push(
-            `/related-apps/kmis/my-course/${courseDetail?.learningAttempt?.topic.id}?feedbackSession=1`
+            `/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic.id}?feedbackSession=1`
           );
         },
       },
@@ -435,7 +435,7 @@ const CountDownDuration = (props: any) => {
         onSuccess: () => {
           setRt((ps) => !ps);
           router.push(
-            `/related-apps/kmis/my-course/${courseDetail?.learningAttempt.id}?feedbackSession=1`
+            `/related-apps/kmis/my-topic/${courseDetail?.learningAttempt.id}?feedbackSession=1`
           );
         },
       },

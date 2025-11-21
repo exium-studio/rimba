@@ -45,7 +45,7 @@ export default function Page(props: Props) {
             },
             {
               label: l.my_course,
-              path: "/related-apps/kmis/my-course",
+              path: "/related-apps/kmis/my-topic",
             },
             {
               label: "Loading...",
@@ -77,7 +77,7 @@ export default function Page(props: Props) {
               },
               {
                 label: l.my_course,
-                path: "/related-apps/kmis/my-course",
+                path: "/related-apps/kmis/my-topic",
               },
               {
                 label: data?.learningAttempt?.topic?.title,

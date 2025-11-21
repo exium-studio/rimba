@@ -1,6 +1,6 @@
 "use client";
 
-import { KMISMyCourses } from "@/components/kmisSections/KMISMyCourses";
+import { KMISMyTopic } from "@/components/kmisSections/KMISMyTopic";
 import { LPFooter } from "@/components/lpSections/LPFooter";
 import { CContainer } from "@/components/ui/c-container";
 import { Breadcrumbs } from "@/components/widget/Breadcrumbs";
@@ -33,13 +33,13 @@ export default function Page() {
               },
               {
                 label: l.my_course,
-                path: "/related-apps/kmis/my-course",
+                path: "/related-apps/kmis/my-topic",
               },
             ]}
           />
         </LPSectionContainer>
 
-        <KMISMyCourses />
+        <KMISMyTopic />
       </CContainer>
 
       <LPFooter />

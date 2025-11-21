@@ -356,7 +356,7 @@ export default function Page() {
               },
               {
                 label: l.profile,
-                path: "/related-apps/kmis/my-course",
+                path: "/related-apps/kmis/my-topic",
               },
             ]}
             mb={4}

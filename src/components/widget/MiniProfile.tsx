@@ -114,7 +114,7 @@ export const MiniProfile = (props: Props) => {
       <Divider />
 
       <CContainer gap={1} p={"6px"}>
-        <NavLink to={`/related-apps/kmis/my-course`} w={"full"}>
+        <NavLink to={`/related-apps/kmis/my-topic`} w={"full"}>
           <Btn
             clicky={false}
             size={"md"}
@@ -129,7 +129,7 @@ export const MiniProfile = (props: Props) => {
 
             {l.my_course}
 
-            {pathname === "/related-apps/kmis/my-course" && (
+            {pathname === "/related-apps/kmis/my-topic" && (
               <DotIndicator ml={"auto"} mr={1} />
             )}
           </Btn>

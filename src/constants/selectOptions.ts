@@ -17,3 +17,14 @@ export const OPTIONS_GENDER = [
     label: "Male",
   },
 ];
+
+export const KMIS_TOPIC_TYPE = [
+  {
+    id: "Pelatihan",
+    label: "Pelatihan",
+  },
+  {
+    id: "Pengetahuan",
+    label: "Pengetahuan",
+  },
+];

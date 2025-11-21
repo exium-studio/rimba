@@ -179,7 +179,7 @@ const CategoryFilter = (props: any) => {
   const pathname = usePathname();
 
   // States
-  const isMyCourse = pathname === `/related-apps/kmis/my-course`;
+  const isMyCourse = pathname === `/related-apps/kmis/my-topic`;
   const { error, initialLoading, data, onRetry } = useDataState<
     Interface__KMISTopicCategory[]
   >({

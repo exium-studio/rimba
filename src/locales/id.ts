@@ -551,6 +551,7 @@ const translations = {
   "thursday": "Kamis",
   "time_format": "Format waktu",
   "timezone": "Zona waktu",
+  "topic_type": "Tipe topik",
   "total_answered": "Total terjawab",
   "total_correct": "Total benar",
   "total_empty": "Total kosong",

@@ -11,11 +11,13 @@ import { Limitation } from "@/components/widget/Limitation";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Pagination } from "@/components/widget/Pagination";
 import { SelectCourseFinishedStatus } from "@/components/widget/SelectCourseFinishedStatus";
+import { SelectKMISTopicType } from "@/components/widget/SelectKMISTopicType";
 import { Interface__KMISLearningAttempt } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import { useScrollWithOffset } from "@/hooks/useScrollWithOffset";
 import { isEmptyArray } from "@/utils/array";
+import { capitalizeWords } from "@/utils/string";
 import {
   HStack,
   SimpleGrid,
@@ -57,6 +59,7 @@ const Data = (props: any) => {
       search: filter.search,
       categoryId: filter.category,
       finishedStatus: filter.finishedStatus?.[0]?.id,
+      topicType: filter.topicType,
     },
     dependencies: [filter],
   });
@@ -130,7 +133,7 @@ const Data = (props: any) => {
   );
 };
 
-export const KMISMyCourses = (props: Props) => {
+export const KMISMyTopic = (props: Props) => {
   // Props
   const { ...restProps } = props;
 
@@ -142,6 +145,7 @@ export const KMISMyCourses = (props: Props) => {
     search: "",
     finishedStatus: null,
     category: [],
+    topicType: ["Pelatihan", "Pengetahuan"],
   };
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
@@ -163,19 +167,39 @@ export const KMISMyCourses = (props: Props) => {
 
         <CContainer flex={3.5} gap={4}>
           <HStack wrap={"wrap"} gap={4}>
-            <CContainer flex={"2 0 300px"} gap={1}>
+            <CContainer w={"fit"} flex={"2 0 300px"} gap={1}>
               <P fontSize={"lg"} fontWeight={"semibold"}>
-                {l.my_course}
+                {capitalizeWords(l.my_course)}
               </P>
             </CContainer>
 
-            <HStack flex={"1 1 350px"}>
+            <HStack flex={"1 1 500px"}>
+              <SelectKMISTopicType
+                multiple
+                inputValue={filter.topicType?.map((item: string) => {
+                  return {
+                    id: item,
+                    label: item,
+                  };
+                })}
+                onConfirm={(inputValue) => {
+                  setFilter({
+                    ...filter,
+                    topicType: inputValue?.map((item: any) => {
+                      return item.id;
+                    }),
+                  });
+                }}
+                placeholder={l.topic_type}
+                w={"140px"}
+              />
+
               <SelectCourseFinishedStatus
                 inputValue={filter.finishedStatus}
                 onConfirm={(inputValue) =>
                   setFilter({ ...filter, finishedStatus: inputValue })
                 }
-                w={"150px"}
+                w={"140px"}
               />
 
               <SearchInput

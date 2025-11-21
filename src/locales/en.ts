@@ -551,6 +551,7 @@ const translations = {
   "thursday": "Thursday",
   "time_format": "Time format",
   "timezone": "Timezone",
+  "topic_type": "Topic type",
   "total_answered": "Total answered",
   "total_correct": "Total correct",
   "total_empty": "Total empty",

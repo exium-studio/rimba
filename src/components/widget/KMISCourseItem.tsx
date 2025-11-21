@@ -97,7 +97,7 @@ const StartLearningButton = (props: any) => {
 
   return (
     <NavLink
-      to={`/related-apps/kmis/my-course/${topic?.id}`}
+      to={`/related-apps/kmis/my-topic/${topic?.id}`}
       w={restProps.w || "fit"}
     >
       <Btn colorPalette={"p"} variant={"outline"} {...restProps}>
@@ -472,7 +472,7 @@ export const KMISCourseItem = (props: Props) => {
           <HStack>
             {isFinished && (
               <NavLink
-                to={`/related-apps/kmis/my-course/${topic?.id}?certificateSection=1`}
+                to={`/related-apps/kmis/my-topic/${topic?.id}?certificateSection=1`}
                 w={"full"}
               >
                 <Btn colorPalette={"p"} variant={"outline"}>

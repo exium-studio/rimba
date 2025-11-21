@@ -215,6 +215,8 @@ const LearningModules = (props: any) => {
   const completedMaterials =
     courseDetail?.learningAttempt?.completedMaterial || [];
   const materials = courseDetail?.material;
+  const isPublicTopic =
+    courseDetail?.learningAttempt?.topic?.topicType !== "Pelatihan";
 
   return (
     <CContainer bg={"body"} rounded={"xl"} {...restProps}>
@@ -253,7 +255,9 @@ const LearningModules = (props: any) => {
             >
               <ListItemContainer
                 disabled={
-                  !firstIdx && !completedMaterialIds.has(materials[idx - 1]?.id)
+                  !firstIdx &&
+                  !isPublicTopic &&
+                  !completedMaterialIds.has(materials[idx - 1]?.id)
                 }
               >
                 <Center pos={"relative"}>
@@ -283,7 +287,7 @@ const LearningModules = (props: any) => {
           );
         })}
 
-        {courseDetail?.learningAttempt?.topic?.topicType === "Pelatihan" && (
+        {!isPublicTopic && (
           <>
             <Divider my={1} />
 
@@ -432,6 +436,8 @@ const NextStepButton = (props: any) => {
   const router = useRouter();
 
   // States
+  const isPublicTopic =
+    courseDetail?.learningAttempt?.topic?.topicType !== "Pelatihan";
   const completedMaterials = courseDetail?.learningAttempt?.completedMaterial;
   const materials = courseDetail?.material;
   const quizDisabled =
@@ -455,7 +461,11 @@ const NextStepButton = (props: any) => {
     const currentMaterialIsCompleted = activeMaterial?.isCompleted;
     const nextMaterialIsCompleted = materials[idx + 1]?.isCompleted;
 
-    if (currentMaterialIsCompleted || nextMaterialIsCompleted) {
+    if (
+      currentMaterialIsCompleted ||
+      nextMaterialIsCompleted ||
+      isPublicTopic
+    ) {
       nextActiveMaterial();
     } else {
       const config = {

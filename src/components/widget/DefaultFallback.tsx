@@ -9,7 +9,7 @@ export const DefaultFallback = () => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <Center w={"100vw"} minH={"100dvh"} p={10}>
+    <Center bg={"white"} w={"100vw"} minH={"100dvh"} p={10}>
       {/* <Img
         alt={`${APP.name} Logo`}
         src={`${SVGS_PATH}/logo_gray.svg`}

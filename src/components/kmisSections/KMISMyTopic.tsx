@@ -30,7 +30,7 @@ interface Props extends StackProps {}
 
 const Data = (props: any) => {
   // Props
-  const { filter, ...restProps } = props;
+  const { filter, setFilter, ...restProps } = props;
 
   // Hooks
   // const scrollTo = useScrollWithOffset();
@@ -74,31 +74,39 @@ const Data = (props: any) => {
     ),
     empty: <FeedbackNoData minH={"calc(100vh - 37px - 140px - 64px)"} />,
     loaded: (
-      <CContainer ref={topicListContainerRef} gap={4}>
-        <SimpleGrid columns={[1, null, 2, 3, null, 4]} gap={4}>
-          {data?.map((item, idx) => {
-            return (
-              <KMISCourseItem
-                key={idx}
-                myCourse
-                learningAttempt={item}
-                topic={item.topic}
-                idx={idx}
-              />
-            );
-          })}
-        </SimpleGrid>
+      <Stack flexDir={["column", null, "row"]} align={"stretch"} gap={4}>
+        <CContainer flex={1} gap={4}>
+          {/* <MiniProfile /> */}
 
-        <HStack justify={"space-between"}>
-          <Limitation limit={limit} setLimit={setLimit} />
+          <KMISCourseFilters filter={filter} setFilter={setFilter} />
+        </CContainer>
 
-          <Pagination
-            page={page}
-            setPage={setPage}
-            totalPage={pagination?.meta?.last_page}
-          />
-        </HStack>
-      </CContainer>
+        <CContainer ref={topicListContainerRef} gap={4}>
+          <SimpleGrid columns={[1, null, 2, 3, null, 4]} gap={4}>
+            {data?.map((item, idx) => {
+              return (
+                <KMISCourseItem
+                  key={idx}
+                  myCourse
+                  learningAttempt={item}
+                  topic={item.topic}
+                  idx={idx}
+                />
+              );
+            })}
+          </SimpleGrid>
+
+          <HStack justify={"space-between"}>
+            <Limitation limit={limit} setLimit={setLimit} />
+
+            <Pagination
+              page={page}
+              setPage={setPage}
+              totalPage={pagination?.meta?.last_page}
+            />
+          </HStack>
+        </CContainer>
+      </Stack>
     ),
   };
 
@@ -157,61 +165,53 @@ export const KMISMyTopic = (props: Props) => {
       {...restProps}
     >
       {/* Content */}
-      <Stack flexDir={["column", null, "row"]} align={"stretch"} gap={4}>
-        <CContainer flex={1} gap={4}>
-          {/* <MiniProfile /> */}
-
-          <KMISCourseFilters filter={filter} setFilter={setFilter} />
-        </CContainer>
-
-        <CContainer flex={3.5} gap={4}>
-          <CContainer gap={4}>
-            <CContainer w={"fit"} gap={1}>
-              <H3 fontWeight={"semibold"}>{capitalizeWords(l.my_course)}</H3>
-            </CContainer>
-
-            <HStack>
-              <SearchInput
-                flex={"1 1 200px"}
-                inputValue={filter.search}
-                onChange={(inputValue) => {
-                  setFilter({ ...filter, search: inputValue });
-                }}
-              />
-
-              <SelectKMISTopicType
-                multiple
-                inputValue={filter.topicType?.map((item: string) => {
-                  return {
-                    id: item,
-                    label: item,
-                  };
-                })}
-                onConfirm={(inputValue) => {
-                  setFilter({
-                    ...filter,
-                    topicType: inputValue?.map((item: any) => {
-                      return item.id;
-                    }),
-                  });
-                }}
-                placeholder={l.topic_type}
-                w={"140px"}
-              />
-
-              <SelectCourseFinishedStatus
-                inputValue={filter.finishedStatus}
-                onConfirm={(inputValue) =>
-                  setFilter({ ...filter, finishedStatus: inputValue })
-                }
-                w={"140px"}
-              />
-            </HStack>
+      <CContainer flex={3.5} gap={4}>
+        <CContainer gap={4}>
+          <CContainer w={"fit"} gap={1}>
+            <H3 fontWeight={"semibold"}>{capitalizeWords(l.my_course)}</H3>
           </CContainer>
 
-          <Data filter={filter} />
+          <HStack>
+            <SearchInput
+              flex={"1 1 200px"}
+              inputValue={filter.search}
+              onChange={(inputValue) => {
+                setFilter({ ...filter, search: inputValue });
+              }}
+            />
+
+            <SelectKMISTopicType
+              multiple
+              inputValue={filter.topicType?.map((item: string) => {
+                return {
+                  id: item,
+                  label: item,
+                };
+              })}
+              onConfirm={(inputValue) => {
+                setFilter({
+                  ...filter,
+                  topicType: inputValue?.map((item: any) => {
+                    return item.id;
+                  }),
+                });
+              }}
+              placeholder={l.topic_type}
+              w={"140px"}
+            />
+
+            <SelectCourseFinishedStatus
+              inputValue={filter.finishedStatus}
+              onConfirm={(inputValue) =>
+                setFilter({ ...filter, finishedStatus: inputValue })
+              }
+              w={"140px"}
+            />
+          </HStack>
         </CContainer>
-      </Stack>
+
+        <Data filter={filter} setFilter={setFilter} />
+      </CContainer>
     </LPSectionContainer>
   );
 };

@@ -294,7 +294,7 @@ export const KMISCourseFilters = (props: any) => {
   }, [filter]);
 
   return (
-    <CContainer flex={1} gap={4} {...restProps}>
+    <CContainer flex={1} gap={4} w={"240px"} flexShrink={0} {...restProps}>
       <CategoryFilter filter={localFilter} setFilter={setLocalFilter} />
 
       <Btn colorPalette={"p"} variant={"outline"} onClick={onConfirm}>

@@ -31,6 +31,10 @@ const Data = (props: any) => {
   // Props
   const { filter, setFilter, ...restProps } = props;
 
+  // Contexts
+  const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
+  const authToken = verifiedAuthToken || getAuthToken();
+
   // Hooks
   // const scrollTo = useScrollWithOffset();
   const searchParams = useSearchParams();
@@ -79,23 +83,31 @@ const Data = (props: any) => {
       <FeedbackNoData minH={"calc(100vh - 37px - 140px - 64px - 200px)"} />
     ),
     loaded: (
-      <CContainer ref={topicListContainerRef} gap={4}>
-        <SimpleGrid columns={[1, null, 2, 3, null, 4]} gap={4}>
-          {data?.map((topic, idx) => {
-            return <KMISCourseItem key={idx} topic={topic} idx={idx} />;
-          })}
-        </SimpleGrid>
+      <Stack flexDir={["column", null, "row"]} align={"stretch"} gap={4}>
+        <CContainer flex={1} gap={4}>
+          <KMISCourseFilters filter={filter} setFilter={setFilter} />
 
-        <HStack justify={"space-between"}>
-          <Limitation limit={limit} setLimit={setLimit} />
+          {authToken && <MiniProfile />}
+        </CContainer>
 
-          <Pagination
-            page={page}
-            setPage={setPage}
-            totalPage={pagination?.meta?.last_page}
-          />
-        </HStack>
-      </CContainer>
+        <CContainer ref={topicListContainerRef} gap={4}>
+          <SimpleGrid columns={[1, null, 2, 3, null, 4]} gap={4}>
+            {data?.map((topic, idx) => {
+              return <KMISCourseItem key={idx} topic={topic} idx={idx} />;
+            })}
+          </SimpleGrid>
+
+          <HStack justify={"space-between"}>
+            <Limitation limit={limit} setLimit={setLimit} />
+
+            <Pagination
+              page={page}
+              setPage={setPage}
+              totalPage={pagination?.meta?.last_page}
+            />
+          </HStack>
+        </CContainer>
+      </Stack>
     ),
   };
 
@@ -114,18 +126,6 @@ const Data = (props: any) => {
   return (
     <CContainer flex={3.5} gap={4} {...restProps}>
       <CContainer gap={4}>
-        {/* <CContainer gap={1}>
-          <EditableContentContainer content={staticContents[118]} w={"fit"}>
-            <H3 fontWeight={"semibold"}>
-              {staticContents[118]?.content[lang]}
-            </H3>
-          </EditableContentContainer>
-
-          <EditableContentContainer content={staticContents[119]} w={"fit"}>
-            <P color={"fg.subtle"}>{staticContents[119]?.content[lang]}</P>
-          </EditableContentContainer>
-        </CContainer> */}
-
         <SearchInput
           inputValue={filter.search}
           onChange={(inputValue) => {
@@ -154,10 +154,6 @@ export const KMISAllTopic = (props: Props) => {
   // Props
   const { ...restProps } = props;
 
-  // Contexts
-  const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
-  const authToken = verifiedAuthToken || getAuthToken();
-
   // States
   const DEFAULT_FILTER = {
     search: "",
@@ -171,18 +167,11 @@ export const KMISAllTopic = (props: Props) => {
         flex: 1,
       }}
       flex={1}
+      mt={"-40px"}
       {...restProps}
     >
       {/* Content */}
-      <Stack flexDir={["column", null, "row"]} mt={4} align={"stretch"} gap={4}>
-        <CContainer flex={1} gap={4}>
-          {authToken && <MiniProfile />}
-
-          <KMISCourseFilters filter={filter} setFilter={setFilter} />
-        </CContainer>
-
-        <Data filter={filter} setFilter={setFilter} />
-      </Stack>
+      <Data filter={filter} setFilter={setFilter} />
     </LPSectionContainer>
   );
 };

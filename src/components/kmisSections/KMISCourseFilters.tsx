@@ -27,6 +27,7 @@ import { Interface__KMISTopicCategory } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
 import { capitalizeWords } from "@/utils/string";
@@ -176,6 +177,7 @@ const CategoryFilter = (props: any) => {
   const { l } = useLang();
 
   // Hooks
+  const iss = useIsSmScreenWidth();
   const pathname = usePathname();
 
   // States
@@ -233,7 +235,7 @@ const CategoryFilter = (props: any) => {
   return (
     <AccordionRoot
       multiple
-      defaultValue={["category_filter"]}
+      defaultValue={iss ? [] : ["category_filter"]}
       border={"1px solid"}
       borderColor={"d1"}
       rounded={"xl"}

@@ -2,9 +2,7 @@
 
 import { KMISCourseFilters } from "@/components/kmisSections/KMISCourseFilters";
 import { CContainer } from "@/components/ui/c-container";
-import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
-import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { KMISCourseItem } from "@/components/widget/KMISCourseItem";
@@ -14,8 +12,6 @@ import { MiniProfile } from "@/components/widget/MiniProfile";
 import { Pagination } from "@/components/widget/Pagination";
 import { Interface__KMISTopic } from "@/constants/interfaces";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
-import useContents from "@/context/useContents";
-import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import { isEmptyArray } from "@/utils/array";
 import { getAuthToken } from "@/utils/auth";
@@ -33,7 +29,7 @@ interface Props extends StackProps {}
 
 const Data = (props: any) => {
   // Props
-  const { filter, ...restProps } = props;
+  const { filter, setFilter, ...restProps } = props;
 
   // Hooks
   // const scrollTo = useScrollWithOffset();
@@ -61,7 +57,7 @@ const Data = (props: any) => {
     params: {
       search: filter.search,
       categoryId: filter.category,
-      topicType: topicType?.split(","),
+      topicType: topicType?.split(", "),
     },
     dependencies: [filter, topicType],
   });
@@ -116,7 +112,28 @@ const Data = (props: any) => {
   // }, [data]);
 
   return (
-    <CContainer flex={3.5} {...restProps}>
+    <CContainer flex={3.5} gap={4} {...restProps}>
+      <CContainer gap={4}>
+        {/* <CContainer gap={1}>
+          <EditableContentContainer content={staticContents[118]} w={"fit"}>
+            <H3 fontWeight={"semibold"}>
+              {staticContents[118]?.content[lang]}
+            </H3>
+          </EditableContentContainer>
+
+          <EditableContentContainer content={staticContents[119]} w={"fit"}>
+            <P color={"fg.subtle"}>{staticContents[119]?.content[lang]}</P>
+          </EditableContentContainer>
+        </CContainer> */}
+
+        <SearchInput
+          inputValue={filter.search}
+          onChange={(inputValue) => {
+            setFilter({ ...filter, search: inputValue });
+          }}
+        />
+      </CContainer>
+
       {initialLoading && render.loading}
       {!initialLoading && (
         <>
@@ -138,8 +155,6 @@ export const KMISAllTopic = (props: Props) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { lang } = useLang();
-  const staticContents = useContents((s) => s.staticContents);
   const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
   const authToken = verifiedAuthToken || getAuthToken();
 
@@ -158,27 +173,6 @@ export const KMISAllTopic = (props: Props) => {
       flex={1}
       {...restProps}
     >
-      <CContainer gap={4}>
-        <CContainer gap={1}>
-          <EditableContentContainer content={staticContents[118]} w={"fit"}>
-            <P fontSize={"lg"} fontWeight={"semibold"}>
-              {staticContents[118]?.content[lang]}
-            </P>
-          </EditableContentContainer>
-
-          <EditableContentContainer content={staticContents[119]} w={"fit"}>
-            <P color={"fg.subtle"}>{staticContents[119]?.content[lang]}</P>
-          </EditableContentContainer>
-        </CContainer>
-
-        <SearchInput
-          inputValue={filter.search}
-          onChange={(inputValue) => {
-            setFilter({ ...filter, search: inputValue });
-          }}
-        />
-      </CContainer>
-
       {/* Content */}
       <Stack flexDir={["column", null, "row"]} mt={4} align={"stretch"} gap={4}>
         <CContainer flex={1} gap={4}>
@@ -187,7 +181,7 @@ export const KMISAllTopic = (props: Props) => {
           <KMISCourseFilters filter={filter} setFilter={setFilter} />
         </CContainer>
 
-        <Data filter={filter} />
+        <Data filter={filter} setFilter={setFilter} />
       </Stack>
     </LPSectionContainer>
   );

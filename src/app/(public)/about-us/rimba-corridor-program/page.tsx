@@ -707,6 +707,9 @@ const StructureSection = () => {
             alt="RIMBA organizational structure"
             fluid
             w={"full"}
+            imageProps={{
+              unoptimized: true,
+            }}
           />
         </EditableContentContainer>
 

@@ -229,6 +229,19 @@ const MobileTopNav = () => {
                                 <SubSubNav
                                   pathname={pathname}
                                   subNav={subNav}
+                                  dotIndicator={false}
+                                  w={"full"}
+                                  clicky={false}
+                                  justifyContent={"start"}
+                                  variant={"ghost"}
+                                  px={5}
+                                  gap={0}
+                                  color={isMainNavsActive ? "p.400" : "light"}
+                                  size={"xl"}
+                                  h={"48px"}
+                                  _hover={{
+                                    bg: "d1 !important",
+                                  }}
                                 />
                               )}
 
@@ -279,7 +292,7 @@ const MobileTopNav = () => {
                       px={4}
                       color={isMainNavsActive ? "p.400" : "light"}
                       _hover={{
-                        bg: "blackAlpha.500",
+                        bg: "d1",
                       }}
                     >
                       <P fontSize={"lg"} textAlign={"left"}>
@@ -320,7 +333,7 @@ const MobileTopNav = () => {
 };
 const SubSubNav = (props: any) => {
   // Props
-  const { subNav, pathname, ...restProps } = props;
+  const { subNav, pathname, dotIndicator, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -335,8 +348,8 @@ const SubSubNav = (props: any) => {
   const topicType = searchParams.get("topicType");
 
   return (
-    <MenuRoot open={isOpen} lazyMount {...restProps}>
-      <MenuTrigger>
+    <MenuRoot open={isOpen} lazyMount>
+      <MenuTrigger w={"full"}>
         <Btn
           clicky={false}
           w={"full"}
@@ -347,16 +360,17 @@ const SubSubNav = (props: any) => {
           onClick={() => {
             setIsOpen((ps) => !ps);
           }}
+          {...restProps}
         >
           <Icon boxSize={5} mr={2}>
             <subNav.icon stroke={1.5} />
           </Icon>
 
-          <P fontWeight={"medium"} lineClamp={1}>
+          <P fontWeight={"medium"} lineClamp={1} mr={"auto"}>
             {pluckString(l, subNav.labelKey)}
           </P>
 
-          {pathname === subNav?.path && <DotIndicator ml={"auto"} />}
+          {dotIndicator && pathname === subNav?.path && <DotIndicator />}
 
           <Icon boxSize={5}>
             <IconChevronRight stroke={1.5} />

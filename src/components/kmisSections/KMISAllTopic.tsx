@@ -85,9 +85,9 @@ const Data = (props: any) => {
     loaded: (
       <Stack flexDir={["column", null, "row"]} align={"stretch"} gap={4}>
         <CContainer flex={1} gap={4}>
-          <KMISCourseFilters filter={filter} setFilter={setFilter} />
-
           {authToken && <MiniProfile />}
+
+          <KMISCourseFilters filter={filter} setFilter={setFilter} />
         </CContainer>
 
         <CContainer ref={topicListContainerRef} gap={4}>

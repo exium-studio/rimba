@@ -96,8 +96,29 @@ export const LP_NAVS: Interface__NavItem[] = [
             list: [
               {
                 icon: IconSchool,
-                labelKey: "lp_navs.related_apps.kmis",
+                labelKey: "lp_navs.related_apps.kmis.index",
                 path: `/related-apps/kmis`,
+                subMenus: [
+                  {
+                    list: [
+                      {
+                        icon: IconSchool,
+                        labelKey: "lp_navs.related_apps.kmis.training",
+                        path: `/related-apps/kmis?topicType=Pelatihan`,
+                      },
+                      {
+                        icon: IconSchool,
+                        labelKey: "lp_navs.related_apps.kmis.knowledge",
+                        path: `/related-apps/kmis?topicType=Pengetahuan`,
+                      },
+                      {
+                        icon: IconSchool,
+                        labelKey: "lp_navs.related_apps.kmis.all",
+                        path: `/related-apps/kmis?topicType=Pelatihan, Pengetahuan`,
+                      },
+                    ],
+                  },
+                ],
               },
               {
                 icon: IconDeviceDesktopAnalytics,

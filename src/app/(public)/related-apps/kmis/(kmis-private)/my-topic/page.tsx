@@ -29,7 +29,7 @@ export default function Page() {
             links={[
               {
                 label: "KMIS",
-                path: "/related-apps/kmis",
+                path: "/related-apps/kmis?topicType=all",
               },
               {
                 label: l.my_course,

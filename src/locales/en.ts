@@ -308,7 +308,12 @@ const translations = {
     },
     "related_apps": {
       "index": "Applications",
-      "kmis": "KMIS",
+      "kmis": {
+        "index": "KMIS",
+        "training": "Training",
+        "knowledge": "Knowledge",
+        "all": "All"
+      },
       "admin_portal": "Admin/Monev/Educator"
     }
   },

@@ -308,7 +308,12 @@ const translations = {
     },
     "related_apps": {
       "index": "Aplikasi",
-      "kmis": "KMIS",
+      "kmis": {
+        "index": "KMIS",
+        "training": "Pelatihan",
+        "knowledge": "Pengetahuan",
+        "all": "Semua"
+      },
       "admin_portal": "Admin/Monev/Pengajar"
     }
   },

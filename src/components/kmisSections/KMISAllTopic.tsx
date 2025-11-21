@@ -17,7 +17,6 @@ import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
-import { useScrollWithOffset } from "@/hooks/useScrollWithOffset";
 import { isEmptyArray } from "@/utils/array";
 import { getAuthToken } from "@/utils/auth";
 import {
@@ -27,7 +26,8 @@ import {
   Stack,
   StackProps,
 } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useRef, useState } from "react";
 
 interface Props extends StackProps {}
 
@@ -36,13 +36,15 @@ const Data = (props: any) => {
   const { filter, ...restProps } = props;
 
   // Hooks
-  const scrollTo = useScrollWithOffset();
+  // const scrollTo = useScrollWithOffset();
+  const searchParams = useSearchParams();
 
   // Refs
   const topicListContainerRef = useRef<HTMLDivElement>(null);
 
   // States
-  const [fr, setFr] = useState<boolean>(true);
+  const topicType = searchParams.get("topicType");
+  // const [fr, setFr] = useState<boolean>(true);
   const {
     error,
     initialLoading,
@@ -59,8 +61,9 @@ const Data = (props: any) => {
     params: {
       search: filter.search,
       categoryId: filter.category,
+      topicType: topicType?.split(","),
     },
-    dependencies: [filter],
+    dependencies: [filter, topicType],
   });
   const render = {
     loading: (
@@ -100,17 +103,17 @@ const Data = (props: any) => {
     ),
   };
 
-  useEffect(() => {
-    if (!fr) {
-      if (data) {
-        scrollTo(topicListContainerRef, 160);
-      }
-    } else {
-      if (data) {
-        setFr(false);
-      }
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (!fr) {
+  //     if (data) {
+  //       scrollTo(topicListContainerRef, 160);
+  //     }
+  //   } else {
+  //     if (data) {
+  //       setFr(false);
+  //     }
+  //   }
+  // }, [data]);
 
   return (
     <CContainer flex={3.5} {...restProps}>
@@ -130,7 +133,7 @@ const Data = (props: any) => {
   );
 };
 
-export const KMISAllCourses = (props: Props) => {
+export const KMISAllTopic = (props: Props) => {
   // Props
   const { ...restProps } = props;
 

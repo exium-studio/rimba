@@ -29,6 +29,7 @@ import { MAIN_BUTTON_SIZE } from "@/constants/sizes";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
+import useClickOutside from "@/hooks/useClickOutside";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import { useDisableBodyScroll } from "@/hooks/useDisableBodyScroll";
 import useScreen from "@/hooks/useScreen";
@@ -39,12 +40,13 @@ import { imgUrl } from "@/utils/url";
 import { HStack, Icon, useDisclosure } from "@chakra-ui/react";
 import {
   IconChevronDown,
+  IconChevronRight,
   IconMenu,
   IconSelector,
   IconX,
 } from "@tabler/icons-react";
-import { usePathname } from "next/navigation";
-import { Fragment, useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 const MobileTopNav = () => {
   // Contexts
@@ -222,34 +224,45 @@ const MobileTopNav = () => {
                           const isSubNavsActive = pathname === subNav.path;
 
                           return (
-                            <NavLink
-                              key={subNav.path}
-                              to={subNav.path}
-                              external={subNav.external}
-                              w={"full"}
-                            >
-                              <Btn
-                                clicky={false}
-                                justifyContent={"start"}
-                                variant={"ghost"}
-                                color={"light"}
-                                _hover={{
-                                  bg: "d0",
-                                }}
-                              >
-                                <Icon boxSize={5}>
-                                  <subNav.icon stroke={1.5} />
-                                </Icon>
+                            <>
+                              {subNav.subMenus && (
+                                <SubSubNav
+                                  pathname={pathname}
+                                  subNav={subNav}
+                                />
+                              )}
 
-                                <P fontSize={"lg"}>
-                                  {pluckString(l, subNav.labelKey)}
-                                </P>
+                              {!subNav.subMenus && (
+                                <NavLink
+                                  key={subNav.path}
+                                  to={subNav.path}
+                                  external={subNav.external}
+                                  w={"full"}
+                                >
+                                  <Btn
+                                    clicky={false}
+                                    justifyContent={"start"}
+                                    variant={"ghost"}
+                                    color={"light"}
+                                    _hover={{
+                                      bg: "d0",
+                                    }}
+                                  >
+                                    <Icon boxSize={5}>
+                                      <subNav.icon stroke={1.5} />
+                                    </Icon>
 
-                                {isSubNavsActive && (
-                                  <DotIndicator ml={"auto"} />
-                                )}
-                              </Btn>
-                            </NavLink>
+                                    <P fontSize={"lg"}>
+                                      {pluckString(l, subNav.labelKey)}
+                                    </P>
+
+                                    {isSubNavsActive && (
+                                      <DotIndicator ml={"auto"} />
+                                    )}
+                                  </Btn>
+                                </NavLink>
+                              )}
+                            </>
                           );
                         })}
                       </AccordionItemContent>
@@ -303,6 +316,80 @@ const MobileTopNav = () => {
         </CContainer>
       </CContainer>
     </CContainer>
+  );
+};
+const SubSubNav = (props: any) => {
+  // Props
+  const { subNav, pathname, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+
+  // Hooks
+  const searchParams = useSearchParams();
+  const contentRef = useRef<HTMLDivElement>(null);
+  useClickOutside(contentRef, () => setIsOpen(false));
+
+  // States
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const topicType = searchParams.get("topicType");
+
+  return (
+    <MenuRoot open={isOpen} lazyMount {...restProps}>
+      <MenuTrigger>
+        <Btn
+          clicky={false}
+          w={"full"}
+          variant={"ghost"}
+          justifyContent={"start"}
+          h={"36px"}
+          px={2}
+          onClick={() => {
+            setIsOpen((ps) => !ps);
+          }}
+        >
+          <Icon boxSize={5} mr={2}>
+            <subNav.icon stroke={1.5} />
+          </Icon>
+
+          <P fontWeight={"medium"} lineClamp={1}>
+            {pluckString(l, subNav.labelKey)}
+          </P>
+
+          {pathname === subNav?.path && <DotIndicator ml={"auto"} />}
+
+          <Icon boxSize={5}>
+            <IconChevronRight stroke={1.5} />
+          </Icon>
+        </Btn>
+      </MenuTrigger>
+
+      <MenuContent ref={contentRef}>
+        {subNav.subMenus?.[0]?.list?.map((subSubNav: any) => {
+          return (
+            <NavLink
+              key={subSubNav?.labelKey}
+              to={subSubNav.path}
+              external={subSubNav.external}
+              w={"full"}
+            >
+              <MenuItem
+                value={subSubNav?.labelKey}
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+              >
+                {pluckString(l, subSubNav?.labelKey)}
+
+                {topicType === subSubNav?.labelKey && (
+                  <DotIndicator ml={"auto"} />
+                )}
+              </MenuItem>
+            </NavLink>
+          );
+        })}
+      </MenuContent>
+    </MenuRoot>
   );
 };
 const DesktopTopNav = () => {
@@ -396,26 +483,39 @@ const DesktopTopNav = () => {
                             const isSubNavsActive = pathname === subNav.path;
 
                             return (
-                              <NavLink
-                                key={subNav.path}
-                                to={subNav.path}
-                                external={subNav.external}
-                                w={"full"}
-                              >
-                                <MenuItem value={subNav.path} pr={5}>
-                                  <Icon boxSize={5}>
-                                    <subNav.icon stroke={1.5} />
-                                  </Icon>
+                              <>
+                                {subNav.subMenus && (
+                                  <CContainer p={1}>
+                                    <SubSubNav
+                                      pathname={pathname}
+                                      subNav={subNav}
+                                    />
+                                  </CContainer>
+                                )}
 
-                                  <P fontWeight={"medium"} lineClamp={1}>
-                                    {pluckString(l, subNav.labelKey)}
-                                  </P>
+                                {!subNav.subMenus && (
+                                  <NavLink
+                                    key={subNav.path}
+                                    to={subNav.path}
+                                    external={subNav.external}
+                                    w={"full"}
+                                  >
+                                    <MenuItem value={subNav.path} pr={5}>
+                                      <Icon boxSize={5}>
+                                        <subNav.icon stroke={1.5} />
+                                      </Icon>
 
-                                  {isSubNavsActive && (
-                                    <DotIndicator ml={"auto"} mr={-1} />
-                                  )}
-                                </MenuItem>
-                              </NavLink>
+                                      <P fontWeight={"medium"} lineClamp={1}>
+                                        {pluckString(l, subNav.labelKey)}
+                                      </P>
+
+                                      {isSubNavsActive && (
+                                        <DotIndicator ml={"auto"} mr={-1} />
+                                      )}
+                                    </MenuItem>
+                                  </NavLink>
+                                )}
+                              </>
                             );
                           })}
                         </CContainer>

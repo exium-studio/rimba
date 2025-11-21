@@ -54,8 +54,22 @@ export const lp_navs = {
       en: "Applications",
     },
     kmis: {
-      id: "KMIS",
-      en: "KMIS",
+      index: {
+        id: "KMIS",
+        en: "KMIS",
+      },
+      training: {
+        id: "Pelatihan",
+        en: "Training",
+      },
+      knowledge: {
+        id: "Pengetahuan",
+        en: "Knowledge",
+      },
+      all: {
+        id: "Semua",
+        en: "All",
+      },
     },
     admin_portal: {
       id: "Admin/Monev/Pengajar",

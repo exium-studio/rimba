@@ -2,7 +2,7 @@
 
 import { KMISCourseFilters } from "@/components/kmisSections/KMISCourseFilters";
 import { CContainer } from "@/components/ui/c-container";
-import { P } from "@/components/ui/p";
+import { H3 } from "@/components/ui/heading";
 import SearchInput from "@/components/ui/search-input";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
@@ -15,7 +15,6 @@ import { SelectKMISTopicType } from "@/components/widget/SelectKMISTopicType";
 import { Interface__KMISLearningAttempt } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
-import { useScrollWithOffset } from "@/hooks/useScrollWithOffset";
 import { isEmptyArray } from "@/utils/array";
 import { capitalizeWords } from "@/utils/string";
 import {
@@ -25,7 +24,7 @@ import {
   Stack,
   StackProps,
 } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 interface Props extends StackProps {}
 
@@ -34,13 +33,13 @@ const Data = (props: any) => {
   const { filter, ...restProps } = props;
 
   // Hooks
-  const scrollTo = useScrollWithOffset();
+  // const scrollTo = useScrollWithOffset();
 
   // Refs
   const topicListContainerRef = useRef<HTMLDivElement>(null);
 
   // States
-  const [fr, setFr] = useState<boolean>(true);
+  // const [fr, setFr] = useState<boolean>(true);
   // const initialLoading = true;
   const {
     error,
@@ -103,17 +102,17 @@ const Data = (props: any) => {
     ),
   };
 
-  useEffect(() => {
-    if (!fr) {
-      if (data) {
-        scrollTo(topicListContainerRef, 160);
-      }
-    } else {
-      if (data) {
-        setFr(false);
-      }
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (!fr) {
+  //     if (data) {
+  //       scrollTo(topicListContainerRef, 160);
+  //     }
+  //   } else {
+  //     if (data) {
+  //       setFr(false);
+  //     }
+  //   }
+  // }, [data]);
 
   return (
     <CContainer flex={3} {...restProps}>
@@ -166,14 +165,20 @@ export const KMISMyTopic = (props: Props) => {
         </CContainer>
 
         <CContainer flex={3.5} gap={4}>
-          <HStack wrap={"wrap"} gap={4}>
-            <CContainer w={"fit"} flex={"2 0 300px"} gap={1}>
-              <P fontSize={"lg"} fontWeight={"semibold"}>
-                {capitalizeWords(l.my_course)}
-              </P>
+          <CContainer gap={4}>
+            <CContainer w={"fit"} gap={1}>
+              <H3 fontWeight={"semibold"}>{capitalizeWords(l.my_course)}</H3>
             </CContainer>
 
-            <HStack flex={"1 1 500px"}>
+            <HStack>
+              <SearchInput
+                flex={"1 1 200px"}
+                inputValue={filter.search}
+                onChange={(inputValue) => {
+                  setFilter({ ...filter, search: inputValue });
+                }}
+              />
+
               <SelectKMISTopicType
                 multiple
                 inputValue={filter.topicType?.map((item: string) => {
@@ -201,16 +206,8 @@ export const KMISMyTopic = (props: Props) => {
                 }
                 w={"140px"}
               />
-
-              <SearchInput
-                flex={"1 1 200px"}
-                inputValue={filter.search}
-                onChange={(inputValue) => {
-                  setFilter({ ...filter, search: inputValue });
-                }}
-              />
             </HStack>
-          </HStack>
+          </CContainer>
 
           <Data filter={filter} />
         </CContainer>

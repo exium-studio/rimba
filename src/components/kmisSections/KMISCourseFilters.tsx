@@ -53,7 +53,7 @@ const AllCategory = (props: any) => {
   >({
     url: `/api/kmis/public-request/get-all-category`,
     params: {
-      limit: 999999999,
+      limit: "all",
     },
     dependencies: [],
   });

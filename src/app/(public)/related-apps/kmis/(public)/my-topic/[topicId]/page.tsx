@@ -10,7 +10,7 @@ import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { TopNav } from "@/components/widget/TopNav";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
-import { HStack, Skeleton } from "@chakra-ui/react";
+import { Skeleton, Stack } from "@chakra-ui/react";
 import React from "react";
 
 interface Props {
@@ -55,17 +55,23 @@ export default function Page(props: Props) {
           mb={4}
         />
 
-        <HStack flex={1} gap={4} w={"full"} align={"stretch"}>
+        <Stack
+          flexDir={["column", null, "row"]}
+          flex={1}
+          gap={4}
+          w={"full"}
+          align={"stretch"}
+        >
           <CContainer flex={1} gap={4}>
             <Skeleton flex={1} rounded={"xl"} />
           </CContainer>
 
           <Skeleton flex={3.5} rounded={"xl"} minH={"400px"} />
-        </HStack>
+        </Stack>
       </LPSectionContainer>
     ),
-    error: <FeedbackRetry onRetry={onRetry} />,
-    empty: <FeedbackNoData />,
+    error: <FeedbackRetry onRetry={onRetry} minH={"400px"} />,
+    empty: <FeedbackNoData minH={"400px"} />,
     loaded: (
       <>
         <LPSectionContainer mb={4}>

@@ -518,8 +518,8 @@ const ActiveMaterial = (props: any) => {
     });
   const render = {
     loading: <Skeleton minH={"400px"} flex={1} />,
-    error: <FeedbackRetry onRetry={onRetry} />,
-    empty: <FeedbackNoData />,
+    error: <FeedbackRetry onRetry={onRetry} minH={"400px"} />,
+    empty: <FeedbackNoData minH={"400px"} />,
     loaded: (
       <CContainer gap={4}>
         {MATERIAL_REGISTRY?.[

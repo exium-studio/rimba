@@ -131,6 +131,7 @@ const DetailCourse = (props: any) => {
     dependencies: [open],
     dataResource: false,
   });
+
   const render = {
     loading: <Skeleton minH={"400px"} rounded={"lg"} />,
     error: <FeedbackRetry onRetry={onRetry} minH={"400px"} />,
@@ -232,10 +233,10 @@ const DetailCourse = (props: any) => {
             </HStack>
 
             <CContainer mt={"auto"}>
-              {!myCourse && <EnrollButton topic={topic} mt={2} />}
-
-              {myCourse && (
-                <StartLearningButton topic={topic} mt={2} variant={"solid"} />
+              {data?.topic?.topicType === "Pengetahuan" || myCourse ? (
+                <StartLearningButton topic={topic} mt={2} />
+              ) : (
+                <EnrollButton topic={topic} mt={2} />
               )}
             </CContainer>
           </CContainer>

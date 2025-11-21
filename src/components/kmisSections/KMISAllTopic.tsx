@@ -167,7 +167,6 @@ export const KMISAllTopic = (props: Props) => {
         flex: 1,
       }}
       flex={1}
-      mt={"-40px"}
       {...restProps}
     >
       {/* Content */}

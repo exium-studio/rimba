@@ -6,24 +6,18 @@ import { CSpinner } from "@/components/ui/c-spinner";
 import { P } from "@/components/ui/p";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
-import { DotIndicator } from "@/components/widget/Indicator";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { PageHeader } from "@/components/widget/PageHeader";
 import { PDFViewer } from "@/components/widget/PDFViewer";
 import { TopNav } from "@/components/widget/TopNav";
-import {
-  Interface__CMSLegalDocs,
-  Interface__StorageFile,
-} from "@/constants/interfaces";
+import { Interface__CMSLegalDocs } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import { formatDate } from "@/utils/formatter";
-import { HStack, Icon, SimpleGrid } from "@chakra-ui/react";
-import { IconFileOff, IconFileTypePdf } from "@tabler/icons-react";
+import { SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "next/navigation";
-import { useState } from "react";
 
 export default function Page() {
   // Contexts
@@ -34,9 +28,9 @@ export default function Page() {
   const { docsId } = useParams<{ docsId: string }>();
 
   // States
-  const [activeDoc, setActiveDoc] = useState<Interface__StorageFile | null>(
-    null
-  );
+  // const [activeDoc, setActiveDoc] = useState<Interface__StorageFile | null>(
+  //   null
+  // );
   const { error, initialLoading, data, onRetry } =
     useDataState<Interface__CMSLegalDocs>({
       initialData: undefined,
@@ -44,14 +38,24 @@ export default function Page() {
       dependencies: [],
       dataResource: false,
     });
+  const doc = data?.document?.[0];
   const render = {
     loading: <CSpinner />,
     error: <FeedbackRetry onRetry={onRetry} />,
     empty: <FeedbackNoData />,
     loaded: (
-      <LPSectionContainer py={"80px"} overflowY={"auto"}>
-        <SimpleGrid columns={[1, null, 2]} gap={8} overflowY={"auto"}>
-          <CContainer className="scrollY" maxH={"600px"} gap={4}>
+      <LPSectionContainer py={"80px"} overflowY={"auto"} gap={4}>
+        <CContainer>
+          <P>{doc?.fileSize}</P>
+          <P fontSize={"sm"} color={"fg.subtle"}>
+            {`${l.last_updated} ${formatDate(doc?.updatedAt, {
+              variant: "dayShortMonthYear",
+            })}`}
+          </P>
+        </CContainer>
+
+        <SimpleGrid columns={[1, null, 1]} gap={8} overflowY={"auto"}>
+          {/* <CContainer className="scrollY" maxH={"600px"} gap={4}>
             <CContainer gap={1}>
               <P fontSize={"lg"} fontWeight={"semibold"}>
                 {l.all_document}
@@ -103,20 +107,18 @@ export default function Page() {
                 );
               })}
             </SimpleGrid>
-          </CContainer>
+          </CContainer> */}
 
-          <CContainer h={"600px"} bg={"d1"} rounded={"lg"}>
-            {!activeDoc && (
+          <CContainer bg={"d1"} rounded={"lg"}>
+            {/* {!activeDoc && (
               <FeedbackNoData
                 icon={<IconFileOff />}
                 title={l.alert_no_document_selected.title}
                 description={l.alert_no_document_selected.description}
               />
-            )}
+            )} */}
 
-            {activeDoc && (
-              <PDFViewer fileUrl={activeDoc?.fileUrl} h={"600px"} />
-            )}
+            {doc?.fileUrl && <PDFViewer fileUrl={doc?.fileUrl} />}
           </CContainer>
         </SimpleGrid>
       </LPSectionContainer>

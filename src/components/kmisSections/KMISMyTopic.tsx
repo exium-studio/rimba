@@ -6,7 +6,7 @@ import { H3 } from "@/components/ui/heading";
 import SearchInput from "@/components/ui/search-input";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
-import { KMISCourseItem } from "@/components/widget/KMISCourseItem";
+import { KMISTopicItem } from "@/components/widget/KMISTopicItem";
 import { Limitation } from "@/components/widget/Limitation";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { Pagination } from "@/components/widget/Pagination";
@@ -85,7 +85,7 @@ const Data = (props: any) => {
           <SimpleGrid columns={[1, null, 2, 3, null, 4]} gap={4}>
             {data?.map((item, idx) => {
               return (
-                <KMISCourseItem
+                <KMISTopicItem
                   key={idx}
                   myCourse
                   learningAttempt={item}

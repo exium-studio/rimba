@@ -250,7 +250,12 @@ const LearningModules = (props: any) => {
           return (
             <NavLink
               key={material.id}
-              to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?activeMaterialId=${material.id}`}
+              to={`/related-apps/kmis/my-topic/${
+                courseDetail?.learningAttempt?.topic?.id ||
+                courseDetail?.topic?.id
+              }?activeMaterialId=${material.id}${
+                isPublicTopic ? `&isPublic=1` : ``
+              }`}
               w={"full"}
             >
               <ListItemContainer
@@ -441,15 +446,17 @@ const NextStepButton = (props: any) => {
   const completedMaterials = courseDetail?.learningAttempt?.completedMaterial;
   const materials = courseDetail?.material;
   const quizDisabled =
-    completedMaterials.length < materials.length - 1 ||
+    completedMaterials?.length < materials?.length - 1 ||
     courseDetail?.learningAttempt?.topic?.totalQuiz === 0;
 
   // Utils
   function nextActiveMaterial() {
     router.push(
       `/related-apps/kmis/my-topic/${
-        courseDetail?.learningAttempt?.topic?.id
-      }?activeMaterialId=${materials?.[idx + 1]?.id}`
+        courseDetail?.learningAttempt?.topic?.id || courseDetail?.topic.id
+      }?activeMaterialId=${materials?.[idx + 1]?.id}&${
+        isPublicTopic ? `isPublic=1` : ``
+      }`
     );
   }
   function startQuiz() {
@@ -504,6 +511,7 @@ const NextStepButton = (props: any) => {
       ml={"auto"}
       loading={loading}
       onClick={onNextMaterial}
+      disabled={materials?.[idx + 1]?.id === undefined}
       {...restProps}
     >
       {l.next}

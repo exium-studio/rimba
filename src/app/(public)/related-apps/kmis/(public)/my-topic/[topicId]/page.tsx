@@ -11,6 +11,7 @@ import { TopNav } from "@/components/widget/TopNav";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import { Skeleton, Stack } from "@chakra-ui/react";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
 interface Props {
@@ -26,14 +27,38 @@ export default function Page(props: Props) {
   // Contexts
   const { l } = useLang();
 
+  // Hooks
+  const searchParams = useSearchParams();
+
   // States
+  const isPublicTopic = searchParams.get("isPublic") === "1";
   const { error, initialLoading, data, onRetry, makeRequest } =
     useDataState<any>({
       initialData: undefined,
-      url: `/api/kmis/learning-course/detail/${topicId}`,
+      url: isPublicTopic
+        ? `/api/kmis/learning-course/show/${topicId}`
+        : `/api/kmis/learning-course/detail/${topicId}`,
       dependencies: [],
       dataResource: false,
     });
+  const links: { label: string; path: string }[] = [
+    {
+      label: "KMIS",
+      path: "/related-apps/kmis",
+    },
+  ];
+
+  if (!data?.topic?.title) {
+    links.push({
+      label: l.my_course,
+      path: "/related-apps/kmis/my-topic",
+    });
+  }
+
+  links.push({
+    label: data?.learningAttempt?.topic?.title || data?.topic?.title,
+    path: "",
+  });
   const render = {
     loading: (
       <LPSectionContainer flex={1} minH={"400px"}>
@@ -75,22 +100,7 @@ export default function Page(props: Props) {
     loaded: (
       <>
         <LPSectionContainer mb={4}>
-          <Breadcrumbs
-            links={[
-              {
-                label: "KMIS",
-                path: "/related-apps/kmis",
-              },
-              {
-                label: l.my_course,
-                path: "/related-apps/kmis/my-topic",
-              },
-              {
-                label: data?.learningAttempt?.topic?.title,
-                path: "",
-              },
-            ]}
-          />
+          <Breadcrumbs links={links} />
         </LPSectionContainer>
 
         <KMISLearningSection

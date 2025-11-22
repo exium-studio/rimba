@@ -5,7 +5,7 @@ import { CContainer } from "@/components/ui/c-container";
 import SearchInput from "@/components/ui/search-input";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
-import { KMISCourseItem } from "@/components/widget/KMISCourseItem";
+import { KMISTopicItem } from "@/components/widget/KMISTopicItem";
 import { Limitation } from "@/components/widget/Limitation";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { MiniProfile } from "@/components/widget/MiniProfile";
@@ -93,7 +93,7 @@ const Data = (props: any) => {
         <CContainer ref={topicListContainerRef} gap={4}>
           <SimpleGrid columns={[1, null, 2, 3, null, 4]} gap={4}>
             {data?.map((topic, idx) => {
-              return <KMISCourseItem key={idx} topic={topic} idx={idx} />;
+              return <KMISTopicItem key={idx} topic={topic} idx={idx} />;
             })}
           </SimpleGrid>
 

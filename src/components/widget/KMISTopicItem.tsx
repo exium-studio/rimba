@@ -95,9 +95,14 @@ const StartLearningButton = (props: any) => {
   // Contexts
   const { l } = useLang();
 
+  // States
+  const isPublicTopic = topic?.topicType !== "Pelatihan";
+
   return (
     <NavLink
-      to={`/related-apps/kmis/my-topic/${topic?.id}`}
+      to={`/related-apps/kmis/my-topic/${topic?.id}?${
+        isPublicTopic ? `isPublic=1` : ``
+      }`}
       w={restProps.w || "fit"}
     >
       <Btn colorPalette={"p"} variant={"outline"} {...restProps}>
@@ -111,7 +116,7 @@ const StartLearningButton = (props: any) => {
   );
 };
 
-const DetailCourse = (props: any) => {
+const DetailButton = (props: any) => {
   // Props
   const { myCourse, topic, idx, ...restProps } = props;
   const resolvedTopic: Interface__KMISTopic = topic;
@@ -400,7 +405,7 @@ interface Props extends StackProps {
   idx: number;
   myCourse?: boolean;
 }
-export const KMISCourseItem = (props: Props) => {
+export const KMISTopicItem = (props: Props) => {
   // Props
   const { learningAttempt, myCourse = false, topic, idx, ...restProps } = props;
 
@@ -464,7 +469,7 @@ export const KMISCourseItem = (props: Props) => {
       </CContainer>
 
       <CContainer gap={2} p={2} pt={0}>
-        <DetailCourse
+        <DetailButton
           myCourse={myCourse}
           topic={topic}
           idx={idx}

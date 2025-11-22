@@ -56,7 +56,7 @@ export const PageHeader = (props: Props) => {
         duration: 0.75,
       });
     },
-    { scope: containerRef, dependencies: [img] }
+    { scope: containerRef, dependencies: [img, title, titleContent] }
   );
 
   return (
@@ -82,7 +82,8 @@ export const PageHeader = (props: Props) => {
           <Img
             className="header-bg"
             src={img}
-            h={"full"}
+            flex={1}
+            h={"full !important"}
             w={"full"}
             opacity={0.4}
             pos={"absolute"}

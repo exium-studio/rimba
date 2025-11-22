@@ -216,7 +216,8 @@ const LearningModules = (props: any) => {
     courseDetail?.learningAttempt?.completedMaterial || [];
   const materials = courseDetail?.material;
   const isPublicTopic =
-    courseDetail?.learningAttempt?.topic?.topicType !== "Pelatihan";
+    courseDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
+    courseDetail?.topic?.topicType !== "Pelatihan";
 
   return (
     <CContainer bg={"body"} rounded={"xl"} {...restProps}>
@@ -442,7 +443,8 @@ const NextStepButton = (props: any) => {
 
   // States
   const isPublicTopic =
-    courseDetail?.learningAttempt?.topic?.topicType !== "Pelatihan";
+    courseDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
+    courseDetail?.topic?.topicType !== "Pelatihan";
   const completedMaterials = courseDetail?.learningAttempt?.completedMaterial;
   const materials = courseDetail?.material;
   const quizDisabled =
@@ -529,6 +531,9 @@ const ActiveMaterial = (props: any) => {
   const searchParams = useSearchParams();
 
   // States
+  const isPublicTopic =
+    courseDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
+    courseDetail?.topic?.topicType !== "Pelatihan";
   const activeMaterialId = searchParams.get("activeMaterialId") || "";
   const quizStarted = searchParams.get("quizStarted") || "";
   const feedbackSession = searchParams.get("feedbackSession") || "";
@@ -541,7 +546,9 @@ const ActiveMaterial = (props: any) => {
   const materials = courseDetail?.material;
   const { error, initialLoading, data, onRetry } =
     useDataState<Interface__KMISMaterial>({
-      url: `/api/kmis/learning-course/get-material/${activeMaterialId}`,
+      url: isPublicTopic
+        ? `/api/kmis/learning-course/get-material-public/${activeMaterialId}`
+        : `/api/kmis/learning-course/get-material/${activeMaterialId}`,
       conditions: !!activeMaterialId,
       dependencies: [activeMaterialId],
       dataResource: false,

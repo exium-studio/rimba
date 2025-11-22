@@ -197,7 +197,7 @@ const ListItemContainer = (props: BtnProps) => {
 };
 const LearningModules = (props: any) => {
   // Props
-  const { courseDetail, ...restProps } = props;
+  const { topicDetail, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -210,14 +210,14 @@ const LearningModules = (props: any) => {
   const quizStarted = searchParams.get("quizStarted") || "";
   const feedbackSession = searchParams.get("feedbackSession") || "";
   const certificateSection = searchParams.get("certificateSection") || "";
-  const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
-  const isFeedbackFinished = !!courseDetail?.learningAttempt?.feedback;
+  const isQuizFinished = !!topicDetail?.learningAttempt?.quizFinished;
+  const isFeedbackFinished = !!topicDetail?.learningAttempt?.feedback;
   const completedMaterials =
-    courseDetail?.learningAttempt?.completedMaterial || [];
-  const materials = courseDetail?.material;
+    topicDetail?.learningAttempt?.completedMaterial || [];
+  const materials = topicDetail?.material;
   const isPublicTopic =
-    courseDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
-    courseDetail?.topic?.topicType !== "Pelatihan";
+    topicDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
+    topicDetail?.topic?.topicType !== "Pelatihan";
 
   return (
     <CContainer bg={"body"} rounded={"xl"} {...restProps}>
@@ -226,7 +226,7 @@ const LearningModules = (props: any) => {
 
         <P fontSize={"sm"} color={"fg.subtle"}>
           {`${
-            courseDetail?.learningAttempt?.totalMaterial
+            topicDetail?.learningAttempt?.totalMaterial
           } ${l.learning_material?.toLowerCase()}`}
         </P>
       </CContainer>
@@ -252,8 +252,8 @@ const LearningModules = (props: any) => {
             <NavLink
               key={material.id}
               to={`/related-apps/kmis/my-topic/${
-                courseDetail?.learningAttempt?.topic?.id ||
-                courseDetail?.topic?.id
+                topicDetail?.learningAttempt?.topic?.id ||
+                topicDetail?.topic?.id
               }?activeMaterialId=${material.id}${
                 isPublicTopic ? `&isPublic=1` : ``
               }`}
@@ -299,13 +299,13 @@ const LearningModules = (props: any) => {
 
             {/* Quiz */}
             <NavLink
-              to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`}
+              to={`/related-apps/kmis/my-topic/${topicDetail?.learningAttempt?.topic?.id}?quizStarted=1`}
               w={"full"}
             >
               <ListItemContainer
                 disabled={
                   completedMaterials.length !== materials.length ||
-                  courseDetail?.learningAttempt?.topic?.totalQuiz === 0
+                  topicDetail?.learningAttempt?.topic?.totalQuiz === 0
                 }
               >
                 <Center pos={"relative"}>
@@ -320,9 +320,9 @@ const LearningModules = (props: any) => {
                   <P fontWeight={"medium"}>Quiz</P>
                   <P fontSize={"sm"} color={"fg.subtle"}>
                     {`${
-                      courseDetail?.learningAttempt?.topic?.totalQuiz
+                      topicDetail?.learningAttempt?.topic?.totalQuiz
                     } quiz / ${
-                      courseDetail?.learningAttempt?.topic?.quizDuration / 60
+                      topicDetail?.learningAttempt?.topic?.quizDuration / 60
                     } ${l.minutes}`}
                   </P>
                 </CContainer>
@@ -333,11 +333,11 @@ const LearningModules = (props: any) => {
 
             {/* Feedback */}
             <NavLink
-              to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?feedbackSession=1`}
+              to={`/related-apps/kmis/my-topic/${topicDetail?.learningAttempt?.topic?.id}?feedbackSession=1`}
               w={"full"}
             >
               <ListItemContainer
-                disabled={!!!courseDetail?.learningAttempt?.quizFinished}
+                disabled={!!!topicDetail?.learningAttempt?.quizFinished}
               >
                 <Center pos={"relative"}>
                   {isFeedbackFinished && <CompleteIndicator />}
@@ -360,11 +360,11 @@ const LearningModules = (props: any) => {
 
             {/* Certificate */}
             <NavLink
-              to={`/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`}
+              to={`/related-apps/kmis/my-topic/${topicDetail?.learningAttempt?.topic?.id}?certificateSection=1`}
               w={"full"}
             >
               <ListItemContainer
-                disabled={!!!courseDetail?.learningAttempt?.feedback}
+                disabled={!!!topicDetail?.learningAttempt?.feedback}
               >
                 <Center pos={"relative"}>
                   {isFeedbackFinished && <CompleteIndicator />}
@@ -378,7 +378,7 @@ const LearningModules = (props: any) => {
                   <P fontWeight={"medium"}>{l.certificate}</P>
                   <P fontSize={"sm"} color={"fg.subtle"}>
                     {`${l.score} ${
-                      courseDetail?.learningAttempt?.scoreTotal ?? "-"
+                      topicDetail?.learningAttempt?.scoreTotal ?? "-"
                     }`}
                   </P>
                 </CContainer>
@@ -396,8 +396,8 @@ const NextStepButton = (props: any) => {
   // Props
   const {
     activeMaterial,
-    courseDetail,
-    getCourseDetail,
+    topicDetail,
+    getTopicDetail,
     idx,
     lastIdx,
     ...restProps
@@ -410,7 +410,7 @@ const NextStepButton = (props: any) => {
       activeMaterial?.materialType as keyof typeof MATERIAL_REGISTRY
     ]?.minimalStudyTime;
   const estimatedEndTime = addSecondsToTime(
-    makeTime(courseDetail?.learningAttempt?.updatedAt),
+    makeTime(topicDetail?.learningAttempt?.updatedAt),
     minimalStudyTime * 60
   );
   const remainingTime = formatDuration(
@@ -443,19 +443,19 @@ const NextStepButton = (props: any) => {
 
   // States
   const isPublicTopic =
-    courseDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
-    courseDetail?.topic?.topicType !== "Pelatihan";
-  const completedMaterials = courseDetail?.learningAttempt?.completedMaterial;
-  const materials = courseDetail?.material;
+    topicDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
+    topicDetail?.topic?.topicType !== "Pelatihan";
+  const completedMaterials = topicDetail?.learningAttempt?.completedMaterial;
+  const materials = topicDetail?.material;
   const quizDisabled =
     completedMaterials?.length < materials?.length - 1 ||
-    courseDetail?.learningAttempt?.topic?.totalQuiz === 0;
+    topicDetail?.learningAttempt?.topic?.totalQuiz === 0;
 
   // Utils
   function nextActiveMaterial() {
     router.push(
       `/related-apps/kmis/my-topic/${
-        courseDetail?.learningAttempt?.topic?.id || courseDetail?.topic.id
+        topicDetail?.learningAttempt?.topic?.id || topicDetail?.topic.id
       }?activeMaterialId=${materials?.[idx + 1]?.id}&${
         isPublicTopic ? `isPublic=1` : ``
       }`
@@ -463,7 +463,7 @@ const NextStepButton = (props: any) => {
   }
   function startQuiz() {
     router.push(
-      `/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?quizStarted=1`
+      `/related-apps/kmis/my-topic/${topicDetail?.learningAttempt?.topic?.id}?quizStarted=1`
     );
   }
   function onNextMaterial() {
@@ -478,7 +478,7 @@ const NextStepButton = (props: any) => {
       nextActiveMaterial();
     } else {
       const config = {
-        url: `/api/kmis/learning-course/update/${courseDetail?.learningAttempt?.id}`,
+        url: `/api/kmis/learning-course/update/${topicDetail?.learningAttempt?.id}`,
         method: "PATCH",
       };
 
@@ -486,7 +486,7 @@ const NextStepButton = (props: any) => {
         config,
         onResolve: {
           onSuccess: () => {
-            getCourseDetail();
+            getTopicDetail();
             if (lastIdx) {
               if (quizDisabled) {
                 toaster.create({
@@ -522,7 +522,7 @@ const NextStepButton = (props: any) => {
 };
 const ActiveMaterial = (props: any) => {
   // Props
-  const { courseDetail, getCourseDetail, ...restProps } = props;
+  const { topicDetail, getTopicDetail, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -532,8 +532,8 @@ const ActiveMaterial = (props: any) => {
 
   // States
   const isPublicTopic =
-    courseDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
-    courseDetail?.topic?.topicType !== "Pelatihan";
+    topicDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
+    topicDetail?.topic?.topicType !== "Pelatihan";
   const activeMaterialId = searchParams.get("activeMaterialId") || "";
   const quizStarted = searchParams.get("quizStarted") || "";
   const feedbackSession = searchParams.get("feedbackSession") || "";
@@ -543,7 +543,7 @@ const ActiveMaterial = (props: any) => {
     !quizStarted &&
     !feedbackSession &&
     !certificateSection;
-  const materials = courseDetail?.material;
+  const materials = topicDetail?.material;
   const { error, initialLoading, data, onRetry } =
     useDataState<Interface__KMISMaterial>({
       url: isPublicTopic
@@ -565,8 +565,8 @@ const ActiveMaterial = (props: any) => {
 
         <NextStepButton
           activeMaterial={data}
-          courseDetail={courseDetail}
-          getCourseDetail={getCourseDetail}
+          topicDetail={topicDetail}
+          getTopicDetail={getTopicDetail}
           idx={materials?.findIndex((m: any) => m.id === data?.id)}
           lastIdx={
             materials?.findIndex((m: any) => m.id === data?.id) ===
@@ -607,22 +607,22 @@ const ActiveMaterial = (props: any) => {
         </>
       )}
 
-      {quizStarted && <QuizWorkspace courseDetail={courseDetail} />}
+      {quizStarted && <QuizWorkspace topicDetail={topicDetail} />}
 
-      {feedbackSession && <FeedbackSession courseDetail={courseDetail} />}
+      {feedbackSession && <FeedbackSession topicDetail={topicDetail} />}
 
-      {certificateSection && <CertificateSection courseDetail={courseDetail} />}
+      {certificateSection && <CertificateSection topicDetail={topicDetail} />}
     </CContainer>
   );
 };
 
 interface Props extends StackProps {
-  courseDetail: any;
-  getCourseDetail: () => void;
+  topicDetail: any;
+  getTopicDetail: () => void;
 }
 export const KMISLearningSection = (props: Props) => {
   // Props
-  const { courseDetail, getCourseDetail, ...restProps } = props;
+  const { topicDetail, getTopicDetail, ...restProps } = props;
 
   return (
     <LPSectionContainer
@@ -635,19 +635,18 @@ export const KMISLearningSection = (props: Props) => {
       {...restProps}
     >
       <H3 fontWeight={"semibold"}>
-        {courseDetail?.learningAttempt?.topic?.title ||
-          courseDetail?.topic.title}
+        {topicDetail?.learningAttempt?.topic?.title || topicDetail?.topic.title}
       </H3>
 
       <Stack flexDir={["column", null, "row"]} gap={4}>
         <CContainer w={["full", null, "240px"]} flexShrink={0} gap={4}>
-          <LearningModules courseDetail={courseDetail} />
+          <LearningModules topicDetail={topicDetail} />
         </CContainer>
 
         <ActiveMaterial
           maxW={["", null, "calc(100% - 240px)"]}
-          courseDetail={courseDetail}
-          getCourseDetail={getCourseDetail}
+          topicDetail={topicDetail}
+          getTopicDetail={getTopicDetail}
         />
       </Stack>
     </LPSectionContainer>

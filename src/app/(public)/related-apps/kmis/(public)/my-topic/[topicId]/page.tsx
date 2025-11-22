@@ -103,10 +103,7 @@ export default function Page(props: Props) {
           <Breadcrumbs links={links} />
         </LPSectionContainer>
 
-        <KMISLearningSection
-          courseDetail={data}
-          getCourseDetail={makeRequest}
-        />
+        <KMISLearningSection topicDetail={data} getTopicDetail={makeRequest} />
       </>
     ),
   };

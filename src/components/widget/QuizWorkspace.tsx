@@ -72,7 +72,7 @@ const AnswerOption = (props: any) => {
   const {
     quizNumber,
     activeQuiz,
-    courseDetail,
+    topicDetail,
     optionLetter,
     optionKey,
     ...restProps
@@ -110,7 +110,7 @@ const AnswerOption = (props: any) => {
   // Utils
   function onAnswerSelect() {
     const payload = {
-      learningAttemptId: courseDetail?.learningAttempt?.id,
+      learningAttemptId: topicDetail?.learningAttempt?.id,
       quizId: resolvedQuiz?.id,
       selectedOption: optionLetter || "",
       isMarker: !!activeQuiz.isMarker,
@@ -141,9 +141,7 @@ const AnswerOption = (props: any) => {
       border={"1px solid"}
       borderColor={isActive ? "p.500" : "border.muted"}
       onClick={
-        !!courseDetail?.learningAttempt?.quizFinished
-          ? () => {}
-          : onAnswerSelect
+        !!topicDetail?.learningAttempt?.quizFinished ? () => {} : onAnswerSelect
       }
       rounded={"lg"}
       cursor={"pointer"}
@@ -162,7 +160,7 @@ const AnswerOption = (props: any) => {
 };
 const MarkingCheckbox = (props: any) => {
   // Props
-  const { courseDetail, activeQuiz, quizNumber } = props;
+  const { topicDetail, activeQuiz, quizNumber } = props;
 
   // Contexts
   const { l } = useLang();
@@ -181,7 +179,7 @@ const MarkingCheckbox = (props: any) => {
   // Utils
   function onToggleMark() {
     const payload = {
-      learningAttemptId: courseDetail?.learningAttempt?.id,
+      learningAttemptId: topicDetail?.learningAttempt?.id,
       quizId: activeQuiz?.quiz?.id,
       selectedOption: activeQuiz?.selectedOption || "",
       isMarker: !activeQuiz?.isMarker,
@@ -209,7 +207,7 @@ const MarkingCheckbox = (props: any) => {
       colorPalette={"p"}
       checked={activeQuiz?.isMarker}
       onCheckedChange={onToggleMark}
-      disabled={!!courseDetail?.learningAttempt?.quizFinished}
+      disabled={!!topicDetail?.learningAttempt?.quizFinished}
     >
       {l.marked}
     </Checkbox>
@@ -217,7 +215,7 @@ const MarkingCheckbox = (props: any) => {
 };
 const ManualSubmitButton = (props: any) => {
   // Props
-  const { courseDetail, ...restProps } = props;
+  const { topicDetail, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -236,7 +234,7 @@ const ManualSubmitButton = (props: any) => {
     back();
 
     const payload = {
-      learningAttemptId: courseDetail?.learningAttempt?.id,
+      learningAttemptId: topicDetail?.learningAttempt?.id,
     };
 
     const config = {
@@ -251,7 +249,7 @@ const ManualSubmitButton = (props: any) => {
         onSuccess: () => {
           setRt((ps) => !ps);
           router.push(
-            `/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic.id}?feedbackSession=1`
+            `/related-apps/kmis/my-topic/${topicDetail?.learningAttempt?.topic.id}?feedbackSession=1`
           );
         },
       },
@@ -271,7 +269,7 @@ const ManualSubmitButton = (props: any) => {
         });
         confirmationOnOpen();
       }}
-      disabled={!!courseDetail?.learningAttempt?.quizFinished}
+      disabled={!!topicDetail?.learningAttempt?.quizFinished}
       {...restProps}
     >
       Submit
@@ -283,7 +281,7 @@ const ManualSubmitButton = (props: any) => {
 };
 const ActiveQuiz = (props: any) => {
   // Props
-  const { courseDetail, exams, activeQuiz, activeQuizIdx, setActiveQuizIdx } =
+  const { topicDetail, exams, activeQuiz, activeQuizIdx, setActiveQuizIdx } =
     props;
   // Contexts
   const { l } = useLang();
@@ -326,7 +324,7 @@ const ActiveQuiz = (props: any) => {
               <AnswerOption
                 key={optionKey}
                 quizNumber={activeQuizIdx + 1}
-                courseDetail={courseDetail}
+                topicDetail={topicDetail}
                 optionLetter={optionLetter}
                 optionKey={optionKey}
                 activeQuiz={activeQuiz}
@@ -337,7 +335,7 @@ const ActiveQuiz = (props: any) => {
 
         <HStack wrap={"wrap"} mt={4} justify={"space-between"}>
           <MarkingCheckbox
-            courseDetail={courseDetail}
+            topicDetail={topicDetail}
             activeQuiz={activeQuiz}
             quizNumber={activeQuizIdx + 1}
           />
@@ -361,7 +359,7 @@ const ActiveQuiz = (props: any) => {
 
             {lastIdx && (
               <ManualSubmitButton
-                courseDetail={courseDetail}
+                topicDetail={topicDetail}
                 w={["", null, "150px"]}
                 flex={1}
               />
@@ -395,11 +393,11 @@ const CountDownDuration = (props: any) => {
   const {
     quizTimeEndedAutomaticallyAt,
     quizTimeStartedAt,
-    courseDetail,
+    topicDetail,
     ...restProps
   } = props;
 
-  // console.debug(courseDetail);
+  // console.debug(topicDetail);
 
   // Contexts
   const setRt = useRenderTrigger((s) => s.setRt);
@@ -411,7 +409,7 @@ const CountDownDuration = (props: any) => {
   const router = useRouter();
 
   // States
-  const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
+  const isQuizFinished = !!topicDetail?.learningAttempt?.quizFinished;
   const [remainingSeconds, setRemainingSeconds] = useState(
     getRemainingSecondsUntil(quizTimeEndedAutomaticallyAt)
   );
@@ -420,7 +418,7 @@ const CountDownDuration = (props: any) => {
   // Utils
   function onSubmitQuiz() {
     const payload = {
-      learningAttemptId: courseDetail?.learningAttempt?.id,
+      learningAttemptId: topicDetail?.learningAttempt?.id,
     };
 
     const config = {
@@ -435,7 +433,7 @@ const CountDownDuration = (props: any) => {
         onSuccess: () => {
           setRt((ps) => !ps);
           router.push(
-            `/related-apps/kmis/my-topic/${courseDetail?.learningAttempt.id}?feedbackSession=1`
+            `/related-apps/kmis/my-topic/${topicDetail?.learningAttempt.id}?feedbackSession=1`
           );
         },
       },
@@ -483,7 +481,7 @@ const CountDownDuration = (props: any) => {
 };
 const ReviewAnswer = (props: any) => {
   // Props
-  const { courseDetail, ...restProps } = props;
+  const { topicDetail, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -492,7 +490,7 @@ const ReviewAnswer = (props: any) => {
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
   useBackOnClose(
-    `answer-review-${courseDetail?.learningAttempt?.id}`,
+    `answer-review-${topicDetail?.learningAttempt?.id}`,
     open,
     onOpen,
     onClose
@@ -504,7 +502,7 @@ const ReviewAnswer = (props: any) => {
     exam: Interface__KMISQuizResponse[];
   }>({
     initialData: undefined,
-    url: `/api/kmis/learning-course/get-finished-attempt/${courseDetail?.learningAttempt?.id}`,
+    url: `/api/kmis/learning-course/get-finished-attempt/${topicDetail?.learningAttempt?.id}`,
     dependencies: [open],
     conditions: open,
     dataResource: false,
@@ -700,9 +698,9 @@ const ReviewAnswer = (props: any) => {
                 </P>
                 <P>:</P>
 
-                {!courseDetail?.learningAttempt?.feedback && <P>-</P>}
+                {!topicDetail?.learningAttempt?.feedback && <P>-</P>}
 
-                {courseDetail?.learningAttempt?.feedback && (
+                {topicDetail?.learningAttempt?.feedback && (
                   <NavLink
                     to={fileUrl(resolvedAttempt?.certificate?.[0]?.filePath)}
                     external
@@ -773,7 +771,7 @@ const ReviewAnswer = (props: any) => {
 };
 const QuestionList = (props: any) => {
   // Props
-  const { data, courseDetail, activeQuizIdx, setActiveQuizIdx, ...restProps } =
+  const { data, topicDetail, activeQuizIdx, setActiveQuizIdx, ...restProps } =
     props;
 
   // Contexts
@@ -782,8 +780,7 @@ const QuestionList = (props: any) => {
   // States
   const exams = data?.exam;
   const learningAttempt = data?.learningParticipant || data?.learningAttempt;
-  const quizDurationSeconds =
-    courseDetail?.learningAttempt?.topic?.quizDuration;
+  const quizDurationSeconds = topicDetail?.learningAttempt?.topic?.quizDuration;
   const quizTimeStartedAt = makeTime(learningAttempt?.quizStarted);
   const quizEndedAutomaticallyAt = addSecondsToISODate(
     learningAttempt?.quizStarted,
@@ -793,22 +790,22 @@ const QuestionList = (props: any) => {
     quizTimeStartedAt,
     quizDurationSeconds
   );
-  const quizEndedAt = courseDetail?.learningAttempt?.quizFinished;
-  const quizTimeEndedAt = makeTime(courseDetail?.learningAttempt?.quizFinished);
-  const isQuizFinished = !!courseDetail?.learningAttempt?.quizFinished;
+  const quizEndedAt = topicDetail?.learningAttempt?.quizFinished;
+  const quizTimeEndedAt = makeTime(topicDetail?.learningAttempt?.quizFinished);
+  const isQuizFinished = !!topicDetail?.learningAttempt?.quizFinished;
 
   return (
     <CContainer flex={1} gap={4} {...restProps}>
       {/* Timer & Review */}
       <>
-        {isQuizFinished && <ReviewAnswer courseDetail={courseDetail} />}
+        {isQuizFinished && <ReviewAnswer topicDetail={topicDetail} />}
 
         {!isQuizFinished && (
           <CountDownDuration
             quizTimeStartedAt={quizTimeStartedAt}
             quizTimeEndedAutomaticallyAt={quizTimeEndedAutomaticallyAt}
             quizTimeEndedAt={quizTimeEndedAt}
-            courseDetail={courseDetail}
+            topicDetail={topicDetail}
           />
         )}
       </>
@@ -893,7 +890,7 @@ const QuestionList = (props: any) => {
 };
 
 interface Props extends StackProps {
-  courseDetail?: {
+  topicDetail?: {
     learningAttempt: Interface__KMISLearningAttempt;
     material: Interface__KMISMaterial[];
   };
@@ -901,21 +898,21 @@ interface Props extends StackProps {
 }
 export const QuizWorkspace = (props: Props) => {
   // Props
-  const { courseDetail, ...restProps } = props;
+  const { topicDetail, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
 
   // States
   const [startQuiz, setStartQuiz] = useState<boolean>(
-    !!courseDetail?.learningAttempt?.quizStarted || false
+    !!topicDetail?.learningAttempt?.quizStarted || false
   );
   const [activeQuizIdx, setActiveQuizIdx] = useState<number>(0);
   const { error, initialLoading, data, onRetry } = useDataState<{
     learningParticipant: Interface__KMISLearningAttempt;
     exam: Interface__KMISQuiz[];
   }>({
-    url: `/api/kmis/learning-course/get-quiz-with-answer/${courseDetail?.learningAttempt?.id}`,
+    url: `/api/kmis/learning-course/get-quiz-with-answer/${topicDetail?.learningAttempt?.id}`,
     dependencies: [],
     conditions: startQuiz,
     dataResource: false,
@@ -930,7 +927,7 @@ export const QuizWorkspace = (props: Props) => {
     loaded: (
       <Stack flexDir={["column", null, "row"]} gap={4} {...restProps}>
         <ActiveQuiz
-          courseDetail={courseDetail}
+          topicDetail={topicDetail}
           exams={exams}
           activeQuiz={activeQuiz}
           activeQuizIdx={activeQuizIdx}
@@ -938,7 +935,7 @@ export const QuizWorkspace = (props: Props) => {
         />
 
         <QuestionList
-          courseDetail={courseDetail}
+          topicDetail={topicDetail}
           data={data}
           activeQuizIdx={activeQuizIdx}
           setActiveQuizIdx={setActiveQuizIdx}
@@ -979,9 +976,9 @@ export const QuizWorkspace = (props: Props) => {
             fontWeight={"medium"}
             textAlign={"center"}
           >{`${formatNumber(
-            courseDetail?.learningAttempt?.topic?.totalQuiz
+            topicDetail?.learningAttempt?.topic?.totalQuiz
           )} quiz / ${
-            (courseDetail?.learningAttempt?.topic?.quizDuration || 0) / 60
+            (topicDetail?.learningAttempt?.topic?.quizDuration || 0) / 60
           } ${l.minutes}`}</P>
 
           <Btn

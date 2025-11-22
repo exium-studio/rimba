@@ -6,19 +6,19 @@ import { fileUrl } from "@/utils/url";
 import { StackProps } from "@chakra-ui/react";
 
 interface Props extends StackProps {
-  courseDetail: any;
+  topicDetail: any;
 }
 
 export const CertificateSection = (props: Props) => {
   // Props
-  const { courseDetail, ...restProps } = props;
+  const { topicDetail, ...restProps } = props;
 
   return (
     <ItemContainer p={4} justify={"center"} {...restProps}>
       <PDFViewer
         fileUrl={
           fileUrl(
-            courseDetail?.learningAttempt?.certificate?.[0]?.filePath
+            topicDetail?.learningAttempt?.certificate?.[0]?.filePath
           ) as string
         }
         aspectRatio={16 / 11}

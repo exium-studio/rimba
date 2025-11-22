@@ -8,7 +8,7 @@ import FolderShape from "@/components/widget/FolderShape";
 import { Props__DocumentItem } from "@/constants/props";
 import useLang from "@/context/useLang";
 import { Box, BoxProps, Icon } from "@chakra-ui/react";
-import { IconArrowUpRight, IconFileTypePdf } from "@tabler/icons-react";
+import { IconArrowUpRight, IconPdf } from "@tabler/icons-react";
 import { useState } from "react";
 
 const DocPaper = (props: BoxProps) => {
@@ -27,7 +27,7 @@ const DocPaper = (props: BoxProps) => {
     >
       <Box pos={"relative"}>
         <Icon boxSize={8} color={"d4"} pos={"absolute"} top={4} right={4}>
-          <IconFileTypePdf stroke={1.5} />
+          <IconPdf stroke={1.5} />
         </Icon>
       </Box>
     </Box>

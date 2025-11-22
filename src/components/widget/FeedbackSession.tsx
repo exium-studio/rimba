@@ -16,12 +16,12 @@ import { useRouter } from "next/navigation";
 import * as yup from "yup";
 
 interface Props extends StackProps {
-  courseDetail: any;
+  topicDetail: any;
 }
 
 export const FeedbackSession = (props: Props) => {
   // Props
-  const { courseDetail, ...restProps } = props;
+  const { topicDetail, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -38,16 +38,16 @@ export const FeedbackSession = (props: Props) => {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      feedback: courseDetail?.learningAttempt?.feedback
+      feedback: topicDetail?.learningAttempt?.feedback
         ? {
-            id: courseDetail?.learningAttempt?.feedback,
+            id: topicDetail?.learningAttempt?.feedback,
             label: pluckString(
               l,
-              `feedback_label_${courseDetail?.learningAttempt?.feedback}`
+              `feedback_label_${topicDetail?.learningAttempt?.feedback}`
             ),
           }
         : null,
-      comment: courseDetail?.learningAttempt?.feedbackComment,
+      comment: topicDetail?.learningAttempt?.feedbackComment,
     },
     validationSchema: yup.object().shape({
       feedback: yup.object().required(l.msg_required_form),
@@ -60,7 +60,7 @@ export const FeedbackSession = (props: Props) => {
       };
 
       const config = {
-        url: `/api/kmis/learning-course/feedback/${courseDetail?.learningAttempt.id}`,
+        url: `/api/kmis/learning-course/feedback/${topicDetail?.learningAttempt.id}`,
         method: "PATCH",
         data: payload,
       };
@@ -70,9 +70,9 @@ export const FeedbackSession = (props: Props) => {
         onResolve: {
           onSuccess: () => {
             setRt((ps) => !ps);
-            if (!courseDetail?.learningAttempt?.feedback)
+            if (!topicDetail?.learningAttempt?.feedback)
               router.push(
-                `/related-apps/kmis/my-topic/${courseDetail?.learningAttempt?.topic?.id}?certificateSection=1`
+                `/related-apps/kmis/my-topic/${topicDetail?.learningAttempt?.topic?.id}?certificateSection=1`
               );
           },
         },
@@ -98,7 +98,7 @@ export const FeedbackSession = (props: Props) => {
             label={
               <P>
                 {interpolateString(l.feedback_question, {
-                  courseName: courseDetail?.learningAttempt?.topic?.title || "",
+                  courseName: topicDetail?.learningAttempt?.topic?.title || "",
                 })}
               </P>
             }
@@ -153,7 +153,7 @@ export const FeedbackSession = (props: Props) => {
             loading={loading}
             colorPalette={"p"}
             ml={"auto"}
-            // disabled={courseDetail?.learningAttempt?.feedback}
+            // disabled={topicDetail?.learningAttempt?.feedback}
           >
             Submit
           </Btn>

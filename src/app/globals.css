@@ -19,6 +19,9 @@
 }
 
 /* Custom Start*/
+.react-pdf__Document {
+  margin: auto;
+}
 .mapboxgl-ctrl-bottom-right,
 .mapboxgl-ctrl-bottom-left {
   display: none !important;

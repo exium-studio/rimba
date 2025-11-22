@@ -44,7 +44,7 @@ export default function Page(props: Props) {
   const links: { label: string; path: string }[] = [
     {
       label: "KMIS",
-      path: "/related-apps/kmis",
+      path: "/related-apps/kmis?topicType=Pelatihan, Pengetahuan",
     },
   ];
 

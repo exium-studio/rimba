@@ -116,7 +116,7 @@ const StartLearningButton = (props: any) => {
   );
 };
 
-const DetailButton = (props: any) => {
+const DetailDisclosureTrigger = (props: any) => {
   // Props
   const { myCourse, topic, idx, ...restProps } = props;
   const resolvedTopic: Interface__KMISTopic = topic;
@@ -136,6 +136,7 @@ const DetailButton = (props: any) => {
     dependencies: [open],
     dataResource: false,
   });
+  const isPublicTopic = data?.topic?.topicType !== "Pelatihan";
 
   const render = {
     loading: <Skeleton minH={"400px"} rounded={"lg"} />,
@@ -227,15 +228,17 @@ const DetailButton = (props: any) => {
               </HStack>
             </CContainer>
 
-            <HStack mt={4}>
-              <Icon color={"orange.400"}>
-                <IconStarFilled />
-              </Icon>
+            {!isPublicTopic && (
+              <HStack mt={4}>
+                <Icon color={"orange.400"}>
+                  <IconStarFilled />
+                </Icon>
 
-              <P fontSize={"lg"}>{`${
-                data?.avgFeedbackRate ? `${data?.avgFeedbackRate}/5` : "-"
-              }`}</P>
-            </HStack>
+                <P fontSize={"lg"}>{`${
+                  data?.avgFeedbackRate ? `${data?.avgFeedbackRate}/5` : "-"
+                }`}</P>
+              </HStack>
+            )}
 
             <CContainer mt={"auto"}>
               {data?.topic?.topicType === "Pengetahuan" || myCourse ? (
@@ -276,80 +279,84 @@ const DetailButton = (props: any) => {
         </CContainer>
 
         {/* Testimonials */}
-        <CContainer gap={2}>
-          <P fontWeight={"semibold"}>Terstimonial</P>
+        {!isPublicTopic && (
+          <CContainer gap={2}>
+            <P fontWeight={"semibold"}>Terstimonial</P>
 
-          {isEmptyArray(data?.feedback) && <P>-</P>}
+            {isEmptyArray(data?.feedback) && <P>-</P>}
 
-          <CContainer overflowX={"auto"}>
-            <HStack w={"max"} align={"stretch"}>
-              {data?.feedback?.map((feedback: any, idx: number) => {
-                return (
-                  <CContainer
-                    key={`${feedback?.id}-${idx}`}
-                    p={4}
-                    rounded={"lg"}
-                    border={"1px solid"}
-                    borderColor={"border.muted"}
-                    w={"200px"}
-                    h={"auto"}
-                    aspectRatio={1}
-                    gap={4}
-                  >
-                    <CContainer>
-                      <HStack gap={1}>
-                        {Array.from({ length: 5 }, (_, i) => {
-                          return (
-                            <Icon
-                              key={i}
-                              boxSize={3}
-                              color={
-                                i < feedback?.rate ? "orange.500" : "fg.subtle"
-                              }
-                            >
-                              <IconStarFilled />
-                            </Icon>
-                          );
-                        })}
-                      </HStack>
-                    </CContainer>
-
-                    <CContainer gap={2}>
-                      <ClampText
-                        w={"full"}
-                        lineClamp={8}
-                      >{`${feedback?.comment}`}</ClampText>
-                    </CContainer>
-
-                    <HStack mt={"auto"} pt={2}>
-                      <Avatar
-                        size={"sm"}
-                        name={feedback?.ratedBy?.name}
-                        src={imgUrl(
-                          feedback?.ratedBy?.photoProfile?.[0]?.filePath
-                        )}
-                      />
-
+            <CContainer overflowX={"auto"}>
+              <HStack w={"max"} align={"stretch"}>
+                {data?.feedback?.map((feedback: any, idx: number) => {
+                  return (
+                    <CContainer
+                      key={`${feedback?.id}-${idx}`}
+                      p={4}
+                      rounded={"lg"}
+                      border={"1px solid"}
+                      borderColor={"border.muted"}
+                      w={"200px"}
+                      h={"auto"}
+                      aspectRatio={1}
+                      gap={4}
+                    >
                       <CContainer>
-                        <ClampText w={"full"}>
-                          {feedback?.ratedBy?.name}
-                        </ClampText>
+                        <HStack gap={1}>
+                          {Array.from({ length: 5 }, (_, i) => {
+                            return (
+                              <Icon
+                                key={i}
+                                boxSize={3}
+                                color={
+                                  i < feedback?.rate
+                                    ? "orange.500"
+                                    : "fg.subtle"
+                                }
+                              >
+                                <IconStarFilled />
+                              </Icon>
+                            );
+                          })}
+                        </HStack>
+                      </CContainer>
 
+                      <CContainer gap={2}>
                         <ClampText
                           w={"full"}
-                          color={"fg.subtle"}
-                          fontSize={"sm"}
-                        >
-                          {feedback?.ratedBy?.email}
-                        </ClampText>
+                          lineClamp={8}
+                        >{`${feedback?.comment}`}</ClampText>
                       </CContainer>
-                    </HStack>
-                  </CContainer>
-                );
-              })}
-            </HStack>
+
+                      <HStack mt={"auto"} pt={2}>
+                        <Avatar
+                          size={"sm"}
+                          name={feedback?.ratedBy?.name}
+                          src={imgUrl(
+                            feedback?.ratedBy?.photoProfile?.[0]?.filePath
+                          )}
+                        />
+
+                        <CContainer>
+                          <ClampText w={"full"}>
+                            {feedback?.ratedBy?.name}
+                          </ClampText>
+
+                          <ClampText
+                            w={"full"}
+                            color={"fg.subtle"}
+                            fontSize={"sm"}
+                          >
+                            {feedback?.ratedBy?.email}
+                          </ClampText>
+                        </CContainer>
+                      </HStack>
+                    </CContainer>
+                  );
+                })}
+              </HStack>
+            </CContainer>
           </CContainer>
-        </CContainer>
+        )}
       </CContainer>
     ),
   };
@@ -469,7 +476,7 @@ export const KMISTopicItem = (props: Props) => {
       </CContainer>
 
       <CContainer gap={2} p={2} pt={0}>
-        <DetailButton
+        <DetailDisclosureTrigger
           myCourse={myCourse}
           topic={topic}
           idx={idx}

@@ -635,7 +635,8 @@ export const KMISLearningSection = (props: Props) => {
       {...restProps}
     >
       <H3 fontWeight={"semibold"}>
-        {courseDetail?.learningAttempt?.topic?.title}
+        {courseDetail?.learningAttempt?.topic?.title ||
+          courseDetail?.topic.title}
       </H3>
 
       <Stack flexDir={["column", null, "row"]} gap={4}>

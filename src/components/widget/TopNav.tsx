@@ -352,6 +352,7 @@ const SubSubNav = (props: any) => {
       <MenuTrigger w={"full"}>
         <Btn
           clicky={false}
+          focusStyle={false}
           w={"full"}
           variant={"ghost"}
           justifyContent={"start"}

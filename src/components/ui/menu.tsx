@@ -26,6 +26,38 @@ export const MenuRoot = (props: MenuRootProps) => {
   );
 };
 
+export interface MenuTriggerProps extends ChakraMenu.TriggerProps {}
+export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
+  function MenuTrigger(props, ref) {
+    const { children, ...restProps } = props;
+
+    return (
+      <ChakraMenu.Trigger
+        ref={ref}
+        as={"div"}
+        _active={{
+          bg: "red !important",
+          border: "none !important",
+          outline: "none !important",
+          boxShadow: "none !important",
+        }}
+        _focus={{
+          border: "none !important",
+          outline: "none !important",
+          boxShadow: "none !important",
+        }}
+        _focusVisible={{
+          border: "none !important",
+          outline: "none !important",
+          boxShadow: "none !important",
+        }}
+        {...restProps}
+      >
+        {children}
+      </ChakraMenu.Trigger>
+    );
+  }
+);
 export interface MenuTriggerItemProps extends ChakraMenu.ItemProps {
   startIcon?: React.ReactNode;
 }
@@ -185,4 +217,3 @@ export const MenuRadioItemGroup = ChakraMenu.RadioItemGroup;
 export const MenuContextTrigger = ChakraMenu.ContextTrigger;
 export const MenuItemText = ChakraMenu.ItemText;
 export const MenuItemCommand = ChakraMenu.ItemCommand;
-export const MenuTrigger = ChakraMenu.Trigger;

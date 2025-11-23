@@ -357,6 +357,7 @@ const SubSubNav = (props: any) => {
           justifyContent={"start"}
           h={"36px"}
           px={2}
+          outline={"none !important"}
           onClick={() => {
             setIsOpen((ps) => !ps);
           }}

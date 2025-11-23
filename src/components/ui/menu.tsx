@@ -35,22 +35,7 @@ export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
       <ChakraMenu.Trigger
         ref={ref}
         as={"div"}
-        _active={{
-          bg: "red !important",
-          border: "none !important",
-          outline: "none !important",
-          boxShadow: "none !important",
-        }}
-        _focus={{
-          border: "none !important",
-          outline: "none !important",
-          boxShadow: "none !important",
-        }}
-        _focusVisible={{
-          border: "none !important",
-          outline: "none !important",
-          boxShadow: "none !important",
-        }}
+        outline={"none !important"}
         {...restProps}
       >
         {children}

@@ -106,7 +106,7 @@ const StartLearningButton = (props: any) => {
       w={restProps.w || "fit"}
     >
       <Btn colorPalette={"p"} variant={"outline"} {...restProps}>
-        {l.start_learning}
+        {isPublicTopic ? l.start_reading : l.start_learning}
 
         <Icon>
           <IconArrowRight stroke={1.5} />
@@ -171,25 +171,29 @@ const DetailDisclosureTrigger = (props: any) => {
                 </P>
               </HStack>
 
-              <HStack align={"end"} flexShrink={0}>
-                <P fontSize={"lg"} fontWeight={"medium"}>
-                  {`${data?.topic?.totalQuiz}`}
-                </P>
+              {!isPublicTopic && (
+                <>
+                  <HStack align={"end"} flexShrink={0}>
+                    <P fontSize={"lg"} fontWeight={"medium"}>
+                      {`${data?.topic?.totalQuiz}`}
+                    </P>
 
-                <P fontSize={"sm"} transform={"translateY(1px)"}>
-                  {l.total_quiz}
-                </P>
-              </HStack>
+                    <P fontSize={"sm"} transform={"translateY(1px)"}>
+                      {l.total_quiz}
+                    </P>
+                  </HStack>
 
-              <HStack align={"end"} flexShrink={0}>
-                <P fontSize={"lg"} fontWeight={"medium"}>
-                  {`${(data?.topic?.quizDuration || 0) / 60}`}
-                </P>
+                  <HStack align={"end"} flexShrink={0}>
+                    <P fontSize={"lg"} fontWeight={"medium"}>
+                      {`${(data?.topic?.quizDuration || 0) / 60}`}
+                    </P>
 
-                <P fontSize={"sm"} transform={"translateY(1px)"}>
-                  {`${l.quiz_duration} (${l.minutes?.toLowerCase()})`}
-                </P>
-              </HStack>
+                    <P fontSize={"sm"} transform={"translateY(1px)"}>
+                      {`${l.quiz_duration} (${l.minutes?.toLowerCase()})`}
+                    </P>
+                  </HStack>
+                </>
+              )}
             </HStack>
 
             <CContainer gap={1} pt={4}>

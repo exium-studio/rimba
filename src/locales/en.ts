@@ -482,6 +482,7 @@ const translations = {
   "showing": "Showing",
   "start_date_time": "Started at",
   "start_learning": "Start learning",
+  "start_reading": "Start reading",
   "started_at": "Started at",
   "student": "Student",
   "submit": "Submit",

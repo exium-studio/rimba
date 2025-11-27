@@ -997,6 +997,10 @@ export const topic_type = {
   id: "Tipe topik",
   en: "Topic type",
 };
+export const start_reading = {
+  id: "Mulai membaca",
+  en: "Start reading",
+};
 
 // Message
 export const msg_still_have_question = {

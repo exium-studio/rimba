@@ -482,6 +482,7 @@ const translations = {
   "showing": "Menampilkan",
   "start_date_time": "Dimulai pada",
   "start_learning": "Mulai belajar",
+  "start_reading": "Mulai membaca",
   "started_at": "Dimulai pada",
   "student": "Pelajar",
   "submit": "Submit",

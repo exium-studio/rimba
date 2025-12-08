@@ -234,7 +234,7 @@ const MobileTopNav = () => {
                                   clicky={false}
                                   justifyContent={"start"}
                                   variant={"ghost"}
-                                  px={5}
+                                  px={4}
                                   gap={0}
                                   color={isMainNavsActive ? "p.400" : "light"}
                                   size={"xl"}
@@ -288,6 +288,7 @@ const MobileTopNav = () => {
                     <Btn
                       clicky={false}
                       justifyContent={"start"}
+                      h={"48px"}
                       variant={"ghost"}
                       px={4}
                       color={isMainNavsActive ? "p.400" : "light"}
@@ -348,7 +349,7 @@ const SubSubNav = (props: any) => {
   const topicType = searchParams.get("topicType");
 
   return (
-    <MenuRoot open={isOpen} lazyMount>
+    <MenuRoot open={isOpen} lazyMount positioning={{ placement: "bottom-end" }}>
       <MenuTrigger w={"full"}>
         <Btn
           clicky={false}

@@ -83,31 +83,23 @@ const Data = (props: any) => {
       <FeedbackNoData minH={"calc(100vh - 37px - 140px - 64px - 200px)"} />
     ),
     loaded: (
-      <Stack flexDir={["column", null, "row"]} align={"stretch"} gap={4}>
-        <CContainer flex={1} gap={4}>
-          {authToken && <MiniProfile />}
+      <>
+        <SimpleGrid columns={[1, null, 2, 3, null, 4]} gap={4}>
+          {data?.map((topic, idx) => {
+            return <KMISTopicItem key={idx} topic={topic} idx={idx} />;
+          })}
+        </SimpleGrid>
 
-          <KMISCourseFilters filter={filter} setFilter={setFilter} />
-        </CContainer>
+        <HStack justify={"space-between"}>
+          <Limitation limit={limit} setLimit={setLimit} />
 
-        <CContainer ref={topicListContainerRef} gap={4}>
-          <SimpleGrid columns={[1, null, 2, 3, null, 4]} gap={4}>
-            {data?.map((topic, idx) => {
-              return <KMISTopicItem key={idx} topic={topic} idx={idx} />;
-            })}
-          </SimpleGrid>
-
-          <HStack justify={"space-between"}>
-            <Limitation limit={limit} setLimit={setLimit} />
-
-            <Pagination
-              page={page}
-              setPage={setPage}
-              totalPage={pagination?.meta?.last_page}
-            />
-          </HStack>
-        </CContainer>
-      </Stack>
+          <Pagination
+            page={page}
+            setPage={setPage}
+            totalPage={pagination?.meta?.last_page}
+          />
+        </HStack>
+      </>
     ),
   };
 
@@ -134,18 +126,28 @@ const Data = (props: any) => {
         />
       </CContainer>
 
-      {initialLoading && render.loading}
-      {!initialLoading && (
-        <>
-          {error && render.error}
-          {!error && (
+      <Stack flexDir={["column", null, "row"]} align={"stretch"} gap={4}>
+        <CContainer flex={1} gap={4}>
+          {authToken && <MiniProfile />}
+
+          <KMISCourseFilters filter={filter} setFilter={setFilter} />
+        </CContainer>
+
+        <CContainer ref={topicListContainerRef} gap={4}>
+          {initialLoading && render.loading}
+          {!initialLoading && (
             <>
-              {data && render.loaded}
-              {(!data || isEmptyArray(data)) && render.empty}
+              {error && render.error}
+              {!error && (
+                <>
+                  {data && render.loaded}
+                  {(!data || isEmptyArray(data)) && render.empty}
+                </>
+              )}
             </>
           )}
-        </>
-      )}
+        </CContainer>
+      </Stack>
     </CContainer>
   );
 };

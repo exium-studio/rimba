@@ -22,10 +22,11 @@ const HeroW = "100vw";
 
 const GalleryImg = (props: any) => {
   // Props
-  const { content, ...restProps } = props;
+  const { idx, content, ...restProps } = props;
 
   // States
-  const rotation = Math.random() * 6 - 3;
+  const rotation = idx % 4 === 0 ? -2 : 2;
+  const aspectRatio = idx % 4 === 0 ? 2 : 1;
 
   return (
     <EditableContentContainer
@@ -37,10 +38,11 @@ const GalleryImg = (props: any) => {
       border={"2px solid"}
       borderColor={"border.muted"}
       transform={`rotate(${rotation}deg)`}
+      aspectRatio={aspectRatio}
     >
       <Img
         h={"100%"}
-        aspectRatio={Math.random() < 0.5 ? 1 : 2}
+        aspectRatio={aspectRatio}
         alt="nature"
         src={content?.content}
         // transform={`rotate(${rotation}deg)`}
@@ -89,8 +91,10 @@ const OverviewGallery = (props: StackProps) => {
           h={"full"}
           gap={0}
         >
-          {galleryTop.map((content: Interface_CMSContent) => {
-            return <GalleryImg key={content?.content} content={content} />;
+          {galleryTop.map((content: Interface_CMSContent, idx: number) => {
+            return (
+              <GalleryImg key={content?.content} idx={idx} content={content} />
+            );
           })}
           {galleryTop.map((content: Interface_CMSContent) => {
             return <GalleryImg key={content?.content} content={content} />;

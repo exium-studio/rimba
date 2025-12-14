@@ -133,7 +133,7 @@ export default function ClientSideOnly(props: Props) {
   }, []);
 
   // Handle offline alert
-  useOfflineAlert({ mounted });
+  useOfflineAlert();
 
   // handle ADM
   useEffect(() => {

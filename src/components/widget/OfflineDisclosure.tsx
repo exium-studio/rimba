@@ -30,9 +30,9 @@ const OfflineDisclosure = () => {
   useBackOnClose(disclosureId("offline-alert"), open, onOpen, onClose);
 
   useEffect(() => {
-    if (offline) onOpen();
+    if (offline && !open) onOpen();
     if (!offline && open) back();
-  }, [offline]);
+  }, [offline, open]);
 
   return (
     <DisclosureRoot open={open} lazyLoad size={"xs"} role={"alertdialog"}>

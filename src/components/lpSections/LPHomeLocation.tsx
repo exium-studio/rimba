@@ -80,11 +80,13 @@ const LocationListItem = (props: any) => {
     (location: any) => location[lang]
   );
 
+  console.debug(ciss);
+
   return (
     <CContainer
       className={`location-list ${ciss ? "" : "ss"} `}
       w={"240px"}
-      maxH={"240px"}
+      maxH={ciss ? "" : "240px"}
       bg={"light"}
       py={3}
       rounded={"xl"}
@@ -398,6 +400,7 @@ export const LPHomeLocation = (props: StackProps) => {
         <LPSectionContainer zIndex={2} pb={"80px"}>
           <CContainer gap={4}>
             <LocationListItem
+              ciss={ciss}
               provinceContent={staticContents[30]}
               locationListContent={staticContents[31]}
               number={1}
@@ -406,6 +409,7 @@ export const LPHomeLocation = (props: StackProps) => {
             />
 
             <LocationListItem
+              ciss={ciss}
               provinceContent={staticContents[32]}
               locationListContent={staticContents[33]}
               number={2}
@@ -414,6 +418,7 @@ export const LPHomeLocation = (props: StackProps) => {
             />
 
             <LocationListItem
+              ciss={ciss}
               provinceContent={staticContents[34]}
               locationListContent={staticContents[35]}
               number={3}

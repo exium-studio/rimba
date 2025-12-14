@@ -158,12 +158,12 @@ export const LPHomeStrategyValue = (props: StackProps) => {
   return (
     <LPSectionContainer
       ref={containerRef}
-      pt={"100px"}
+      pt={"120px"}
       pb={["60px", null, 0]}
       bgPos={"top"}
       bgSize={"cover"}
       color={"light"}
-      mt={"-4px"}
+      mt={"-20px"}
       outerContainerProps={{
         bg: "p.900",
         bgImage: `url(${IMAGES_PATH}/lp/home/strategy-value-bg.png)`,
@@ -199,7 +199,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             flex={"0 1 330px"}
             maxW={"330px"}
             mx={["auto", null, 0]}
-            h={"580px"}
+            minH={"580px"}
             overflow={"clip"}
             aspectRatio={1 / 2}
             pos={"relative"}

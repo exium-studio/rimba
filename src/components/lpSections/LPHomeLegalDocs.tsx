@@ -32,6 +32,8 @@ export const LPHomeLegalDocs = (props: StackProps) => {
   const staticContents = useContents((s) => s.staticContents);
   const homeLegalDocuments = useContents((s) => s.homeLegalDocuments);
 
+  // console.debug(homeLegalDocuments);
+
   // Hooks
   const { sw } = useScreen();
 

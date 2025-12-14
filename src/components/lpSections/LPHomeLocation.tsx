@@ -80,8 +80,6 @@ const LocationListItem = (props: any) => {
     (location: any) => location[lang]
   );
 
-  console.debug(ciss);
-
   return (
     <CContainer
       className={`location-list ${ciss ? "" : "ss"} `}

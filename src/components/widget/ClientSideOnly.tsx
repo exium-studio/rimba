@@ -1,7 +1,6 @@
 "use client";
 export const dynamic = "force-dynamic";
 
-import { CSpinner } from "@/components/ui/c-spinner";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Toaster } from "@/components/ui/toaster";
 import { DefaultFallback } from "@/components/widget/DefaultFallback";
@@ -9,6 +8,7 @@ import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LoadingBar } from "@/components/widget/LoadingBar";
 import { StaticContentListToggle } from "@/components/widget/StaticContentEditor";
+import TawkChat from "@/components/widget/TawkChat";
 import useADM from "@/context/useADM";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import { useCMS } from "@/context/useCMS";
@@ -26,7 +26,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import GlobalDisclosure from "./GlobalDisclosure";
-import TawkChat from "@/components/widget/TawkChat";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,11 +74,7 @@ export default function ClientSideOnly(props: Props) {
     dataResource: false,
   });
   const render = {
-    loading: (
-      <Center minH={"100dvh"}>
-        <CSpinner />
-      </Center>
-    ),
+    loading: <DefaultFallback />,
     error: (
       <Center minH={"100dvh"}>
         <FeedbackRetry onRetry={onRetry} />

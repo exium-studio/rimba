@@ -187,6 +187,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
           ref={mainContentsRef}
           flexDir={iss ? "column" : "row"}
           justify={"center"}
+          align={"end"}
           gapX={"80px"}
           gapY={0}
           zIndex={2}
@@ -220,6 +221,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
               flex={1}
               p={3}
               bg={"light"}
+              h={"200%"}
               bgSize={"cover"}
               rounded={"60px"}
               aspectRatio={1 / 2}

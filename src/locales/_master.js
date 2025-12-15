@@ -35,6 +35,22 @@ export const lp_navs = {
       id: "Peta",
       en: "Map",
     },
+    interactive_map: {
+      id: "Peta Interaktif",
+      en: "Interactive Map",
+    },
+    green_economy: {
+      id: "Ekonomi Hijau",
+      en: "Green Economy",
+    },
+    impact_analysis: {
+      id: "Dampak Analisis",
+      en: "Impact Analysis",
+    },
+    land_dashboard: {
+      id: "Dashboard Lahan",
+      en: "Land Dashboard",
+    },
     printed_map: {
       id: "Peta Cetak",
       en: "Printed Map",
@@ -43,9 +59,13 @@ export const lp_navs = {
       id: "Metadata",
       en: "Metadata",
     },
+    cms: {
+      id: "CMS Peta",
+      en: "Map CMS",
+    },
     study_method_map: {
-      id: "Peta Metode Studi",
-      en: "Study Method Map",
+      id: "Peta Kajian",
+      en: "Study Map",
     },
   },
   related_apps: {

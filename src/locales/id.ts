@@ -302,9 +302,14 @@ const translations = {
     },
     "map": {
       "index": "Peta",
+      "interactive_map": "Peta Interaktif",
+      "green_economy": "Ekonomi Hijau",
+      "impact_analysis": "Dampak Analisis",
+      "land_dashboard": "Dashboard Lahan",
       "printed_map": "Peta Cetak",
       "metadata": "Metadata",
-      "study_method_map": "Peta Metode Studi"
+      "cms": "CMS Peta",
+      "study_method_map": "Peta Kajian"
     },
     "related_apps": {
       "index": "Aplikasi",

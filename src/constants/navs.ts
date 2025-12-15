@@ -68,20 +68,50 @@ export const LP_NAVS: Interface__NavItem[] = [
             list: [
               {
                 icon: IconMap,
+                labelKey: "lp_navs.map.interactive_map",
+                path: `/gis`, // TODO fill the path
+                external: true,
+              },
+              {
+                icon: IconMap,
+                labelKey: "lp_navs.map.green_economy",
+                path: `gis/hijau`, // TODO fill the path
+                external: true,
+              },
+              {
+                icon: IconMap,
+                labelKey: "lp_navs.map.impact_analysis",
+                path: `gis/dampak`, // TODO fill the path
+                external: true,
+              },
+              {
+                icon: IconMap,
+                labelKey: "lp_navs.map.land_dashboard",
+                path: `gis/lahan`, // TODO fill the path
+                external: true,
+              },
+              {
+                icon: IconMap,
                 labelKey: "lp_navs.map.printed_map",
-                path: `1`, // TODO fill the path
+                path: `gis/peta-cetak`, // TODO fill the path
                 external: true,
               },
               {
                 icon: IconMap2,
                 labelKey: "lp_navs.map.metadata",
-                path: `2`, // TODO fill the path
+                path: `gis/metadata`, // TODO fill the path
                 external: true,
               },
               {
                 icon: IconMapQuestion,
                 labelKey: "lp_navs.map.study_method_map",
-                path: `3`, // TODO fill the path
+                path: `gis/peta-kajian`, // TODO fill the path
+                external: true,
+              },
+              {
+                icon: IconMap,
+                labelKey: "lp_navs.map.cms",
+                path: `gis/cms`,
                 external: true,
               },
             ],

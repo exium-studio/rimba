@@ -302,9 +302,13 @@ const translations = {
     },
     "map": {
       "index": "Map",
+      "interactive_map": "Interactive Map",
+      "green_economy": "Green Economy",
+      "impact_analysis": "Impact Analysis",
+      "land_dashboard": "Land Dashboard",
       "printed_map": "Printed Map",
       "metadata": "Metadata",
-      "study_method_map": "Study Method Map"
+      "study_method_map": "Study Map"
     },
     "related_apps": {
       "index": "Applications",

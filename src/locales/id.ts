@@ -308,6 +308,7 @@ const translations = {
       "land_dashboard": "Dashboard Lahan",
       "printed_map": "Peta Cetak",
       "metadata": "Metadata",
+      "cms": "CMS Peta",
       "study_method_map": "Peta Kajian"
     },
     "related_apps": {

@@ -308,6 +308,7 @@ const translations = {
       "land_dashboard": "Land Dashboard",
       "printed_map": "Printed Map",
       "metadata": "Metadata",
+      "cms": "Map CMS",
       "study_method_map": "Study Map"
     },
     "related_apps": {

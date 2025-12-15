@@ -59,6 +59,10 @@ export const lp_navs = {
       id: "Metadata",
       en: "Metadata",
     },
+    cms: {
+      id: "CMS Peta",
+      en: "Map CMS",
+    },
     study_method_map: {
       id: "Peta Kajian",
       en: "Study Map",

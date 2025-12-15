@@ -108,6 +108,12 @@ export const LP_NAVS: Interface__NavItem[] = [
                 path: `gis/peta-kajian`, // TODO fill the path
                 external: true,
               },
+              {
+                icon: IconMap,
+                labelKey: "lp_navs.map.cms",
+                path: `gis/cms`,
+                external: true,
+              },
             ],
           },
         ],

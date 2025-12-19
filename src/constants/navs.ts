@@ -97,13 +97,13 @@ export const LP_NAVS: Interface__NavItem[] = [
                 external: true,
               },
               {
-                icon: IconMap2,
+                icon: IconMap,
                 labelKey: "lp_navs.map.metadata",
                 path: `gis/metadata`, // TODO fill the path
                 external: true,
               },
               {
-                icon: IconMapQuestion,
+                icon: IconMap,
                 labelKey: "lp_navs.map.study_method_map",
                 path: `gis/peta-kajian`, // TODO fill the path
                 external: true,

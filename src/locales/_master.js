@@ -63,6 +63,10 @@ export const lp_navs = {
       id: "CMS Peta",
       en: "Map CMS",
     },
+    gis_analysis: {
+      id: "Analisis GIS",
+      en: "GIS Analysis",
+    },
     study_method_map: {
       id: "Peta Kajian",
       en: "Study Map",

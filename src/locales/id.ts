@@ -309,6 +309,7 @@ const translations = {
       "printed_map": "Peta Cetak",
       "metadata": "Metadata",
       "cms": "CMS Peta",
+      "gis_analysis": "Analisis GIS",
       "study_method_map": "Peta Kajian"
     },
     "related_apps": {

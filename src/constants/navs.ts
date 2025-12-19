@@ -114,6 +114,11 @@ export const LP_NAVS: Interface__NavItem[] = [
                 path: `gis/cms`,
                 external: true,
               },
+              {
+                icon: IconMap,
+                labelKey: "lp_navs.map.gis_analysis",
+                path: `gisanalysis`
+              }
             ],
           },
         ],

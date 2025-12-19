@@ -309,6 +309,7 @@ const translations = {
       "printed_map": "Printed Map",
       "metadata": "Metadata",
       "cms": "Map CMS",
+      "gis_analysis": "GIS Analysis",
       "study_method_map": "Study Map"
     },
     "related_apps": {

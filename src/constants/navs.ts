@@ -5,8 +5,6 @@ import {
   IconHeartHandshake,
   IconLanguage,
   IconMap,
-  IconMap2,
-  IconMapQuestion,
   IconNews,
   IconSchool,
   IconSeedling,

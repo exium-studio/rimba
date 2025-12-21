@@ -5,6 +5,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import { ClampText } from "@/components/widget/ClampText";
 import { Interface__CMSNews } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import { formatDate } from "@/utils/formatter";
@@ -86,9 +87,9 @@ export const NewsItem = (props: Props) => {
 
       <CContainer h={["196px", null, "188px"]}>
         <CContainer gap={4} px={4} pt={3}>
-          <P fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
+          <ClampText fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
             {news.title[lang]}
-          </P>
+          </ClampText>
 
           <P color={"fg.subtle"} lineClamp={3}>
             {news.description[lang]}

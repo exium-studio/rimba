@@ -4,6 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import { ClampText } from "@/components/widget/ClampText";
 import FolderShape from "@/components/widget/FolderShape";
 import { Props__DocumentItem } from "@/constants/props";
 import useLang from "@/context/useLang";
@@ -96,9 +97,9 @@ export const DocumentItem = (props: Props__DocumentItem) => {
             <FolderShape h={"30px"} color={"p.900"} />
           </Box>
 
-          <P fontSize={"lg"} fontWeight={"medium"} lineClamp={1} mt={2}>
+          <ClampText fontSize={"lg"} fontWeight={"medium"} lineClamp={1} mt={2}>
             {document.title[lang]}
-          </P>
+          </ClampText>
 
           <P lineClamp={2} opacity={0.4} mt={4}>
             {document.description[lang]}

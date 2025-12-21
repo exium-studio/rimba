@@ -73,7 +73,7 @@ export default function ClientSideOnly(props: Props) {
     dependencies: [],
     dataResource: false,
   });
-  // console.debug(data);
+  console.debug(data);
   const render = {
     loading: <DefaultFallback />,
     error: (

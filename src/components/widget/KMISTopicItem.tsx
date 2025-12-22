@@ -151,10 +151,13 @@ const DetailDisclosureTrigger = (props: any) => {
             aspectRatio={1}
             fluid
             rounded={"lg"}
+            w={["full", null, "50%"]}
           />
 
           <CContainer gap={2} py={2}>
-            <Badge w={"fit"}>{data?.topic?.category?.title}</Badge>
+            <Badge w={"fit"} maxW={"full"}>
+              {data?.topic?.category?.title}
+            </Badge>
 
             <P fontSize={"xl"} fontWeight={"semibold"} mb={2} lineHeight={1.4}>
               {data?.topic?.title}

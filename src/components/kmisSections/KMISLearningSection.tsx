@@ -215,7 +215,7 @@ const LearningModules = (props: any) => {
   const isQuizFinished = !!topicDetail?.learningAttempt?.quizFinished;
   const isFeedbackFinished = !!topicDetail?.learningAttempt?.feedback;
   const completedMaterials =
-    topicDetail?.learningAttempt?.completedMaterial || [];
+    topicDetail?.learningAttempt?.completedMaterial ?? [];
   const materials = topicDetail?.material;
   // const isPublicTopic =
   //   topicDetail?.topic?.topicType !== "Pelatihan" ||
@@ -230,6 +230,7 @@ const LearningModules = (props: any) => {
 
         <P fontSize={"sm"} color={"fg.subtle"}>
           {`${
+            topicDetail?.totalMaterial ??
             topicDetail?.learningAttempt?.totalMaterial
           } ${l.learning_material?.toLowerCase()}`}
         </P>

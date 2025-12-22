@@ -46,14 +46,11 @@ export default function Page(props: Props) {
       label: "KMIS",
       path: "/related-apps/kmis?topicType=Pelatihan, Pengetahuan",
     },
-  ];
-
-  if (!data?.topic?.title) {
-    links.push({
+    {
       label: l.my_course,
       path: "/related-apps/kmis/my-topic",
-    });
-  }
+    },
+  ];
 
   links.push({
     label: data?.learningAttempt?.topic?.title || data?.topic?.title,

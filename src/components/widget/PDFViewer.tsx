@@ -16,6 +16,7 @@ import {
   IconArrowAutofitWidth,
   IconChevronLeft,
   IconChevronRight,
+  IconDownload,
   IconFile,
   IconFileOff,
   IconFiles,
@@ -24,6 +25,7 @@ import {
 } from "@tabler/icons-react";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
+import { Props__PdfViewer } from "@/constants/props";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.4.168/build/pdf.worker.min.mjs`;
 
@@ -127,9 +129,17 @@ const Toolbar = (props: Props__PDFToolbar) => {
         </UtilBtn>
 
         <UtilBtn
+          onClick={utils.handleDownload}
+          tooltipContent={"Download"}
+          ml={"auto"}
+        >
+          <Icon boxSize={5}>
+            <IconDownload />
+          </Icon>
+        </UtilBtn>
+        <UtilBtn
           iconButton={false}
           onClick={toggleMode}
-          ml={"auto"}
           tooltipContent={"Mode"}
         >
           <Icon boxSize={5}>
@@ -146,12 +156,9 @@ const Toolbar = (props: Props__PDFToolbar) => {
   );
 };
 
-interface Props__PdfViewer extends StackProps {
-  fileUrl: string;
-}
 export const PDFViewer = (props: Props__PdfViewer) => {
   // Props
-  const { fileUrl, ...restProps } = props;
+  const { fileUrl, fileName, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -174,6 +181,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
     resetZoom: () => setScale(1),
     fitToWidth: () => setScale(1),
     fitToPage: () => setScale(0.6),
+    handleDownload: handleDownload,
   };
 
   // Utils
@@ -183,6 +191,30 @@ export const PDFViewer = (props: Props__PdfViewer) => {
   function toggleMode() {
     setIsSingleMode(!isSingleMode);
     setScale(1);
+  }
+  async function handleDownload() {
+    const response = await fetch(fileUrl, {
+      credentials: "same-origin",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to download file");
+    }
+
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.download =
+      fileName ||
+      decodeURIComponent(fileUrl.split("/").pop() || "download.pdf");
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(blobUrl);
   }
 
   // Resize Observer

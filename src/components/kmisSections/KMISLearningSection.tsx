@@ -442,6 +442,7 @@ const NextStepButton = (props: any) => {
   const router = useRouter();
 
   // States
+
   const isPublicTopic =
     topicDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
     topicDetail?.topic?.topicType !== "Pelatihan";
@@ -450,6 +451,17 @@ const NextStepButton = (props: any) => {
   const quizDisabled =
     completedMaterials?.length < materials?.length - 1 ||
     topicDetail?.learningAttempt?.topic?.totalQuiz === 0;
+
+  // console.debug({
+  //   activeMaterial,
+  //   topicDetail,
+  //   getTopicDetail,
+  //   idx,
+  //   lastIdx,
+  //   materials,
+  //   isPublicTopic,
+  //   topicType: topicDetail?.topic?.topicType !== "Pelatihan",
+  // });
 
   // Utils
   function nextActiveMaterial() {

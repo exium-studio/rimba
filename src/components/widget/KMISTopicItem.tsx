@@ -447,6 +447,7 @@ export const KMISTopicItem = (props: Props) => {
           top={4}
           left={4}
           zIndex={2}
+          maxW={"50%"}
         >
           {l.finished}
         </Badge>

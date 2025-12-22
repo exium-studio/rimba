@@ -117,6 +117,9 @@ export const DocumentItem = (props: Props__DocumentItem) => {
               _hover={{
                 bg: "blackAlpha.300",
               }}
+              _active={{
+                bg: "blackAlpha.300",
+              }}
             >
               <P lineClamp={1}>{l.learn_more}</P>
 

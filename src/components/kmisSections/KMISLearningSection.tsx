@@ -61,12 +61,12 @@ const MATERIAL_REGISTRY = {
       const resolvedMaterial: Interface__KMISMaterial = material;
 
       return (
-        <CContainer gap={4} {...restProps}>
+        <CContainer gap={4} p={4} rounded={"xl"} bg={"body"} {...restProps}>
           <P fontSize={"xl"} fontWeight={"semibold"}>
             {resolvedMaterial.title}
           </P>
 
-          <CContainer p={4} rounded={"xl"} bg={"body"}>
+          <CContainer>
             <SafeHtml html={resolvedMaterial?.description} />
           </CContainer>
         </CContainer>
@@ -83,12 +83,12 @@ const MATERIAL_REGISTRY = {
       const resolvedMaterial: Interface__KMISMaterial = material;
 
       return (
-        <CContainer gap={4} {...restProps}>
+        <CContainer gap={4} p={4} rounded={"xl"} bg={"body"} {...restProps}>
           <P fontSize={"xl"} fontWeight={"semibold"}>
             {resolvedMaterial.title}
           </P>
 
-          <CContainer gap={4} p={4} rounded={"xl"} bg={"body"}>
+          <CContainer gap={4}>
             <VideoPlayer embedYt src={resolvedMaterial?.materialUrl} />
 
             <SafeHtml html={resolvedMaterial?.description} />
@@ -107,12 +107,14 @@ const MATERIAL_REGISTRY = {
       const resolvedMaterial: Interface__KMISMaterial = material;
 
       return (
-        <CContainer gap={4} {...restProps}>
-          <P fontSize={"xl"} fontWeight={"semibold"}>
-            {resolvedMaterial.title}
-          </P>
+        <CContainer gap={4} rounded={"xl"} bg={"body"} {...restProps}>
+          <CContainer p={4} pb={0}>
+            <P fontSize={"xl"} fontWeight={"semibold"}>
+              {resolvedMaterial.title}
+            </P>
+          </CContainer>
 
-          <CContainer rounded={"xl"} bg={"body"} overflow={"clip"}>
+          <CContainer overflow={"clip"}>
             {resolvedMaterial?.materialFiles?.map(
               (item: Interface__StorageFile) => {
                 // return <FileItem key={item.id} fileData={item} />;
@@ -144,12 +146,12 @@ const MATERIAL_REGISTRY = {
       const resolvedMaterial: Interface__KMISMaterial = material;
 
       return (
-        <CContainer gap={4} {...restProps}>
+        <CContainer gap={4} p={4} rounded={"xl"} bg={"body"} {...restProps}>
           <P fontSize={"xl"} fontWeight={"semibold"}>
             {resolvedMaterial.title}
           </P>
 
-          <CContainer gap={4} p={4} rounded={"xl"} bg={"body"}>
+          <CContainer gap={4}>
             {resolvedMaterial?.materialFiles?.map(
               (item: Interface__StorageFile) => {
                 const url = imgUrl(item.filePath);
@@ -218,6 +220,8 @@ const LearningModules = (props: any) => {
   // const isPublicTopic =
   //   topicDetail?.topic?.topicType !== "Pelatihan" ||
   //   topicDetail?.learningAttempt?.topic?.topicType !== "Pelatihan";
+
+  // console.debug({ topicDetail });
 
   return (
     <CContainer bg={"body"} rounded={"xl"} {...restProps}>

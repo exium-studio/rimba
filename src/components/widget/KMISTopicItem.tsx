@@ -98,8 +98,6 @@ const StartLearningButton = (props: any) => {
   // States
   const isPublicTopic = topic?.topicType !== "Pelatihan";
 
-  console.debug(isPublicTopic);
-
   return (
     <NavLink
       to={`/related-apps/kmis/my-topic/${topic?.id}?${

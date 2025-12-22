@@ -13,7 +13,7 @@ import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
-import { Circle, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
+import { Box, Circle, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
 import { useGSAP } from "@gsap/react";
 import {
   IconArrowUpRight,
@@ -167,10 +167,21 @@ export const LPHomeStrategyValue = (props: StackProps) => {
       outerContainerProps={{
         bg: "p.900",
         bgImage: `url(${IMAGES_PATH}/lp/home/strategy-value-bg.png)`,
+        bgSize: "cover",
+        pos: "relative",
       }}
       overflow={"clip"}
       {...restProps}
     >
+      <Box
+        w={"full"}
+        h={"20px"}
+        bg={"p.900"}
+        pos={"absolute"}
+        left={0}
+        top={"-10px"}
+      />
+
       <EditableContentContainer content={staticContents[15]} mx={"auto"}>
         <H2
           className="section_title"
@@ -199,6 +210,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             flex={"0 1 330px"}
             maxW={"330px"}
             mx={["auto", null, 0]}
+            mb={["", null, 8]}
             minH={"580px"}
             overflow={"clip"}
             aspectRatio={1 / 2}
@@ -277,6 +289,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             gap={8}
             minH={"max"}
             justify={["", null, "center"]}
+            my={"auto"}
             zIndex={2}
             pt={[0, null, "80px"]}
             pb={"80px"}
@@ -295,7 +308,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
           pos={"absolute"}
           alt={"compass"}
           aspectRatio={1}
-          w={["100%", null, "40%"]}
+          w={["70%", null, "50%"]}
           objectFit={"contain"}
           opacity={0.2}
           bottom={"-250px"}

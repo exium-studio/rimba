@@ -152,7 +152,7 @@ export const KMISMyTopic = (props: Props) => {
     search: "",
     finishedStatus: null,
     category: [],
-    topicType: ["Pelatihan", "Pengetahuan"],
+    topicType: [],
   };
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
@@ -181,7 +181,6 @@ export const KMISMyTopic = (props: Props) => {
             />
 
             <SelectKMISTopicType
-              multiple
               inputValue={filter.topicType?.map((item: string) => {
                 return {
                   id: item,

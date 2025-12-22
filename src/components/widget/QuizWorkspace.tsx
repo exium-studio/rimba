@@ -920,6 +920,8 @@ export const QuizWorkspace = (props: Props) => {
   const exams = data?.exam;
   const activeQuiz = exams?.[activeQuizIdx];
 
+  console.debug({ exams, activeQuizIdx, activeQuiz });
+
   const render = {
     loading: <Skeleton flex={1} rounded={"xl"} />,
     error: <FeedbackRetry onRetry={onRetry} />,

@@ -38,7 +38,6 @@ export default function Page(props: Props) {
       url: isPublicTopic
         ? `/api/kmis/learning-course/show/${topicId}`
         : `/api/kmis/learning-course/detail/${topicId}`,
-      dependencies: [],
       dataResource: false,
     });
   const links: { label: string; path: string }[] = [
@@ -51,11 +50,11 @@ export default function Page(props: Props) {
       path: "/related-apps/kmis/my-topic",
     },
   ];
-
   links.push({
     label: data?.learningAttempt?.topic?.title || data?.topic?.title,
     path: "",
   });
+  // console.debug({ data });
   const render = {
     loading: (
       <LPSectionContainer flex={1} minH={"400px"}>

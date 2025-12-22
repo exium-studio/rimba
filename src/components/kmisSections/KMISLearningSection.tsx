@@ -197,7 +197,7 @@ const ListItemContainer = (props: BtnProps) => {
 };
 const LearningModules = (props: any) => {
   // Props
-  const { topicDetail, ...restProps } = props;
+  const { topicDetail, isPublicTopic, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -215,9 +215,9 @@ const LearningModules = (props: any) => {
   const completedMaterials =
     topicDetail?.learningAttempt?.completedMaterial || [];
   const materials = topicDetail?.material;
-  const isPublicTopic =
-    topicDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
-    topicDetail?.topic?.topicType !== "Pelatihan";
+  // const isPublicTopic =
+  //   topicDetail?.topic?.topicType !== "Pelatihan" ||
+  //   topicDetail?.learningAttempt?.topic?.topicType !== "Pelatihan";
 
   return (
     <CContainer bg={"body"} rounded={"xl"} {...restProps}>
@@ -400,6 +400,7 @@ const NextStepButton = (props: any) => {
     getTopicDetail,
     idx,
     lastIdx,
+    isPublicTopic,
     ...restProps
   } = props;
 
@@ -442,10 +443,9 @@ const NextStepButton = (props: any) => {
   const router = useRouter();
 
   // States
-
-  const isPublicTopic =
-    topicDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
-    topicDetail?.topic?.topicType !== "Pelatihan";
+  // const isPublicTopic =
+  //   topicDetail?.topic?.topicType !== "Pelatihan" ||
+  //   topicDetail?.learningAttempt?.topic?.topicType !== "Pelatihan";
   const completedMaterials = topicDetail?.learningAttempt?.completedMaterial;
   const materials = topicDetail?.material;
   const quizDisabled =
@@ -460,7 +460,7 @@ const NextStepButton = (props: any) => {
   //   lastIdx,
   //   materials,
   //   isPublicTopic,
-  //   topicType: topicDetail?.topic?.topicType !== "Pelatihan",
+  //   isPublic: topicDetail?.topic?.topicType !== "Pelatihan",
   // });
 
   // Utils
@@ -525,7 +525,7 @@ const NextStepButton = (props: any) => {
       ml={"auto"}
       loading={loading}
       onClick={onNextMaterial}
-      disabled={materials?.[idx + 1]?.id === undefined}
+      disabled={isPublicTopic && materials?.[idx + 1]?.id === undefined}
       {...restProps}
     >
       {l.next}
@@ -534,7 +534,7 @@ const NextStepButton = (props: any) => {
 };
 const ActiveMaterial = (props: any) => {
   // Props
-  const { topicDetail, getTopicDetail, ...restProps } = props;
+  const { topicDetail, getTopicDetail, isPublicTopic, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -543,9 +543,9 @@ const ActiveMaterial = (props: any) => {
   const searchParams = useSearchParams();
 
   // States
-  const isPublicTopic =
-    topicDetail?.learningAttempt?.topic?.topicType !== "Pelatihan" ||
-    topicDetail?.topic?.topicType !== "Pelatihan";
+  // const isPublicTopic =
+  //   topicDetail?.topic?.topicType !== "Pelatihan" ||
+  //   topicDetail?.learningAttempt?.topic?.topicType !== "Pelatihan";
   const activeMaterialId = searchParams.get("activeMaterialId") || "";
   const quizStarted = searchParams.get("quizStarted") || "";
   const feedbackSession = searchParams.get("feedbackSession") || "";
@@ -584,6 +584,7 @@ const ActiveMaterial = (props: any) => {
             materials?.findIndex((m: any) => m.id === data?.id) ===
             materials?.length - 1
           }
+          isPublicTopic={isPublicTopic}
         />
       </CContainer>
     ),
@@ -636,6 +637,12 @@ export const KMISLearningSection = (props: Props) => {
   // Props
   const { topicDetail, getTopicDetail, ...restProps } = props;
 
+  // States
+  const isPublicTopic =
+    topicDetail?.topic?.topicType !== null &&
+    topicDetail?.topic?.topicType !== undefined &&
+    topicDetail?.topic?.topicType !== "Pelatihan";
+
   return (
     <LPSectionContainer
       outerContainerProps={{
@@ -652,13 +659,17 @@ export const KMISLearningSection = (props: Props) => {
 
       <Stack flexDir={["column", null, "row"]} gap={4}>
         <CContainer w={["full", null, "240px"]} flexShrink={0} gap={4}>
-          <LearningModules topicDetail={topicDetail} />
+          <LearningModules
+            topicDetail={topicDetail}
+            isPublicTopic={isPublicTopic}
+          />
         </CContainer>
 
         <ActiveMaterial
           maxW={["", null, "calc(100% - 240px)"]}
           topicDetail={topicDetail}
           getTopicDetail={getTopicDetail}
+          isPublicTopic={isPublicTopic}
         />
       </Stack>
     </LPSectionContainer>

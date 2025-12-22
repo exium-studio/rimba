@@ -6,6 +6,7 @@ import { H2 } from "@/components/ui/heading";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import { ClampText } from "@/components/widget/ClampText";
 import { EditableContentContainer } from "@/components/widget/EditableContentContainer";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
@@ -119,9 +120,13 @@ const NewsItem = (props: any) => {
       </Center>
 
       <CContainer justify={"center"} gap={4} p={2} order={oddIdx ? 1 : 2}>
-        <P fontSize={["xl", null, "2xl"]} fontWeight={"semibold"} lineClamp={2}>
+        <ClampText
+          fontSize={["xl", null, "2xl"]}
+          fontWeight={"semibold"}
+          lineClamp={2}
+        >
           {news.title[lang]}
-        </P>
+        </ClampText>
 
         <P lineClamp={4}>{news.description[lang]}</P>
 

@@ -6,6 +6,7 @@ import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { Tooltip } from "@/components/ui/tooltip";
+import { ClampText } from "@/components/widget/ClampText";
 import { Interface__CMSActivity } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import { formatDate } from "@/utils/formatter";
@@ -81,9 +82,9 @@ export const ActivityItem = (props: Props) => {
 
       <CContainer h={["196px", null, "188px"]}>
         <CContainer gap={4} px={4} pt={thumbnailFill ? 3 : 4}>
-          <P fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
+          <ClampText fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
             {activity.title[lang]}
-          </P>
+          </ClampText>
 
           <P color={"fg.subtle"} lineClamp={3}>
             {activity.description[lang]}

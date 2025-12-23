@@ -210,7 +210,7 @@ export const LPHomeStrategyValue = (props: StackProps) => {
             flex={"0 1 330px"}
             maxW={"330px"}
             mx={["auto", null, 0]}
-            mb={["", null, 8]}
+            my={["", null, 8]}
             minH={"580px"}
             overflow={"clip"}
             aspectRatio={1 / 2}

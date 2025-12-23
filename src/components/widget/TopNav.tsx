@@ -87,8 +87,8 @@ const MobileTopNav = () => {
       zIndex={10}
     >
       <CContainer
-        bg={open ? "blackAlpha.900" : "blackAlpha.800"}
-        backdropFilter={open ? "blur(10px)" : "blur(5px)"}
+        bg={open ? "blackAlpha.600" : "blackAlpha.500"}
+        backdropFilter={open ? "blur(50px)" : "blur(50px)"}
         h={open ? "100dvh" : "64px"}
         rounded={open ? "" : "lg"}
         overflowY={open ? "auto" : "clip"}
@@ -196,9 +196,7 @@ const MobileTopNav = () => {
                       cursor={"pointer"}
                       rounded={"lg"}
                       _open={{
-                        bg: "blackAlpha.300",
-                        border: "1px solid",
-                        borderColor: "d1",
+                        bg: "blackAlpha.100",
                       }}
                     >
                       <Btn
@@ -207,6 +205,8 @@ const MobileTopNav = () => {
                         justifyContent={"start"}
                         variant={"ghost"}
                         color={isMainNavsActive ? "p.400" : "light"}
+                        px={4}
+                        size={"lg"}
                         _open={{
                           bg: "transparent",
                         }}
@@ -291,6 +291,7 @@ const MobileTopNav = () => {
                       h={"48px"}
                       variant={"ghost"}
                       px={4}
+                      size={"lg"}
                       color={isMainNavsActive ? "p.400" : "light"}
                       _hover={{
                         bg: "d1",
@@ -437,8 +438,8 @@ const DesktopTopNav = () => {
         gap={8}
         p={2}
         mx={"auto"}
-        bg={"blackAlpha.800"}
-        backdropFilter={"blur(5px)"}
+        bg={"blackAlpha.500"}
+        backdropFilter={"blur(50px)"}
         rounded="xl"
         transition="200ms"
         justify={"space-between"}

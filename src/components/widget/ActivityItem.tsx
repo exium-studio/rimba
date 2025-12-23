@@ -68,7 +68,7 @@ export const ActivityItem = (props: Props) => {
             h={thumbnailFill ? "700px" : "full"}
             rounded={"xl"}
             pos={"absolute"}
-            mt={thumbnailFill ? ["196px", null, "188px"] : ""}
+            mt={thumbnailFill ? ["160px", null, "150px"] : ""}
             transition={"200ms"}
             _hover={{
               transform: "scale(1.1)",
@@ -80,15 +80,15 @@ export const ActivityItem = (props: Props) => {
         </Center>
       </Center>
 
-      <CContainer h={["196px", null, "188px"]}>
+      <CContainer h={["160px", null, "150px"]}>
         <CContainer gap={4} px={4} pt={thumbnailFill ? 3 : 4}>
-          <ClampText fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
+          <ClampText fontWeight={"medium"} lineClamp={3}>
             {activity.title[lang]}
           </ClampText>
 
-          <P color={"fg.subtle"} lineClamp={3}>
+          {/* <P color={"fg.subtle"} lineClamp={3}>
             {activity.description[lang]}
-          </P>
+          </P> */}
         </CContainer>
 
         <CContainer p={2} mt={"auto"}>

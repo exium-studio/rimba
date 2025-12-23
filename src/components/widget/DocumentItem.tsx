@@ -97,13 +97,13 @@ export const DocumentItem = (props: Props__DocumentItem) => {
             <FolderShape h={"30px"} color={"p.900"} />
           </Box>
 
-          <ClampText fontSize={"lg"} fontWeight={"medium"} lineClamp={1} mt={2}>
+          <ClampText fontWeight={"medium"} lineClamp={3} mt={2}>
             {document.title[lang]}
           </ClampText>
 
-          <P lineClamp={2} opacity={0.4} mt={4}>
+          {/* <P lineClamp={2} opacity={0.4} mt={4}>
             {document.description[lang]}
-          </P>
+          </P> */}
         </CContainer>
 
         <CContainer p={3} mt={"auto"}>

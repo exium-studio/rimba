@@ -303,8 +303,8 @@ const translations = {
     "map": {
       "index": "Map",
       "interactive_map": "Interactive Map",
-      "green_economy": "Green Economy",
-      "impact_analysis": "Impact Analysis",
+      "green_economy": "Green Economy Compliance",
+      "impact_analysis": "Actual Project Impact",
       "land_dashboard": "Land Dashboard",
       "printed_map": "Printed Map",
       "metadata": "Metadata",

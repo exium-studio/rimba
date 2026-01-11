@@ -22,7 +22,7 @@ import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
-import { HStack, Icon, Stack } from "@chakra-ui/react";
+import { Badge, HStack, Icon, Stack } from "@chakra-ui/react";
 import { IconArticleOff, IconCircleFilled } from "@tabler/icons-react";
 import parse from "html-react-parser";
 import { useParams } from "next/navigation";
@@ -136,7 +136,17 @@ export default function Page() {
             </CContainer>
           </CContainer>
 
-          <CContainer gap={4}>{parse(html || "")}</CContainer>
+          <CContainer gap={8}>
+            <Badge size={"lg"} w={"fit"}>
+              {data ? data?.newsCategory?.name?.[lang] : ""}
+            </Badge>
+
+            <P fontSize={"lg"} color={"fg.muted"}>
+              {data ? data?.description?.[lang] : ""}
+            </P>
+
+            {parse(html || "")}
+          </CContainer>
         </Stack>
       </LPSectionContainer>
     ),
@@ -172,7 +182,6 @@ export default function Page() {
 
       <PageHeader
         title={data ? data?.title?.[lang] : "Loading..."}
-        description={data ? data?.description?.[lang] : ""}
         img={data ? data?.thumbnail?.[0]?.fileUrl : ``}
         links={[
           { label: l.lp_navs.home, path: "/" },

@@ -104,6 +104,7 @@ const ListSection = () => {
           /> */}
 
           <SelectCMSNewsCategory
+            multiple
             inputValue={filter.category}
             onConfirm={(inputValue: any) => {
               setFilter({ ...filter, category: inputValue });

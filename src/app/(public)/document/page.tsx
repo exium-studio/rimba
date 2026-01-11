@@ -96,7 +96,13 @@ const ListSection = () => {
             w={["", null, "110px"]}
           /> */}
 
-          <SelectCMSLegalDocsCategory />
+          <SelectCMSLegalDocsCategory
+            multiple
+            inputValue={filter.category}
+            onConfirm={(inputValue: any) => {
+              setFilter({ ...filter, category: inputValue });
+            }}
+          />
 
           <Btn
             variant={"outline"}

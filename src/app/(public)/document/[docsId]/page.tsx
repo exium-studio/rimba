@@ -10,13 +10,13 @@ import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { PageHeader } from "@/components/widget/PageHeader";
 import { PDFViewer } from "@/components/widget/PDFViewer";
 import { TopNav } from "@/components/widget/TopNav";
-import { Interface__CMSLegalDocs } from "@/constants/interfaces";
+import { Interface__CMSDocument } from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import { formatDate } from "@/utils/formatter";
-import { SimpleGrid } from "@chakra-ui/react";
+import { Badge } from "@chakra-ui/react";
 import { useParams } from "next/navigation";
 
 export default function Page() {
@@ -32,7 +32,7 @@ export default function Page() {
   //   null
   // );
   const { error, initialLoading, data, onRetry } =
-    useDataState<Interface__CMSLegalDocs>({
+    useDataState<Interface__CMSDocument>({
       initialData: undefined,
       url: `/api/cms/public-request/get-legal-document/${docsId}`,
       dependencies: [],
@@ -45,82 +45,30 @@ export default function Page() {
     empty: <FeedbackNoData />,
     loaded: (
       <LPSectionContainer py={"80px"} overflowY={"auto"} gap={4}>
-        <CContainer>
-          <P>{doc?.fileSize}</P>
-          <P fontSize={"sm"} color={"fg.subtle"}>
-            {`${l.last_updated} ${formatDate(doc?.updatedAt, {
-              variant: "dayShortMonthYear",
-            })}`}
-          </P>
-        </CContainer>
+        <CContainer gap={8} overflowY={"auto"}>
+          <CContainer rounded={"lg"} gap={8}>
+            <Badge size={"lg"} w={"fit"}>
+              {data ? data?.documentCategory?.name?.[lang] : ""}
+            </Badge>
 
-        <SimpleGrid columns={[1, null, 1]} gap={8} overflowY={"auto"}>
-          {/* <CContainer className="scrollY" maxH={"600px"} gap={4}>
-            <CContainer gap={1}>
-              <P fontSize={"lg"} fontWeight={"semibold"}>
-                {l.all_document}
+            <P fontSize={"lg"} color={"fg.muted"}>
+              {data ? data?.description?.[lang] : ""}
+            </P>
+
+            <CContainer>
+              <P>{doc?.fileSize}</P>
+              <P fontSize={"sm"} color={"fg.subtle"}>
+                {`${l.last_updated} ${formatDate(doc?.updatedAt, {
+                  variant: "dayShortMonthYear",
+                })}`}
               </P>
-              <P color={"fg.subtle"}>{l.select_document_to_view}</P>
             </CContainer>
 
-            <SimpleGrid columns={[2]} gap={4}>
-              {data?.document?.map((doc, idx: number) => {
-                const isActive = activeDoc?.id === doc?.id;
-
-                return (
-                  <CContainer
-                    key={idx}
-                    rounded={"lg"}
-                    border={"1px solid"}
-                    borderColor={"border.muted"}
-                    p={4}
-                    gap={8}
-                    cursor={"pointer"}
-                    onClick={() => {
-                      setActiveDoc(doc);
-                    }}
-                    _hover={{
-                      bg: "d1",
-                    }}
-                  >
-                    <CContainer gap={2}>
-                      <HStack>
-                        <Icon color={"fg.muted"}>
-                          <IconFileTypePdf stroke={1.5} />
-                        </Icon>
-
-                        {isActive && <DotIndicator ml={"auto"} mr={2} />}
-                      </HStack>
-
-                      <P>{doc?.fileName}</P>
-                    </CContainer>
-
-                    <CContainer>
-                      <P>{doc?.fileSize}</P>
-                      <P fontSize={"sm"} color={"fg.subtle"}>
-                        {`${l.last_updated} ${formatDate(doc?.updatedAt, {
-                          variant: "dayShortMonthYear",
-                        })}`}
-                      </P>
-                    </CContainer>
-                  </CContainer>
-                );
-              })}
-            </SimpleGrid>
-          </CContainer> */}
-
-          <CContainer bg={"d1"} rounded={"lg"}>
-            {/* {!activeDoc && (
-              <FeedbackNoData
-                icon={<IconFileOff />}
-                title={l.alert_no_document_selected.title}
-                description={l.alert_no_document_selected.description}
-              />
-            )} */}
-
-            {doc?.fileUrl && <PDFViewer fileUrl={doc?.fileUrl} />}
+            <CContainer bg={"d1"}>
+              {doc?.fileUrl && <PDFViewer fileUrl={doc?.fileUrl} />}
+            </CContainer>
           </CContainer>
-        </SimpleGrid>
+        </CContainer>
       </LPSectionContainer>
     ),
   };
@@ -131,7 +79,6 @@ export default function Page() {
 
       <PageHeader
         title={data ? data?.title?.[lang] : "Loading..."}
-        description={data ? data?.description?.[lang] : ""}
         img={`${IMAGES_PATH}/lp/documents/header-bg.jpg`}
         links={[
           { label: l.lp_navs.home, path: "/" },

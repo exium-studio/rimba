@@ -28,6 +28,7 @@ export interface Interface__CMSLegalDocs extends Interface__CUD {
   title: Interface__CMSTextContent;
   description: Interface__CMSTextContent;
   document: Interface__StorageFile[];
+  documentCategory: Interface_Gens;
 }
 export interface Interface__CMSTextContent {
   id: string;
@@ -150,16 +151,17 @@ export interface Interface__CMSDocument extends Interface__CUD {
   id: number;
   title: Interface__CMSContentText;
   description: Interface__CMSContentText;
-  file: Interface__StorageFile[];
+  document: Interface__StorageFile[];
+  documentCategory: Interface_Gens;
 }
-export interface Interface_CMSActivityCategory extends Interface__CUD {
+export interface Interface_Gens extends Interface__CUD {
   id: number;
   name: Interface__CMSContentText;
   description: Interface__CMSContentText;
 }
 export interface Interface__CMSActivity extends Interface__CUD {
   id: number;
-  eventCategory: Interface_CMSActivityCategory;
+  eventCategory: Interface_Gens;
   thumbnail: Interface__StorageFile[];
   title: Interface__CMSContentText;
   description: Interface__CMSContentText;

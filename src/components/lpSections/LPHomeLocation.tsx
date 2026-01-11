@@ -27,9 +27,9 @@ const MapInfo = (props: StackProps) => {
   const staticContents = useContents((s) => s.staticContents);
 
   return (
-    <CContainer w={"fit"} gap={4} {...restProps}>
-      <HStack gap={4}>
-        <Icon boxSize={8}>
+    <CContainer w={"fit"} gap={4} zIndex={10} {...restProps}>
+      <HStack gap={4} align={"start"}>
+        <Icon boxSize={8} mt={"6px"}>
           <IconWorld stroke={1.5} />
         </Icon>
 
@@ -43,15 +43,20 @@ const MapInfo = (props: StackProps) => {
         </CContainer>
       </HStack>
 
-      <HStack gap={4}>
-        <Icon boxSize={8}>
+      <HStack gap={4} align={"start"}>
+        <Icon boxSize={8} mt={"6px"}>
           <IconMapPin2 stroke={1.5} />
         </Icon>
 
         <CContainer>
           <P>{l.lp_home_location_protected_areas}</P>
           <EditableContentContainer content={staticContents[29]}>
-            <P fontSize={"lg"} fontWeight={"semibold"}>
+            <P
+              fontSize={"lg"}
+              fontWeight={"semibold"}
+              maxW={"200px"}
+              whiteSpace={"wrap"}
+            >
               {staticContents[29]?.content[lang]}
             </P>
           </EditableContentContainer>
@@ -324,6 +329,7 @@ export const LPHomeLocation = (props: StackProps) => {
                   locationListContent={staticContents[35]}
                   number={3}
                   legendColor={"p.300"}
+                  mt={"180px"}
                 />
               </CContainer>
             </HStack>
@@ -382,6 +388,22 @@ export const LPHomeLocation = (props: StackProps) => {
           id="jambi-map"
           className="location-map"
           src={`${SVGS_PATH}/jambi-map.svg`}
+          h={"80vh"}
+          maxH={"600px"}
+          w={"full"}
+          aspectRatio={1}
+          mt={ciss ? 20 : 0}
+          pos={"absolute"}
+          top={"50%"}
+          transform={"translateY(-50%)"}
+          objectFit="contain"
+        />
+
+        {/* Protected Areas */}
+        <Img
+          id="jambi-map"
+          className="location-map"
+          src={`${SVGS_PATH}/protected-areas.svg`}
           h={"80vh"}
           maxH={"600px"}
           w={"full"}

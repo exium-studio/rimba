@@ -40,12 +40,12 @@ export const lp_navs = {
       en: "Interactive Map",
     },
     green_economy: {
-      id: "Ekonomi Hijau",
-      en: "Green Economy",
+      id: "Kepatuhan Ekonomi Hijau",
+      en: "Green Economy Compliance",
     },
     impact_analysis: {
-      id: "Dampak Analisis",
-      en: "Impact Analysis",
+      id: "Dampak Aktual Proyek",
+      en: "Actual Project Impact",
     },
     land_dashboard: {
       id: "Dashboard Lahan",

@@ -4,31 +4,42 @@ import { LPFooter } from "@/components/lpSections/LPFooter";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { CSpinner } from "@/components/ui/c-spinner";
-import { NumInput } from "@/components/ui/number-input";
 import SearchInput from "@/components/ui/search-input";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LPSectionContainer } from "@/components/widget/LPSectionContainer";
 import { NewsItem } from "@/components/widget/NewsItem";
 import { PageHeader } from "@/components/widget/PageHeader";
+import { SelectCMSNewsCategory } from "@/components/widget/SelectCMSNewsCategory";
 import { TopNav } from "@/components/widget/TopNav";
-import { Interface__CMSNews } from "@/constants/interfaces";
+import {
+  Interface__CMSNews,
+  Interface__SelectOption,
+} from "@/constants/interfaces";
 import { IMAGES_PATH } from "@/constants/paths";
 import useContents from "@/context/useContents";
 import useLang from "@/context/useLang";
+import useRenderTrigger from "@/context/useRenderTrigger";
 import useDataState from "@/hooks/useDataState";
+import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import { isEmptyArray } from "@/utils/array";
 import { HStack, SimpleGrid, Stack } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ListSection = () => {
   // Contexts
-  const { l } = useLang();
+  const { rt, setRt } = useRenderTrigger();
+
+  // Hooks
+  const debounced = useDebouncedCallback(() => {
+    setRt((rt) => !rt);
+  }, 200);
 
   // States
   const DEFAULT_FILTER = {
     search: "",
     year: null as number | null,
+    category: [] as Interface__SelectOption[] | null,
   };
   const [filter, setFilter] = useState(DEFAULT_FILTER);
   const { error, loading, data, makeRequest } = useDataState<
@@ -36,8 +47,17 @@ const ListSection = () => {
   >({
     initialData: undefined,
     url: `/api/cms/public-request/get-all-news`,
-    dependencies: [],
+    params: {
+      search: filter.search,
+      year: filter.year,
+      categoryIds: filter.category && filter.category.map((c) => c.id),
+    },
+    dependencies: [rt],
   });
+
+  useEffect(() => {
+    debounced();
+  }, [filter]);
 
   // render
   const render = {
@@ -73,7 +93,7 @@ const ListSection = () => {
         />
 
         <HStack>
-          <NumInput
+          {/* <NumInput
             onChange={(inputValue) =>
               setFilter({ ...filter, year: inputValue })
             }
@@ -81,6 +101,13 @@ const ListSection = () => {
             formatted={false}
             placeholder={l.year}
             w={["", null, "110px"]}
+          /> */}
+
+          <SelectCMSNewsCategory
+            inputValue={filter.category}
+            onConfirm={(inputValue: any) => {
+              setFilter({ ...filter, category: inputValue });
+            }}
           />
 
           <Btn
@@ -91,13 +118,13 @@ const ListSection = () => {
             Reset
           </Btn>
 
-          <Btn
-            onClick={() => setFilter(DEFAULT_FILTER)}
+          {/* <Btn
+            onClick={() => setRt((rt) => !rt)}
             colorPalette={"p"}
             size={"md"}
           >
             {l.search}
-          </Btn>
+          </Btn> */}
         </HStack>
       </Stack>
 

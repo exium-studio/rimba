@@ -97,9 +97,15 @@ export const DocumentItem = (props: Props__DocumentItem) => {
             <FolderShape h={"30px"} color={"p.900"} />
           </Box>
 
-          <P mt={"-36px"} mb={2} zIndex={2} color={"whiteAlpha.500"}>
+          <ClampText
+            mt={"-36px"}
+            mb={2}
+            zIndex={2}
+            color={"whiteAlpha.500"}
+            maxW={"40%"}
+          >
             {document?.documentCategory?.name?.[lang]}
-          </P>
+          </ClampText>
 
           <ClampText fontWeight={"medium"} lineClamp={3} mt={2}>
             {document.title[lang]}

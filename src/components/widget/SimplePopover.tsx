@@ -35,7 +35,8 @@ const SimplePopover = (props: Props) => {
         ref={containerRef}
         px={3}
         py={2}
-        w={"240px"}
+        w={"fit"}
+        maxW={"240px"}
         onClick={(e) => {
           e.stopPropagation();
         }}

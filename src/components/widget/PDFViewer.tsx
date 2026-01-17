@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, HStack, Icon, StackProps } from "@chakra-ui/react";
+import { Box, HStack, Icon, StackProps, VStack } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 // react-pdf CSS
@@ -354,7 +354,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
             <>
               {isSingleMode && (
                 // Single Mode
-                <Box mx={"auto"} width={"fit-content"}>
+                <VStack minW={"full"} w={"max"}>
                   <Page
                     pageNumber={pageNumber}
                     renderTextLayer={true}
@@ -362,16 +362,17 @@ export const PDFViewer = (props: Props__PdfViewer) => {
                     width={containerWidth}
                     scale={scale}
                   />
-                </Box>
+                </VStack>
               )}
 
               {!isSingleMode && (
                 // Scroll Mode
-                <Box
-                  display="flex"
-                  flexDirection="column"
+                <VStack
+                  display={"flex"}
+                  flexDirection={"column"}
+                  minW={"full"}
+                  w={"max"}
                   gap={4}
-                  alignItems="center"
                 >
                   {Array.from(new Array(numPages), (_, index) => (
                     <Box key={`page_${index + 1}`}>
@@ -384,7 +385,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
                       />
                     </Box>
                   ))}
-                </Box>
+                </VStack>
               )}
             </>
           )}

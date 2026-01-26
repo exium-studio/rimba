@@ -49,6 +49,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { isEmptyArray } from "@/utils/array";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { H3 } from "@/components/ui/heading";
+import useScreen from "@/hooks/useScreen";
 
 const MATERIAL_REGISTRY = {
   text: {
@@ -125,7 +126,7 @@ const MATERIAL_REGISTRY = {
                     maxH={"700px"}
                   />
                 );
-              }
+              },
             )}
 
             <CContainer p={4}>
@@ -167,7 +168,7 @@ const MATERIAL_REGISTRY = {
                     }}
                   />
                 );
-              }
+              },
             )}
 
             <SafeHtml html={resolvedMaterial?.description} />
@@ -250,7 +251,7 @@ const LearningModules = (props: any) => {
           const firstIdx = idx === 0;
 
           const completedMaterialIds = new Set(
-            completedMaterials.map((m: any) => m.id)
+            completedMaterials.map((m: any) => m.id),
           );
 
           return (
@@ -417,10 +418,10 @@ const NextStepButton = (props: any) => {
     ]?.minimalStudyTime;
   const estimatedEndTime = addSecondsToTime(
     makeTime(topicDetail?.learningAttempt?.updatedAt),
-    minimalStudyTime * 60
+    minimalStudyTime * 60,
   );
   const remainingTime = formatDuration(
-    getRemainingSecondsUntil(estimatedEndTime)
+    getRemainingSecondsUntil(estimatedEndTime),
   );
 
   // Hooks
@@ -439,7 +440,7 @@ const NextStepButton = (props: any) => {
               minTime: `${minimalStudyTime} ${l.minutes?.toLowerCase()}`,
               remainingTime: `${remainingTime}`,
               endTime: `${estimatedEndTime}`,
-            }
+            },
           ),
         },
       },
@@ -475,12 +476,12 @@ const NextStepButton = (props: any) => {
         topicDetail?.learningAttempt?.topic?.id || topicDetail?.topic.id
       }?activeMaterialId=${materials?.[idx + 1]?.id}&${
         isPublicTopic ? `isPublic=1` : ``
-      }`
+      }`,
     );
   }
   function startQuiz() {
     router.push(
-      `/related-apps/kmis/my-topic/${topicDetail?.learningAttempt?.topic?.id}?quizStarted=1`
+      `/related-apps/kmis/my-topic/${topicDetail?.learningAttempt?.topic?.id}?quizStarted=1`,
     );
   }
   function onNextMaterial() {
@@ -546,6 +547,7 @@ const ActiveMaterial = (props: any) => {
 
   // Hooks
   const searchParams = useSearchParams();
+  const { sw } = useScreen();
 
   // States
   // const isPublicTopic =
@@ -602,7 +604,18 @@ const ActiveMaterial = (props: any) => {
           <FeedbackState
             icon={<IconBooks stroke={1.5} />}
             title={l.learning_material}
-            description={l.msg_select_material_first}
+            description={interpolateString(l.msg_select_material_first, {
+              position: sw < 720 ? l.top : l.left,
+            })}
+            iconProps={{
+              boxSize: 12,
+            }}
+            titleProps={{
+              fontSize: "lg",
+            }}
+            descriptionProps={{
+              fontSize: "lg",
+            }}
             m={"auto"}
           />
         </Center>

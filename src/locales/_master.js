@@ -1025,6 +1025,22 @@ export const start_reading = {
   id: "Mulai membaca",
   en: "Start reading",
 };
+export const left = {
+  id: "Kiri",
+  en: "Left",
+};
+export const right = {
+  id: "Kanan",
+  en: "Right",
+};
+export const top = {
+  id: "Atas",
+  en: "Top",
+};
+export const bottom = {
+  id: "Bawah",
+  en: "Bottom",
+};
 
 // Message
 export const msg_still_have_question = {
@@ -1044,8 +1060,8 @@ export const msg_reload_after_submit = {
   en: "Page will reload after submit",
 };
 export const msg_select_material_first = {
-  id: "Pilih materi terlebih dahulu",
-  en: "Please select material first",
+  id: "Pilih materi yang anda mau baca di kolom sebelah ${position}",
+  en: "Select the material you want to read on the ${position}.",
 };
 export const msg_location_test_helper = {
   id: "Klik dapatkan lokasi untuk mendapatkan data lokasi.",

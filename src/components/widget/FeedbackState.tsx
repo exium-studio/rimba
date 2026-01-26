@@ -1,18 +1,36 @@
 "use client";
 
 import { P } from "@/components/ui/p";
-import { Icon, StackProps, VStack } from "@chakra-ui/react";
+import {
+  Icon,
+  IconProps,
+  StackProps,
+  TextProps,
+  VStack,
+} from "@chakra-ui/react";
 import { IconDatabaseOff } from "@tabler/icons-react";
 
 interface Props extends StackProps {
   icon?: any;
   title?: any;
   description?: any;
+  iconProps?: IconProps;
+  titleProps?: TextProps;
+  descriptionProps?: TextProps;
 }
 
 const FeedbackState = (props: Props) => {
   // Props
-  const { icon, title, description, children, ...restProps } = props;
+  const {
+    icon,
+    title,
+    description,
+    children,
+    iconProps,
+    titleProps,
+    descriptionProps,
+    ...restProps
+  } = props;
 
   // States
   const titleString = typeof title === "string";
@@ -20,12 +38,12 @@ const FeedbackState = (props: Props) => {
 
   return (
     <VStack gap={1} p={4} {...restProps}>
-      <Icon mb={2} color={"fg.subtle"} boxSize={9}>
+      <Icon mb={2} color={"fg.subtle"} boxSize={9} {...iconProps}>
         {icon || <IconDatabaseOff stroke={1.8} />}
       </Icon>
 
       {titleString && (
-        <P textAlign={"center"} fontWeight={"semibold"}>
+        <P textAlign={"center"} fontWeight={"semibold"} {...titleProps}>
           {title}
         </P>
       )}
@@ -33,7 +51,7 @@ const FeedbackState = (props: Props) => {
       {!titleString && title}
 
       {descriptionString && (
-        <P textAlign={"center"} color={"fg.subtle"}>
+        <P textAlign={"center"} color={"fg.subtle"} {...descriptionProps}>
           {description}
         </P>
       )}

@@ -608,6 +608,7 @@ const ActiveMaterial = (props: any) => {
             })}
             iconProps={{
               boxSize: 12,
+              color: "p.500",
             }}
             titleProps={{
               fontSize: "lg",

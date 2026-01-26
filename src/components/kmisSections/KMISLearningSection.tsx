@@ -603,9 +603,8 @@ const ActiveMaterial = (props: any) => {
         <Center flex={1} bg={"body"} p={4} rounded={"xl"}>
           <FeedbackState
             icon={<IconBooks stroke={1.5} />}
-            title={l.learning_material}
-            description={interpolateString(l.msg_select_material_first, {
-              position: sw < 720 ? l.top : l.left,
+            title={interpolateString(l.msg_select_material_first, {
+              position: sw < 720 ? l.top.toLowerCase() : l.left.toLowerCase(),
             })}
             iconProps={{
               boxSize: 12,

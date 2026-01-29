@@ -42,7 +42,7 @@ const StatItem = (props: any) => {
         </P>
       </EditableContentContainer>
 
-      <EditableContentContainer content={stats.descriptionContent?.content}>
+      <EditableContentContainer content={stats.descriptionContent}>
         <P color={"fg.subtle"}>{stats.descriptionContent?.content[lang]}</P>
       </EditableContentContainer>
     </CContainer>

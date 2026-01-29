@@ -42,7 +42,7 @@ const StatItem = (props: any) => {
         </P>
       </EditableContentContainer>
 
-      <EditableContentContainer content={stats.valueContent}>
+      <EditableContentContainer content={stats.descriptionContent?.content}>
         <P color={"fg.subtle"}>{stats.descriptionContent?.content[lang]}</P>
       </EditableContentContainer>
     </CContainer>
@@ -82,7 +82,7 @@ const CompletionProgressChart = (props: StackProps) => {
 
     // Find the year with the highest total value
     const maxYear = Object.keys(merged).reduce((a, b) =>
-      merged[a] > merged[b] ? a : b
+      merged[a] > merged[b] ? a : b,
     );
 
     return Number(maxYear);
@@ -257,7 +257,7 @@ export const LPHomeImpact = (props: StackProps) => {
         duration: 0.75,
       });
     },
-    { scope: containerRef, dependencies: [iss] }
+    { scope: containerRef, dependencies: [iss] },
   );
 
   useEffect(() => {

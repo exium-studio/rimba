@@ -106,6 +106,7 @@ const STATIC_CONTENT_REGISTRY = [
           "42",
           "43",
           "44",
+          "45",
           "46",
           "47",
         ],
@@ -222,7 +223,7 @@ const STATIC_CONTENT_REGISTRY = [
 ];
 
 const allContentIds = STATIC_CONTENT_REGISTRY.flatMap(
-  (page) => page.contents
+  (page) => page.contents,
 ).flatMap((content) => content.listIds);
 
 const TextForm = (props: any) => {
@@ -618,7 +619,7 @@ const ImageForm = (props: any) => {
           deletedKey: "deleteDocumentIds",
           newKey: "files",
           message: l.msg_required_form,
-        })
+        }),
       ),
     }),
     onSubmit: (values) => {
@@ -631,7 +632,7 @@ const ImageForm = (props: any) => {
       }
       payload.append(
         "deleteDocumentIds",
-        JSON.stringify(values.deleteDocumentIds)
+        JSON.stringify(values.deleteDocumentIds),
       );
 
       const config = {
@@ -677,13 +678,13 @@ const ImageForm = (props: any) => {
           onDeleteFile={(fileData) => {
             formik.setFieldValue(
               "deleteDocumentIds",
-              Array.from(new Set([...formik.values.files, fileData.id]))
+              Array.from(new Set([...formik.values.files, fileData.id])),
             );
           }}
           onUndoDeleteFile={(fileData) => {
             formik.setFieldValue(
               "deleteDocumentIds",
-              formik.values.files.filter((id: string) => id !== fileData.id)
+              formik.values.files.filter((id: string) => id !== fileData.id),
             );
           }}
         />
@@ -718,7 +719,7 @@ const ImageArrayForm = (props: any) => {
           deletedKey: "deleteDocumentIds",
           newKey: "files",
           message: l.msg_required_form,
-        })
+        }),
       ),
     }),
     onSubmit: (values) => {
@@ -731,7 +732,7 @@ const ImageArrayForm = (props: any) => {
       }
       payload.append(
         "deleteDocumentIds",
-        JSON.stringify(values.deleteDocumentIds)
+        JSON.stringify(values.deleteDocumentIds),
       );
 
       const config = {
@@ -780,7 +781,7 @@ const ImageArrayForm = (props: any) => {
 
             formik.setFieldValue(
               "deleteDocumentIds",
-              Array.from(new Set([...current, fileData.id]))
+              Array.from(new Set([...current, fileData.id])),
             );
           }}
           onUndoDeleteFile={(fileData) => {
@@ -788,7 +789,7 @@ const ImageArrayForm = (props: any) => {
 
             formik.setFieldValue(
               "deleteDocumentIds",
-              current.filter((id: string) => id !== fileData.id)
+              current.filter((id: string) => id !== fileData.id),
             );
           }}
         />
@@ -811,7 +812,7 @@ export const EditContentTrigger = (props: any) => {
     disclosureId(`edit-cms-${content?.id}`),
     open,
     onOpen,
-    onClose
+    onClose,
   );
 
   // States
@@ -955,7 +956,7 @@ export const StaticContentList = () => {
           .map((content) => ({
             ...content,
             listIds: content.listIds.filter((id) =>
-              search.includes(id.toString())
+              search.includes(id.toString()),
             ),
           }))
           .filter((content) => content.listIds.length > 0),

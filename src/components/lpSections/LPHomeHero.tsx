@@ -162,7 +162,7 @@ export const LPHomeHero = (props: StackProps) => {
           scale: 3,
           ease: "none",
           duration: 2.5,
-        }
+        },
       )
         .to(
           ".hero_bush_2",
@@ -171,7 +171,7 @@ export const LPHomeHero = (props: StackProps) => {
             ease: "none",
             duration: 2.5,
           },
-          "<"
+          "<",
         )
         .to(
           ".hero_bg",
@@ -180,7 +180,7 @@ export const LPHomeHero = (props: StackProps) => {
             ease: "none",
             duration: 2.5,
           },
-          "<"
+          "<",
         )
         .to(
           ".hero_container",
@@ -189,7 +189,7 @@ export const LPHomeHero = (props: StackProps) => {
             ease: "none",
             duration: 2.5,
           },
-          ">"
+          ">",
         )
         .to(
           ".hero_chevron_down",
@@ -198,7 +198,7 @@ export const LPHomeHero = (props: StackProps) => {
             ease: "none",
             duration: 2.5,
           },
-          "<"
+          "<",
         )
         .to(
           ".hero_brief_container",
@@ -207,7 +207,7 @@ export const LPHomeHero = (props: StackProps) => {
             ease: "none",
             duration: 2.5,
           },
-          ">+0.2"
+          ">+0.2",
         )
         .to(
           ".hero_brief_line",
@@ -216,7 +216,7 @@ export const LPHomeHero = (props: StackProps) => {
             ease: "none",
             duration: 2.5,
           },
-          ">"
+          ">",
         )
         .to(
           ".hero_brief_content",
@@ -225,7 +225,7 @@ export const LPHomeHero = (props: StackProps) => {
             ease: "none",
             duration: 2.5,
           },
-          ">"
+          ">",
         )
         .to(
           ".hero_brief_line",
@@ -234,7 +234,7 @@ export const LPHomeHero = (props: StackProps) => {
             ease: "none",
             duration: 2.5,
           },
-          "<"
+          "<",
         )
         .from(
           ".overview_gallery",
@@ -244,7 +244,7 @@ export const LPHomeHero = (props: StackProps) => {
             duration: 5,
             delay: 0.2,
           },
-          "<"
+          "<",
         )
         .to(
           ".overview_gallery_top",
@@ -253,7 +253,7 @@ export const LPHomeHero = (props: StackProps) => {
             ease: "none",
             duration: 10,
           },
-          ">"
+          ">",
         )
         .to(
           ".overview_gallery_bottom",
@@ -262,10 +262,10 @@ export const LPHomeHero = (props: StackProps) => {
             ease: "none",
             duration: 10,
           },
-          "<"
+          "<",
         );
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   useEffect(() => {

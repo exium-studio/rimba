@@ -12,7 +12,7 @@ interface ProviderProps extends ColorModeProviderProps {
 export function Provider({ nonce, ...props }: ProviderProps) {
   const inner = (
     <ChakraProvider value={chakraCustomSystem}>
-      <ColorModeProvider {...props} />
+      <ColorModeProvider nonce={nonce} {...props} />
     </ChakraProvider>
   );
 

@@ -44,9 +44,10 @@ export function middleware(request: NextRequest) {
     .join(" ");
 
   // style-src: 'unsafe-inline' is kept as a risk-accepted finding (#4).
-  // Tawk.to and Chakra UI/emotion both inject <style> tags without nonce support.
-  // The nonce is still included for our own emotion-managed styles.
-  const styleSrc = ["'self'", `'nonce-${nonce}'`, "'unsafe-inline'"].join(" ");
+  // Chakra UI v3 / Emotion and Tawk.to widget both inject dynamic <style> elements
+  // without nonce support. Keeping style-src as 'self' 'unsafe-inline' without nonces
+  // prevents style blocks and hydration mismatches.
+  const styleSrc = ["'self'", "'unsafe-inline'"].join(" ");
 
   const frameSrc = [...TAWK_DOMAINS.frame].join(" ");
 
@@ -61,7 +62,7 @@ export function middleware(request: NextRequest) {
     `object-src 'none'`,
     `base-uri 'self'`,
     `form-action 'self'`,
-    `frame-ancestors 'none'`,
+    `frame-ancestors 'self'`,
   ].join("; ");
 
   const requestHeaders = new Headers(request.headers);

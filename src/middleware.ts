@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { IMAGE_REMOTE_PATTERNS, TAWK_DOMAINS, TINYMCE_DOMAINS } from "@/constants/csp";
+import {
+  IMAGE_REMOTE_PATTERNS,
+  TAWK_DOMAINS,
+  TINYMCE_DOMAINS,
+} from "@/constants/csp";
 
 export function middleware(request: NextRequest) {
   const nonce = crypto.randomUUID();
@@ -42,11 +46,7 @@ export function middleware(request: NextRequest) {
   // style-src: 'unsafe-inline' is kept as a risk-accepted finding (#4).
   // Tawk.to and Chakra UI/emotion both inject <style> tags without nonce support.
   // The nonce is still included for our own emotion-managed styles.
-  const styleSrc = [
-    "'self'",
-    `'nonce-${nonce}'`,
-    "'unsafe-inline'",
-  ].join(" ");
+  const styleSrc = ["'self'", `'nonce-${nonce}'`, "'unsafe-inline'"].join(" ");
 
   const frameSrc = [...TAWK_DOMAINS.frame].join(" ");
 

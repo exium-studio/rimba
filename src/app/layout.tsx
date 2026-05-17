@@ -3,9 +3,11 @@ import ClientSideOnly from "@/components/widget/ClientSideOnly";
 import { DefaultFallback } from "@/components/widget/DefaultFallback";
 import { APP } from "@/constants/_meta";
 import { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { Poppins } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
+
 interface Props {
   children: React.ReactNode;
 }
@@ -56,9 +58,14 @@ const poppins = Poppins({
   display: "swap",
 });
 
-export default function RootLayout(props: Props) {
+export default async function RootLayout(props: Props) {
   // Props
   const { children } = props;
+
+  // Read the nonce injected by middleware so we can pass it to the
+  // emotion CacheProvider and into Next.js inline hydration scripts.
+  const headersList = await headers();
+  const nonce = headersList.get("x-nonce") ?? "";
 
   return (
     <html suppressHydrationWarning className={poppins.className}>
@@ -67,7 +74,7 @@ export default function RootLayout(props: Props) {
       </head>
 
       <body>
-        <Provider>
+        <Provider nonce={nonce}>
           <Suspense fallback={<DefaultFallback />}>
             <ClientSideOnly>{children}</ClientSideOnly>
           </Suspense>
